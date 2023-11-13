@@ -6,3 +6,19 @@
 //
 
 import Foundation
+import UIKit
+import SnapKit
+
+class MainView: CustomView {
+    
+    
+    override func setViews() {
+        
+    }
+    
+    
+    override func layoutViews() {
+        
+    }
+}
+
