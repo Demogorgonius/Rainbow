@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class ResultTableViewCell: UITableViewCell {
     
@@ -50,7 +51,7 @@ final class ResultTableViewCell: UITableViewCell {
         lb.translatesAutoresizingMaskIntoConstraints = false
         return lb
     }()
-
+    
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -72,27 +73,35 @@ final class ResultTableViewCell: UITableViewCell {
         resultView.addSubview(gameSpeedLabel)
         resultView.addSubview(gameNumberLabel)
         resultView.addSubview(gameResultLabel)
-    
-    NSLayoutConstraint.activate([
-        resultView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9),
-        resultView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 33),
-        resultView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -33),
-        resultView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -9),
-        resultView.widthAnchor.constraint(equalToConstant: 308.2),
-        resultView.heightAnchor.constraint(equalToConstant: 80),
         
-        gameNumberLabel.topAnchor.constraint(equalTo: resultView.topAnchor, constant: 8),
-        gameNumberLabel.leadingAnchor.constraint(equalTo: resultView.leadingAnchor, constant: 8),
+        resultView.snp.makeConstraints { make in
+            make.top.equalTo(contentView).offset(9)
+            make.leading.equalTo(contentView).offset(33)
+            make.trailing.equalTo(contentView).offset(-33)
+            make.bottom.equalTo(contentView).offset(-9)
+            make.width.equalTo(308.2)
+            make.height.equalTo(80)
+        }
         
-        gameTimeLabel.bottomAnchor.constraint(equalTo: resultView.bottomAnchor, constant: -8),
-        gameTimeLabel.leadingAnchor.constraint(equalTo: resultView.leadingAnchor, constant: 8),
+        gameNumberLabel.snp.makeConstraints { make in
+            make.top.equalTo(resultView).offset(8)
+            make.leading.equalTo(resultView).offset(8)
+        }
         
-        gameSpeedLabel.topAnchor.constraint(equalTo: resultView.topAnchor, constant: 8),
-        gameSpeedLabel.trailingAnchor.constraint(equalTo: resultView.trailingAnchor, constant: -8),
+        gameTimeLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(resultView).offset(-8)
+            make.leading.equalTo(resultView).offset(8)
+        }
         
-        gameResultLabel.trailingAnchor.constraint(equalTo: resultView.trailingAnchor, constant: -8),
-        gameResultLabel.bottomAnchor.constraint(equalTo: resultView.bottomAnchor, constant: -8),
+        gameSpeedLabel.snp.makeConstraints { make in
+            make.top.equalTo(resultView).offset(8)
+            make.trailing.equalTo(resultView).offset(-8)
+        }
         
-    ])
-}
+        gameResultLabel.snp.makeConstraints { make in
+            make.trailing.equalTo(resultView).offset(-8)
+            make.bottom.equalTo(resultView).offset(-8)
+        }
+        
+    }
 }
