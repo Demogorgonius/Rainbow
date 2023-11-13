@@ -10,16 +10,9 @@ import UIKit
 final class ResultTableViewCell: UITableViewCell {
     
     // MARK: - UI Properties
-    lazy var resultView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 20
-        view.layer.shadowOffset = CGSize(width: 0, height: 4)
-        view.layer.shadowOpacity = 0.9
-        view.layer.shadowRadius = 10
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    
+    lazy var resultContentView: ContenableView = {
+        return ViewFactory.createShadowView()
     }()
     
     lazy var gameNumberLabel: UILabel = {
@@ -57,14 +50,11 @@ final class ResultTableViewCell: UITableViewCell {
         lb.translatesAutoresizingMaskIntoConstraints = false
         return lb
     }()
-    
-    
-    
+
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
-        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -75,34 +65,34 @@ final class ResultTableViewCell: UITableViewCell {
     
     private func addSubviews() {
         contentView.backgroundColor = .lightGray
-        contentView.addSubview(resultView)
+        let resultView = resultContentView.shadowView
+        
+        contentView.addSubview(resultContentView.shadowView)
         resultView.addSubview(gameTimeLabel)
         resultView.addSubview(gameSpeedLabel)
         resultView.addSubview(gameNumberLabel)
         resultView.addSubview(gameResultLabel)
-    }
     
-    private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            resultView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9),
-            resultView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 33),
-            resultView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -33),
-            resultView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -9),
-            resultView.widthAnchor.constraint(equalToConstant: 308.2),
-            resultView.heightAnchor.constraint(equalToConstant: 80),
-            
-            gameNumberLabel.topAnchor.constraint(equalTo: resultView.topAnchor, constant: 8),
-            gameNumberLabel.leadingAnchor.constraint(equalTo: resultView.leadingAnchor, constant: 8),
-            
-            gameTimeLabel.bottomAnchor.constraint(equalTo: resultView.bottomAnchor, constant: -8),
-            gameTimeLabel.leadingAnchor.constraint(equalTo: resultView.leadingAnchor, constant: 8),
-            
-            gameSpeedLabel.topAnchor.constraint(equalTo: resultView.topAnchor, constant: 8),
-            gameSpeedLabel.trailingAnchor.constraint(equalTo: resultView.trailingAnchor, constant: -8),
-            
-            gameResultLabel.trailingAnchor.constraint(equalTo: resultView.trailingAnchor, constant: -8),
-            gameResultLabel.bottomAnchor.constraint(equalTo: resultView.bottomAnchor, constant: -8),
-            
-        ])
-    }
+    NSLayoutConstraint.activate([
+        resultView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9),
+        resultView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 33),
+        resultView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -33),
+        resultView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -9),
+        resultView.widthAnchor.constraint(equalToConstant: 308.2),
+        resultView.heightAnchor.constraint(equalToConstant: 80),
+        
+        gameNumberLabel.topAnchor.constraint(equalTo: resultView.topAnchor, constant: 8),
+        gameNumberLabel.leadingAnchor.constraint(equalTo: resultView.leadingAnchor, constant: 8),
+        
+        gameTimeLabel.bottomAnchor.constraint(equalTo: resultView.bottomAnchor, constant: -8),
+        gameTimeLabel.leadingAnchor.constraint(equalTo: resultView.leadingAnchor, constant: 8),
+        
+        gameSpeedLabel.topAnchor.constraint(equalTo: resultView.topAnchor, constant: 8),
+        gameSpeedLabel.trailingAnchor.constraint(equalTo: resultView.trailingAnchor, constant: -8),
+        
+        gameResultLabel.trailingAnchor.constraint(equalTo: resultView.trailingAnchor, constant: -8),
+        gameResultLabel.bottomAnchor.constraint(equalTo: resultView.bottomAnchor, constant: -8),
+        
+    ])
+}
 }
