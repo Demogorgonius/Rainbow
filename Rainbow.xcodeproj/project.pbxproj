@@ -18,6 +18,8 @@
 		A5B797562B0249C300B20742 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A5B797552B0249C300B20742 /* SnapKit */; };
 		A5B797582B0249C300B20742 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A5B797572B0249C300B20742 /* SnapKit-Dynamic */; };
 		A5B7975B2B0249E300B20742 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5B7975A2B0249E300B20742 /* IQKeyboardManagerSwift */; };
+		E1C097852B02516A0097C8C1 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C097842B02516A0097C8C1 /* ResultsTableViewController.swift */; };
+		E1C097872B02518F0097C8C1 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C097862B02518F0097C8C1 /* ResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		A5B797472B02402300B20742 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A5B797492B02402300B20742 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5B7974A2B02402300B20742 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1C097842B02516A0097C8C1 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
+		E1C097862B02518F0097C8C1 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				A5B7973E2B02402300B20742 /* MainViewController */,
+				E1C097832B0251480097C8C1 /* ResultsViewController */,
 				A5B797432B02402300B20742 /* LaunchScreen.storyboard */,
 			);
 			path = Controllers;
@@ -141,6 +146,23 @@
 				A5B7974A2B02402300B20742 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E1C097832B0251480097C8C1 /* ResultsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E1C097842B02516A0097C8C1 /* ResultsTableViewController.swift */,
+				E1C097882B0251A00097C8C1 /* Cells */,
+			);
+			path = ResultsViewController;
+			sourceTree = "<group>";
+		};
+		E1C097882B0251A00097C8C1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E1C097862B02518F0097C8C1 /* ResultTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,10 +245,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */,
+				E1C097852B02516A0097C8C1 /* ResultsTableViewController.swift in Sources */,
 				A5B7974E2B02402300B20742 /* MainView.swift in Sources */,
 				A5B7974B2B02402300B20742 /* CustomView.swift in Sources */,
 				A5B797502B02402300B20742 /* AppDelegate.swift in Sources */,
 				A5B7974C2B02402300B20742 /* CustomViewController.swift in Sources */,
+				E1C097872B02518F0097C8C1 /* ResultTableViewCell.swift in Sources */,
 				A5B797512B02402300B20742 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
