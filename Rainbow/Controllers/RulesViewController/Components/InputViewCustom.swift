@@ -19,16 +19,24 @@ final class InputViewCustom: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = .black
+        label.textColor = .blue
         label.font = UIFont.CormorantFont.RegularItalic.size(of: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var textView: UITextView = {
-        let field = UITextView()
-        field.translatesAutoresizingMaskIntoConstraints = false
-        return field
+        let view = UITextView()
+        view.backgroundColor = .red
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var backingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     var style: InputViewStyle = .rulesOfTheGame
@@ -56,7 +64,6 @@ final class InputViewCustom: UIView {
         например: написано
         «синий»:
         """
-            textView.textAlignment = .left
         case .newRulesOfTheGame:
             titleLabel.text = " НОВЫЕ ПРАВИЛА ИГРЫ"
             textView.text = """
@@ -67,8 +74,7 @@ final class InputViewCustom: UIView {
         «синий»:
         """
         }
-        addSubview(titleLabel)
-        addSubview(textView)
+        addSubviews(titleLabel, textView)
     }
     
     private func setupConstraints() {
@@ -79,8 +85,7 @@ final class InputViewCustom: UIView {
             
             textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26),
-            textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9),
-            textView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9)
         ])
     }
 }

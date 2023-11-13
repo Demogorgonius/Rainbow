@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		44A57C472B02539000C8E383 /* InputViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C462B02539000C8E383 /* InputViewCustom.swift */; };
 		44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */; };
-		44A57C4D2B02542200C8E383 /* RulesViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4C2B02542200C8E383 /* RulesViewController copy.swift */; };
+		44A57C4D2B02542200C8E383 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4C2B02542200C8E383 /* RulesViewController.swift */; };
 		44A57C4F2B0254D900C8E383 /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */; };
 		44A57C512B0261AD00C8E383 /* Extension + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C502B0261AD00C8E383 /* Extension + UIFont.swift */; };
 		44A57C5C2B02641900C8E383 /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C532B02641800C8E383 /* SF-Pro-Display-Black.otf */; };
@@ -38,7 +38,7 @@
 /* Begin PBXFileReference section */
 		44A57C462B02539000C8E383 /* InputViewCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewCustom.swift; sourceTree = "<group>"; };
 		44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
-		44A57C4C2B02542200C8E383 /* RulesViewController copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RulesViewController copy.swift"; sourceTree = "<group>"; };
+		44A57C4C2B02542200C8E383 /* RulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
 		44A57C502B0261AD00C8E383 /* Extension + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIFont.swift"; sourceTree = "<group>"; };
 		44A57C532B02641800C8E383 /* SF-Pro-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Black.otf"; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		44A57C442B02532400C8E383 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				44A57C4C2B02542200C8E383 /* RulesViewController copy.swift */,
+				44A57C4C2B02542200C8E383 /* RulesViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -335,7 +335,7 @@
 			files = (
 				A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */,
 				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
-				44A57C4D2B02542200C8E383 /* RulesViewController copy.swift in Sources */,
+				44A57C4D2B02542200C8E383 /* RulesViewController.swift in Sources */,
 				A5B7974E2B02402300B20742 /* MainView.swift in Sources */,
 				A5B7974B2B02402300B20742 /* CustomView.swift in Sources */,
 				44A57C4F2B0254D900C8E383 /* Extension + UIView.swift in Sources */,
