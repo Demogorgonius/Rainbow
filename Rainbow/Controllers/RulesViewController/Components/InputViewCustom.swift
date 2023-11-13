@@ -20,6 +20,7 @@ final class InputViewCustom: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .black
+        label.font = UIFont.CormorantFont.RegularItalic.size(of: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

@@ -9,6 +9,14 @@ import UIKit.UIFont
 
 extension UIFont {
     
+    enum CormorantFont {
+        enum RegularItalic {
+            static func size(of size: CGFloat) -> UIFont {
+                return UIFont(name: SystemFonts.CormorantItalic.italic, size: size) ?? UIFont()
+            }
+        }
+    }
+    
     enum DisplayFont {
         enum Regular {
             static func size(of size: CGFloat) -> UIFont {
@@ -47,7 +55,6 @@ extension UIFont {
         }
     }
     
-    //MARK: - Text Font
     enum TextFont {
         enum Bold {
             static func size(of size: CGFloat) -> UIFont {
@@ -71,6 +78,11 @@ extension UIFont {
 
 extension UIFont {
     enum SystemFonts {
+        
+        enum CormorantItalic {
+           static let italic = "CormorantInfant-Italic"
+        }
+        
         enum Display {
             static let regular = "SFProDisplay-Regular"
             static let bold = "SFProDisplay-Bold"
