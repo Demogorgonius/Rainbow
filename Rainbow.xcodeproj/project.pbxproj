@@ -22,6 +22,8 @@
 		44A57C632B02641900C8E383 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C5A2B02641900C8E383 /* SF-Pro-Display-Bold.otf */; };
 		44A57C642B02641900C8E383 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C5B2B02641900C8E383 /* SF-Pro-Text-Medium.otf */; };
 		44A57C662B0269B700C8E383 /* CormorantInfant-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C652B0269B700C8E383 /* CormorantInfant-Italic.otf */; };
+		44A57C6B2B0296C900C8E383 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C692B0296C900C8E383 /* ResultTableViewCell.swift */; };
+		44A57C6C2B0296C900C8E383 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C6A2B0296C900C8E383 /* ResultsTableViewController.swift */; };
 		A5B7974B2B02402300B20742 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B7973A2B02402300B20742 /* CustomView.swift */; };
 		A5B7974C2B02402300B20742 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B7973B2B02402300B20742 /* CustomViewController.swift */; };
 		A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797402B02402300B20742 /* MainViewController.swift */; };
@@ -51,6 +53,8 @@
 		44A57C5A2B02641900C8E383 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		44A57C5B2B02641900C8E383 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		44A57C652B0269B700C8E383 /* CormorantInfant-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CormorantInfant-Italic.otf"; sourceTree = "<group>"; };
+		44A57C692B0296C900C8E383 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		44A57C6A2B0296C900C8E383 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		A5B7970A2B010E3100B20742 /* Rainbow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rainbow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B7973A2B02402300B20742 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		A5B7973B2B02402300B20742 /* CustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +149,23 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		44A57C672B0296C900C8E383 /* ResultsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				44A57C682B0296C900C8E383 /* Cells */,
+				44A57C6A2B0296C900C8E383 /* ResultsTableViewController.swift */,
+			);
+			path = ResultsViewController;
+			sourceTree = "<group>";
+		};
+		44A57C682B0296C900C8E383 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				44A57C692B0296C900C8E383 /* ResultTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		A5B797012B010E3100B20742 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +215,7 @@
 		A5B7973D2B02402300B20742 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				44A57C672B0296C900C8E383 /* ResultsViewController */,
 				44A57C422B0251B700C8E383 /* RulesViewController */,
 				A5B7973E2B02402300B20742 /* MainViewController */,
 				A5B797432B02402300B20742 /* LaunchScreen.storyboard */,
@@ -340,9 +362,11 @@
 				A5B7974B2B02402300B20742 /* CustomView.swift in Sources */,
 				44A57C4F2B0254D900C8E383 /* Extension + UIView.swift in Sources */,
 				A5B797502B02402300B20742 /* AppDelegate.swift in Sources */,
+				44A57C6C2B0296C900C8E383 /* ResultsTableViewController.swift in Sources */,
 				A5B7974C2B02402300B20742 /* CustomViewController.swift in Sources */,
 				A5B797512B02402300B20742 /* SceneDelegate.swift in Sources */,
 				44A57C512B0261AD00C8E383 /* Extension + UIFont.swift in Sources */,
+				44A57C6B2B0296C900C8E383 /* ResultTableViewCell.swift in Sources */,
 				44A57C472B02539000C8E383 /* InputViewCustom.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
