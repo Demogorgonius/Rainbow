@@ -11,6 +11,7 @@ extension UIColor {
     enum RainbowGameColor {
         static let customBackground = UIColor(named: "customBackground") ?? UIColor()
         static let customLightGreen = UIColor(named: "customLightGreen") ?? UIColor()
+        static let customGreenForButton = UIColor(named: "customGreenForButton") ?? UIColor()
         static let customDarkGreen = UIColor(named: "customDarkGreen") ?? UIColor()
         static let customPink = UIColor(named: "customPink") ?? UIColor()
         static let customLightBlue = UIColor(named: "customLightBlue") ?? UIColor()
