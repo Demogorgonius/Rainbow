@@ -11,10 +11,11 @@ final class RulesViewController: UIViewController {
     
     //MARK: - UI
     private lazy var rulesOfTheGame: InputViewCustom = {
-        let field = InputViewCustom()
-        field.style = .newRulesOfTheGame
-        field.translatesAutoresizingMaskIntoConstraints = false
-        return field
+        let rules = InputViewCustom()
+        rules.style = .newRulesOfTheGame
+        rules.layer.cornerRadius = 20
+        rules.translatesAutoresizingMaskIntoConstraints = false
+        return rules
     }()
 
     //MARK: - Life Cycle

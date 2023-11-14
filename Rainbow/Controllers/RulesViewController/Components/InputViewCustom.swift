@@ -13,6 +13,12 @@ enum InputViewStyle {
     case newRulesOfTheGame
 }
 
+protocol SettingsView {
+    func setupConstraints()
+    func attributesFirst()
+    func attributesSecond()
+}
+
 final class InputViewCustom: UIView {
     
     //MARK: - UI
@@ -107,8 +113,12 @@ final class InputViewCustom: UIView {
         }
         addSubviews(titleLabel, textView, substrateFirst, substrateSecond, nameShadow, buttonView, textViewSecond)
     }
-    
-    private func attributesFirst() {
+}
+
+
+
+extension InputViewCustom: SettingsView {
+    func attributesFirst() {
         let attributedString = NSMutableAttributedString(string: """
         На экране в случайном
         месте появляется слово,
@@ -122,9 +132,9 @@ final class InputViewCustom: UIView {
         textView.font = .CormorantFont.RegularItalic.size(of: 20)
     }
     
-    private func attributesSecond() {
+    func attributesSecond() {
         let attributedString = NSMutableAttributedString(string: """
-        Нужно произнести вслух 
+        Нужно произнести вслух
         цвет слова (если опция
         «подложка для букв»
         выключена) или цвет фона,
@@ -133,8 +143,7 @@ final class InputViewCustom: UIView {
         «подложка для букв»
         включена):
         говорим «зеленый».
-
-        В игре можно изменять 
+        В игре можно изменять
         скорость от 1x до 5x. А так
         же длительность игры.
         """)
@@ -144,7 +153,7 @@ final class InputViewCustom: UIView {
         textViewSecond.font = .CormorantFont.RegularItalic.size(of: 20)
     }
     
-    private func setupConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 35),
