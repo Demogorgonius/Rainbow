@@ -13,6 +13,7 @@ enum InputViewStyle {
     case newRulesOfTheGame
 }
 
+//MARK: - SettingsView
 protocol SettingsView {
     func setupConstraints()
     func attributesFirst()
@@ -104,6 +105,7 @@ final class InputViewCustom: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - setupViews
     private func setupViews() {
         switch style {
         case .rulesOfTheGame:
@@ -115,8 +117,7 @@ final class InputViewCustom: UIView {
     }
 }
 
-
-
+//MARK: - InputViewCustom
 extension InputViewCustom: SettingsView {
     func attributesFirst() {
         let attributedString = NSMutableAttributedString(string: """

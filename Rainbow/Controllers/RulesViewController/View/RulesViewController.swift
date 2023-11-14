@@ -9,6 +9,8 @@ import UIKit
 
 final class RulesViewController: UIViewController {
     
+    //private let presenter: RulesPresenterProtocol
+    
     //MARK: - UI
     private lazy var rulesOfTheGame: InputViewCustom = {
         let rules = InputViewCustom()
@@ -17,11 +19,20 @@ final class RulesViewController: UIViewController {
         rules.translatesAutoresizingMaskIntoConstraints = false
         return rules
     }()
-
+    
+//    //MARK: Init
+//    init(presenter: RulesPresenterProtocol) {
+//        self.presenter = presenter
+//        super.init()
+//    }
+    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
         view.backgroundColor = .RainbowGameColor.customBackground
         setViews()
         setConstrains()

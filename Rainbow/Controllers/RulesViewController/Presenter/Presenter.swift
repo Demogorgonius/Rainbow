@@ -6,3 +6,20 @@
 //
 
 import Foundation
+
+//MARK: - RulesPresenterProtocol
+protocol RulesPresenterProtocol {
+    func clearStatisticOverview()
+}
+
+final class RulesPresenter: RulesPresenterProtocol {
+    
+    weak var view: ResultsViewProtocol?
+    
+    private let router: ResultsRouterProtocol
+    
+    init(router: ResultsRouterProtocol) {
+        self.router = router
+    }
+    func clearStatisticOverview() { }
+}
