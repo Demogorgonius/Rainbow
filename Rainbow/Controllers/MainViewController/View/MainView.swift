@@ -11,6 +11,7 @@ import SnapKit
 
 class MainView: CustomView {
     
+    // MARK: - UI
     lazy var rainbowImage: UIImageView = {
         let element = UIImageView()
         element.image = UIImage(named: "Image")

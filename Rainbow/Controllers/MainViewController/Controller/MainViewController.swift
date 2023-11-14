@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class MainViewController: CustomViewController<MainView> {
-    
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .customBackground
