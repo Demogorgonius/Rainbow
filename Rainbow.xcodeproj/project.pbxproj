@@ -39,6 +39,7 @@
 		E1C0979C2B02C7E40097C8C1 /* ResultsViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C0979B2B02C7E40097C8C1 /* ResultsViewProtocol.swift */; };
 		E1C0979E2B02C82D0097C8C1 /* ResultsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C0979D2B02C82D0097C8C1 /* ResultsBuilder.swift */; };
 		E1C097A02B02C9240097C8C1 /* ResultsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C0979F2B02C9240097C8C1 /* ResultsRouter.swift */; };
+		E1C097A32B03620A0097C8C1 /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C097A22B03620A0097C8C1 /* LabelFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,6 +88,7 @@
 		E1C0979B2B02C7E40097C8C1 /* ResultsViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewProtocol.swift; sourceTree = "<group>"; };
 		E1C0979D2B02C82D0097C8C1 /* ResultsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsBuilder.swift; sourceTree = "<group>"; };
 		E1C0979F2B02C9240097C8C1 /* ResultsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsRouter.swift; sourceTree = "<group>"; };
+		E1C097A22B03620A0097C8C1 /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */,
 				44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */,
 				E1C097942B02B9490097C8C1 /* ViewFactory.swift */,
+				E1C097A22B03620A0097C8C1 /* LabelFactory.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */,
 				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
 				44A57C4D2B02542200C8E383 /* RulesViewController.swift in Sources */,
+				E1C097A32B03620A0097C8C1 /* LabelFactory.swift in Sources */,
 				E1C0979C2B02C7E40097C8C1 /* ResultsViewProtocol.swift in Sources */,
 				A5B7974E2B02402300B20742 /* MainView.swift in Sources */,
 				A5B7974B2B02402300B20742 /* CustomView.swift in Sources */,

@@ -39,7 +39,7 @@ final class ResultsTableViewController: UITableViewController {
     //MARK: Life Circle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor.RainbowGameColor.customBackground
         registeredCell()
         setupClearResultsButton()
     }
