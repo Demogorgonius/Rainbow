@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15AB85292B042499006B3CCF /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB85282B042499006B3CCF /* SettingsPresenter.swift */; };
 		15F3BE7E2B02E70500E74E7A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3BE7D2B02E70500E74E7A /* SettingsViewController.swift */; };
 		15F3BE842B02F07200E74E7A /* SettingsViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3BE832B02F07200E74E7A /* SettingsViewService.swift */; };
 		44A57C472B02539000C8E383 /* InputViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C462B02539000C8E383 /* InputViewCustom.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		15AB85282B042499006B3CCF /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		15F3BE7D2B02E70500E74E7A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		15F3BE832B02F07200E74E7A /* SettingsViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewService.swift; sourceTree = "<group>"; };
 		44A57C462B02539000C8E383 /* InputViewCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewCustom.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		15F3BE7A2B02E27A00E74E7A /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				15AB85282B042499006B3CCF /* SettingsPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				E1C097A02B02C9240097C8C1 /* ResultsRouter.swift in Sources */,
 				44A57C6B2B0296C900C8E383 /* ResultTableViewCell.swift in Sources */,
 				44A57C472B02539000C8E383 /* InputViewCustom.swift in Sources */,
+				15AB85292B042499006B3CCF /* SettingsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
