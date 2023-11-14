@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		443AE6B42B036BC500152B3E /* InputViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443AE6B12B036BC500152B3E /* InputViewCustom.swift */; };
 		443AE6B52B036BC500152B3E /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443AE6B32B036BC500152B3E /* RulesViewController.swift */; };
+		447B0D1B2B038C0600ECDA58 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B0D1A2B038C0600ECDA58 /* Router.swift */; };
+		447B0D1D2B038C7600ECDA58 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B0D1C2B038C7600ECDA58 /* Builder.swift */; };
+		447B0D1F2B038D3900ECDA58 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B0D1E2B038D3900ECDA58 /* Presenter.swift */; };
+		447B0D212B038D4500ECDA58 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B0D202B038D4500ECDA58 /* Model.swift */; };
 		44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */; };
 		44A57C4F2B0254D900C8E383 /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */; };
 		44A57C512B0261AD00C8E383 /* Extension + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C502B0261AD00C8E383 /* Extension + UIFont.swift */; };
@@ -58,6 +62,10 @@
 /* Begin PBXFileReference section */
 		443AE6B12B036BC500152B3E /* InputViewCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewCustom.swift; sourceTree = "<group>"; };
 		443AE6B32B036BC500152B3E /* RulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
+		447B0D1A2B038C0600ECDA58 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		447B0D1C2B038C7600ECDA58 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		447B0D1E2B038D3900ECDA58 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		447B0D202B038D4500ECDA58 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
 		44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
 		44A57C502B0261AD00C8E383 /* Extension + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIFont.swift"; sourceTree = "<group>"; };
@@ -120,6 +128,7 @@
 		443AE6AF2B036BC500152B3E /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				447B0D1E2B038D3900ECDA58 /* Presenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -143,6 +152,7 @@
 		443AE6B62B036BD400152B3E /* Builder */ = {
 			isa = PBXGroup;
 			children = (
+				447B0D1C2B038C7600ECDA58 /* Builder.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -150,6 +160,7 @@
 		443AE6B72B036BE100152B3E /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				447B0D1A2B038C0600ECDA58 /* Router.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -157,6 +168,7 @@
 		443AE6B82B036BF200152B3E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				447B0D202B038D4500ECDA58 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -442,15 +454,19 @@
 			files = (
 				443AE6B42B036BC500152B3E /* InputViewCustom.swift in Sources */,
 				A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */,
+				447B0D1D2B038C7600ECDA58 /* Builder.swift in Sources */,
 				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
 				E1C097A32B03620A0097C8C1 /* LabelFactory.swift in Sources */,
 				E1C0979C2B02C7E40097C8C1 /* ResultsViewProtocol.swift in Sources */,
+				447B0D1B2B038C0600ECDA58 /* Router.swift in Sources */,
 				A5B7974E2B02402300B20742 /* MainView.swift in Sources */,
 				A5B7974B2B02402300B20742 /* CustomView.swift in Sources */,
 				E1C097952B02B9490097C8C1 /* ViewFactory.swift in Sources */,
 				E1C0979E2B02C82D0097C8C1 /* ResultsBuilder.swift in Sources */,
 				E1C0979A2B02C76A0097C8C1 /* ResultsPresenter.swift in Sources */,
+				447B0D1F2B038D3900ECDA58 /* Presenter.swift in Sources */,
 				44A57C4F2B0254D900C8E383 /* Extension + UIView.swift in Sources */,
+				447B0D212B038D4500ECDA58 /* Model.swift in Sources */,
 				A5B797502B02402300B20742 /* AppDelegate.swift in Sources */,
 				44A57C6C2B0296C900C8E383 /* ResultsTableViewController.swift in Sources */,
 				A5B7974C2B02402300B20742 /* CustomViewController.swift in Sources */,

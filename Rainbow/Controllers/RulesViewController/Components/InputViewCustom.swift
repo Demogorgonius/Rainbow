@@ -58,7 +58,7 @@ final class InputViewCustom: UIView {
         label.textColor = .RainbowGameColor.customLightGreen
         label.font = .CormorantFont.RegularItalic.size(of: 20)
         return label
-    }() 
+    }()
     
     private lazy var buttonView: UIButton = {
         let button = UIButton()
@@ -89,6 +89,8 @@ final class InputViewCustom: UIView {
         super.init(frame: frame)
         backgroundColor = .white
         setupViews()
+        attributesFirst()
+        attributesSecond()
         setupConstraints()
     }
     
@@ -100,20 +102,34 @@ final class InputViewCustom: UIView {
         switch style {
         case .rulesOfTheGame:
             titleLabel.text = "ПРАВИЛА ИГРЫ"
-            textView.text = """
-        На экране в случайном 
+        case .newRulesOfTheGame:
+            titleLabel.text = " НОВЫЕ ПРАВИЛА ИГРЫ"
+        }
+        addSubviews(titleLabel, textView, substrateFirst, substrateSecond, nameShadow, buttonView, textViewSecond)
+    }
+    
+    private func attributesFirst() {
+        let attributedString = NSMutableAttributedString(string: """
+        На экране в случайном
         месте появляется слово,
-        обозначающее цвет, 
+        обозначающее цвет,
         например: написано
         «синий»:
-        """
-            textViewSecond.text = """
+        """)
+        let range = (attributedString.string as NSString).range(of: "«синий»")
+        attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range)
+        textView.attributedText = attributedString
+        textView.font = .CormorantFont.RegularItalic.size(of: 20)
+    }
+    
+    private func attributesSecond() {
+        let attributedString = NSMutableAttributedString(string: """
         Нужно произнести вслух 
         цвет слова (если опция
         «подложка для букв»
         выключена) или цвет фона,
         на котором написано
-        слово (если опция 
+        слово (если опция
         «подложка для букв»
         включена):
         говорим «зеленый».
@@ -121,18 +137,11 @@ final class InputViewCustom: UIView {
         В игре можно изменять 
         скорость от 1x до 5x. А так
         же длительность игры.
-        """
-        case .newRulesOfTheGame:
-            titleLabel.text = " НОВЫЕ ПРАВИЛА ИГРЫ"
-            textView.text = """
-        На экране в случайном
-        месте появляется слово,
-        обозначающее цвет,
-        например: написано
-        «синий»:
-        """
-        }
-        addSubviews(titleLabel, textView, substrateFirst, substrateSecond, nameShadow, buttonView, textViewSecond)
+        """)
+        let range = (attributedString.string as NSString).range(of: "говорим «зеленый»")
+        attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range)
+        textViewSecond.attributedText = attributedString
+        textViewSecond.font = .CormorantFont.RegularItalic.size(of: 20)
     }
     
     private func setupConstraints() {
