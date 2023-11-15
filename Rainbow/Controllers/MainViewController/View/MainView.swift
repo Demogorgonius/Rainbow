@@ -26,17 +26,17 @@ class MainView: CustomView {
     
     private lazy var nameGameLabel = UILabel(text: "Радуга", font: UIFont.CormorantFont.RegularItalic.size(of: 64))
     
-    private lazy var startNewGameButton = UIButton(textButton: "Новая игра", colorText: .white, backgroundColor: .customRed, target: self, action: #selector(startNewGameButtonTapped))
+    private lazy var startNewGameButton = UIButton(textButton: "Новая игра", colorText: .white, backgroundColor: .customRed)
     
-    private lazy var continueGameButton = UIButton(textButton: "Продолжить", colorText: .white, backgroundColor: .customLightBlue, target: self, action: #selector(continueGameButtonTapped))
+    private lazy var continueGameButton = UIButton(textButton: "Продолжить", colorText: .white, backgroundColor: .customLightBlue)
     
-    private lazy var statisticGameButton = UIButton(textButton: "Cтатистика", colorText: .white, backgroundColor: .customGreenForButton, target: self, action: #selector(statisticGameTapped))
+    private lazy var statisticGameButton = UIButton(textButton: "Cтатистика", colorText: .white, backgroundColor: .customGreenForButton)
     
     private lazy var buttonsStackView = UIStackView(axis: .vertical, distribution: .fillEqually, spacing: 10, subview: [startNewGameButton, continueGameButton, statisticGameButton])
     
-    private lazy var settingsGameButton = UIButton(imageName: "settings", target: self, action: #selector(settingsGameButtonTapped))
+    private lazy var settingsGameButton = UIButton(imageName: "settings")
     
-    private lazy var infoGameButton = UIButton(imageName: "info", target: self, action: #selector(infoGameButtonTapped))
+    private lazy var infoGameButton = UIButton(imageName: "info")
     
     private lazy var customButtonsStackView = UIStackView(axis: .horizontal, distribution: .fillEqually, spacing: 180, subview: [settingsGameButton, infoGameButton])
     
@@ -47,6 +47,8 @@ class MainView: CustomView {
         addSubviews(nameStackView)
         addSubviews(buttonsStackView)
         addSubviews(customButtonsStackView)
+        
+        addTargetButton()
     }
     
     override func layoutViews() {
@@ -73,28 +75,36 @@ class MainView: CustomView {
             make.centerX.equalToSuperview()
             make.top.equalTo(buttonsStackView.snp.bottom).offset(30)
             make.leadingMargin.equalToSuperview()
-            //make.height.equalTo(100)
         }
     }
     
+    func addTargetButton() {
+        startNewGameButton.addTarget(self, action: #selector(startNewGameButtonTapped), for: .touchUpInside)
+        continueGameButton.addTarget(self, action: #selector(continueGameButtonTapped), for: .touchUpInside)
+        statisticGameButton.addTarget(self, action: #selector(statisticGameTapped), for: .touchUpInside)
+        
+        settingsGameButton.addTarget(self, action: #selector(settingsGameButtonTapped), for: .touchUpInside)
+        infoGameButton.addTarget(self, action: #selector(infoGameButtonTapped), for: .touchUpInside)
+    }
+    
     @objc func startNewGameButtonTapped() {
-        print("ok")
+        
     }
     
     @objc func continueGameButtonTapped() {
-        print("ok1")
+        
     }
     
     @objc func statisticGameTapped() {
-        print("ok3")
+        
     }
     
     @objc func settingsGameButtonTapped() {
-        print("settings")
+       
     }
     
     @objc func infoGameButtonTapped() {
-        print("info")
+        print("ok5")
     }
 }
 

@@ -9,10 +9,10 @@ import UIKit
 import SnapKit
 
 extension UIButton {
-    convenience init(imageName: String, target: Any?, action: Selector) {
+    convenience init(imageName: String) {
         self.init(type: .custom)
         self.setImage(UIImage(named: imageName), for: .normal)
-        self.addTarget(target, action: action, for: .touchUpInside)
+       // self.addTarget(target, action: action, for: .touchUpInside)
         self.translatesAutoresizingMaskIntoConstraints = false
 
         
