@@ -20,12 +20,12 @@ final class RulesViewController: UIViewController {
         return rules
     }()
     
-//    //MARK: Init
+    //MARK: Init
 //    init(presenter: RulesPresenterProtocol) {
 //        self.presenter = presenter
 //        super.init()
 //    }
-    
+//    
 //    required init?(coder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
 //    }
@@ -36,6 +36,10 @@ final class RulesViewController: UIViewController {
         view.backgroundColor = .RainbowGameColor.customBackground
         setViews()
         setConstrains()
+    }
+    
+    private func back() {
+        //presenter.playGame()
     }
     
     //MARK: - Set Views
@@ -54,4 +58,10 @@ extension RulesViewController {
             rulesOfTheGame.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -29)
         ])
     }
+}
+
+//MARK: - RulesViewProtocol
+extension RulesViewController: RulesViewProtocol {
+    func successfully() { }
+    func unsuccessful() { }
 }
