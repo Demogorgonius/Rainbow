@@ -17,20 +17,21 @@ final class ResultTableViewCell: UITableViewCell {
     }()
     
     lazy var gameNumberLabel: UILabel = {
-        return LabelFactory.createLabel(type: .gamePink)
+        return LabelFactory.createLabel(type: .gamePink, text: "игра №1")
     }()
 
     lazy var gameTimeLabel: UILabel = {
-        return LabelFactory.createLabel(type: .gameBlack)
+        return LabelFactory.createLabel(type: .gameBlack, text: "время: 11.0")
     }()
 
     lazy var gameSpeedLabel: UILabel = {
-        return LabelFactory.createLabel(type: .gameBlack)
+        return LabelFactory.createLabel(type: .gameBlack, text: "скорость х2")
     }()
 
     lazy var gameResultLabel: UILabel = {
-        return LabelFactory.createLabel(type: .gameLightGreen)
+        return LabelFactory.createLabel(type: .gameLightGreen, text: "угадано 1/1")
     }()
+    
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
