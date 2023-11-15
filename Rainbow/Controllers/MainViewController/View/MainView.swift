@@ -20,8 +20,6 @@ class MainView: CustomView {
         return element
     }()
     
-    private lazy var nameStackView = UIStackView(axis: .vertical, distribution: .fillEqually, spacing: 0, subview: [gameLabel, nameGameLabel])
-    
     private lazy var gameLabel = UILabel(text: "HЛП игра", font: UIFont.systemFont(ofSize: 36))
     
     private lazy var nameGameLabel = UILabel(text: "Радуга", font: UIFont.CormorantFont.RegularItalic.size(of: 64))
@@ -44,7 +42,8 @@ class MainView: CustomView {
     
     override func setViews() {
         addSubview(rainbowImage)
-        addSubviews(nameStackView)
+        addSubview(gameLabel)
+        addSubview(nameGameLabel)
         addSubviews(buttonsStackView)
         addSubviews(customButtonsStackView)
         
@@ -55,27 +54,34 @@ class MainView: CustomView {
         
         rainbowImage.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(82)
+            make.top.equalTo(safeAreaLayoutGuide)
             make.size.equalTo(CGSize(width: 302, height: 150))
         }
         
-        nameStackView.snp.makeConstraints { make in
+        gameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(261)
-            make.leadingMargin.equalToSuperview().offset(81)
+            make.top.equalTo(rainbowImage.snp.bottom)
+            make.height.greaterThanOrEqualTo(40)
+        }
+
+        nameGameLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(gameLabel.snp.bottom)
+            make.height.greaterThanOrEqualTo(80)
         }
         
         buttonsStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(nameStackView.snp.bottom).offset(100)
-            make.leadingMargin.equalToSuperview().offset(81)
-        }
-        
-        customButtonsStackView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(buttonsStackView.snp.bottom).offset(30)
+            make.bottom.lessThanOrEqualTo(customButtonsStackView.snp.top)
             make.leadingMargin.equalToSuperview()
         }
+
+        customButtonsStackView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.leadingMargin.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide)
+        }
+
     }
     
     func addTargetButton() {
@@ -100,7 +106,7 @@ class MainView: CustomView {
     }
     
     @objc func settingsGameButtonTapped() {
-       
+        
     }
     
     @objc func infoGameButtonTapped() {
