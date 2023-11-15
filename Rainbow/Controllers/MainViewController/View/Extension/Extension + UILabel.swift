@@ -15,5 +15,6 @@ extension UILabel {
         self.textColor = .black
         self.textAlignment = .center
         self.translatesAutoresizingMaskIntoConstraints = false
+    
     }
 }
