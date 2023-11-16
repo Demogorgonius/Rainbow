@@ -8,15 +8,18 @@
 import Foundation
 import UIKit
 
-class MainViewController: CustomViewController<MainView> {
+class MainViewController: CustomViewController<MainView>, MainPresenterDelegate {
     
     var presenter: MainPresenterProtocol!
+    var mainView = MainView()
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .customBackground
+        presenter?.delegate = self
+        mainView.presenter = presenter
+        presenter.view = mainView
+        view = mainView
 
     }
-    
 }

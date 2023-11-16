@@ -11,6 +11,8 @@ import SnapKit
 
 class MainView: CustomView {
     
+    weak var presenter: MainPresenterProtocol?
+    
     // MARK: - UI
     lazy var rainbowImage: UIImageView = {
         let element = UIImageView()
@@ -41,6 +43,8 @@ class MainView: CustomView {
     
     
     override func setViews() {
+        backgroundColor = .customBackground
+        
         addSubview(rainbowImage)
         addSubview(gameLabel)
         addSubview(nameGameLabel)
@@ -63,7 +67,7 @@ class MainView: CustomView {
             make.top.equalTo(rainbowImage.snp.bottom)
             make.height.greaterThanOrEqualTo(40)
         }
-
+        
         nameGameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(gameLabel.snp.bottom)
@@ -75,13 +79,13 @@ class MainView: CustomView {
             make.bottom.lessThanOrEqualTo(customButtonsStackView.snp.top)
             make.leadingMargin.equalToSuperview()
         }
-
+        
         customButtonsStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.leadingMargin.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide)
         }
-
+        
     }
     
     func addTargetButton() {
@@ -93,25 +97,30 @@ class MainView: CustomView {
         infoGameButton.addTarget(self, action: #selector(infoGameButtonTapped), for: .touchUpInside)
     }
     
-    @objc func startNewGameButtonTapped() {
+    @objc private func startNewGameButtonTapped() {
         
+        presenter?.startNewGameButtonTapped()
     }
     
-    @objc func continueGameButtonTapped() {
+    @objc private func continueGameButtonTapped() {
         
+        presenter?.continueGameButtonTapped()
     }
     
-    @objc func statisticGameTapped() {
-       
-      
+    @objc private func statisticGameTapped() {
+        print("Settings button tapped")
+        print("Presenter: \(presenter)")
+        presenter?.statisticGameTapped()
     }
     
-    @objc func settingsGameButtonTapped() {
+    @objc private func settingsGameButtonTapped() {
+        print("Settings button tapped")
+        presenter?.settingsGameButtonTapped()
+    }
+    
+    @objc private func infoGameButtonTapped() {
         
-    }
-    
-    @objc func infoGameButtonTapped() {
-       
+        presenter?.infoGameButtonTapped()
     }
 }
 
