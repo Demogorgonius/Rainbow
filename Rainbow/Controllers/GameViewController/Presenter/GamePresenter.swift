@@ -6,13 +6,6 @@
 //
 
 import Foundation
-import UIKit
-
-protocol GameViewProtocol: AnyObject {
-    func startTimer()
-    func updateTimerLabel(text: String)
-    func updateColorViews(colorInfo: [(text: String, backgroundColor: UIColor)])
-}
 
 class GamePresenter {
    
