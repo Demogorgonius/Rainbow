@@ -20,7 +20,7 @@ final class ResultsTableViewController: UITableViewController {
         let bt = UIButton()
         bt.setTitle("Очистить статистику", for: .normal)
         bt.setTitleColor(.white, for: .normal)
-        bt.backgroundColor = .red
+        bt.backgroundColor = .RainbowGameColor.customRed
         bt.layer.cornerRadius = 10
         bt.layer.shadowOffset = CGSize(width: 0, height: 4)
         bt.layer.shadowOpacity = 0.9
