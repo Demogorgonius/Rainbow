@@ -32,7 +32,6 @@
 		44A57C632B02641900C8E383 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C5A2B02641900C8E383 /* SF-Pro-Display-Bold.otf */; };
 		44A57C642B02641900C8E383 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C5B2B02641900C8E383 /* SF-Pro-Text-Medium.otf */; };
 		44A57C662B0269B700C8E383 /* CormorantInfant-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C652B0269B700C8E383 /* CormorantInfant-Italic.otf */; };
-		4ACAC2C02B065F570019C345 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACAC2BF2B065F570019C345 /* CustomNavigationController.swift */; };
 		4AD1313C2B029E11007DA3B7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD1313B2B029E11007DA3B7 /* SnapKit */; };
 		4AD1313F2B02A3A0007DA3B7 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD1313E2B02A3A0007DA3B7 /* Extension + UILabel.swift */; };
 		4AD131412B02A664007DA3B7 /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD131402B02A664007DA3B7 /* Extension + UIStackView.swift */; };
@@ -61,6 +60,7 @@
 		A5B797502B02402300B20742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797462B02402300B20742 /* AppDelegate.swift */; };
 		A5B797512B02402300B20742 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797472B02402300B20742 /* SceneDelegate.swift */; };
 		A5B7975B2B0249E300B20742 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5B7975A2B0249E300B20742 /* IQKeyboardManagerSwift */; };
+		E1C097B22B06478E0097C8C1 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,7 +89,6 @@
 		44A57C5A2B02641900C8E383 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		44A57C5B2B02641900C8E383 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		44A57C652B0269B700C8E383 /* CormorantInfant-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CormorantInfant-Italic.otf"; sourceTree = "<group>"; };
-		4ACAC2BF2B065F570019C345 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		4AD1313E2B02A3A0007DA3B7 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
 		4AD131402B02A664007DA3B7 /* Extension + UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIStackView.swift"; sourceTree = "<group>"; };
 		4AD131422B02A7A9007DA3B7 /* Extension + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIButton.swift"; sourceTree = "<group>"; };
@@ -121,6 +120,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../CustomNavigationController.swift; sourceTree = "<group>"; };
 >>>>>>> Develop
@@ -131,6 +131,9 @@
 		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../CustomNavigationController.swift; sourceTree = "<group>"; };
 
 >>>>>>> origin/lizmary/MainViewController
+=======
+		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../../../../Applications/CustomNavigationController.swift; sourceTree = "<group>"; };
+>>>>>>> parent of 3fdd09f (fix)
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +273,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				4ACAC2BF2B065F570019C345 /* CustomNavigationController.swift */,
 =======
 =======
@@ -277,6 +281,8 @@
 =======
 >>>>>>> origin/lizmary/MainViewController
 				446F15BD2B065E4500B10C77 /* Extension + UIImage.swift */,
+=======
+>>>>>>> parent of 3fdd09f (fix)
 				E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */,
 			);
 			path = Extensions;
@@ -639,6 +645,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				4ACAC2C02B065F570019C345 /* CustomNavigationController.swift in Sources */,
 =======
 =======
@@ -649,6 +656,9 @@
 				446F15BB2B065B1C00B10C77 /* RulesBuilder.swift in Sources */,
 				E1C097B22B06478E0097C8C1 /* CustomNavigationController.swift in Sources */,
 
+=======
+				E1C097B22B06478E0097C8C1 /* CustomNavigationController.swift in Sources */,
+>>>>>>> parent of 3fdd09f (fix)
 				A5B7974B2B02402300B20742 /* CustomView.swift in Sources */,
 				4AD131432B02A7A9007DA3B7 /* Extension + UIButton.swift in Sources */,
 				4AD1316F2B0566E4007DA3B7 /* ResultsRouter.swift in Sources */,

@@ -47,7 +47,7 @@ final class ResultsTableViewController: UITableViewController {
         configureTableView()
         setupClearResultsButton()
         navigationItem.title = "Статистика"
-        //navigationController?.setupNavigationBar()
+        navigationController?.setupNavigationBar()
     }
     
     //MARK: Private methods
