@@ -55,6 +55,7 @@
 		A5B797502B02402300B20742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797462B02402300B20742 /* AppDelegate.swift */; };
 		A5B797512B02402300B20742 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797472B02402300B20742 /* SceneDelegate.swift */; };
 		A5B7975B2B0249E300B20742 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5B7975A2B0249E300B20742 /* IQKeyboardManagerSwift */; };
+		E1C097B22B06478E0097C8C1 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,7 @@
 		A5B797462B02402300B20742 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5B797472B02402300B20742 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A5B7974A2B02402300B20742 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../../../../Applications/CustomNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 				44A57C502B0261AD00C8E383 /* Extension + UIFont.swift */,
 				44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */,
 				44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */,
+				E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -423,8 +426,6 @@
 			isa = PBXGroup;
 			children = (
 				15F3BE762B02E23E00E74E7A /* SettingsModule */,
-				44A57C672B0296C900C8E383 /* StatisticOverviewModule */,
-				44A57C422B0251B700C8E383 /* RulesViewController */,
 				A5B7973E2B02402300B20742 /* MainViewController */,
 				4AD131492B03B4D1007DA3B7 /* GameViewController */,
 				4AD131632B0566E3007DA3B7 /* StatisticOverviewModule */,
@@ -581,6 +582,7 @@
 				4AD131412B02A664007DA3B7 /* Extension + UIStackView.swift in Sources */,
 				A5B7974E2B02402300B20742 /* MainView.swift in Sources */,
 				4AD1315B2B051DCD007DA3B7 /* MainBuilder.swift in Sources */,
+				E1C097B22B06478E0097C8C1 /* CustomNavigationController.swift in Sources */,
 				A5B7974B2B02402300B20742 /* CustomView.swift in Sources */,
 				4AD131432B02A7A9007DA3B7 /* Extension + UIButton.swift in Sources */,
 				4AD1316F2B0566E4007DA3B7 /* ResultsRouter.swift in Sources */,
@@ -589,9 +591,6 @@
 				4AD131522B03D9D7007DA3B7 /* GamePresenter.swift in Sources */,
 				4AD131502B03D99F007DA3B7 /* GameViewController.swift in Sources */,
 				15AB852B2B0530C9006B3CCF /* ColorChecker.swift in Sources */,
-				E1C097952B02B9490097C8C1 /* ViewFactory.swift in Sources */,
-				E1C0979E2B02C82D0097C8C1 /* ResultsBuilder.swift in Sources */,
-				E1C0979A2B02C76A0097C8C1 /* ResultsPresenter.swift in Sources */,
 				15F3BE842B02F07200E74E7A /* SettingsViewService.swift in Sources */,
 				44A57C4F2B0254D900C8E383 /* Extension + UIView.swift in Sources */,
 				4AD131772B056781007DA3B7 /* LabelFactory.swift in Sources */,
