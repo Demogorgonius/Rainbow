@@ -102,7 +102,8 @@ class MainView: CustomView {
     }
     
     @objc func statisticGameTapped() {
-        
+       
+      
     }
     
     @objc func settingsGameButtonTapped() {
@@ -110,7 +111,7 @@ class MainView: CustomView {
     }
     
     @objc func infoGameButtonTapped() {
-        print("ok5")
+       
     }
 }
 

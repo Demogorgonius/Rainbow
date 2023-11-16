@@ -33,7 +33,6 @@ class MainPresenter: MainPresenterProtocol {
     }
     
     func statisticGameTapped() {
-        
     }
     
     func settingsGameButtonTapped() {

@@ -18,11 +18,9 @@ class MainBuilder: MainBuilderProtocol {
         let router = MainRouter()
         let presenter = MainPresenter(router: router)
         let view = MainViewController()
-        
+
         view.presenter = presenter
-        
+
         return view
     }
-    
-    
 }

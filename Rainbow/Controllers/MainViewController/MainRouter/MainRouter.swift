@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MainRouterProtocol: AnyObject {
     func goToNewGame()
@@ -16,6 +17,7 @@ protocol MainRouterProtocol: AnyObject {
 }
 
 class MainRouter: MainRouterProtocol {
+    
     func goToNewGame() {
         
     }
@@ -25,8 +27,9 @@ class MainRouter: MainRouterProtocol {
     }
     
     func goToStatistics() {
-        
+    
     }
+
     
     func goToSettings() {
         

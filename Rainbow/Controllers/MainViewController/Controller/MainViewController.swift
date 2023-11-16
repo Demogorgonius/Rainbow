@@ -16,7 +16,7 @@ class MainViewController: CustomViewController<MainView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .customBackground
-       
+
     }
     
 }
