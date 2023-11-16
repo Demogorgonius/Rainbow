@@ -13,10 +13,7 @@ protocol RulesRouterProtocol {
 }
 
 //MARK: - Implementation of transitions
-class RulesRouter: RulesRouterProtocol {
-    
-    weak var viewController: RulesViewController?
-    
+final class RulesRouter: RulesRouterProtocol {
     func routeToStartScreen() { }
     func routeToStaticScreen() { }
     func routeToMainScreen() { }

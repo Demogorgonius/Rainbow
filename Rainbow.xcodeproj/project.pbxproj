@@ -12,9 +12,14 @@
 		15AB852E2B053285006B3CCF /* ColorCheckerBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB852D2B053285006B3CCF /* ColorCheckerBrain.swift */; };
 		15F3BE7E2B02E70500E74E7A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3BE7D2B02E70500E74E7A /* SettingsViewController.swift */; };
 		15F3BE842B02F07200E74E7A /* SettingsViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3BE832B02F07200E74E7A /* SettingsViewService.swift */; };
-		44A57C472B02539000C8E383 /* InputViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C462B02539000C8E383 /* InputViewCustom.swift */; };
+		446F15B72B065B1C00B10C77 /* RulesPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15AC2B065B1C00B10C77 /* RulesPresenterProtocol.swift */; };
+		446F15B82B065B1C00B10C77 /* InputViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15AE2B065B1C00B10C77 /* InputViewCustom.swift */; };
+		446F15B92B065B1C00B10C77 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15B02B065B1C00B10C77 /* Model.swift */; };
+		446F15BB2B065B1C00B10C77 /* RulesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15B42B065B1C00B10C77 /* RulesBuilder.swift */; };
+		446F15BC2B065B1C00B10C77 /* RulesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15B62B065B1C00B10C77 /* RulesRouter.swift */; };
+		446F15BE2B065E4500B10C77 /* Extension + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15BD2B065E4500B10C77 /* Extension + UIImage.swift */; };
+		446F15C02B065F9F00B10C77 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15BF2B065F9F00B10C77 /* RulesViewController.swift */; };
 		44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */; };
-		44A57C4D2B02542200C8E383 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4C2B02542200C8E383 /* RulesViewController.swift */; };
 		44A57C4F2B0254D900C8E383 /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */; };
 		44A57C512B0261AD00C8E383 /* Extension + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C502B0261AD00C8E383 /* Extension + UIFont.swift */; };
 		44A57C5C2B02641900C8E383 /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C532B02641800C8E383 /* SF-Pro-Display-Black.otf */; };
@@ -64,9 +69,14 @@
 		15AB852D2B053285006B3CCF /* ColorCheckerBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCheckerBrain.swift; sourceTree = "<group>"; };
 		15F3BE7D2B02E70500E74E7A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		15F3BE832B02F07200E74E7A /* SettingsViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewService.swift; sourceTree = "<group>"; };
-		44A57C462B02539000C8E383 /* InputViewCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewCustom.swift; sourceTree = "<group>"; };
+		446F15AC2B065B1C00B10C77 /* RulesPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesPresenterProtocol.swift; sourceTree = "<group>"; };
+		446F15AE2B065B1C00B10C77 /* InputViewCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewCustom.swift; sourceTree = "<group>"; };
+		446F15B02B065B1C00B10C77 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		446F15B42B065B1C00B10C77 /* RulesBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesBuilder.swift; sourceTree = "<group>"; };
+		446F15B62B065B1C00B10C77 /* RulesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesRouter.swift; sourceTree = "<group>"; };
+		446F15BD2B065E4500B10C77 /* Extension + UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension + UIImage.swift"; path = "../../../Extension + UIImage.swift"; sourceTree = "<group>"; };
+		446F15BF2B065F9F00B10C77 /* RulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
-		44A57C4C2B02542200C8E383 /* RulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
 		44A57C502B0261AD00C8E383 /* Extension + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIFont.swift"; sourceTree = "<group>"; };
 		44A57C532B02641800C8E383 /* SF-Pro-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Black.otf"; sourceTree = "<group>"; };
@@ -107,7 +117,7 @@
 		A5B797462B02402300B20742 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5B797472B02402300B20742 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A5B7974A2B02402300B20742 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../../../../Applications/CustomNavigationController.swift; sourceTree = "<group>"; };
+		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../CustomNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,45 +185,65 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		44A57C422B0251B700C8E383 /* RulesViewController */ = {
+		446F15AA2B065B1C00B10C77 /* RulesViewController */ = {
 			isa = PBXGroup;
 			children = (
-				44A57C432B0252F900C8E383 /* Model */,
-				44A57C442B02532400C8E383 /* View */,
-				44A57C452B02532A00C8E383 /* Presenter */,
-				44A57C482B02539400C8E383 /* Components */,
+				446F15AB2B065B1C00B10C77 /* Presenter */,
+				446F15AD2B065B1C00B10C77 /* Components */,
+				446F15AF2B065B1C00B10C77 /* Model */,
+				446F15B12B065B1C00B10C77 /* View */,
+				446F15B32B065B1C00B10C77 /* Builder */,
+				446F15B52B065B1C00B10C77 /* Router */,
 			);
 			path = RulesViewController;
 			sourceTree = "<group>";
 		};
-		44A57C432B0252F900C8E383 /* Model */ = {
+		446F15AB2B065B1C00B10C77 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		44A57C442B02532400C8E383 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				44A57C4C2B02542200C8E383 /* RulesViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		44A57C452B02532A00C8E383 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
+				446F15AC2B065B1C00B10C77 /* RulesPresenterProtocol.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		44A57C482B02539400C8E383 /* Components */ = {
+		446F15AD2B065B1C00B10C77 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				44A57C462B02539000C8E383 /* InputViewCustom.swift */,
+				446F15AE2B065B1C00B10C77 /* InputViewCustom.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		446F15AF2B065B1C00B10C77 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				446F15B02B065B1C00B10C77 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		446F15B12B065B1C00B10C77 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				446F15BF2B065F9F00B10C77 /* RulesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		446F15B32B065B1C00B10C77 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				446F15B42B065B1C00B10C77 /* RulesBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		446F15B52B065B1C00B10C77 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				446F15B62B065B1C00B10C77 /* RulesRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		44A57C492B0253ED00C8E383 /* Extensions */ = {
@@ -224,6 +254,7 @@
 				44A57C502B0261AD00C8E383 /* Extension + UIFont.swift */,
 				44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */,
 				44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */,
+				446F15BD2B065E4500B10C77 /* Extension + UIImage.swift */,
 				E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */,
 			);
 			path = Extensions;
@@ -425,11 +456,11 @@
 		A5B7973D2B02402300B20742 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				446F15AA2B065B1C00B10C77 /* RulesViewController */,
 				15F3BE762B02E23E00E74E7A /* SettingsModule */,
 				A5B7973E2B02402300B20742 /* MainViewController */,
 				4AD131492B03B4D1007DA3B7 /* GameViewController */,
 				4AD131632B0566E3007DA3B7 /* StatisticOverviewModule */,
-				44A57C422B0251B700C8E383 /* RulesViewController */,
 				A5B797432B02402300B20742 /* LaunchScreen.storyboard */,
 			);
 			path = Controllers;
@@ -572,16 +603,18 @@
 			files = (
 				A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */,
 				15AB852E2B053285006B3CCF /* ColorCheckerBrain.swift in Sources */,
+				446F15B72B065B1C00B10C77 /* RulesPresenterProtocol.swift in Sources */,
 				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
 				15F3BE7E2B02E70500E74E7A /* SettingsViewController.swift in Sources */,
 				4AD131702B0566E4007DA3B7 /* ResultsPresenter.swift in Sources */,
+				446F15B92B065B1C00B10C77 /* Model.swift in Sources */,
 				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
 				4AD1313F2B02A3A0007DA3B7 /* Extension + UILabel.swift in Sources */,
 				4AD131742B0566E4007DA3B7 /* ResultsTableViewController.swift in Sources */,
-				44A57C4D2B02542200C8E383 /* RulesViewController.swift in Sources */,
 				4AD131412B02A664007DA3B7 /* Extension + UIStackView.swift in Sources */,
 				A5B7974E2B02402300B20742 /* MainView.swift in Sources */,
 				4AD1315B2B051DCD007DA3B7 /* MainBuilder.swift in Sources */,
+				446F15BB2B065B1C00B10C77 /* RulesBuilder.swift in Sources */,
 				E1C097B22B06478E0097C8C1 /* CustomNavigationController.swift in Sources */,
 				A5B7974B2B02402300B20742 /* CustomView.swift in Sources */,
 				4AD131432B02A7A9007DA3B7 /* Extension + UIButton.swift in Sources */,
@@ -594,17 +627,20 @@
 				15F3BE842B02F07200E74E7A /* SettingsViewService.swift in Sources */,
 				44A57C4F2B0254D900C8E383 /* Extension + UIView.swift in Sources */,
 				4AD131772B056781007DA3B7 /* LabelFactory.swift in Sources */,
+				446F15BE2B065E4500B10C77 /* Extension + UIImage.swift in Sources */,
 				A5B797502B02402300B20742 /* AppDelegate.swift in Sources */,
 				4AD131722B0566E4007DA3B7 /* ResultTableViewCell.swift in Sources */,
 				4AD1314E2B03D982007DA3B7 /* GameModel.swift in Sources */,
 				4AD131782B056781007DA3B7 /* ViewFactory.swift in Sources */,
+				446F15BC2B065B1C00B10C77 /* RulesRouter.swift in Sources */,
 				4AD131462B02B3CF007DA3B7 /* Extension + CustomButton.swift in Sources */,
 				A5B7974C2B02402300B20742 /* CustomViewController.swift in Sources */,
 				A5B797512B02402300B20742 /* SceneDelegate.swift in Sources */,
 				44A57C512B0261AD00C8E383 /* Extension + UIFont.swift in Sources */,
 				4AD131592B051DBE007DA3B7 /* MainPresenter.swift in Sources */,
+				446F15B82B065B1C00B10C77 /* InputViewCustom.swift in Sources */,
+				446F15C02B065F9F00B10C77 /* RulesViewController.swift in Sources */,
 				4AD131712B0566E4007DA3B7 /* ResultsBuilder.swift in Sources */,
-				44A57C472B02539000C8E383 /* InputViewCustom.swift in Sources */,
 				15AB85292B042499006B3CCF /* SettingsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
