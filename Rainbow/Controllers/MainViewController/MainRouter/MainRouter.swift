@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MainRouterProtocol: AnyObject {
     func goToNewGame()
@@ -16,6 +17,9 @@ protocol MainRouterProtocol: AnyObject {
 }
 
 class MainRouter: MainRouterProtocol {
+    
+    weak var viewController: UIViewController?
+    
     func goToNewGame() {
         
     }
@@ -25,8 +29,11 @@ class MainRouter: MainRouterProtocol {
     }
     
     func goToStatistics() {
+        let settingsViewController = ResultsBuilder.build()
+        viewController?.navigationController?.pushViewController(settingsViewController, animated: true)
         
     }
+    
     
     func goToSettings() {
         

@@ -11,6 +11,8 @@ import SnapKit
 
 class MainView: CustomView {
     
+    weak var presenter: MainPresenterProtocol?
+    
     // MARK: - UI
     lazy var rainbowImage: UIImageView = {
         let element = UIImageView()
@@ -24,11 +26,11 @@ class MainView: CustomView {
     
     private lazy var nameGameLabel = UILabel(text: "Радуга", font: UIFont.CormorantFont.RegularItalic.size(of: 64))
     
-    private lazy var startNewGameButton = UIButton(textButton: "Новая игра", colorText: .white, backgroundColor: .customRed)
+    private lazy var startNewGameButton = UIButton(textButton: "Новая игра", colorText: .white, backgroundColor: .RainbowGameColor.customRed)
     
-    private lazy var continueGameButton = UIButton(textButton: "Продолжить", colorText: .white, backgroundColor: .customLightBlue)
+    private lazy var continueGameButton = UIButton(textButton: "Продолжить", colorText: .white, backgroundColor: .RainbowGameColor.customLightBlue)
     
-    private lazy var statisticGameButton = UIButton(textButton: "Cтатистика", colorText: .white, backgroundColor: .customGreenForButton)
+    private lazy var statisticGameButton = UIButton(textButton: "Cтатистика", colorText: .white, backgroundColor: .RainbowGameColor.customGreenForButton)
     
     private lazy var buttonsStackView = UIStackView(axis: .vertical, distribution: .fillEqually, spacing: 10, subview: [startNewGameButton, continueGameButton, statisticGameButton])
     
@@ -41,6 +43,8 @@ class MainView: CustomView {
     
     
     override func setViews() {
+        backgroundColor = .RainbowGameColor.customBackground
+        
         addSubview(rainbowImage)
         addSubview(gameLabel)
         addSubview(nameGameLabel)
@@ -63,7 +67,7 @@ class MainView: CustomView {
             make.top.equalTo(rainbowImage.snp.bottom)
             make.height.greaterThanOrEqualTo(40)
         }
-
+        
         nameGameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(gameLabel.snp.bottom)
@@ -72,7 +76,14 @@ class MainView: CustomView {
         
         buttonsStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.lessThanOrEqualTo(customButtonsStackView.snp.top)
+            make.top.equalTo(nameGameLabel.snp.bottom)
+            
+            if UIScreen.main.bounds.height < 568 {
+                make.bottom.lessThanOrEqualTo(customButtonsStackView.snp.top).inset(-8)
+            } else {
+                make.bottom.equalTo(customButtonsStackView.snp.top).offset(-10)
+            }
+            
             make.leadingMargin.equalToSuperview()
         }
 
@@ -81,7 +92,7 @@ class MainView: CustomView {
             make.leadingMargin.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide)
         }
-
+        
     }
     
     func addTargetButton() {
@@ -93,24 +104,30 @@ class MainView: CustomView {
         infoGameButton.addTarget(self, action: #selector(infoGameButtonTapped), for: .touchUpInside)
     }
     
-    @objc func startNewGameButtonTapped() {
+    @objc private func startNewGameButtonTapped() {
         
+        presenter?.startNewGameButtonTapped()
     }
     
-    @objc func continueGameButtonTapped() {
+    @objc private func continueGameButtonTapped() {
         
+        presenter?.continueGameButtonTapped()
     }
     
-    @objc func statisticGameTapped() {
-        
+    @objc private func statisticGameTapped() {
+        print("Settings button tapped")
+        print("Presenter: \(presenter)")
+        presenter?.statisticGameTapped()
     }
     
-    @objc func settingsGameButtonTapped() {
-        
+    @objc private func settingsGameButtonTapped() {
+        print("Settings button tapped")
+        presenter?.settingsGameButtonTapped()
     }
     
-    @objc func infoGameButtonTapped() {
-        print("ok5")
+    @objc private func infoGameButtonTapped() {
+        
+        presenter?.infoGameButtonTapped()
     }
 }
 

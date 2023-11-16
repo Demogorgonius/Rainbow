@@ -17,12 +17,13 @@ class MainBuilder: MainBuilderProtocol {
     static func build() -> UIViewController {
         let router = MainRouter()
         let presenter = MainPresenter(router: router)
-        let view = MainViewController()
+        let mainView = MainView()
+        let viewController = MainViewController()
         
-        view.presenter = presenter
+        viewController.presenter = presenter
+        presenter.view = mainView
+        router.viewController = viewController
         
-        return view
+        return viewController
     }
-    
-    
 }
