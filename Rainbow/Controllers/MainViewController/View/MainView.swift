@@ -46,12 +46,9 @@ class MainView: CustomView {
         backgroundColor = .RainbowGameColor.customBackground
         
         addSubview(rainbowImage)
-<<<<<<< HEAD
-        addSubview(labelStack)
-=======
+        //addSubview(labelStack)
         addSubview(gameLabel)
         addSubview(nameGameLabel)
->>>>>>> parent of d12aa23 (fix)
         addSubviews(buttonsStackView)
         addSubviews(customButtonsStackView)
         
