@@ -15,7 +15,7 @@ extension UINavigationController {
         navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         let backButtonImage = UIImage(named:"backArrow")
-        let alignInsets = UIEdgeInsets(top: -10, left: -4, bottom: 0, right: 0)
+        let alignInsets = UIEdgeInsets(top: 19, left: -4, bottom: 0, right: 0)
         navigationBar.backIndicatorImage = backButtonImage?.withAlignmentRectInsets(alignInsets)
         navigationBar.backIndicatorTransitionMaskImage = backButtonImage
         navigationBar.tintColor = .RainbowGameColor.customBlack
