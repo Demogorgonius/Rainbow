@@ -186,22 +186,22 @@
 		446F15952B06362F00B10C77 /* RulesViewController */ = {
 			isa = PBXGroup;
 			children = (
-				446F15962B06362F00B10C77 /* Presenter */,
+				446F15962B06362F00B10C77 /* RulesPresenter */,
 				446F15982B06362F00B10C77 /* Components */,
 				446F159A2B06362F00B10C77 /* Model */,
 				446F159C2B06362F00B10C77 /* View */,
-				446F159E2B06362F00B10C77 /* Builder */,
-				446F15A02B06362F00B10C77 /* Router */,
+				446F159E2B06362F00B10C77 /* RulesBuilder */,
+				446F15A02B06362F00B10C77 /* RulesRouter */,
 			);
 			path = RulesViewController;
 			sourceTree = "<group>";
 		};
-		446F15962B06362F00B10C77 /* Presenter */ = {
+		446F15962B06362F00B10C77 /* RulesPresenter */ = {
 			isa = PBXGroup;
 			children = (
 				446F15972B06362F00B10C77 /* RulesPresenterProtocol.swift */,
 			);
-			path = Presenter;
+			path = RulesPresenter;
 			sourceTree = "<group>";
 		};
 		446F15982B06362F00B10C77 /* Components */ = {
@@ -228,20 +228,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		446F159E2B06362F00B10C77 /* Builder */ = {
+		446F159E2B06362F00B10C77 /* RulesBuilder */ = {
 			isa = PBXGroup;
 			children = (
 				446F159F2B06362F00B10C77 /* RulesBuilder.swift */,
 			);
-			path = Builder;
+			path = RulesBuilder;
 			sourceTree = "<group>";
 		};
-		446F15A02B06362F00B10C77 /* Router */ = {
+		446F15A02B06362F00B10C77 /* RulesRouter */ = {
 			isa = PBXGroup;
 			children = (
 				446F15A12B06362F00B10C77 /* RulesRouter.swift */,
 			);
-			path = Router;
+			path = RulesRouter;
 			sourceTree = "<group>";
 		};
 		44A57C492B0253ED00C8E383 /* Extensions */ = {
