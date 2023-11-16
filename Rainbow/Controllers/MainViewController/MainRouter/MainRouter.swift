@@ -40,6 +40,7 @@ class MainRouter: MainRouterProtocol {
     }
     
     func goToInfo() {
-        
+        let settingsViewController = RulesBuilder.build()
+        viewController?.navigationController?.pushViewController(settingsViewController, animated: true)
     }
 }

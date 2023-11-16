@@ -9,26 +9,48 @@ import UIKit
 
 final class RulesViewController: UIViewController {
     
+    var presenter: RulesPresenterProtocol?
+    var mainView = InputViewCustom()
+    
     //MARK: - UI
     private lazy var rulesOfTheGame: InputViewCustom = {
-        let field = InputViewCustom()
-        field.style = .newRulesOfTheGame
-        field.translatesAutoresizingMaskIntoConstraints = false
-        return field
+        let rules = InputViewCustom()
+        rules.style = .newRulesOfTheGame
+        rules.layer.cornerRadius = 20
+        rules.translatesAutoresizingMaskIntoConstraints = false
+        return rules
     }()
-
+    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
         view.backgroundColor = .RainbowGameColor.customBackground
         setViews()
+        setupBackButton()
         setConstrains()
+    }
+    
+    private func back() {
+        presenter?.playGame()
     }
     
     //MARK: - Set Views
     private func setViews() {
         view.addSubviews(rulesOfTheGame)
+    }
+    
+    private func setupBackButton() {
+        let backButton = UIBarButtonItem(image: UIImage.LTechImage.backArrow?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(backButtonTapped))
+        backButton.width = 10
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.TextFont.Regular.size(of: 30)]
+
+        navigationController?.navigationBar.titleTextAttributes = attributes
+        navigationItem.leftBarButtonItem = backButton
+        navigationItem.title = "Помощь"
+    }
+
+    @objc private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -42,4 +64,10 @@ extension RulesViewController {
             rulesOfTheGame.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -29)
         ])
     }
+}
+
+//MARK: - RulesViewProtocol
+extension RulesViewController: RulesViewProtocol {
+    func successfully() { }
+    func unsuccessful() { }
 }
