@@ -25,6 +25,14 @@ class SettingsViewController: UIViewController {
         setupLayout()
     }
     
+    lazy var topLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.DisplayFont.Regular.size(of: 30)
+        label.text = "Настройки"
+        label.textColor = UIColor.RainbowGameColor.customBlack
+        return label
+    }()
+    
     // MARK: - Main Stack
     lazy var mainStack: UIStackView = {
         let stack = UIStackView()
@@ -391,7 +399,10 @@ class SettingsViewController: UIViewController {
         backgroundForGameShadowView.shadowView.addSubview(backgroundForGameStack)
         wordPlacementShadowView.shadowView.addSubview(wordPlacementStack)
         view.addSubview(mainStack)
+        view.addSubview(topLabel)
     }
+    
+    // MARK: - Layout
     
     func setupLayout() {
         gameTimeStack.snp.makeConstraints { make in
@@ -542,82 +553,10 @@ class SettingsViewController: UIViewController {
             make.top.equalToSuperview().offset(121)
         }
         
+        topLabel.snp.makeConstraints{ make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+        }
         
-        
-    }
-}
-    
-    
-    
-    //        let view1 = createGameTimeView()
-    //        let view2 = createGameTimeView()
-    //        let stack = {
-    //            let stack = UIStackView()
-    //            stack.axis = .vertical
-    //            stack.spacing = 20
-    //            stack.distribution = .equalSpacing
-    //            stack.alignment = .center
-    //            stack.translatesAutoresizingMaskIntoConstraints = false
-    //            return stack
-    //        }()
-    //
-    //        stack.addArrangedSubview(view1)
-    //        stack.addArrangedSubview(view2)
-    //
-    //
-    //
-    //        view.addSubview(stack)
-    //
-    //        stack.snp.makeConstraints { make in
-    //            make.centerX.equalToSuperview()
-    //            make.top.equalToSuperview().offset(121)
-    //
-    //
-    //
-    //    }
-    //
-    //
-    //    func createGameTimeView() -> UIView {
-    //        let gameTimeShadowView = ViewFactory.createShadowView()
-    //        let gameTimeStack = SettingsViewService.shared.createStackView()
-    //        let gameTimeLabel = SettingsViewService.shared.createSettingTitle(title: "скорость смены заданий, мин")
-    //        let gameTimeSlider = SettingsViewService.shared.createSettingSlider(minimum: 1, maximum: 20)
-    //        let gameTimeSliderValueLabel = {
-    //            let label = UILabel()
-    //            label.text = String(gameTimeSlider.)
-    //            label.font = UIFont.systemFont(ofSize: 20)
-    //            label.textColor = .black
-    //            label.numberOfLines = 0
-    //            return label
-    //        }()
-    //
-    //        gameTimeStack.addArrangedSubview(gameTimeLabel)
-    //        gameTimeStack.addArrangedSubview(gameTimeSlider)
-    //        gameTimeStack.addArrangedSubview(gameTimeSliderValueLabel)
-    //        gameTimeShadowView.shadowView.addSubview(gameTimeStack)
-    //
-    //        SettingsViewService.shared.setupConstrains(for: gameTimeStack)
-    //
-    //        view.addSubview(gameTimeShadowView.shadowView)
-    //
-    //        gameTimeShadowView.shadowView.snp.makeConstraints { make in
-    //            make.centerX.equalToSuperview()
-    ////            make.top.equalTo(view.snp.top).offset(121)
-    //            make.height.equalTo(66)
-    //            make.width.equalTo(298)
-    //        }
-    //
-    //        return gameTimeShadowView.shadowView
-    //
-    //    }
-    //
-    //
-    //
-    //
-    //
-    //}
-extension UIControl {
-    func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping()->()) {
-        addAction(UIAction { (action: UIAction) in closure() }, for: controlEvents)
     }
 }

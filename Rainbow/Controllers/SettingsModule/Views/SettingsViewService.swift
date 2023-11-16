@@ -19,6 +19,7 @@ class SettingsViewService {
         label.numberOfLines = 0
         return label
     }
+    
     func createButton(color: UIColor) -> UIButton {
         let button = UIButton()
 //        button.addTarget(self, action: action, for: .touchUpInside)
