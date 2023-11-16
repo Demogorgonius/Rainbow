@@ -26,8 +26,6 @@ class MainView: CustomView {
     
     private lazy var nameGameLabel = UILabel(text: "Радуга", font: UIFont.CormorantFont.RegularItalic.size(of: 64))
     
-   // private lazy var labelStack = UIStackView(axis: .vertical, distribution: .fillEqually, spacing: 0, subview: [gameLabel, nameGameLabel])
-    
     private lazy var startNewGameButton = UIButton(textButton: "Новая игра", colorText: .white, backgroundColor: .RainbowGameColor.customRed)
     
     private lazy var continueGameButton = UIButton(textButton: "Продолжить", colorText: .white, backgroundColor: .RainbowGameColor.customLightBlue)
@@ -48,7 +46,6 @@ class MainView: CustomView {
         backgroundColor = .RainbowGameColor.customBackground
         
         addSubview(rainbowImage)
-        //addSubview(labelStack)
         addSubview(gameLabel)
         addSubview(nameGameLabel)
         addSubviews(buttonsStackView)
@@ -64,12 +61,7 @@ class MainView: CustomView {
             make.top.equalTo(safeAreaLayoutGuide)
             make.size.equalTo(CGSize(width: 270, height: 120))
         }
-        
-//        labelStack.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.top.equalTo(rainbowImage.snp.bottom).inset(15)
-//            make.height.equalTo(155)
-//        }
+
         
         gameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
