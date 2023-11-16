@@ -37,7 +37,7 @@ class MainRouter: MainRouterProtocol {
     
     
     func goToSettings() {
-        let view = SettingsViewController()
+        let view = SettingsBuilder.build()
         self.viewController?.navigationController?.pushViewController(view, animated: true)
     }
     
