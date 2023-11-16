@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15AB85292B042499006B3CCF /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB85282B042499006B3CCF /* SettingsPresenter.swift */; };
+		15AB852B2B0530C9006B3CCF /* ColorChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB852A2B0530C9006B3CCF /* ColorChecker.swift */; };
+		15AB852E2B053285006B3CCF /* ColorCheckerBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB852D2B053285006B3CCF /* ColorCheckerBrain.swift */; };
+		15F3BE7E2B02E70500E74E7A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3BE7D2B02E70500E74E7A /* SettingsViewController.swift */; };
+		15F3BE842B02F07200E74E7A /* SettingsViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3BE832B02F07200E74E7A /* SettingsViewService.swift */; };
 		44A57C472B02539000C8E383 /* InputViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C462B02539000C8E383 /* InputViewCustom.swift */; };
 		44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */; };
 		44A57C4D2B02542200C8E383 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4C2B02542200C8E383 /* RulesViewController.swift */; };
@@ -53,6 +58,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15AB85282B042499006B3CCF /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		15AB852A2B0530C9006B3CCF /* ColorChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorChecker.swift; sourceTree = "<group>"; };
+		15AB852D2B053285006B3CCF /* ColorCheckerBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCheckerBrain.swift; sourceTree = "<group>"; };
+		15F3BE7D2B02E70500E74E7A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		15F3BE832B02F07200E74E7A /* SettingsViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewService.swift; sourceTree = "<group>"; };
 		44A57C462B02539000C8E383 /* InputViewCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewCustom.swift; sourceTree = "<group>"; };
 		44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
 		44A57C4C2B02542200C8E383 /* RulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +121,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15AB852C2B0530D2006B3CCF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				15AB852A2B0530C9006B3CCF /* ColorChecker.swift */,
+				15AB852D2B053285006B3CCF /* ColorCheckerBrain.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		15F3BE762B02E23E00E74E7A /* SettingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				15F3BE782B02E26000E74E7A /* Builder */,
+				15F3BE7A2B02E27A00E74E7A /* Presenter */,
+				15F3BE772B02E25500E74E7A /* Router */,
+				15F3BE792B02E26700E74E7A /* Views */,
+			);
+			path = SettingsModule;
+			sourceTree = "<group>";
+		};
+		15F3BE772B02E25500E74E7A /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		15F3BE782B02E26000E74E7A /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		15F3BE792B02E26700E74E7A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				15F3BE7D2B02E70500E74E7A /* SettingsViewController.swift */,
+				15F3BE832B02F07200E74E7A /* SettingsViewService.swift */,
+				15AB852C2B0530D2006B3CCF /* Model */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		15F3BE7A2B02E27A00E74E7A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				15AB85282B042499006B3CCF /* SettingsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		44A57C422B0251B700C8E383 /* RulesViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +422,9 @@
 		A5B7973D2B02402300B20742 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				15F3BE762B02E23E00E74E7A /* SettingsModule */,
+				44A57C672B0296C900C8E383 /* StatisticOverviewModule */,
+				44A57C422B0251B700C8E383 /* RulesViewController */,
 				A5B7973E2B02402300B20742 /* MainViewController */,
 				4AD131492B03B4D1007DA3B7 /* GameViewController */,
 				4AD131632B0566E3007DA3B7 /* StatisticOverviewModule */,
@@ -505,6 +570,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */,
+				15AB852E2B053285006B3CCF /* ColorCheckerBrain.swift in Sources */,
+				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
+				15F3BE7E2B02E70500E74E7A /* SettingsViewController.swift in Sources */,
 				4AD131702B0566E4007DA3B7 /* ResultsPresenter.swift in Sources */,
 				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
 				4AD1313F2B02A3A0007DA3B7 /* Extension + UILabel.swift in Sources */,
@@ -520,6 +588,11 @@
 				4AD131572B051DAE007DA3B7 /* MainRouter.swift in Sources */,
 				4AD131522B03D9D7007DA3B7 /* GamePresenter.swift in Sources */,
 				4AD131502B03D99F007DA3B7 /* GameViewController.swift in Sources */,
+				15AB852B2B0530C9006B3CCF /* ColorChecker.swift in Sources */,
+				E1C097952B02B9490097C8C1 /* ViewFactory.swift in Sources */,
+				E1C0979E2B02C82D0097C8C1 /* ResultsBuilder.swift in Sources */,
+				E1C0979A2B02C76A0097C8C1 /* ResultsPresenter.swift in Sources */,
+				15F3BE842B02F07200E74E7A /* SettingsViewService.swift in Sources */,
 				44A57C4F2B0254D900C8E383 /* Extension + UIView.swift in Sources */,
 				4AD131772B056781007DA3B7 /* LabelFactory.swift in Sources */,
 				A5B797502B02402300B20742 /* AppDelegate.swift in Sources */,
@@ -533,6 +606,7 @@
 				4AD131592B051DBE007DA3B7 /* MainPresenter.swift in Sources */,
 				4AD131712B0566E4007DA3B7 /* ResultsBuilder.swift in Sources */,
 				44A57C472B02539000C8E383 /* InputViewCustom.swift in Sources */,
+				15AB85292B042499006B3CCF /* SettingsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
