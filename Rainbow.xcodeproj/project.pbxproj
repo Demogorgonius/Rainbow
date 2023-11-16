@@ -120,12 +120,17 @@
 		A5B7974A2B02402300B20742 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../CustomNavigationController.swift; sourceTree = "<group>"; };
 >>>>>>> Develop
 =======
 		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../CustomNavigationController.swift; sourceTree = "<group>"; };
 >>>>>>> Develop
+=======
+		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../CustomNavigationController.swift; sourceTree = "<group>"; };
+
+>>>>>>> origin/lizmary/MainViewController
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,13 +269,15 @@
 				44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				4ACAC2BF2B065F570019C345 /* CustomNavigationController.swift */,
 =======
 =======
 >>>>>>> Develop
+=======
+>>>>>>> origin/lizmary/MainViewController
 				446F15BD2B065E4500B10C77 /* Extension + UIImage.swift */,
 				E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */,
->>>>>>> Develop
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -631,13 +638,17 @@
 				4AD1315B2B051DCD007DA3B7 /* MainBuilder.swift in Sources */,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				4ACAC2C02B065F570019C345 /* CustomNavigationController.swift in Sources */,
 =======
 =======
 >>>>>>> Develop
+=======
+
+>>>>>>> origin/lizmary/MainViewController
 				446F15BB2B065B1C00B10C77 /* RulesBuilder.swift in Sources */,
 				E1C097B22B06478E0097C8C1 /* CustomNavigationController.swift in Sources */,
->>>>>>> Develop
+
 				A5B7974B2B02402300B20742 /* CustomView.swift in Sources */,
 				4AD131432B02A7A9007DA3B7 /* Extension + UIButton.swift in Sources */,
 				4AD1316F2B0566E4007DA3B7 /* ResultsRouter.swift in Sources */,
