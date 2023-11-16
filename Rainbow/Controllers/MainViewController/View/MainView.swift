@@ -49,8 +49,6 @@ class MainView: CustomView {
         
         addSubview(rainbowImage)
         addSubview(labelStack)
-//        addSubview(gameLabel)
-//        addSubview(nameGameLabel)
         addSubviews(buttonsStackView)
         addSubviews(customButtonsStackView)
         
