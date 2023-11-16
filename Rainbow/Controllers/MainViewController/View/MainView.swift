@@ -26,11 +26,11 @@ class MainView: CustomView {
     
     private lazy var nameGameLabel = UILabel(text: "Радуга", font: UIFont.CormorantFont.RegularItalic.size(of: 64))
     
-    private lazy var startNewGameButton = UIButton(textButton: "Новая игра", colorText: .white, backgroundColor: .customRed)
+    private lazy var startNewGameButton = UIButton(textButton: "Новая игра", colorText: .white, backgroundColor: .RainbowGameColor.customRed)
     
-    private lazy var continueGameButton = UIButton(textButton: "Продолжить", colorText: .white, backgroundColor: .customLightBlue)
+    private lazy var continueGameButton = UIButton(textButton: "Продолжить", colorText: .white, backgroundColor: .RainbowGameColor.customLightBlue)
     
-    private lazy var statisticGameButton = UIButton(textButton: "Cтатистика", colorText: .white, backgroundColor: .customGreenForButton)
+    private lazy var statisticGameButton = UIButton(textButton: "Cтатистика", colorText: .white, backgroundColor: .RainbowGameColor.customGreenForButton)
     
     private lazy var buttonsStackView = UIStackView(axis: .vertical, distribution: .fillEqually, spacing: 10, subview: [startNewGameButton, continueGameButton, statisticGameButton])
     
@@ -43,7 +43,7 @@ class MainView: CustomView {
     
     
     override func setViews() {
-        backgroundColor = .customBackground
+        backgroundColor = .RainbowGameColor.customBackground
         
         addSubview(rainbowImage)
         addSubview(gameLabel)
@@ -76,10 +76,17 @@ class MainView: CustomView {
         
         buttonsStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.lessThanOrEqualTo(customButtonsStackView.snp.top)
+            make.top.equalTo(nameGameLabel.snp.bottom)
+            
+            if UIScreen.main.bounds.height < 568 {
+                make.bottom.lessThanOrEqualTo(customButtonsStackView.snp.top).inset(-8)
+            } else {
+                make.bottom.equalTo(customButtonsStackView.snp.top).offset(-10)
+            }
+            
             make.leadingMargin.equalToSuperview()
         }
-        
+
         customButtonsStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.leadingMargin.equalToSuperview()

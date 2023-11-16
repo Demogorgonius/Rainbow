@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: CustomViewController<MainView>, MainPresenterDelegate {
     
-    var presenter: MainPresenterProtocol!
+    var presenter: MainPresenterProtocol?
     var mainView = MainView()
     
     //MARK: - Life Cycle
@@ -18,7 +18,7 @@ class MainViewController: CustomViewController<MainView>, MainPresenterDelegate 
         super.viewDidLoad()
         presenter?.delegate = self
         mainView.presenter = presenter
-        presenter.view = mainView
+        presenter?.view = mainView
         view = mainView
 
     }

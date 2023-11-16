@@ -26,7 +26,7 @@ class MainPresenter: MainPresenterProtocol {
     
     weak var view: MainView?
     var delegate: MainPresenterDelegate?
-    var router: MainRouterProtocol!
+    var router: MainRouterProtocol
     
     init(router: MainRouterProtocol) {
         self.router = router
