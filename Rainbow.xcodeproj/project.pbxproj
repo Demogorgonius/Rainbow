@@ -116,28 +116,8 @@
 		A5B797462B02402300B20742 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5B797472B02402300B20742 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A5B7974A2B02402300B20742 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../CustomNavigationController.swift; sourceTree = "<group>"; };
->>>>>>> Develop
-=======
-		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../CustomNavigationController.swift; sourceTree = "<group>"; };
->>>>>>> Develop
-=======
-		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../CustomNavigationController.swift; sourceTree = "<group>"; };
-
->>>>>>> origin/lizmary/MainViewController
-=======
-		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../../../../Applications/CustomNavigationController.swift; sourceTree = "<group>"; };
->>>>>>> parent of 3fdd09f (fix)
-=======
 		E112CBE52B0674F100F08206 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		E112CBE72B06750000F08206 /* Extension + UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIImage.swift"; sourceTree = "<group>"; };
->>>>>>> Develop
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,24 +255,7 @@
 				44A57C502B0261AD00C8E383 /* Extension + UIFont.swift */,
 				44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */,
 				44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-				4ACAC2BF2B065F570019C345 /* CustomNavigationController.swift */,
-=======
-=======
->>>>>>> Develop
-=======
->>>>>>> origin/lizmary/MainViewController
-				446F15BD2B065E4500B10C77 /* Extension + UIImage.swift */,
-=======
->>>>>>> parent of 3fdd09f (fix)
-				E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */,
-=======
 				E112CBE52B0674F100F08206 /* CustomNavigationController.swift */,
->>>>>>> Develop
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -652,26 +615,7 @@
 				4AD131412B02A664007DA3B7 /* Extension + UIStackView.swift in Sources */,
 				A5B7974E2B02402300B20742 /* MainView.swift in Sources */,
 				4AD1315B2B051DCD007DA3B7 /* MainBuilder.swift in Sources */,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-				4ACAC2C02B065F570019C345 /* CustomNavigationController.swift in Sources */,
-=======
-=======
->>>>>>> Develop
-=======
-
->>>>>>> origin/lizmary/MainViewController
 				446F15BB2B065B1C00B10C77 /* RulesBuilder.swift in Sources */,
-<<<<<<< HEAD
-				E1C097B22B06478E0097C8C1 /* CustomNavigationController.swift in Sources */,
-
-=======
-				E1C097B22B06478E0097C8C1 /* CustomNavigationController.swift in Sources */,
->>>>>>> parent of 3fdd09f (fix)
-=======
->>>>>>> Develop
 				A5B7974B2B02402300B20742 /* CustomView.swift in Sources */,
 				4AD131432B02A7A9007DA3B7 /* Extension + UIButton.swift in Sources */,
 				4AD1316F2B0566E4007DA3B7 /* ResultsRouter.swift in Sources */,
