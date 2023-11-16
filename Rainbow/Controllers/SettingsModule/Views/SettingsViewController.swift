@@ -33,6 +33,12 @@ class SettingsViewController: UIViewController {
         return label
     }()
     
+    lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "backArrow"), for: .normal)
+        return button
+    }()
+    
     // MARK: - Main Stack
     lazy var mainStack: UIStackView = {
         let stack = UIStackView()
@@ -400,6 +406,7 @@ class SettingsViewController: UIViewController {
         wordPlacementShadowView.shadowView.addSubview(wordPlacementStack)
         view.addSubview(mainStack)
         view.addSubview(topLabel)
+        view.addSubview(backButton)
     }
     
     // MARK: - Layout
@@ -556,6 +563,13 @@ class SettingsViewController: UIViewController {
         topLabel.snp.makeConstraints{ make in
             make.centerX.equalToSuperview()
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+        }
+        
+        backButton.snp.makeConstraints{ make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.leading.equalTo(self.view.snp.leading).offset(15)
+            make.height.equalTo(37)
+            make.width.equalTo(33)
         }
         
     }
