@@ -41,7 +41,7 @@ class MainView: CustomView {
     private lazy var customButtonsStackView = UIStackView(axis: .horizontal, distribution: .fillEqually, spacing: 180, subview: [settingsGameButton, infoGameButton])
     
     
-    
+    // MARK: - Setup UI
     override func setViews() {
         backgroundColor = .RainbowGameColor.customBackground
         
@@ -98,6 +98,8 @@ class MainView: CustomView {
         settingsGameButton.addTarget(self, action: #selector(settingsGameButtonTapped), for: .touchUpInside)
         infoGameButton.addTarget(self, action: #selector(infoGameButtonTapped), for: .touchUpInside)
     }
+    
+    // MARK: - Actions
     
     @objc private func startNewGameButtonTapped() {
         
