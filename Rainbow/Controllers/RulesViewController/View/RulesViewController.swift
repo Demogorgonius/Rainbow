@@ -24,6 +24,7 @@ final class RulesViewController: UIViewController {
         view.backgroundColor = .RainbowGameColor.customBackground
         setViews()
         setConstrains()
+        
     }
     
     //MARK: - Set Views

@@ -19,26 +19,15 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .RainbowGameColor.customBackground
         setupButtons()
         setupViews()
         setupLayout()
+        navigationItem.title = "Настройки"
+        navigationController?.setupNavigationBar()
     }
-    
-    lazy var topLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.DisplayFont.Regular.size(of: 30)
-        label.text = "Настройки"
-        label.textColor = UIColor.RainbowGameColor.customBlack
-        return label
-    }()
-    
-    lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "backArrow"), for: .normal)
-        return button
-    }()
-    
+
+        
     // MARK: - Main Stack
     lazy var mainStack: UIStackView = {
         let stack = UIStackView()
@@ -405,8 +394,7 @@ class SettingsViewController: UIViewController {
         backgroundForGameShadowView.shadowView.addSubview(backgroundForGameStack)
         wordPlacementShadowView.shadowView.addSubview(wordPlacementStack)
         view.addSubview(mainStack)
-        view.addSubview(topLabel)
-        view.addSubview(backButton)
+
     }
     
     // MARK: - Layout
@@ -558,18 +546,6 @@ class SettingsViewController: UIViewController {
         mainStack.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(121)
-        }
-        
-        topLabel.snp.makeConstraints{ make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-        }
-        
-        backButton.snp.makeConstraints{ make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.leading.equalTo(self.view.snp.leading).offset(15)
-            make.height.equalTo(37)
-            make.width.equalTo(33)
         }
         
     }

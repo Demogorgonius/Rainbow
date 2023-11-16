@@ -22,14 +22,18 @@ final class ResultsTableViewController: UITableViewController {
         bt.setTitleColor(.white, for: .normal)
         bt.backgroundColor = .red
         bt.layer.cornerRadius = 10
-    
+        bt.layer.shadowOffset = CGSize(width: 0, height: 4)
+        bt.layer.shadowOpacity = 0.9
+        bt.layer.shadowRadius = 3
+        bt.layer.shadowColor = UIColor.black.cgColor
+        
         return bt
     }()
     
     //MARK: Init
     init(presenter: ResultsPresenterProtocol) {
         self.presenter = presenter
-        super.init(style: .plain) 
+        super.init(style: .plain)
     }
     
     required init?(coder: NSCoder) {
@@ -40,15 +44,19 @@ final class ResultsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.RainbowGameColor.customBackground
-        registeredCell()
+        configureTableView()
         setupClearResultsButton()
+        navigationItem.title = "Статистика"
+        navigationController?.setupNavigationBar()
     }
     
     //MARK: Private methods
-    private func registeredCell() {
+    private func configureTableView() {
         tableView.separatorStyle = .none
         tableView.rowHeight = 104
         tableView.register(ResultTableViewCell.self, forCellReuseIdentifier: cellID)
+
+        tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 100, right: 0)
     }
     
     private func setupClearResultsButton() {
@@ -64,7 +72,7 @@ final class ResultsTableViewController: UITableViewController {
     
     //MARK: UITableViewDelegate, UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        20
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
