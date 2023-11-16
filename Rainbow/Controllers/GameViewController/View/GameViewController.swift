@@ -37,7 +37,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .customBackground
+        view.backgroundColor = .RainbowGameColor.customBackground
         addButtons()
     }
     
