@@ -31,7 +31,6 @@
 		44A57C632B02641900C8E383 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C5A2B02641900C8E383 /* SF-Pro-Display-Bold.otf */; };
 		44A57C642B02641900C8E383 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C5B2B02641900C8E383 /* SF-Pro-Text-Medium.otf */; };
 		44A57C662B0269B700C8E383 /* CormorantInfant-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C652B0269B700C8E383 /* CormorantInfant-Italic.otf */; };
-		4AD1313C2B029E11007DA3B7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD1313B2B029E11007DA3B7 /* SnapKit */; };
 		4AD1313F2B02A3A0007DA3B7 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD1313E2B02A3A0007DA3B7 /* Extension + UILabel.swift */; };
 		4AD131412B02A664007DA3B7 /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD131402B02A664007DA3B7 /* Extension + UIStackView.swift */; };
 		4AD131432B02A7A9007DA3B7 /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD131422B02A7A9007DA3B7 /* Extension + UIButton.swift */; };
@@ -51,6 +50,7 @@
 		4AD131742B0566E4007DA3B7 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD1316E2B0566E3007DA3B7 /* ResultsTableViewController.swift */; };
 		4AD131772B056781007DA3B7 /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD131752B056781007DA3B7 /* LabelFactory.swift */; };
 		4AD131782B056781007DA3B7 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD131762B056781007DA3B7 /* ViewFactory.swift */; };
+		4AF8FA942B067D28006EEE4B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF8FA932B067D28006EEE4B /* SnapKit */; };
 		A5B7974B2B02402300B20742 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B7973A2B02402300B20742 /* CustomView.swift */; };
 		A5B7974C2B02402300B20742 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B7973B2B02402300B20742 /* CustomViewController.swift */; };
 		A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797402B02402300B20742 /* MainViewController.swift */; };
@@ -126,7 +126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5B7975B2B0249E300B20742 /* IQKeyboardManagerSwift in Frameworks */,
-				4AD1313C2B029E11007DA3B7 /* SnapKit in Frameworks */,
+				4AF8FA942B067D28006EEE4B /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,7 +531,7 @@
 			name = Rainbow;
 			packageProductDependencies = (
 				A5B7975A2B0249E300B20742 /* IQKeyboardManagerSwift */,
-				4AD1313B2B029E11007DA3B7 /* SnapKit */,
+				4AF8FA932B067D28006EEE4B /* SnapKit */,
 			);
 			productName = Rainbow;
 			productReference = A5B7970A2B010E3100B20742 /* Rainbow.app */;
@@ -883,9 +883,8 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4AD1313B2B029E11007DA3B7 /* SnapKit */ = {
+		4AF8FA932B067D28006EEE4B /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A5B797542B0249C300B20742 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 		A5B7975A2B0249E300B20742 /* IQKeyboardManagerSwift */ = {
