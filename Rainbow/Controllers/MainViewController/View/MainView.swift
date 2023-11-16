@@ -26,6 +26,8 @@ class MainView: CustomView {
     
     private lazy var nameGameLabel = UILabel(text: "Радуга", font: UIFont.CormorantFont.RegularItalic.size(of: 64))
     
+    private lazy var labelStack = UIStackView(axis: .vertical, distribution: .fillEqually, spacing: 0, subview: [gameLabel, nameGameLabel])
+    
     private lazy var startNewGameButton = UIButton(textButton: "Новая игра", colorText: .white, backgroundColor: .RainbowGameColor.customRed)
     
     private lazy var continueGameButton = UIButton(textButton: "Продолжить", colorText: .white, backgroundColor: .RainbowGameColor.customLightBlue)
@@ -46,8 +48,9 @@ class MainView: CustomView {
         backgroundColor = .RainbowGameColor.customBackground
         
         addSubview(rainbowImage)
-        addSubview(gameLabel)
-        addSubview(nameGameLabel)
+        addSubview(labelStack)
+//        addSubview(gameLabel)
+//        addSubview(nameGameLabel)
         addSubviews(buttonsStackView)
         addSubviews(customButtonsStackView)
         
@@ -55,36 +58,22 @@ class MainView: CustomView {
     }
     
     override func layoutViews() {
-        
         rainbowImage.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(safeAreaLayoutGuide)
-            make.size.equalTo(CGSize(width: 302, height: 150))
+            make.top.equalTo(45)
+            make.size.equalTo(CGSize(width: 270, height: 120))
         }
-        
-        gameLabel.snp.makeConstraints { make in
+
+        labelStack.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(rainbowImage.snp.bottom)
-            make.height.greaterThanOrEqualTo(40)
+            make.top.equalTo(rainbowImage.snp.bottom).inset(10)
+            make.height.equalTo(155)
         }
-        
-        nameGameLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(gameLabel.snp.bottom)
-            make.height.greaterThanOrEqualTo(80)
-        }
-        
+
         buttonsStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(nameGameLabel.snp.bottom)
-            
-            if UIScreen.main.bounds.height < 568 {
-                make.bottom.lessThanOrEqualTo(customButtonsStackView.snp.top).inset(-8)
-            } else {
-                make.bottom.equalTo(customButtonsStackView.snp.top).offset(-10)
-            }
-            
             make.leadingMargin.equalToSuperview()
+            make.bottom.equalTo(customButtonsStackView.snp.top).inset(15)
         }
 
         customButtonsStackView.snp.makeConstraints { make in
@@ -92,9 +81,8 @@ class MainView: CustomView {
             make.leadingMargin.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide)
         }
-        
     }
-    
+
     func addTargetButton() {
         startNewGameButton.addTarget(self, action: #selector(startNewGameButtonTapped), for: .touchUpInside)
         continueGameButton.addTarget(self, action: #selector(continueGameButtonTapped), for: .touchUpInside)
