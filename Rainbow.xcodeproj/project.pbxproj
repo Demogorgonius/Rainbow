@@ -119,6 +119,10 @@
 		A5B797472B02402300B20742 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A5B7974A2B02402300B20742 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../CustomNavigationController.swift; sourceTree = "<group>"; };
+>>>>>>> Develop
 =======
 		E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomNavigationController.swift; path = ../../../CustomNavigationController.swift; sourceTree = "<group>"; };
 >>>>>>> Develop
@@ -259,8 +263,11 @@
 				44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */,
 				44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				4ACAC2BF2B065F570019C345 /* CustomNavigationController.swift */,
 =======
+=======
+>>>>>>> Develop
 				446F15BD2B065E4500B10C77 /* Extension + UIImage.swift */,
 				E1C097B12B06478E0097C8C1 /* CustomNavigationController.swift */,
 >>>>>>> Develop
@@ -623,8 +630,11 @@
 				A5B7974E2B02402300B20742 /* MainView.swift in Sources */,
 				4AD1315B2B051DCD007DA3B7 /* MainBuilder.swift in Sources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				4ACAC2C02B065F570019C345 /* CustomNavigationController.swift in Sources */,
 =======
+=======
+>>>>>>> Develop
 				446F15BB2B065B1C00B10C77 /* RulesBuilder.swift in Sources */,
 				E1C097B22B06478E0097C8C1 /* CustomNavigationController.swift in Sources */,
 >>>>>>> Develop
