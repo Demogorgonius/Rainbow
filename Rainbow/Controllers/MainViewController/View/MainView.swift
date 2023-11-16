@@ -26,7 +26,7 @@ class MainView: CustomView {
     
     private lazy var nameGameLabel = UILabel(text: "Радуга", font: UIFont.CormorantFont.RegularItalic.size(of: 64))
     
-    private lazy var labelStack = UIStackView(axis: .vertical, distribution: .fillEqually, spacing: 0, subview: [gameLabel, nameGameLabel])
+   // private lazy var labelStack = UIStackView(axis: .vertical, distribution: .fillEqually, spacing: 0, subview: [gameLabel, nameGameLabel])
     
     private lazy var startNewGameButton = UIButton(textButton: "Новая игра", colorText: .white, backgroundColor: .RainbowGameColor.customRed)
     
@@ -48,9 +48,9 @@ class MainView: CustomView {
         backgroundColor = .RainbowGameColor.customBackground
         
         addSubview(rainbowImage)
-        addSubview(labelStack)
-        //        addSubview(gameLabel)
-        //        addSubview(nameGameLabel)
+        //addSubview(labelStack)
+        addSubview(gameLabel)
+        addSubview(nameGameLabel)
         addSubviews(buttonsStackView)
         addSubviews(customButtonsStackView)
         
@@ -61,26 +61,39 @@ class MainView: CustomView {
         
         rainbowImage.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(45)
+            make.top.equalTo(safeAreaLayoutGuide)
             make.size.equalTo(CGSize(width: 270, height: 120))
         }
         
-        labelStack.snp.makeConstraints { make in
+//        labelStack.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.top.equalTo(rainbowImage.snp.bottom).inset(15)
+//            make.height.equalTo(155)
+//        }
+        
+        gameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(rainbowImage.snp.bottom).inset(10)
-            make.height.equalTo(155)
+            make.top.equalTo(rainbowImage.snp.bottom)
+            make.height.greaterThanOrEqualTo(40)
+        }
+        
+        nameGameLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(gameLabel.snp.bottom)
+            make.height.greaterThanOrEqualTo(80)
         }
         
         buttonsStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.leadingMargin.equalToSuperview()
-            make.bottom.equalTo(customButtonsStackView.snp.top).inset(15)
+            make.bottom.equalTo(customButtonsStackView.snp.top).offset(-10)
         }
         
         customButtonsStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.leadingMargin.equalToSuperview()
-            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-5)
+            make.height.equalTo(64)
         }
     }
     
