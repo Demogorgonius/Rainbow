@@ -7,13 +7,10 @@
 
 import Foundation
 
-protocol MainPresenterDelegate: AnyObject {
-    
-}
 
 protocol MainPresenterProtocol: AnyObject {
     
-    var delegate: MainPresenterDelegate? { get set }
+ 
     var view: MainView? { get set }
     func startNewGameButtonTapped()
     func continueGameButtonTapped()
@@ -25,7 +22,7 @@ protocol MainPresenterProtocol: AnyObject {
 class MainPresenter: MainPresenterProtocol {
     
     weak var view: MainView?
-    var delegate: MainPresenterDelegate?
+   
     var router: MainRouterProtocol
     
     init(router: MainRouterProtocol) {

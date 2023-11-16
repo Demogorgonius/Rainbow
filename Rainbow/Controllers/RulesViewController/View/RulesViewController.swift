@@ -28,6 +28,7 @@ final class RulesViewController: UIViewController {
         setViews()
         setupBackButton()
         setConstrains()
+        
     }
     
     private func back() {

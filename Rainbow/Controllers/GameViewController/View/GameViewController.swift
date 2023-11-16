@@ -28,16 +28,11 @@ class GameViewController: UIViewController {
         return button
     }()
     
-    private var backButton: UIButton  = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
-        button.addTarget(self, action: #selector(arrowButtonPressed), for: .touchUpInside)
-        return button
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .RainbowGameColor.customBackground
+        navigationItem.title = "Таймер"
+        navigationController?.setupNavigationBar()
         addButtons()
     }
     
@@ -48,23 +43,18 @@ class GameViewController: UIViewController {
     func addButtons() {
     
         view.addSubview(pauseButton)
-        view.addSubview(backButton)
         
         // увеличение картинок кнопок
         let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)
         
         pauseButton.setPreferredSymbolConfiguration(symbolConfiguration, forImageIn: .normal)
-        backButton.setPreferredSymbolConfiguration(symbolConfiguration, forImageIn: .normal)
+
         
         pauseButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(60)
             make.trailing.equalToSuperview().offset(-20)
         }
-        
-        backButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(60)
-            make.leading.equalToSuperview().offset(20)
-        }
+
     }
 
     

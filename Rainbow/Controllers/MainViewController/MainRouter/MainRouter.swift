@@ -21,7 +21,8 @@ class MainRouter: MainRouterProtocol {
     weak var viewController: UIViewController?
     
     func goToNewGame() {
-        
+        let view = GameViewController()
+        self.viewController?.navigationController?.pushViewController(view, animated: true)
     }
     
     func goToContinueGame() {
@@ -36,7 +37,8 @@ class MainRouter: MainRouterProtocol {
     
     
     func goToSettings() {
-        
+        let view = SettingsViewController()
+        self.viewController?.navigationController?.pushViewController(view, animated: true)
     }
     
     func goToInfo() {

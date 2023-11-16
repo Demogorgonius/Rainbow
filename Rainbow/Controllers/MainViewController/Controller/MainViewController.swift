@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MainViewController: CustomViewController<MainView>, MainPresenterDelegate {
+class MainViewController: CustomViewController<MainView> {
     
     var presenter: MainPresenterProtocol?
     var mainView = MainView()
@@ -16,7 +16,7 @@ class MainViewController: CustomViewController<MainView>, MainPresenterDelegate 
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.delegate = self
+        
         mainView.presenter = presenter
         presenter?.view = mainView
         view = mainView
