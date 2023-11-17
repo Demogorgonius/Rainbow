@@ -52,7 +52,7 @@ class GameViewController: UIViewController {
     // MARK: Private Methods
     
     private func configureNavigationBar() {
-        let pauseBarButton = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: self, action: #selector(pauseButtonPressed))
+        let pauseBarButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(pauseButtonPressed))
         navigationItem.rightBarButtonItem = pauseBarButton
     }
     
@@ -169,7 +169,7 @@ extension GameViewController: GameViewProtocol {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "play.fill")
         } else {
             startTimer(with: elapsedTime)
-            navigationItem.rightBarButtonItem?.image = UIImage(named: "pause")
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "pause.fill")
         }
     }
     
