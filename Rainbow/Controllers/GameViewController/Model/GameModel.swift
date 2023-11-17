@@ -7,6 +7,9 @@
 
 import Foundation
 
-class GameModel {
-    
+struct GameModel {
+    let numberGame: Int
+    let durationGame: Double
+    let speedGame: Int
+    let resultGame: String
 }

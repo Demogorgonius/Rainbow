@@ -9,9 +9,11 @@ import Foundation
 
 protocol ResultsPresenterProtocol {
     func clearStatisticOverview()
+    func exitButtonPressed()
 }
 
 final class ResultsPresenter: ResultsPresenterProtocol {
+    
     
     weak var view: ResultsViewProtocol?
     
@@ -20,6 +22,10 @@ final class ResultsPresenter: ResultsPresenterProtocol {
     
     init(router: ResultsRouterProtocol) {
         self.router = router
+    }
+    
+    func exitButtonPressed() {
+        router.routeToStartScreen()
     }
     
     func clearStatisticOverview() {
