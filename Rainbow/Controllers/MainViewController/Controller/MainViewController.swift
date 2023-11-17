@@ -26,6 +26,7 @@ class MainViewController: CustomViewController<MainView> {
 }
 
 extension MainViewController: MainViewDelegate {
+    
     func startNewGameButtonTapped() {
         presenter?.startNewGameButtonTapped()
     }

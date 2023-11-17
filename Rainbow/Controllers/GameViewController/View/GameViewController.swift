@@ -17,6 +17,9 @@ class GameViewController: UIViewController {
     var totalTime: TimeInterval = 15.0
     var startTime: Date?
     
+    private var colorViews = [UIView]()
+    private var colorNames = [String]()
+    
     private var elapsedTime: TimeInterval?
     
     lazy var speedButton: UIButton = {
@@ -65,12 +68,53 @@ class GameViewController: UIViewController {
         }
     }
     
+    private func generateRandomColor() -> UIColor {
+        let randomRed = CGFloat.random(in: 0...1)
+        let randomGreen = CGFloat.random(in: 0...1)
+        let randomBlue = CGFloat.random(in: 0...1)
+        return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
+    }
+    
+    private func generateRandomColorName() -> String {
+        let colorNames = ["Красный", "Зеленый", "Голубой", "Желтый", "Оранжевый", "Фиолетовый", "Коричневый", "Розовый"]
+        return colorNames.randomElement() ?? "Unknown"
+    }
     
     private func formattedTime(from timeInterval: TimeInterval) -> String {
         let minutes = Int(timeInterval) / 60
         let seconds = Int(timeInterval) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
+    
+    private func addRandomColorView() {
+        let randomColor = generateRandomColor()
+        let colorName = generateRandomColorName()
+
+        let colorView = UIView()
+        colorView.backgroundColor = randomColor
+        colorView.layer.cornerRadius = 10
+        view.addSubview(colorView)
+
+        colorView.snp.makeConstraints { make in
+            make.width.equalTo(100)
+            make.height.equalTo(50)
+            make.centerX.equalTo(view).offset(CGFloat.random(in: -140...140))
+            make.centerY.equalTo(view).offset(CGFloat.random(in: -140...140))
+        }
+
+        let label = UILabel()
+        label.text = colorName
+        label.textColor = .white
+        label.textAlignment = .center
+        colorView.addSubview(label)
+
+        label.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        colorViews.append(colorView)
+    }
+
 }
 
 // MARK: GameViewProtocol
@@ -81,24 +125,20 @@ extension GameViewController: GameViewProtocol {
     
     
     internal func startTimer(with elapsedTime: TimeInterval?) {
-            timer.invalidate()
-            startTime = Date()
-            
-            if let elapsedTime = elapsedTime {
-                startTime = startTime?.addingTimeInterval(-elapsedTime)
-            }
-            
-            timer = Timer.scheduledTimer(
-                timeInterval: 1.0,
-                target: self,
-                selector: #selector(updateTimer),
-                userInfo: nil,
-                repeats: true
-            )
+        timer.invalidate()
+        startTime = Date()
+        
+        if let elapsedTime = elapsedTime {
+            startTime = startTime?.addingTimeInterval(-elapsedTime)
         }
-    
-    func updateColorViews(colorInfo: [(text: String, backgroundColor: UIColor)]) {
-        // Update colors if needed
+        
+        timer = Timer.scheduledTimer(
+            timeInterval: 1.0,
+            target: self,
+            selector: #selector(updateTimer),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
     func updateTimerLabel(text: String) {
@@ -110,10 +150,10 @@ extension GameViewController: GameViewProtocol {
         if timer.isValid {
             elapsedTime = Date().timeIntervalSince(startTime ?? Date())
             timer.invalidate()
-                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "play.fill")
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "play.fill")
         } else {
             startTimer(with: elapsedTime)
-                navigationItem.rightBarButtonItem?.image = UIImage(named: "pause")
+            navigationItem.rightBarButtonItem?.image = UIImage(named: "pause")
         }
     }
     
@@ -121,11 +161,35 @@ extension GameViewController: GameViewProtocol {
         // Handle speed button press if needed
     }
     
+    //    @objc func updateTimer() {
+    //        guard let startTime = startTime else { return }
+    //        let elapsedTime = Date().timeIntervalSince(startTime)
+    //        let remainingTime = max(totalTime - elapsedTime, 0)
+    //        navigationItem.title = formattedTime(from: remainingTime)
+    //
+    //        if elapsedTime >= totalTime {
+    //            timer.invalidate()
+    //            let resultScreen = ResultsBuilder.build()
+    //            if #available(iOS 16.0, *) {
+    //                resultScreen.navigationItem.leftBarButtonItem?.isHidden = true
+    //            } else {
+    //                // Fallback on earlier versions
+    //            }
+    //            navigationController?.pushViewController(resultScreen, animated: true)
+    //        }
+    //    }
+    
+    // MARK: @objc func
     @objc func updateTimer() {
         guard let startTime = startTime else { return }
         let elapsedTime = Date().timeIntervalSince(startTime)
         let remainingTime = max(totalTime - elapsedTime, 0)
         navigationItem.title = formattedTime(from: remainingTime)
+        
+        
+        if Int(elapsedTime) % 2 == 0 {
+            addRandomColorView()
+        }
         
         if elapsedTime >= totalTime {
             timer.invalidate()

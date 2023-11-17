@@ -8,13 +8,28 @@
 import Foundation
 import UIKit
 
+import UIKit
+
 protocol GameViewProtocol: AnyObject {
-    func startTimer(with elapsedTime: TimeInterval?) 
+    func startTimer(with elapsedTime: TimeInterval?)
     func updateUI()
     func updateTimerLabel(text: String)
-    func updateColorViews(colorInfo: [(text: String, backgroundColor: UIColor)])
+    //func updateColorViews(colorInfo: [(text: String, backgroundColor: UIColor)])
 }
 
-class GamePresenter {
-   
+
+protocol GamePresenterProtocol {
+    
+}
+
+class GamePresenter: GamePresenterProtocol {
+    weak var view: GameViewProtocol?
+    
+    private let router: GameRouterProtocol
+    
+    
+    init(router: GameRouterProtocol) {
+        self.router = router
+    }
+  
 }
