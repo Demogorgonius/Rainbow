@@ -14,7 +14,7 @@ class GameViewController: UIViewController {
     var presenter: GamePresenter?
     
     var timer = Timer()
-    var totalTime: TimeInterval = 15.0
+    var totalTime: TimeInterval = 30.0
     var startTime: Date?
     
     private var colorViews = [UIView]()
@@ -114,7 +114,23 @@ class GameViewController: UIViewController {
 
         colorViews.append(colorView)
     }
-
+    
+    func startHidingCycle() {
+        var index = 0
+        let hideInterval = 2.0
+        
+        Timer.scheduledTimer(withTimeInterval: hideInterval, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            
+            guard index < self.colorViews.count else {
+                index = 0
+                return
+            }
+            
+            self.colorViews[index].isHidden = true
+            index += 1
+        }
+    }
 }
 
 // MARK: GameViewProtocol
@@ -161,24 +177,6 @@ extension GameViewController: GameViewProtocol {
         // Handle speed button press if needed
     }
     
-    //    @objc func updateTimer() {
-    //        guard let startTime = startTime else { return }
-    //        let elapsedTime = Date().timeIntervalSince(startTime)
-    //        let remainingTime = max(totalTime - elapsedTime, 0)
-    //        navigationItem.title = formattedTime(from: remainingTime)
-    //
-    //        if elapsedTime >= totalTime {
-    //            timer.invalidate()
-    //            let resultScreen = ResultsBuilder.build()
-    //            if #available(iOS 16.0, *) {
-    //                resultScreen.navigationItem.leftBarButtonItem?.isHidden = true
-    //            } else {
-    //                // Fallback on earlier versions
-    //            }
-    //            navigationController?.pushViewController(resultScreen, animated: true)
-    //        }
-    //    }
-    
     // MARK: @objc func
     @objc func updateTimer() {
         guard let startTime = startTime else { return }
@@ -189,7 +187,9 @@ extension GameViewController: GameViewProtocol {
         
         if Int(elapsedTime) % 2 == 0 {
             addRandomColorView()
+            startHidingCycle()
         }
+        
         
         if elapsedTime >= totalTime {
             timer.invalidate()
@@ -200,6 +200,7 @@ extension GameViewController: GameViewProtocol {
                 // Fallback on earlier versions
             }
             navigationController?.pushViewController(resultScreen, animated: true)
+
         }
     }
 }
