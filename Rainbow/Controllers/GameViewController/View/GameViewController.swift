@@ -10,16 +10,13 @@ import SnapKit
 
 class GameViewController: UIViewController {
     
-    var presenter: GamePresenter?
+    private var presenter: GamePresenterProtocol
     
     var timer = Timer()
-    var totalTime: TimeInterval = 30.0
-    var startTime: Date?
-    
+
     private var colorViews = [UIView]()
     private var colorNames = [String]()
     
-    private var elapsedTime: TimeInterval?
     
     lazy var speedButton: UIButton = {
         let bt = UIButton()
@@ -36,22 +33,32 @@ class GameViewController: UIViewController {
         return bt
     }()
     
+    //MARK: Init
+    init(presenter: GamePresenterProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = formattedTime(from: totalTime)
+        navigationItem.title = formattedTime(from: presenter.totalTime)
         navigationController?.setupNavigationBar()
         
         addSubviews()
-        startTimer(with: elapsedTime)
+        startTimer(with: presenter.elapsedTime)
         configureNavigationBar()
     }
     
     // MARK: Private Methods
     
     private func configureNavigationBar() {
-        let pauseBarButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(pauseButtonPressed))
+        let pauseBarButton = UIBarButtonItem(image: UIImage(systemName: "pause."), style: .plain, target: self, action: #selector(pauseButtonPressed))
         navigationItem.rightBarButtonItem = pauseBarButton
     }
     
@@ -134,14 +141,13 @@ class GameViewController: UIViewController {
 
 // MARK: GameViewProtocol
 extension GameViewController: GameViewProtocol {
- 
 
     internal func startTimer(with elapsedTime: TimeInterval?) {
         timer.invalidate()
-        startTime = Date()
+        presenter.startTime = Date()
         
         if let elapsedTime = elapsedTime {
-            startTime = startTime?.addingTimeInterval(-elapsedTime)
+            presenter.startTime = presenter.startTime?.addingTimeInterval(-elapsedTime)
         }
         
         timer = Timer.scheduledTimer(
@@ -153,18 +159,14 @@ extension GameViewController: GameViewProtocol {
         )
     }
     
-    func updateTimerLabel(text: String) {
-        // Update timer label if needed
-    }
-    
     // MARK: @objc func
     @objc func pauseButtonPressed() {
         if timer.isValid {
-            elapsedTime = Date().timeIntervalSince(startTime ?? Date())
+            presenter.elapsedTime = Date().timeIntervalSince(presenter.startTime ?? Date())
             timer.invalidate()
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "play.fill")
         } else {
-            startTimer(with: elapsedTime)
+            startTimer(with: presenter.elapsedTime)
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "pause.fill")
         }
     }
@@ -175,9 +177,9 @@ extension GameViewController: GameViewProtocol {
     
     // MARK: @objc func
     @objc func updateTimer() {
-        guard let startTime = startTime else { return }
+        guard let startTime = presenter.startTime else { return }
         let elapsedTime = Date().timeIntervalSince(startTime)
-        let remainingTime = max(totalTime - elapsedTime, 0)
+        let remainingTime = max(presenter.totalTime - elapsedTime, 0)
         navigationItem.title = formattedTime(from: remainingTime)
         
         
@@ -187,14 +189,9 @@ extension GameViewController: GameViewProtocol {
         }
         
         
-        if elapsedTime >= totalTime {
+        if elapsedTime >= presenter.totalTime {
             timer.invalidate()
             let resultScreen = ResultsBuilder.build()
-            if #available(iOS 16.0, *) {
-                resultScreen.navigationItem.leftBarButtonItem?.isHidden = true
-            } else {
-                // Fallback on earlier versions
-            }
             navigationController?.pushViewController(resultScreen, animated: true)
 
         }
