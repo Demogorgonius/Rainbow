@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
+// MARK: - MainViewDelegate
 protocol MainViewDelegate: AnyObject {
     func startNewGameButtonTapped()
     func continueGameButtonTapped()
@@ -16,6 +17,7 @@ protocol MainViewDelegate: AnyObject {
     func settingsGameButtonTapped()
     func infoGameButtonTapped()
 }
+
 
 class MainView: CustomView {
     
@@ -103,7 +105,6 @@ class MainView: CustomView {
         startNewGameButton.addTarget(self, action: #selector(startNewGameButtonTapped), for: .touchUpInside)
         continueGameButton.addTarget(self, action: #selector(continueGameButtonTapped), for: .touchUpInside)
         statisticGameButton.addTarget(self, action: #selector(statisticGameTapped), for: .touchUpInside)
-        
         settingsGameButton.addTarget(self, action: #selector(settingsGameButtonTapped), for: .touchUpInside)
         infoGameButton.addTarget(self, action: #selector(infoGameButtonTapped), for: .touchUpInside)
     }

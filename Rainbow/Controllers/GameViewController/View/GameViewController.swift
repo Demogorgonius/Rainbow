@@ -9,6 +9,13 @@
 import UIKit
 import SnapKit
 
+protocol GameViewProtocol: AnyObject {
+    func startTimer(with elapsedTime: TimeInterval?)
+    func updateUI()
+    func updateTimerLabel(text: String)
+}
+
+
 class GameViewController: UIViewController {
     
     var presenter: GamePresenter?
@@ -52,7 +59,7 @@ class GameViewController: UIViewController {
     // MARK: Private Methods
     
     private func configureNavigationBar() {
-        let pauseBarButton = UIBarButtonItem(image: UIImage(named: "pause"), style: .plain, target: self, action: #selector(pauseButtonPressed))
+        let pauseBarButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(pauseButtonPressed))
         navigationItem.rightBarButtonItem = pauseBarButton
     }
     

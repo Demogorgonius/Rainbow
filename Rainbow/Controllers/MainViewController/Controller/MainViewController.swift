@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class MainViewController: CustomViewController<MainView> {
-    
+    // MARK: - Properties
     var presenter: MainPresenterProtocol?
     var mainView = MainView()
     
@@ -24,7 +24,7 @@ class MainViewController: CustomViewController<MainView> {
 
     }
 }
-
+// MARK: - MainViewDelegate
 extension MainViewController: MainViewDelegate {
     
     func startNewGameButtonTapped() {

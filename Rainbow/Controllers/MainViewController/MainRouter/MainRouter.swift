@@ -16,6 +16,7 @@ protocol MainRouterProtocol: AnyObject {
     func goToInfo()
 }
 
+// MARK: - MainRouter
 class MainRouter: MainRouterProtocol {
     
     weak var viewController: UIViewController?
