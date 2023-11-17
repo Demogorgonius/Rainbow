@@ -12,6 +12,7 @@ final class RulesViewController: UIViewController {
     var presenter: RulesPresenterProtocol?
     var mainView = InputViewCustom()
     
+    
     //MARK: - UI
     private lazy var rulesOfTheGame: InputViewCustom = {
         let rules = InputViewCustom()
