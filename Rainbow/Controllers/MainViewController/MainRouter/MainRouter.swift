@@ -21,7 +21,7 @@ class MainRouter: MainRouterProtocol {
     weak var viewController: UIViewController?
     
     func goToNewGame() {
-        let view = GameViewController()
+        let view = GameBuilder.build()
         self.viewController?.navigationController?.pushViewController(view, animated: true)
     }
     
