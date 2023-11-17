@@ -12,9 +12,8 @@ import UIKit
 
 protocol GameViewProtocol: AnyObject {
     func startTimer(with elapsedTime: TimeInterval?)
-    func updateUI()
     func updateTimerLabel(text: String)
-    //func updateColorViews(colorInfo: [(text: String, backgroundColor: UIColor)])
+   
 }
 
 
