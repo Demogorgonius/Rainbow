@@ -14,10 +14,6 @@ class GameViewController: UIViewController {
     
     var timer = Timer()
 
-    private var colorViews = [UIView]()
-    private var colorNames = [String]()
-    
-    
     lazy var speedButton: UIButton = {
         let bt = UIButton()
         bt.setTitle("X2", for: .normal)
@@ -58,7 +54,7 @@ class GameViewController: UIViewController {
     // MARK: Private Methods
     
     private func configureNavigationBar() {
-        let pauseBarButton = UIBarButtonItem(image: UIImage(systemName: "pause."), style: .plain, target: self, action: #selector(pauseButtonPressed))
+        let pauseBarButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(pauseButtonPressed))
         navigationItem.rightBarButtonItem = pauseBarButton
     }
     
@@ -70,7 +66,6 @@ class GameViewController: UIViewController {
             make.height.equalTo(73)
             make.trailing.equalTo(-16)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-34)
-            
         }
     }
     
@@ -118,7 +113,7 @@ class GameViewController: UIViewController {
             make.edges.equalToSuperview()
         }
 
-        colorViews.append(colorView)
+        presenter.colorViews.append(colorView)
     }
     
     private func startHidingCycle() {
@@ -128,12 +123,12 @@ class GameViewController: UIViewController {
         Timer.scheduledTimer(withTimeInterval: hideInterval, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             
-            guard index < self.colorViews.count else {
+            guard index < presenter.colorViews.count else {
                 index = 0
                 return
             }
             
-            self.colorViews[index].isHidden = true
+            presenter.colorViews[index].isHidden = true
             index += 1
         }
     }
