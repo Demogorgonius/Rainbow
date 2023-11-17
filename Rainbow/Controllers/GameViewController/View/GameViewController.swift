@@ -89,30 +89,32 @@ class GameViewController: UIViewController {
     private func addRandomColorView() {
         let randomColor = generateRandomColor()
         let colorName = generateRandomColorName()
-        
+
         let colorView = UIView()
         colorView.backgroundColor = randomColor
+        colorView.layer.cornerRadius = 10
         view.addSubview(colorView)
-        
+
         colorView.snp.makeConstraints { make in
-            make.width.equalTo(50)
+            make.width.equalTo(100)
             make.height.equalTo(50)
-            make.centerX.equalTo(view.snp.centerX).offset(CGFloat.random(in: -100...100))
-            make.centerY.equalTo(view.snp.centerY).offset(CGFloat.random(in: -100...100))
+            make.centerX.equalTo(view).offset(CGFloat.random(in: -140...140))
+            make.centerY.equalTo(view).offset(CGFloat.random(in: -140...140))
         }
-        
+
         let label = UILabel()
         label.text = colorName
         label.textColor = .white
         label.textAlignment = .center
         colorView.addSubview(label)
-        
+
         label.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
+
         colorViews.append(colorView)
     }
+
 }
 
 // MARK: GameViewProtocol
@@ -137,10 +139,6 @@ extension GameViewController: GameViewProtocol {
             userInfo: nil,
             repeats: true
         )
-    }
-    
-    func updateColorViews(colorInfo: [(text: String, backgroundColor: UIColor)]) {
-        // Update colors if needed
     }
     
     func updateTimerLabel(text: String) {
@@ -189,7 +187,7 @@ extension GameViewController: GameViewProtocol {
         navigationItem.title = formattedTime(from: remainingTime)
         
         
-        if Int(elapsedTime) % 1 == 0 {
+        if Int(elapsedTime) % 2 == 0 {
             addRandomColorView()
         }
         
