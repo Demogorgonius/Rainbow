@@ -24,7 +24,6 @@ final class RulesPresenter: RulesPresenterProtocol {
     
     //MARK: - Weak Link View
     weak var view: RulesViewProtocol?
-    
     private let router: RulesRouterProtocol
     
     init(router: RulesRouterProtocol) {

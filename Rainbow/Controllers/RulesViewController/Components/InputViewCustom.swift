@@ -27,14 +27,14 @@ final class InputViewCustom: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .RainbowGameColor.customBurgundy
-        label.font = .CormorantFont.RegularItalic.size(of: 25)
+        label.font = UIFont.systemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var textView: UITextView = {
         let view = UITextView()
-        view.font = .CormorantFont.RegularItalic.size(of: 20)
+        view.font = UIFont.systemFont(ofSize: 36)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -43,7 +43,7 @@ final class InputViewCustom: UIView {
         let label = UILabel()
         label.text = "подложка включена:"
         label.textColor = .RainbowGameColor.customBlack
-        label.font = .CormorantFont.RegularItalic.size(of: 15)
+        label.font = UIFont.systemFont(ofSize: 10)
         return label
     }()
     
@@ -51,7 +51,7 @@ final class InputViewCustom: UIView {
         let label = UILabel()
         label.text = "подложка выключена:"
         label.textColor = .RainbowGameColor.customBlack
-        label.font = .CormorantFont.RegularItalic.size(of: 15)
+        label.font = UIFont.systemFont(ofSize: 10)
         return label
     }()
     
@@ -63,7 +63,7 @@ final class InputViewCustom: UIView {
         label.layer.shadowOpacity = 0.5
         label.layer.shadowRadius = 1.5
         label.textColor = .RainbowGameColor.customLightGreen
-        label.font = .CormorantFont.RegularItalic.size(of: 20)
+        label.font = UIFont.systemFont(ofSize: 20)
         return label
     }()
     
@@ -72,7 +72,7 @@ final class InputViewCustom: UIView {
         button.setTitle("СИНИЙ", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .RainbowGameColor.customLightGreen
-        button.titleLabel?.font = .CormorantFont.RegularItalic.size(of: 20)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         button.layer.shadowColor = UIColor.RainbowGameColor.customBackground.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 5)
         button.layer.shadowOpacity = 0.5
@@ -130,7 +130,7 @@ extension InputViewCustom: SettingsView {
         let range = (attributedString.string as NSString).range(of: "«синий»")
         attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range)
         textView.attributedText = attributedString
-        textView.font = .CormorantFont.RegularItalic.size(of: 20)
+        textView.font = UIFont.systemFont(ofSize: 20)
     }
     
     func attributesSecond() {
@@ -144,6 +144,7 @@ extension InputViewCustom: SettingsView {
         «подложка для букв»
         включена):
         говорим «зеленый».
+        
         В игре можно изменять
         скорость от 1x до 5x. А так
         же длительность игры.
@@ -151,7 +152,7 @@ extension InputViewCustom: SettingsView {
         let range = (attributedString.string as NSString).range(of: "говорим «зеленый»")
         attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range)
         textViewSecond.attributedText = attributedString
-        textViewSecond.font = .CormorantFont.RegularItalic.size(of: 20)
+        textViewSecond.font = UIFont.systemFont(ofSize: 20)
     }
     
     func setupConstraints() {
@@ -181,7 +182,7 @@ extension InputViewCustom: SettingsView {
             textViewSecond.topAnchor.constraint(equalTo: buttonView.bottomAnchor, constant: 10),
             textViewSecond.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26),
             textViewSecond.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -14),
-            textViewSecond.heightAnchor.constraint(equalToConstant: 300)
+            textViewSecond.heightAnchor.constraint(equalToConstant: 320)
         ])
     }
 }
