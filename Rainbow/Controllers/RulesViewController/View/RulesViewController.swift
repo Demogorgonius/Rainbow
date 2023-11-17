@@ -40,17 +40,8 @@ final class RulesViewController: UIViewController {
     }
     
     private func setupBackButton() {
-        let backButton = UIBarButtonItem(image: UIImage.LTechImage.backArrow?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(backButtonTapped))
-        backButton.width = 10
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.TextFont.Regular.size(of: 30)]
-
-        navigationController?.navigationBar.titleTextAttributes = attributes
-        navigationItem.leftBarButtonItem = backButton
         navigationItem.title = "Помощь"
-    }
-
-    @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.setupNavigationBar()
     }
 }
 
