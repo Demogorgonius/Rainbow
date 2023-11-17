@@ -5,7 +5,6 @@
 //  Created by Liz-Mary on 14.11.2023.
 //
 
-
 import UIKit
 import SnapKit
 
@@ -115,7 +114,7 @@ class GameViewController: UIViewController {
         colorViews.append(colorView)
     }
     
-    func startHidingCycle() {
+    private func startHidingCycle() {
         var index = 0
         let hideInterval = 2.0
         
@@ -135,11 +134,8 @@ class GameViewController: UIViewController {
 
 // MARK: GameViewProtocol
 extension GameViewController: GameViewProtocol {
-    func updateUI() {
-        //
-    }
-    
-    
+ 
+
     internal func startTimer(with elapsedTime: TimeInterval?) {
         timer.invalidate()
         startTime = Date()
