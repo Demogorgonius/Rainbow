@@ -16,10 +16,33 @@ class MainViewController: CustomViewController<MainView> {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView.delegate = self
         
         mainView.presenter = presenter
         presenter?.view = mainView
         view = mainView
 
+    }
+}
+
+extension MainViewController: MainViewDelegate {
+    func startNewGameButtonTapped() {
+        presenter?.startNewGameButtonTapped()
+    }
+    
+    func continueGameButtonTapped() {
+        presenter?.continueGameButtonTapped()
+    }
+    
+    func statisticGameTapped() {
+        presenter?.statisticGameTapped()
+    }
+    
+    func settingsGameButtonTapped() {
+        presenter?.settingsGameButtonTapped()
+    }
+    
+    func infoGameButtonTapped() {
+        presenter?.infoGameButtonTapped()
     }
 }

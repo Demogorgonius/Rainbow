@@ -9,9 +9,18 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol MainViewDelegate: AnyObject {
+    func startNewGameButtonTapped()
+    func continueGameButtonTapped()
+    func statisticGameTapped()
+    func settingsGameButtonTapped()
+    func infoGameButtonTapped()
+}
+
 class MainView: CustomView {
     
     weak var presenter: MainPresenterProtocol?
+    weak var delegate: MainViewDelegate?
     
     // MARK: - UI
     lazy var rainbowImage: UIImageView = {
@@ -102,29 +111,25 @@ class MainView: CustomView {
     // MARK: - Actions
     
     @objc private func startNewGameButtonTapped() {
-        
-        presenter?.startNewGameButtonTapped()
+        delegate?.startNewGameButtonTapped()
     }
     
     @objc private func continueGameButtonTapped() {
-        
-        presenter?.continueGameButtonTapped()
+        delegate?.continueGameButtonTapped()
     }
     
     @objc private func statisticGameTapped() {
         print("Settings button tapped")
-        print("Presenter: \(presenter)")
-        presenter?.statisticGameTapped()
+        delegate?.statisticGameTapped()
     }
     
     @objc private func settingsGameButtonTapped() {
         print("Settings button tapped")
-        presenter?.settingsGameButtonTapped()
+        delegate?.settingsGameButtonTapped()
     }
     
     @objc private func infoGameButtonTapped() {
-        
-        presenter?.infoGameButtonTapped()
+        delegate?.infoGameButtonTapped()
     }
 }
 

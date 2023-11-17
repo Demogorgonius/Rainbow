@@ -110,7 +110,7 @@ extension GameViewController: GameViewProtocol {
         if timer.isValid {
             elapsedTime = Date().timeIntervalSince(startTime ?? Date())
             timer.invalidate()
-                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "play")
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "play.fill")
         } else {
             startTimer(with: elapsedTime)
                 navigationItem.rightBarButtonItem?.image = UIImage(named: "pause")
