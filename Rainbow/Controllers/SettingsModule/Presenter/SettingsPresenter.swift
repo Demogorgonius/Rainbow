@@ -8,10 +8,23 @@
 import Foundation
 import UIKit
 
-protocol SettingsViewProtocol: AnyObject {
-   
+protocol SettingsPresenterProtocol: AnyObject {
+    var view: SettingsViewController? { get set }
 }
 
-protocol SettingsPresenterProtocol: SettingsViewProtocol {
-    func getSettings()
+protocol SettingsViewProtocol: AnyObject  {
+    
+}
+
+final class SettingsPresenter: SettingsPresenterProtocol {
+    var view: SettingsViewController?
+    
+    
+    private let router: SettingsRouterProtocol
+    
+    
+    init(router: SettingsRouterProtocol) {
+        self.router = router
+    }
+    
 }

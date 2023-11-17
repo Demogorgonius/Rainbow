@@ -12,12 +12,13 @@ import SnapKit
 
 class SettingsViewController: UIViewController {
     
-    //    var presenter: SettingsPresenterProtocol!
+    var presenter: SettingsPresenterProtocol?
+    
     
     let colorCheckerBrain = ColorCheckerBrain()
-    //    var arrayOfColoredCheckers: [UIButton]
     
     override func viewDidLoad() {
+        presenter?.view = SettingsViewController()
         super.viewDidLoad()
         view.backgroundColor = .RainbowGameColor.customBackground
         setupButtons()

@@ -10,6 +10,8 @@
 		15AB85292B042499006B3CCF /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB85282B042499006B3CCF /* SettingsPresenter.swift */; };
 		15AB852B2B0530C9006B3CCF /* ColorChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB852A2B0530C9006B3CCF /* ColorChecker.swift */; };
 		15AB852E2B053285006B3CCF /* ColorCheckerBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB852D2B053285006B3CCF /* ColorCheckerBrain.swift */; };
+		15AB85362B068F34006B3CCF /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB85352B068F34006B3CCF /* SettingsBuilder.swift */; };
+		15AB85382B068F4B006B3CCF /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB85372B068F4B006B3CCF /* SettingsRouter.swift */; };
 		15F3BE7E2B02E70500E74E7A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3BE7D2B02E70500E74E7A /* SettingsViewController.swift */; };
 		15F3BE842B02F07200E74E7A /* SettingsViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3BE832B02F07200E74E7A /* SettingsViewService.swift */; };
 		446F15B72B065B1C00B10C77 /* RulesPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15AC2B065B1C00B10C77 /* RulesPresenterProtocol.swift */; };
@@ -67,6 +69,8 @@
 		15AB85282B042499006B3CCF /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		15AB852A2B0530C9006B3CCF /* ColorChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorChecker.swift; sourceTree = "<group>"; };
 		15AB852D2B053285006B3CCF /* ColorCheckerBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCheckerBrain.swift; sourceTree = "<group>"; };
+		15AB85352B068F34006B3CCF /* SettingsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsBuilder.swift; path = Rainbow/Controllers/SettingsModule/SettingsBuilder.swift; sourceTree = SOURCE_ROOT; };
+		15AB85372B068F4B006B3CCF /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsRouter.swift; path = Rainbow/Controllers/SettingsModule/SettingsRouter.swift; sourceTree = SOURCE_ROOT; };
 		15F3BE7D2B02E70500E74E7A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		15F3BE832B02F07200E74E7A /* SettingsViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewService.swift; sourceTree = "<group>"; };
 		446F15AC2B065B1C00B10C77 /* RulesPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 		15F3BE772B02E25500E74E7A /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				15AB85372B068F4B006B3CCF /* SettingsRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 		15F3BE782B02E26000E74E7A /* Builder */ = {
 			isa = PBXGroup;
 			children = (
+				15AB85352B068F34006B3CCF /* SettingsBuilder.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -603,6 +609,7 @@
 			files = (
 				A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */,
 				15AB852E2B053285006B3CCF /* ColorCheckerBrain.swift in Sources */,
+				15AB85362B068F34006B3CCF /* SettingsBuilder.swift in Sources */,
 				446F15B72B065B1C00B10C77 /* RulesPresenterProtocol.swift in Sources */,
 				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
 				15F3BE7E2B02E70500E74E7A /* SettingsViewController.swift in Sources */,
@@ -623,6 +630,7 @@
 				4AD131572B051DAE007DA3B7 /* MainRouter.swift in Sources */,
 				4AD131522B03D9D7007DA3B7 /* GamePresenter.swift in Sources */,
 				4AD131502B03D99F007DA3B7 /* GameViewController.swift in Sources */,
+				15AB85382B068F4B006B3CCF /* SettingsRouter.swift in Sources */,
 				15AB852B2B0530C9006B3CCF /* ColorChecker.swift in Sources */,
 				15F3BE842B02F07200E74E7A /* SettingsViewService.swift in Sources */,
 				E112CBE82B06750000F08206 /* Extension + UIImage.swift in Sources */,
