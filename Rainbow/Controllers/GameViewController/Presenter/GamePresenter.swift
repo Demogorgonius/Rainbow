@@ -15,6 +15,8 @@ protocol GameViewProtocol: AnyObject {
 
 
 protocol GamePresenterProtocol {
+    var colorViews: [UIView] { get set }
+    var colorNames: [String] { get set }
     var totalTime: TimeInterval { get set }
     var startTime: Date? { get set }
     var elapsedTime: TimeInterval? { get set }
@@ -22,13 +24,18 @@ protocol GamePresenterProtocol {
 
 class GamePresenter: GamePresenterProtocol {
     
+    
     weak var view: GameViewProtocol?
     
     private let router: GameRouterProtocol
     
     var startTime: Date?
-    var totalTime: TimeInterval = 3.0
+    var totalTime: TimeInterval = 10.0
     var elapsedTime: TimeInterval?
+    
+    var colorViews: [UIView] = []
+    var colorNames: [String] = []
+    
     
     init(router: GameRouterProtocol) {
         self.router = router
