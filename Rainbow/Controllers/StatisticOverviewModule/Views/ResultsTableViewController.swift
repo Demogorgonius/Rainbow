@@ -26,7 +26,7 @@ final class ResultsTableViewController: UITableViewController {
         bt.layer.shadowOpacity = 0.9
         bt.layer.shadowRadius = 3
         bt.layer.shadowColor = UIColor.black.cgColor
-        
+        bt.addTarget(self, action: #selector(clearResultsButtonTap), for: .touchUpInside)
         return bt
     }()
     
@@ -41,22 +41,43 @@ final class ResultsTableViewController: UITableViewController {
     }
     
     //MARK: Life Circle
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.RainbowGameColor.customBackground
         configureTableView()
         setupClearResultsButton()
-        navigationItem.title = "Статистика"
+        
+        configureNavigationBar()
+        
+        
+    }
+    //MARK: Private methods
+    private func configureNavigationBar() {
         navigationController?.setupNavigationBar()
+        navigationItem.hidesBackButton = true
+        navigationItem.title = "Статистика"
+
+        let exitBarButton = UIBarButtonItem(image: UIImage(systemName: "xmark", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)), style: .plain, target: self, action: #selector(exitButtonPressed))
+        navigationItem.rightBarButtonItem = exitBarButton
     }
     
-    //MARK: Private methods
+    @objc private func exitButtonPressed() {
+        let startScreen = MainBuilder.build()
+        navigationController?.setViewControllers([startScreen], animated: true)
+    }
+    
+    @objc private func clearResultsButtonTap() {
+        presenter.clearStatisticOverview()
+    }
+    
     private func configureTableView() {
         tableView.separatorStyle = .none
         tableView.rowHeight = 104
         tableView.register(ResultTableViewCell.self, forCellReuseIdentifier: cellID)
-
-        tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 100, right: 0)
+        
+        tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: -150, right: 0)
     }
     
     private func setupClearResultsButton() {

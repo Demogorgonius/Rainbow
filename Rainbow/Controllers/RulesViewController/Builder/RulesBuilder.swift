@@ -16,7 +16,6 @@ final class RulesBuilder: RulesBuilderProtocol {
         let presenter = RulesPresenter(router: router)
         let view = RulesViewController()
         presenter.view = view
-        //router.view = view
         return view
     }
 }

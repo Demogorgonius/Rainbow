@@ -40,17 +40,8 @@ final class RulesViewController: UIViewController {
     }
     
     private func setupBackButton() {
-        let backButton = UIBarButtonItem(image: UIImage.LTechImage.backArrow?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(backButtonTapped))
-        backButton.width = 10
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.TextFont.Regular.size(of: 30)]
-
-        navigationController?.navigationBar.titleTextAttributes = attributes
-        navigationItem.leftBarButtonItem = backButton
         navigationItem.title = "Помощь"
-    }
-
-    @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.setupNavigationBar()
     }
 }
 
@@ -58,7 +49,7 @@ final class RulesViewController: UIViewController {
 extension RulesViewController {
     private func setConstrains() {
         NSLayoutConstraint.activate([
-            rulesOfTheGame.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 82),
+            rulesOfTheGame.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 29),
             rulesOfTheGame.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 40),
             rulesOfTheGame.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -37),
             rulesOfTheGame.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -29)

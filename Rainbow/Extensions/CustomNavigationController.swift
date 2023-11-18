@@ -14,7 +14,11 @@ extension UINavigationController {
         navigationBar.barTintColor = .RainbowGameColor.customBackground
         navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
+<<<<<<< HEAD
         let backButtonImage = UIImage(systemName: "arrow.backward")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 50, weight: .bold))
+=======
+        let backButtonImage = UIImage(systemName: "arrow.backward")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 45, weight: .bold))
+>>>>>>> Develop
         let alignInsets = UIEdgeInsets(top: 19, left: -4, bottom: 0, right: 0)
         navigationBar.backIndicatorImage = backButtonImage?.withAlignmentRectInsets(alignInsets)
         navigationBar.backIndicatorTransitionMaskImage = backButtonImage

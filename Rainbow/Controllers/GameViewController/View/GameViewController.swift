@@ -5,7 +5,6 @@
 //  Created by Liz-Mary on 14.11.2023.
 //
 
-
 import UIKit
 import SnapKit
 
@@ -18,17 +17,10 @@ protocol GameViewProtocol: AnyObject {
 
 class GameViewController: UIViewController {
     
-    var presenter: GamePresenter?
+    private var presenter: GamePresenterProtocol
     
     var timer = Timer()
-    var totalTime: TimeInterval = 15.0
-    var startTime: Date?
-    
-    private var colorViews = [UIView]()
-    private var colorNames = [String]()
-    
-    private var elapsedTime: TimeInterval?
-    
+
     lazy var speedButton: UIButton = {
         let bt = UIButton()
         bt.setTitle("X2", for: .normal)
@@ -44,15 +36,25 @@ class GameViewController: UIViewController {
         return bt
     }()
     
+    //MARK: Init
+    init(presenter: GamePresenterProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = formattedTime(from: totalTime)
+        navigationItem.title = formattedTime(from: presenter.totalTime)
         navigationController?.setupNavigationBar()
         
         addSubviews()
-        startTimer(with: elapsedTime)
+        startTimer(with: presenter.elapsedTime)
         configureNavigationBar()
     }
     
@@ -71,7 +73,6 @@ class GameViewController: UIViewController {
             make.height.equalTo(73)
             make.trailing.equalTo(-16)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-34)
-            
         }
     }
     
@@ -119,24 +120,36 @@ class GameViewController: UIViewController {
             make.edges.equalToSuperview()
         }
 
-        colorViews.append(colorView)
+        presenter.colorViews.append(colorView)
     }
-
+    
+    private func startHidingCycle() {
+        var index = 0
+        let hideInterval = 2.0
+        
+        Timer.scheduledTimer(withTimeInterval: hideInterval, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            
+            guard index < presenter.colorViews.count else {
+                index = 0
+                return
+            }
+            
+            presenter.colorViews[index].isHidden = true
+            index += 1
+        }
+    }
 }
 
 // MARK: GameViewProtocol
 extension GameViewController: GameViewProtocol {
-    func updateUI() {
-        //
-    }
-    
-    
+
     internal func startTimer(with elapsedTime: TimeInterval?) {
         timer.invalidate()
-        startTime = Date()
+        presenter.startTime = Date()
         
         if let elapsedTime = elapsedTime {
-            startTime = startTime?.addingTimeInterval(-elapsedTime)
+            presenter.startTime = presenter.startTime?.addingTimeInterval(-elapsedTime)
         }
         
         timer = Timer.scheduledTimer(
@@ -148,19 +161,15 @@ extension GameViewController: GameViewProtocol {
         )
     }
     
-    func updateTimerLabel(text: String) {
-        // Update timer label if needed
-    }
-    
     // MARK: @objc func
     @objc func pauseButtonPressed() {
         if timer.isValid {
-            elapsedTime = Date().timeIntervalSince(startTime ?? Date())
+            presenter.elapsedTime = Date().timeIntervalSince(presenter.startTime ?? Date())
             timer.invalidate()
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "play.fill")
         } else {
-            startTimer(with: elapsedTime)
-            navigationItem.rightBarButtonItem?.image = UIImage(named: "pause")
+            startTimer(with: presenter.elapsedTime)
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "pause.fill")
         }
     }
     
@@ -168,45 +177,25 @@ extension GameViewController: GameViewProtocol {
         // Handle speed button press if needed
     }
     
-    //    @objc func updateTimer() {
-    //        guard let startTime = startTime else { return }
-    //        let elapsedTime = Date().timeIntervalSince(startTime)
-    //        let remainingTime = max(totalTime - elapsedTime, 0)
-    //        navigationItem.title = formattedTime(from: remainingTime)
-    //
-    //        if elapsedTime >= totalTime {
-    //            timer.invalidate()
-    //            let resultScreen = ResultsBuilder.build()
-    //            if #available(iOS 16.0, *) {
-    //                resultScreen.navigationItem.leftBarButtonItem?.isHidden = true
-    //            } else {
-    //                // Fallback on earlier versions
-    //            }
-    //            navigationController?.pushViewController(resultScreen, animated: true)
-    //        }
-    //    }
-    
     // MARK: @objc func
     @objc func updateTimer() {
-        guard let startTime = startTime else { return }
+        guard let startTime = presenter.startTime else { return }
         let elapsedTime = Date().timeIntervalSince(startTime)
-        let remainingTime = max(totalTime - elapsedTime, 0)
+        let remainingTime = max(presenter.totalTime - elapsedTime, 0)
         navigationItem.title = formattedTime(from: remainingTime)
         
         
         if Int(elapsedTime) % 2 == 0 {
             addRandomColorView()
+            startHidingCycle()
         }
         
-        if elapsedTime >= totalTime {
+        
+        if elapsedTime >= presenter.totalTime {
             timer.invalidate()
             let resultScreen = ResultsBuilder.build()
-            if #available(iOS 16.0, *) {
-                resultScreen.navigationItem.leftBarButtonItem?.isHidden = true
-            } else {
-                // Fallback on earlier versions
-            }
             navigationController?.pushViewController(resultScreen, animated: true)
+
         }
     }
 }

@@ -18,7 +18,7 @@ class GameBuilder: GameBuilderProtocol {
     static func build() -> UIViewController {
         let router = GameRouter()
         let presenter = GamePresenter(router: router)
-        let viewController = GameViewController() 
+        let viewController = GameViewController(presenter: presenter)
 
         presenter.view = viewController
         router.viewController = viewController
