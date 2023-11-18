@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct GameResultModel {
+struct GameResultModel: Codable {
     let numberGame: Int
     let durationGame: Double
     let speedGame: Int

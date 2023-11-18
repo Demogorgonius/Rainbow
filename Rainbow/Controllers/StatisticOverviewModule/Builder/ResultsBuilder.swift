@@ -10,7 +10,8 @@ import UIKit
 final class ResultsBuilder {
     static func build() -> UIViewController {
         let router = ResultsRouter()
-        let presenter = ResultsPresenter(router: router)
+        let resultStorage = SettingsManager()
+        let presenter = ResultsPresenter(router: router, resultStorage: resultStorage)
         let view = ResultsTableViewController(presenter: presenter)
         
         presenter.view = view
