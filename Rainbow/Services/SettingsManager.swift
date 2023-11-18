@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 enum GameColor: String {
    case customLightGreen = "customLightGreen"
    case customDarkGreen = "customDarkGreen"
@@ -48,10 +46,39 @@ protocol SettingManagerProtocol {
     func getSettings(completion: @escaping(Result<GameSettings,Error>)->Void)
 }
 
-class SettingsManager: SettingManagerProtocol {
+protocol ResultsStorageProtocol {
+    var results: [GameResultModel] { get }
+    
+    func addStatistic(_ result: GameResultModel)
+    func clearStatistic()
+}
+
+class SettingsManager: SettingManagerProtocol, ResultsStorageProtocol {
     
     let defaults = UserDefaults.standard
     
+    var results: [GameResultModel] {
+        guard let data = defaults.data(forKey: "addStatistic"),
+              let results = try? JSONDecoder().decode([GameResultModel].self, from: data) else {
+            return []
+        }
+        return results
+    }
+    
+    func addStatistic(_ result: GameResultModel) {
+        let results = [result] + self.results
+        if let encoded = try? JSONEncoder().encode(results) {
+            defaults.setValue(encoded, forKey: "addStatistic")
+        }
+    }
+    
+    func clearStatistic() {
+        defaults.setValue([], forKey: "addStatistic")
+    }
+    
+
+
+
     func saveSettings(
         durationGame: Int?,
         speedGame: Int?,
@@ -62,7 +89,7 @@ class SettingsManager: SettingManagerProtocol {
         screenLocation: Bool?,
         completion: @escaping (Result<GameSettings, Error>) -> Void
     ) {
-        
+
         let settings = GameSettings(
             durationGame: durationGame ?? 10,
             speedGame: speedGame ?? 1,

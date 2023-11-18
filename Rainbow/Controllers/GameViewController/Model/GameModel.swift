@@ -13,3 +13,22 @@ struct GameModel {
     let speedGame: Int
     let resultGame: String
 }
+
+struct GameView {
+    var sizeFont: Double
+    var colorForText: String
+    var backgroundForText: Bool
+    var backgroundForView: String
+    
+    static func getGameView() -> [GameView] {
+        var gameView: [GameView] = []
+        
+        var sizeFont: Double
+        var backgroundForText: Bool
+        var backgroundForView: String
+        var screenLocation: Bool
+        
+        return gameView
+        
+    }
+}

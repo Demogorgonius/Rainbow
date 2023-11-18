@@ -67,6 +67,7 @@
 		E112CBE82B06750000F08206 /* Extension + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBE72B06750000F08206 /* Extension + UIImage.swift */; };
 		E112CBEF2B08A8E000F08206 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBEE2B08A8E000F08206 /* SettingsManager.swift */; };
 		E112CBF12B08F45900F08206 /* GameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBF02B08F45900F08206 /* GameError.swift */; };
+		E112CBF32B09268E00F08206 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBF22B09268E00F08206 /* ResultModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +131,7 @@
 		E112CBE72B06750000F08206 /* Extension + UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIImage.swift"; sourceTree = "<group>"; };
 		E112CBEE2B08A8E000F08206 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		E112CBF02B08F45900F08206 /* GameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameError.swift; sourceTree = "<group>"; };
+		E112CBF22B09268E00F08206 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +378,7 @@
 				4AD131662B0566E3007DA3B7 /* Presenter */,
 				4AD131682B0566E3007DA3B7 /* Builder */,
 				4AD1316A2B0566E3007DA3B7 /* Views */,
+				E112CBF42B09269400F08206 /* Models */,
 			);
 			path = StatisticOverviewModule;
 			sourceTree = "<group>";
@@ -547,6 +550,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		E112CBF42B09269400F08206 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E112CBF22B09268E00F08206 /* ResultModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -679,6 +690,7 @@
 				44A57C512B0261AD00C8E383 /* Extension + UIFont.swift in Sources */,
 				4AD131592B051DBE007DA3B7 /* MainPresenter.swift in Sources */,
 				446F15B82B065B1C00B10C77 /* InputViewCustom.swift in Sources */,
+				E112CBF32B09268E00F08206 /* ResultModel.swift in Sources */,
 				446F15C02B065F9F00B10C77 /* RulesViewController.swift in Sources */,
 				4AD131712B0566E4007DA3B7 /* ResultsBuilder.swift in Sources */,
 				15AB85292B042499006B3CCF /* SettingsPresenter.swift in Sources */,

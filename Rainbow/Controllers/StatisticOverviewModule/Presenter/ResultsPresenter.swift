@@ -8,20 +8,22 @@
 import Foundation
 
 protocol ResultsPresenterProtocol {
+    var resultStorage: ResultsStorageProtocol { get }
     func clearStatisticOverview()
     func exitButtonPressed()
+    
 }
 
 final class ResultsPresenter: ResultsPresenterProtocol {
     
     
     weak var view: ResultsViewProtocol?
-    
+    internal let resultStorage: ResultsStorageProtocol
     private let router: ResultsRouterProtocol
     
-    
-    init(router: ResultsRouterProtocol) {
+    init(router: ResultsRouterProtocol, resultStorage: ResultsStorageProtocol) {
         self.router = router
+        self.resultStorage = resultStorage
     }
     
     func exitButtonPressed() {
@@ -29,7 +31,7 @@ final class ResultsPresenter: ResultsPresenterProtocol {
     }
     
     func clearStatisticOverview() {
-        //
+        resultStorage.clearStatistic()
     }
     
     
