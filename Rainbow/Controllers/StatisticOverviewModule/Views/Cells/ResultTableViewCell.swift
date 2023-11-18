@@ -42,7 +42,17 @@ final class ResultTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Pablic Methods
+    func configure(with result: GameResultModel) {
+        gameNumberLabel.text = "Игра №\(result.numberGame)"
+        gameTimeLabel.text = String(result.durationGame)
+        gameSpeedLabel.text = "Скорость: \(result.speedGame)x"
+        //gameResultLabel.text = "\(result.score)/\(result.totalColors)"
+        
+    }
+    
     // MARK: - Private Methods
+    
     
     private func addSubviews() {
         contentView.backgroundColor = UIColor.RainbowGameColor.customBackground

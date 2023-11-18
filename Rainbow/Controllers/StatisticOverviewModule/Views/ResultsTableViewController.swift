@@ -70,6 +70,7 @@ final class ResultsTableViewController: UITableViewController {
     
     @objc private func clearResultsButtonTap() {
         presenter.clearStatisticOverview()
+        
     }
     
     private func configureTableView() {
@@ -93,13 +94,16 @@ final class ResultsTableViewController: UITableViewController {
     
     //MARK: UITableViewDelegate, UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        20
+        presenter.resultStorage.results.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
         
         guard let resultCell = cell as? ResultTableViewCell else { return UITableViewCell() }
+        
+        let result = presenter.resultStorage.results[indexPath.row]
+        resultCell.configure(with: result)
         return resultCell
     }
 }
