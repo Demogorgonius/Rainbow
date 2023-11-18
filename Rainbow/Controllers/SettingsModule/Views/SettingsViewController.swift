@@ -14,7 +14,6 @@ class SettingsViewController: UIViewController {
     
     var presenter: SettingsPresenterProtocol?
     
-    
     let colorCheckerBrain = ColorCheckerBrain()
     
     override func viewDidLoad() {

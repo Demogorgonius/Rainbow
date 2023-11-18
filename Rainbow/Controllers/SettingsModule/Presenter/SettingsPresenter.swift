@@ -19,9 +19,7 @@ protocol SettingsViewProtocol: AnyObject  {
 final class SettingsPresenter: SettingsPresenterProtocol {
     var view: SettingsViewController?
     
-    
     private let router: SettingsRouterProtocol
-    
     
     init(router: SettingsRouterProtocol) {
         self.router = router
