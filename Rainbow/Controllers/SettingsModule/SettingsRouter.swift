@@ -13,10 +13,9 @@ protocol SettingsRouterProtocol {
 }
 
 final class SettingsRouter: SettingsRouterProtocol {
+    weak var viewController: UIViewController?
     
     func goToStartScreen() {
-        
-        weak var viewController: UIViewController?
         
         let view = MainBuilder.build()
         viewController?.navigationController?.pushViewController(view, animated: true)

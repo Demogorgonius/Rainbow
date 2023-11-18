@@ -8,19 +8,18 @@
 import UIKit
 
 enum GameColor: String {
-   case white
-   case customLightGreen
-   case customDarkGreen
-   case customPink
-   case customLightBlue
-   case customBurgundy
-   case customViolet
-   case customDarkBlue
-   case customOrange
-   case customRed
-   case customYellow
-   case customBlack
-   case customGrayishPurple
+   case customLightGreen = "customLightGreen"
+   case customDarkGreen = "customDarkGreen"
+   case customPink = "customPink"
+   case customLightBlue = "customLightBlue"
+   case customBurgundy = "customBurgundy"
+   case customViolet = "customViolet"
+   case customDarkBlue = "customDarkBlue"
+   case customOrange = "customOrange"
+   case customRed = "customRed"
+   case customYellow = "customYellow"
+   case customBlack = "customBlack"
+   case customGrayishPurple = "customGrayishPurple"
 }
 
 struct GameSettings: Codable {
@@ -30,7 +29,7 @@ struct GameSettings: Codable {
     var sizeFont: Double = 12
     var backgroundForText: Bool = true
     var backgroundForView: String = GameColor.customOrange.rawValue
-    var screenLocation: Bool
+    var screenLocation: Bool = true
 }
 
 protocol SettingManagerProtocol {
@@ -103,9 +102,11 @@ class SettingsManager: SettingManagerProtocol, ResultsStorageProtocol {
         
         
         let encoder = JSONEncoder()
+        
         if let encoded = try? encoder.encode(settings) {
             
             defaults.set(encoded, forKey: "gameSettings")
+            
         }
         
         if let settings = defaults.object(forKey: "gameSettings") as? Data {
@@ -123,11 +124,13 @@ class SettingsManager: SettingManagerProtocol, ResultsStorageProtocol {
         if let settings = defaults.object(forKey: "gameSettings") as? Data {
             let decoder = JSONDecoder()
                 if let loadedSettings = try? decoder.decode(GameSettings.self, from: settings) {
+                    print("Settings loaded")
                     completion(.success(loadedSettings))
                 }
             
         } else {
             completion(.failure(GameErrors.saveSettingsError))
+            print("Settings didn't loaded")
         }
     }
 }
