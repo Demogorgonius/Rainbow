@@ -5,7 +5,6 @@
 //  Created by Sergey on 12.11.2023.
 //
 
-import Foundation
 import UIKit
 
 class CustomView: UIView {

@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 enum GameColor: String {
    case white
    case customLightGreen
@@ -27,10 +25,9 @@ enum GameColor: String {
 
 struct GameSettings: Codable {
     var durationGame: Int = 10
-    var speedGame: Int = 10
+    var speedGame: Int = 1
     var checkTask: Bool = true
-    var textColor: String = GameColor.white.rawValue
-    var sizeFont: Int = 12
+    var sizeFont: Double = 12
     var backgroundForText: Bool = true
     var backgroundForView: String = GameColor.customOrange.rawValue
     var screenLocation: Bool
@@ -38,44 +35,41 @@ struct GameSettings: Codable {
 
 protocol SettingManagerProtocol {
     func saveSettings(
-        durationGame: Int,
-        speedGame: Int,
-        checkTask: Bool,
-        textColor: String,
-        sizeFont: Int,
-        backgroundForText: Bool,
-        backgroundForView: String,
-        screenLocation: Bool,
+        durationGame: Int?,
+        speedGame: Int?,
+        checkTask: Bool?,
+        sizeFont: Double?,
+        backgroundForText: Bool?,
+        backgroundForView: String?,
+        screenLocation: Bool?,
         completion: @escaping(Result<GameSettings, Error>)->Void
     )
+    func getSettings(completion: @escaping(Result<GameSettings,Error>)->Void)
 }
 
 class SettingsManager: SettingManagerProtocol {
-    
+
     let defaults = UserDefaults.standard
-    
+
     func saveSettings(
-        durationGame: Int,
-        speedGame: Int,
-        checkTask: Bool,
-        textColor: String,
-        sizeFont: Int,
-        backgroundForText: Bool,
-        backgroundForView: String,
-        screenLocation: Bool,
+        durationGame: Int?,
+        speedGame: Int?,
+        checkTask: Bool?,
+        sizeFont: Double?,
+        backgroundForText: Bool?,
+        backgroundForView: String?,
+        screenLocation: Bool?,
         completion: @escaping (Result<GameSettings, Error>) -> Void
     ) {
-        
+
         let settings = GameSettings(
-            durationGame: durationGame,
-            speedGame: speedGame,
-            checkTask: checkTask,
-            textColor: textColor,
-            sizeFont: sizeFont,
-            backgroundForText: backgroundForText,
-            backgroundForView: backgroundForView,
-            screenLocation: screenLocation
-        
+            durationGame: durationGame ?? 10,
+            speedGame: speedGame ?? 1,
+            checkTask: checkTask ?? true,
+            sizeFont: sizeFont ?? 15.0,
+            backgroundForText: backgroundForText ?? true,
+            backgroundForView: backgroundForView ?? GameColor.customOrange.rawValue,
+            screenLocation: screenLocation ?? true
         )
         
         
