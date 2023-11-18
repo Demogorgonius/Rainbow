@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 
-
 class GameViewController: UIViewController {
     
     private var presenter: GamePresenterProtocol
@@ -92,20 +91,40 @@ class GameViewController: UIViewController {
         let randomColor = generateRandomColor()
         let colorName = generateRandomColorName()
 
+        let colorView = createColorView(with: randomColor)
+        view.addSubview(colorView)  // Добавьте это здесь
+
+        addLabel(to: colorView, with: colorName)
+
+        presenter.colorViews.append(colorView)
+
+        if presenter.isAnswerVerificationEnabled {
+            addCheckbox(to: colorView)
+        }
+    }
+
+
+    private func createColorView(with color: UIColor) -> UIView {
         let colorView = UIView()
-        colorView.backgroundColor = randomColor
+        colorView.backgroundColor = color
         colorView.layer.cornerRadius = 10
-        view.addSubview(colorView)
+
+        self.view.addSubview(colorView)
 
         colorView.snp.makeConstraints { make in
-            make.width.equalTo(100)
+            make.width.equalTo(130)
             make.height.equalTo(50)
-            make.centerX.equalTo(view).offset(CGFloat.random(in: -140...140))
-            make.centerY.equalTo(view).offset(CGFloat.random(in: -140...140))
+            make.centerX.equalTo(self.view).offset(CGFloat.random(in: -120...120))
+            make.centerY.equalTo(self.view).offset(CGFloat.random(in: -120...120))
         }
 
+        return colorView
+    }
+
+
+    private func addLabel(to colorView: UIView, with text: String) {
         let label = UILabel()
-        label.text = colorName
+        label.text = text
         label.textColor = .white
         label.textAlignment = .center
         colorView.addSubview(label)
@@ -113,9 +132,21 @@ class GameViewController: UIViewController {
         label.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
-        presenter.colorViews.append(colorView)
     }
+
+    private func addCheckbox(to colorView: UIView) {
+        let checkboxButton = UIButton(type: .roundedRect)
+        checkboxButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        checkboxButton.tintColor = .RainbowGameColor.customBlack
+        checkboxButton.addTarget(self, action: #selector(checkboxButtonTapped), for: .touchUpInside)
+        colorView.addSubview(checkboxButton)
+
+        checkboxButton.snp.makeConstraints { make in
+            make.centerY.equalTo(colorView)
+            make.leading.equalTo(colorView.snp.trailing).offset(10)
+        }
+    }
+
     
     private func startHidingCycle() {
         var index = 0
@@ -133,10 +164,15 @@ class GameViewController: UIViewController {
             index += 1
         }
     }
+    
+    @objc func checkboxButtonTapped() {
+        
+    }
+    
 }
 
 // MARK: GameViewProtocol
-extension GameViewController: GameViewProtocol {    
+extension GameViewController: GameViewProtocol {
 
     internal func startTimer(with elapsedTime: TimeInterval?) {
         timer.invalidate()

@@ -15,12 +15,14 @@ protocol GameViewProtocol: AnyObject {
 protocol GamePresenterProtocol {
     var colorViews: [UIView] { get set }
     var colorNames: [String] { get set }
+    var isAnswerVerificationEnabled: Bool { get }
     var totalTime: TimeInterval { get set }
     var startTime: Date? { get set }
     var elapsedTime: TimeInterval? { get set }
-    func startGame()
-    func stopGame()
+    
+    func pauseButtonPressed()
     func speedButtonPressed()
+    func updateTimer()
 }
 
 class GamePresenter: GamePresenterProtocol {
@@ -38,6 +40,8 @@ class GamePresenter: GamePresenterProtocol {
     var colorViews: [UIView] = []
     var colorNames: [String] = []
     
+    var isAnswerVerificationEnabled = true
+    
     
     init(router: GameRouterProtocol) {
         self.router = router
@@ -52,11 +56,7 @@ class GamePresenter: GamePresenterProtocol {
         
     }
     
-    func startGame() {
-       
-    }
-    
-    func stopGame() {
+    func pauseButtonPressed() {
         
     }
   
