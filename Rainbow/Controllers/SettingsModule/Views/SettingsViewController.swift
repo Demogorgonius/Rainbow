@@ -378,7 +378,7 @@ final class SettingsViewController: UIViewController {
         if (sender == gameWithAnswerCheckSwitch) {
             presenter?.checkTask(isOn:currentValue)
         } else {
-            presenter?.backgroundForText>(isOn:currentValue)
+            presenter?.backgroundForText(isOn:currentValue)
         }
         
     }
