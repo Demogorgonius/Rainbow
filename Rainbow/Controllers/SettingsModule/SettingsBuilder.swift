@@ -9,12 +9,15 @@ import UIKit
 
 final class SettingsBuilder {
     static func build() -> UIViewController {
-        let router = SettingsRouter()
-        let presenter = SettingsPresenter(router: router)
-        let viewController = SettingsViewController()
         
+        let router = SettingsRouter()
+        let settingManager = SettingsManager()
+        let viewController = SettingsViewController()
+        let presenter = SettingsPresenter(view: viewController,  router: router, settingsManager: settingManager)
+        
+        viewController.presenter = presenter
         presenter.view = viewController
-//        router.viewController = viewController
+        router.viewController = viewController
         
         return viewController
     }

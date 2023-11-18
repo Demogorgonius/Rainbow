@@ -9,25 +9,40 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol SettingsInput {
+    func getDuration() -> Float
+    func getSpeed() -> Float
+    func isCheck() -> Bool
+    func getFontSize() -> Double
+    func isBackground() -> Bool
+    func getGameBackground() -> String
+    func isRandomLocation() -> Bool
+}
 
-class SettingsViewController: UIViewController {
+
+final class SettingsViewController: UIViewController {
     
-    var presenter: SettingsPresenterProtocol?
+    var presenter: SettingsPresenterProtocol!
     
     let colorCheckerBrain = ColorCheckerBrain()
     
     override func viewDidLoad() {
-        presenter?.view = SettingsViewController()
+        
         super.viewDidLoad()
+        
         view.backgroundColor = .RainbowGameColor.customBackground
         setupButtons()
         setupViews()
         setupLayout()
+        presenter.getSettings()
+        presenter.printHello()
+        
         navigationItem.title = "Настройки"
         navigationController?.setupNavigationBar()
     }
-
-        
+    
+    
+    
     // MARK: - Main Stack
     lazy var mainStack: UIStackView = {
         let stack = UIStackView()
@@ -68,10 +83,10 @@ class SettingsViewController: UIViewController {
     
     lazy var gameTimeSlider: UISlider = {
         let slider = UISlider()
-        slider.addTarget(self, action: #selector(sliderValueChanged), for: UIControl.Event.valueChanged)
+        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         slider.minimumValue = 1.0
         slider.maximumValue = 20.0
-        slider.setValue(11, animated: true)
+        slider.setValue(getDuration(), animated: true)
         slider.minimumTrackTintColor = UIColor.RainbowGameColor.customOrange
         return slider
     }()
@@ -147,6 +162,7 @@ class SettingsViewController: UIViewController {
         switcher.isOn = false
         switcher.onTintColor = UIColor.RainbowGameColor.customOrange
         switcher.translatesAutoresizingMaskIntoConstraints = false
+        switcher.addTarget(self, action: #selector(switcherTapped), for: .valueChanged)
         return switcher
     }()
     
@@ -168,7 +184,7 @@ class SettingsViewController: UIViewController {
         return stack
     } ()
     
-//    colorPickerButtonStack1, colorPickerButtonStack2
+    //    colorPickerButtonStack1, colorPickerButtonStack2
     lazy var colorPickerButtonStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -187,7 +203,7 @@ class SettingsViewController: UIViewController {
         stack.axis = .horizontal
         stack.spacing = 4
         stack.distribution = .equalSpacing
-//        stack.alignment = .center
+        //        stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -197,7 +213,7 @@ class SettingsViewController: UIViewController {
         stack.axis = .horizontal
         stack.spacing = 4
         stack.distribution = .equalSpacing
-//        stack.alignment = .center
+        //        stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -342,211 +358,270 @@ class SettingsViewController: UIViewController {
     
     @objc func sliderValueChanged(sender: UISlider) {
         let currentValue = Int(sender.value)
-        sender == gameTimeSlider ? (gameTimeSliderLabel.text = "\(currentValue)") : (gameSpeedSliderLabel.text = "\(currentValue)")
+        if (sender == gameTimeSlider) {
+            (gameTimeSliderLabel.text = "\(currentValue)")
+            presenter?.gameDuration(duration: currentValue)
+        } else {
+            (gameSpeedSliderLabel.text = "\(currentValue)")
+            presenter?.speedGame(speed: currentValue)
+        }
     }
-    
-    @objc func checkboxTaped(sender: UIButton) {
-        isOn.toggle()
-        setBackground(view: sender, onOffStatus: isOn)
         
-    }
-    
-    func setBackground(view: UIButton, onOffStatus: Bool) {
-        let whiteCheck = UIImage(named: "checkboxWhire")!
-        let blackCheck = UIImage(named: "checkboxBlack")!
-        switch onOffStatus {
-        case true:
-            view.backgroundColor == UIColor.RainbowGameColor.customBlack ? view.setImage(whiteCheck, for: .normal) : view.setImage(blackCheck, for: .normal)
-        default:
-            view.setImage(nil, for: .normal)
+    @objc func checkboxTaped(sender: UIButton) {
+            isOn.toggle()
+            setBackground(view: sender, onOffStatus: isOn)
+            
         }
     
+    @objc func switcherTapped(sender: UISwitch) {
+        let currentValue = sender.isOn
+        if (sender == gameWithAnswerCheckSwitch) {
+            presenter?.checkTask(isOn:currentValue)
+        } else {
+            presenter?.backgroundForText>(isOn:currentValue)
+        }
         
     }
-    
-    func setupButtons() {
-        var button = UIButton()
-        for i in 0...11 {
+        
+        func setBackground(view: UIButton, onOffStatus: Bool) {
+            let whiteCheck = UIImage(named: "checkboxWhire")!
+            let blackCheck = UIImage(named: "checkboxBlack")!
+            switch onOffStatus {
+            case true:
+                view.backgroundColor == UIColor.RainbowGameColor.customBlack ? view.setImage(whiteCheck, for: .normal) : view.setImage(blackCheck, for: .normal)
+            default:
+                view.setImage(nil, for: .normal)
+            }
+            
+            
+        }
+        
+        func setupButtons() {
+            var button = UIButton()
+            for i in 0...11 {
                 button = SettingsViewService.shared.createButton(color: colorCheckerBrain.colorCheckers[i].color)
                 button.addTarget(self, action: #selector(checkboxTaped), for: .touchUpInside)
                 button.tag = i
                 i < 6 ? colorPickerButtonStack1.addArrangedSubview(button) : colorPickerButtonStack2.addArrangedSubview(button)
                 
+            }
         }
+        
+        
+        
+        func setupViews() {
+            gameTimeShadowView.shadowView.addSubview(gameTimeStack)
+            gameSpeedShadowView.shadowView.addSubview(gameSpeedStack)
+            gameWithAnswerCheckShadowView.shadowView.addSubview(gameWithAnswerCheckStack)
+            colorPickerShadowView.shadowView.addSubview(colorPickerStack)
+            gameSizeShadowView.shadowView.addSubview(gameSizeStack)
+            backgroundForWordShadowView.shadowView.addSubview(backgroundForWordStack)
+            backgroundForGameShadowView.shadowView.addSubview(backgroundForGameStack)
+            wordPlacementShadowView.shadowView.addSubview(wordPlacementStack)
+            view.addSubview(mainStack)
+            
+        }
+        
+        // MARK: - Layout
+        
+        func setupLayout() {
+            gameTimeStack.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+                make.height.equalToSuperview().offset(-20)
+                make.width.equalToSuperview().offset(-20)
+            }
+            
+            gameTimeShadowView.shadowView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                //            make.top.equalToSuperview().offset(121)
+                make.height.equalTo(66)
+                make.width.equalTo(298)
+            }
+            gameSpeedStack.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+                make.height.equalToSuperview().offset(-20)
+                make.width.equalToSuperview().offset(-20)
+            }
+            
+            gameSpeedShadowView.shadowView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                //            make.top.equalToSuperview().offset(121)
+                make.height.equalTo(66)
+                make.width.equalTo(298)
+            }
+            
+            gameWithAnswerCheckStack.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+                make.height.equalToSuperview().offset(-20)
+                make.width.equalToSuperview().offset(-20)
+            }
+            
+            gameWithAnswerCheckShadowView.shadowView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                //            make.top.equalToSuperview().offset(121)
+                make.height.equalTo(66)
+                make.width.equalTo(298)
+            }
+            
+            colorPickerStack.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+                make.height.equalToSuperview().offset(-20)
+                make.width.equalToSuperview().offset(-20)
+            }
+            
+            colorPickerButtonStack1.snp.makeConstraints{ make in
+                make.top.equalTo(colorPickerButtonStack)
+                make.centerY.equalToSuperview()
+                make.height.equalTo(25)
+                make.width.equalToSuperview()
+            }
+            
+            colorPickerButtonStack2.snp.makeConstraints{ make in
+                make.top.equalTo(colorPickerButtonStack1).offset(29)
+                //            make.centerY.equalToSuperview()
+                make.bottom.equalToSuperview()
+                make.height.equalTo(25)
+                make.width.equalToSuperview()
+            }
+            
+            colorPickerButtonStack.snp.makeConstraints{ make in
+                make.centerY.equalToSuperview()
+                make.trailing.equalToSuperview()
+                make.height.equalTo(54)
+            }
+            
+            
+            colorPickerShadowView.shadowView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                //            make.top.equalToSuperview().offset(121)
+                make.height.equalTo(80)
+                make.width.equalTo(298)
+            }
+            
+            gameSizeStack.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+                make.height.equalToSuperview().offset(-20)
+                make.width.equalToSuperview().offset(-20)
+            }
+            
+            gameSizeShadowView.shadowView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                //            make.top.equalToSuperview().offset(121)
+                make.height.equalTo(66)
+                make.width.equalTo(298)
+            }
+            
+            backgroundForWordStack.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+                make.height.equalToSuperview().offset(-20)
+                make.width.equalToSuperview().offset(-20)
+            }
+            backgroundForWordShadowView.shadowView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                //            make.top.equalToSuperview().offset(121)
+                make.height.equalTo(66)
+                make.width.equalTo(298)
+            }
+            backgroundForGameStack.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+                make.height.equalToSuperview().offset(-20)
+                make.width.equalToSuperview().offset(-20)
+            }
+            backgroundForGameShadowView.shadowView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                //            make.top.equalToSuperview().offset(121)
+                make.height.equalTo(80)
+                make.width.equalTo(298)
+            }
+            
+            backgroundForGameSC.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                //            make.top.equalToSuperview().offset(121)
+                make.height.equalTo(20)
+                make.width.equalTo(298)
+            }
+            wordPlacementStack.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+                make.height.equalToSuperview().offset(-20)
+                make.width.equalToSuperview().offset(-20)
+            }
+            
+            wordPlacementShadowView.shadowView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                //            make.top.equalToSuperview().offset(121)
+                make.height.equalTo(80)
+                make.width.equalTo(298)
+            }
+            
+            wordPlacementSC.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                //            make.top.equalToSuperview().offset(121)
+                make.height.equalTo(20)
+                make.width.equalTo(298)
+            }
+            
+            mainStack.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalToSuperview().offset(121)
+            }
+            
+        }
+    
+    
     }
-    
-    
-    
-    
-    
-    func getSettings() {
-        //
-    }
-    
-    
-    func setupViews() {
-        gameTimeShadowView.shadowView.addSubview(gameTimeStack)
-        gameSpeedShadowView.shadowView.addSubview(gameSpeedStack)
-        gameWithAnswerCheckShadowView.shadowView.addSubview(gameWithAnswerCheckStack)
-        colorPickerShadowView.shadowView.addSubview(colorPickerStack)
-        gameSizeShadowView.shadowView.addSubview(gameSizeStack)
-        backgroundForWordShadowView.shadowView.addSubview(backgroundForWordStack)
-        backgroundForGameShadowView.shadowView.addSubview(backgroundForGameStack)
-        wordPlacementShadowView.shadowView.addSubview(wordPlacementStack)
-        view.addSubview(mainStack)
 
+// MARK: - Extension for SettingsInput - Methods to update View From Settings
+extension SettingsViewController: SettingsInput {
+    func getDuration() -> Float {
+        presenter.getSettings()
+        let duration = presenter.settings?.durationGame
+        return Float(duration ?? 5)
     }
     
-    // MARK: - Layout
-    
-    func setupLayout() {
-        gameTimeStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        
-        gameTimeShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(66)
-            make.width.equalTo(298)
-        }
-        gameSpeedStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        
-        gameSpeedShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(66)
-            make.width.equalTo(298)
-        }
-        
-        gameWithAnswerCheckStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        
-        gameWithAnswerCheckShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(66)
-            make.width.equalTo(298)
-        }
-        
-        colorPickerStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        
-        colorPickerButtonStack1.snp.makeConstraints{ make in
-            make.top.equalTo(colorPickerButtonStack)
-            make.centerY.equalToSuperview()
-            make.height.equalTo(25)
-            make.width.equalToSuperview()
-        }
-        
-        colorPickerButtonStack2.snp.makeConstraints{ make in
-            make.top.equalTo(colorPickerButtonStack1).offset(29)
-//            make.centerY.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.height.equalTo(25)
-            make.width.equalToSuperview()
-        }
-        
-        colorPickerButtonStack.snp.makeConstraints{ make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.height.equalTo(54)
-        }
-        
-        
-        colorPickerShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(80)
-            make.width.equalTo(298)
-        }
-        
-        gameSizeStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        
-        gameSizeShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(66)
-            make.width.equalTo(298)
-        }
-        
-        backgroundForWordStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        backgroundForWordShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(66)
-            make.width.equalTo(298)
-        }
-        backgroundForGameStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        backgroundForGameShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(80)
-            make.width.equalTo(298)
-        }
-        
-        backgroundForGameSC.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(20)
-            make.width.equalTo(298)
-        }
-        wordPlacementStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        
-        wordPlacementShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(80)
-            make.width.equalTo(298)
-        }
-        
-        wordPlacementSC.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(20)
-            make.width.equalTo(298)
-        }
-        
-        mainStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(121)
-        }
-        
+    func getSpeed() -> Float {
+        presenter.getSettings()
+        let speed = presenter.settings?.speedGame
+        return Float(speed ?? 1)
     }
+    
+    func isCheck() -> Bool {
+        presenter.getSettings()
+        let isCheck = presenter.settings?.checkTask
+        return isCheck ?? true
+    }
+    
+    func getFontSize() -> Double {
+        presenter.getSettings()
+        let fontSise = presenter.settings?.sizeFont
+        return fontSise ?? 15
+    }
+    func isBackground() -> Bool {
+        presenter.getSettings()
+        let isCheck = presenter.settings?.backgroundForText
+        return isCheck ?? true
+    }
+    
+    func getGameBackground() -> String {
+        presenter.getSettings()
+        let colorString = presenter.settings?.backgroundForView
+        return colorString ?? "customBackground"
+    }
+    func isRandomLocation() -> Bool {
+        presenter.getSettings()
+        let isCheck = presenter.settings?.screenLocation
+        return isCheck ?? true
+    }
+}
+
+extension SettingsViewController: SettingsViewProtocol {
+    
+
 }
