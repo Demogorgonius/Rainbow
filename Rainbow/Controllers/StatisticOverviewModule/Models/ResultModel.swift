@@ -7,7 +7,7 @@
 
 import Foundation
 struct GameResultModel: Codable {
-    let numberGame: Int
+    var numberGame: Int
     let durationGame: Double
     let speedGame: Int
     let resultGame: String

@@ -20,6 +20,9 @@ protocol GamePresenterProtocol {
     var startTime: Date? { get set }
     var elapsedTime: TimeInterval? { get set }
     
+    var numberGame: Int { get set }
+    var resultStorage: ResultsStorageProtocol { get set }
+
     func getSettings()
     func updateStatistics(correctAnswer: Bool)
     func hasBackground() -> Bool
@@ -32,7 +35,7 @@ class GamePresenter: GamePresenterProtocol {
 
     weak var view: GameViewProtocol?
     
-    private let settingsManager: SettingManagerProtocol
+    let settingsManager: SettingManagerProtocol
     private let router: GameRouterProtocol
     private let gameEngine: GameEngineProtocol
     
@@ -41,7 +44,7 @@ class GamePresenter: GamePresenterProtocol {
     var totalTime: TimeInterval = 15.0
     var startTime: Date?
     var elapsedTime: TimeInterval?
-    
+
     
     var colorViews: [UIView] = []
     var colorNames: [String] = []
@@ -49,14 +52,18 @@ class GamePresenter: GamePresenterProtocol {
 
     var isAnswerVerificationEnabled = true
     var correctAnswersCount: Int = 0
+    var numberGame: Int = 0
     
     var settings: GameSettings?
+    var settings: GameSettings?
+    var resultStorage: ResultsStorageProtocol
 
     
     init(router: GameRouterProtocol, settingsManager: SettingManagerProtocol, gameEngine: GameEngineProtocol) {
         self.router = router
         self.settingsManager = settingsManager
         self.gameEngine = gameEngine
+        self.resultStorage = resultStorage
         getSettings()
     }
 

@@ -224,6 +224,15 @@ extension GameViewController: GameViewProtocol {
         
         if elapsedTime >= presenter.totalTime {
             timer.invalidate()
+            presenter.resultStorage.addStatistic(
+                .init(
+                    numberGame: presenter.numberGame,
+                    durationGame: presenter.totalTime ,
+                    speedGame: 4,
+                    resultGame: "3/4"
+                )
+            )
+            presenter.numberGame += 1
             let resultScreen = ResultsBuilder.build()
             navigationController?.pushViewController(resultScreen, animated: true)
 
