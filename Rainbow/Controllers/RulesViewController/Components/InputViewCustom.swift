@@ -34,6 +34,8 @@ final class InputViewCustom: UIView {
     
     private lazy var textView: UITextView = {
         let view = UITextView()
+        view.isEditable = false
+        view.isSelectable = false
         view.font = UIFont.systemFont(ofSize: 36)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -84,6 +86,8 @@ final class InputViewCustom: UIView {
     
     private lazy var textViewSecond: UITextView = {
         let view = UITextView()
+        view.isEditable = false
+        view.isSelectable = false
         view.font = .CormorantFont.RegularItalic.size(of: 20)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
