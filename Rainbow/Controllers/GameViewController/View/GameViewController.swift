@@ -204,7 +204,7 @@ extension GameViewController: GameViewProtocol {
     }
     
     @objc func speedButtonPressed() {
-        // Handle speed button press if needed
+        
     }
     
     // MARK: @objc func
