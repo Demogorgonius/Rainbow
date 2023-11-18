@@ -70,7 +70,9 @@ final class ResultsTableViewController: UITableViewController {
     
     @objc private func clearResultsButtonTap() {
         presenter.clearStatisticOverview()
-        
+        UIView.transition(with: tableView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.tableView.reloadData()
+        }, completion: nil)
     }
     
     private func configureTableView() {
@@ -79,6 +81,16 @@ final class ResultsTableViewController: UITableViewController {
         tableView.register(ResultTableViewCell.self, forCellReuseIdentifier: cellID)
         
         tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: -150, right: 0)
+    }
+    
+    private func orderNumerate() {
+        if !presenter.resultStorage.results.isEmpty {
+            var number = presenter.resultStorage.results.count
+            for index in 0...presenter.resultStorage.results.count-1 {
+              //  presenter.resultStorage.results[index].numberGame = number
+                number -= 1
+            }
+        }
     }
     
     private func setupClearResultsButton() {
@@ -103,6 +115,7 @@ final class ResultsTableViewController: UITableViewController {
         guard let resultCell = cell as? ResultTableViewCell else { return UITableViewCell() }
         
         let result = presenter.resultStorage.results[indexPath.row]
+        
         resultCell.configure(with: result)
         return resultCell
     }

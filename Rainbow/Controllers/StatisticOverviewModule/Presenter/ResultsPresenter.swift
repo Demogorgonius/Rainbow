@@ -38,6 +38,7 @@ final class ResultsPresenter: ResultsPresenterProtocol {
     
     func clearStatisticOverview() {
         resultStorage.clearStatistic()
+       
     }
     
     

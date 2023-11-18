@@ -22,7 +22,7 @@ protocol GamePresenterProtocol {
     var elapsedTime: TimeInterval? { get set }
     
     var numberGame: Int { get set }
-    var resultStorage: ResultsStorageProtocol { get }
+    var resultStorage: ResultsStorageProtocol { get set }
 
     func getSettings()
 }

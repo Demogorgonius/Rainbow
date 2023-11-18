@@ -194,6 +194,7 @@ extension GameViewController: GameViewProtocol {
                     resultGame: "3/4"
                 )
             )
+            presenter.numberGame += 1
             let resultScreen = ResultsBuilder.build()
             navigationController?.pushViewController(resultScreen, animated: true)
 
