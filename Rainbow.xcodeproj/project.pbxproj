@@ -33,6 +33,7 @@
 		44A57C632B02641900C8E383 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C5A2B02641900C8E383 /* SF-Pro-Display-Bold.otf */; };
 		44A57C642B02641900C8E383 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C5B2B02641900C8E383 /* SF-Pro-Text-Medium.otf */; };
 		44A57C662B0269B700C8E383 /* CormorantInfant-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C652B0269B700C8E383 /* CormorantInfant-Italic.otf */; };
+		4A1D519C2B096139000E1D43 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1D519B2B096139000E1D43 /* GameEngine.swift */; };
 		4AD1313F2B02A3A0007DA3B7 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD1313E2B02A3A0007DA3B7 /* Extension + UILabel.swift */; };
 		4AD131412B02A664007DA3B7 /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD131402B02A664007DA3B7 /* Extension + UIStackView.swift */; };
 		4AD131432B02A7A9007DA3B7 /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD131422B02A7A9007DA3B7 /* Extension + UIButton.swift */; };
@@ -97,6 +98,7 @@
 		44A57C5A2B02641900C8E383 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		44A57C5B2B02641900C8E383 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		44A57C652B0269B700C8E383 /* CormorantInfant-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CormorantInfant-Italic.otf"; sourceTree = "<group>"; };
+		4A1D519B2B096139000E1D43 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		4AD1313E2B02A3A0007DA3B7 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
 		4AD131402B02A664007DA3B7 /* Extension + UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIStackView.swift"; sourceTree = "<group>"; };
 		4AD131422B02A7A9007DA3B7 /* Extension + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIButton.swift"; sourceTree = "<group>"; };
@@ -293,6 +295,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		4A1D519A2B0960BB000E1D43 /* GameEngine */ = {
+			isa = PBXGroup;
+			children = (
+				4A1D519B2B096139000E1D43 /* GameEngine.swift */,
+			);
+			path = GameEngine;
+			sourceTree = "<group>";
+		};
 		4AD1313A2B029E11007DA3B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +324,7 @@
 		4AD131492B03B4D1007DA3B7 /* GameViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4A1D519A2B0960BB000E1D43 /* GameEngine */,
 				4AF8FA992B07498A006EEE4B /* GameBuilder */,
 				4AF8FA982B07497F006EEE4B /* GameRouter */,
 				4AD1314A2B03B94E007DA3B7 /* Model */,
@@ -655,6 +666,7 @@
 				4AD131702B0566E4007DA3B7 /* ResultsPresenter.swift in Sources */,
 				E112CBE62B0674F100F08206 /* CustomNavigationController.swift in Sources */,
 				446F15B92B065B1C00B10C77 /* Model.swift in Sources */,
+				4A1D519C2B096139000E1D43 /* GameEngine.swift in Sources */,
 				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
 				4AD1313F2B02A3A0007DA3B7 /* Extension + UILabel.swift in Sources */,
 				E112CBF12B08F45900F08206 /* GameError.swift in Sources */,

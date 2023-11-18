@@ -21,16 +21,20 @@ protocol GamePresenterProtocol {
     var elapsedTime: TimeInterval? { get set }
     
     func getSettings()
+    func updateStatistics(correctAnswer: Bool)
+    func hasBackground() -> Bool
+    func addRandomColorView(with settings: GameSettings)
+    func startHidingCycle()
 
 }
 
-
 class GamePresenter: GamePresenterProtocol {
-    
+
     weak var view: GameViewProtocol?
     
     private let settingsManager: SettingManagerProtocol
     private let router: GameRouterProtocol
+    private let gameEngine: GameEngineProtocol
     
     
     var timer = Timer()
@@ -44,13 +48,16 @@ class GamePresenter: GamePresenterProtocol {
     
 
     var isAnswerVerificationEnabled = true
+    var correctAnswersCount: Int = 0
     
     var settings: GameSettings?
 
     
-    init(router: GameRouterProtocol, settingsManager: SettingManagerProtocol) {
+    init(router: GameRouterProtocol, settingsManager: SettingManagerProtocol, gameEngine: GameEngineProtocol) {
         self.router = router
         self.settingsManager = settingsManager
+        self.gameEngine = gameEngine
+        getSettings()
     }
 
   
@@ -64,4 +71,68 @@ class GamePresenter: GamePresenterProtocol {
             }
         })
     }
+    
+    private func createColorView(with color: UIColor) -> UIView {
+           let colorView = UIView()
+           colorView.backgroundColor = color
+           colorView.layer.cornerRadius = 10
+
+           return colorView
+       }
+
+    
+    func updateStatistics(correctAnswer: Bool) {
+        if correctAnswer {
+            correctAnswersCount += 1
+        }
+    }
+    
+    func hasBackground() -> Bool {
+        return settings?.backgroundForText ?? true
+    }
+    
+    func addRandomColorView(with settings: GameSettings) {
+        guard let settings = settings else { return }
+        
+        let randomColor = gameEngine.generateRandomColor(with: settings)
+        let colorName = gameEngine.generateRandomColorName()
+        
+        let colorView = createColorView(with: randomColor)
+        view?.addColorView(colorView)
+        
+        addLabel(to: colorView, with: colorName)
+        
+        colorViews.append(colorView)
+        
+        if isAnswerVerificationEnabled {
+            addCheckbox(to: colorView)
+        }
+    }
+    
+    func startHidingCycle() {
+    
+    }
+    
+    private func addLabel(to colorView: UIView, with text: String) {
+        let label = UILabel()
+        label.text = text
+        label.textColor = .white
+        label.textAlignment = .center
+        colorView.addSubview(label)
+        label.frame = CGRect(x: 0, y: 0, width: colorView.frame.width, height: colorView.frame.height)
+    }
+    
+    private func addCheckbox(to colorView: UIView) {
+        let checkboxButton = UIButton(type: .roundedRect)
+        checkboxButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        checkboxButton.tintColor = .black
+        colorView.addSubview(checkboxButton)
+        checkboxButton.frame = CGRect(x: colorView.frame.width, y: colorView.frame.height / 2 - 12, width: 24, height: 24)
+        checkboxButton.addTarget(self, action: #selector(checkboxButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func checkboxButtonTapped() {
+        updateStatistics(correctAnswer: true)
+    }
+    
 }

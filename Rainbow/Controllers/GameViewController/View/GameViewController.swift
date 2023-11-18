@@ -49,6 +49,7 @@ class GameViewController: UIViewController {
         addSubviews()
         startTimer(with: presenter.elapsedTime)
         configureNavigationBar()
+        
     }
     
     // MARK: Private Methods
@@ -69,11 +70,12 @@ class GameViewController: UIViewController {
         }
     }
     
-    private func generateRandomColor() -> UIColor {
-        let randomRed = CGFloat.random(in: 0...1)
-        let randomGreen = CGFloat.random(in: 0...1)
-        let randomBlue = CGFloat.random(in: 0...1)
-        return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
+    private func getRandomColor() -> UIColor {
+        guard let colorString = settings?.backgroundForView,
+              let color = GameColor(rawValue: colorString)?.getColor() else {
+            return .black
+        }
+        return color
     }
     
     private func generateRandomColorName() -> String {
@@ -88,7 +90,7 @@ class GameViewController: UIViewController {
     }
     
     private func addRandomColorView() {
-        let randomColor = generateRandomColor()
+        let randomColor = getRandomColor()
         let colorName = generateRandomColorName()
 
         let colorView = createColorView(with: randomColor)
@@ -166,9 +168,8 @@ class GameViewController: UIViewController {
     }
     
     @objc func checkboxButtonTapped() {
-        
+        presenter.updateStatistics(correctAnswer: true)
     }
-    
 }
 
 // MARK: GameViewProtocol
