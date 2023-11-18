@@ -65,6 +65,7 @@
 		A5B7975B2B0249E300B20742 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5B7975A2B0249E300B20742 /* IQKeyboardManagerSwift */; };
 		E112CBE62B0674F100F08206 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBE52B0674F100F08206 /* CustomNavigationController.swift */; };
 		E112CBE82B06750000F08206 /* Extension + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBE72B06750000F08206 /* Extension + UIImage.swift */; };
+		E112CBEF2B08A8E000F08206 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBEE2B08A8E000F08206 /* SettingsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		A5B7974A2B02402300B20742 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E112CBE52B0674F100F08206 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		E112CBE72B06750000F08206 /* Extension + UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIImage.swift"; sourceTree = "<group>"; };
+		E112CBEE2B08A8E000F08206 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,6 +472,7 @@
 			children = (
 				A5B7973A2B02402300B20742 /* CustomView.swift */,
 				A5B7973B2B02402300B20742 /* CustomViewController.swift */,
+				E112CBEE2B08A8E000F08206 /* SettingsManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -659,6 +662,7 @@
 				E112CBE82B06750000F08206 /* Extension + UIImage.swift in Sources */,
 				44A57C4F2B0254D900C8E383 /* Extension + UIView.swift in Sources */,
 				4AD131772B056781007DA3B7 /* LabelFactory.swift in Sources */,
+				E112CBEF2B08A8E000F08206 /* SettingsManager.swift in Sources */,
 				4AF8FA9D2B0749DC006EEE4B /* GameBuilder.swift in Sources */,
 				A5B797502B02402300B20742 /* AppDelegate.swift in Sources */,
 				4AD131722B0566E4007DA3B7 /* ResultTableViewCell.swift in Sources */,
