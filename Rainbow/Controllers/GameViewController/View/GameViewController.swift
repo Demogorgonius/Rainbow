@@ -8,12 +8,6 @@
 import UIKit
 import SnapKit
 
-protocol GameViewProtocol: AnyObject {
-    func startTimer(with elapsedTime: TimeInterval?)
-    func updateUI()
-    func updateTimerLabel(text: String)
-}
-
 
 class GameViewController: UIViewController {
     
@@ -142,7 +136,7 @@ class GameViewController: UIViewController {
 }
 
 // MARK: GameViewProtocol
-extension GameViewController: GameViewProtocol {
+extension GameViewController: GameViewProtocol {    
 
     internal func startTimer(with elapsedTime: TimeInterval?) {
         timer.invalidate()
