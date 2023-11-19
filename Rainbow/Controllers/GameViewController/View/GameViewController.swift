@@ -43,12 +43,16 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getSettings()
         navigationItem.title = formattedTime(from: presenter.totalTime)
         navigationController?.setupNavigationBar()
-        
         addSubviews()
         startTimer(with: presenter.elapsedTime)
         configureNavigationBar()
+        
+        addRandomColorView()
+        generateView()
+        startHidingCycle()
     }
     
     // MARK: Private Methods
@@ -87,6 +91,31 @@ class GameViewController: UIViewController {
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
+    func generateView() -> UIView {
+        let gameView = UIView()
+        if !presenter.backgroundForText {
+            for colorView in presenter.colorViews {
+                colorView.backgroundColor = .clear
+            }
+        } else {
+            for colorName in presenter.colorNames {
+                for colorView in presenter.colorViews {
+                    colorView.backgroundColor = UIColor(named: "presenter.backgroundForView")
+                    colorName.textColor = UIColor.white
+                }
+            }
+        }
+        return gameView
+    }
+    
+//    func generateRandomColor(with settings: GameSettings) -> UIColor {
+//        guard let colorString = settings.backgroundForView,
+//              let gameColor = GameColor(rawValue: colorString) else {
+//            return .black
+//        }
+//        return UIColor.getColor(for: gameColor)
+//    }
+    
     private func addRandomColorView() {
         let randomColor = generateRandomColor()
         let colorName = generateRandomColorName()
@@ -105,21 +134,21 @@ class GameViewController: UIViewController {
 
         let label = UILabel()
         label.text = colorName
-        label.textColor = .white
         label.textAlignment = .center
         colorView.addSubview(label)
 
         label.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
+        
         presenter.colorViews.append(colorView)
+        
     }
     
     private func startHidingCycle() {
         var index = 0
-        let hideInterval = 2.0
-        
+        var hideInterval = 2.0
+        hideInterval = hideInterval * Double(presenter.speedGame)
         Timer.scheduledTimer(withTimeInterval: hideInterval, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             
@@ -136,7 +165,10 @@ class GameViewController: UIViewController {
 
 // MARK: GameViewProtocol
 extension GameViewController: GameViewProtocol {
-
+    func getSettings() {
+        presenter.getSettings()
+    }
+    
     internal func startTimer(with elapsedTime: TimeInterval?) {
         timer.invalidate()
         presenter.startTime = Date()
@@ -180,12 +212,22 @@ extension GameViewController: GameViewProtocol {
         
         if Int(elapsedTime) % 2 == 0 {
             addRandomColorView()
+            generateView()
             startHidingCycle()
         }
         
         
         if elapsedTime >= presenter.totalTime {
             timer.invalidate()
+            presenter.resultStorage.addStatistic(
+                .init(
+                    numberGame: presenter.numberGame,
+                    durationGame: presenter.totalTime ,
+                    speedGame: 4,
+                    resultGame: "3/4"
+                )
+            )
+            presenter.numberGame += 1
             let resultScreen = ResultsBuilder.build()
             navigationController?.pushViewController(resultScreen, animated: true)
 

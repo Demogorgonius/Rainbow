@@ -97,6 +97,7 @@ class SettingsManager: SettingManagerProtocol, ResultsStorageProtocol {
     
     func clearStatistic() {
         defaults.setValue([], forKey: "addStatistic")
+      
     }
     
 
