@@ -33,13 +33,11 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        view.backgroundColor = UIColor(named: "\(getGameBackground())")
+        presenter.getSettings()
+        view.backgroundColor = UIColor.RainbowGameColor.customBackground
         setupButtons()
         setupViews()
         setupLayout()
-        presenter.getSettings()
-        presenter.printHello()
         configureNavigationBar()
         
     }
@@ -54,18 +52,11 @@ final class SettingsViewController: UIViewController {
     
     @objc private func saveGameSettings() {
         var locationRandom: Bool
-        var backgroundForViewColor: String
+        var backgroundForViewColor = "customBackground"
         if wordPlacementSC.selectedSegmentIndex == 0 {
             locationRandom = true
         } else {
             locationRandom = false
-        }
-        if backgroundForGameSC.selectedSegmentIndex == 0 {
-            backgroundForViewColor = "customBackground"
-        } else if backgroundForGameSC.selectedSegmentIndex == 1 {
-            backgroundForViewColor = "white"
-        } else {
-            backgroundForViewColor = "customBlack"
         }
         presenter?.saveGameSettings(durationGame: Int(gameTimeSlider.value), speedGame: Int(gameSpeedSlider.value), checkTask: gameWithAnswerCheckSwitch.isOn, gameColors: colorButtonsArray, sizeFont: gameSizeStepper.value, backgroundForText: backgroundForWordSwitch.isOn, backgroundForView: backgroundForViewColor, screenLocation: locationRandom)
     }
@@ -340,6 +331,7 @@ final class SettingsViewController: UIViewController {
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
         sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
         sc.selectedSegmentTintColor = .white
+        sc.selectedSegmentIndex = 0
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
     }()
@@ -370,6 +362,7 @@ final class SettingsViewController: UIViewController {
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
         sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
         sc.selectedSegmentTintColor = .white
+        sc.selectedSegmentIndex = 0
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
     }()
