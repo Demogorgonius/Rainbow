@@ -7,9 +7,11 @@
 
 
 import UIKit
+import SnapKit
 
 protocol GameViewProtocol: AnyObject {
     func startTimer(with elapsedTime: TimeInterval?)
+    func addColorView(_ view: UIView)
 }
 
 protocol GamePresenterProtocol {
@@ -22,16 +24,19 @@ protocol GamePresenterProtocol {
     
     var numberGame: Int { get set }
     var resultStorage: ResultsStorageProtocol { get set }
+    var settings: GameSettings? { get set }
 
     func getSettings()
     func updateStatistics(correctAnswer: Bool)
     func hasBackground() -> Bool
-    func addRandomColorView(with settings: GameSettings)
+    
+    func addRandomColorView()
     func startHidingCycle()
 
 }
 
 class GamePresenter: GamePresenterProtocol {
+    
 
     weak var view: GameViewProtocol?
     
@@ -55,16 +60,16 @@ class GamePresenter: GamePresenterProtocol {
     var numberGame: Int = 0
     
     var settings: GameSettings?
-    var settings: GameSettings?
     var resultStorage: ResultsStorageProtocol
 
     
-    init(router: GameRouterProtocol, settingsManager: SettingManagerProtocol, gameEngine: GameEngineProtocol) {
+    init(router: GameRouterProtocol, settingsManager: SettingManagerProtocol, gameEngine: GameEngineProtocol, resultStorage: ResultsStorageProtocol) {
         self.router = router
         self.settingsManager = settingsManager
         self.gameEngine = gameEngine
         self.resultStorage = resultStorage
         getSettings()
+        addRandomColorView()
     }
 
   
@@ -80,12 +85,11 @@ class GamePresenter: GamePresenterProtocol {
     }
     
     private func createColorView(with color: UIColor) -> UIView {
-           let colorView = UIView()
-           colorView.backgroundColor = color
-           colorView.layer.cornerRadius = 10
-
-           return colorView
-       }
+        let colorView = UIView()
+        colorView.backgroundColor = color
+        colorView.layer.cornerRadius = 10
+        return colorView
+    }
 
     
     func updateStatistics(correctAnswer: Bool) {
@@ -98,12 +102,12 @@ class GamePresenter: GamePresenterProtocol {
         return settings?.backgroundForText ?? true
     }
     
-    func addRandomColorView(with settings: GameSettings) {
+    func addRandomColorView() {
         guard let settings = settings else { return }
-        
+
         let randomColor = gameEngine.generateRandomColor(with: settings)
         let colorName = gameEngine.generateRandomColorName()
-        
+
         let colorView = createColorView(with: randomColor)
         view?.addColorView(colorView)
         
@@ -114,28 +118,52 @@ class GamePresenter: GamePresenterProtocol {
         if isAnswerVerificationEnabled {
             addCheckbox(to: colorView)
         }
+        startHidingCycle()
     }
     
     func startHidingCycle() {
-    
+        var index = 0
+        let hideInterval = 2.0
+        
+        Timer.scheduledTimer(withTimeInterval: hideInterval, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            
+            guard index < self.colorViews.count else {
+                index = 0
+                return
+            }
+            
+            self.colorViews[index].isHidden = true
+            index += 1
+        }
     }
     
-    private func addLabel(to colorView: UIView, with text: String) {
+    func addLabel(to colorView: UIView, with text: String) {
         let label = UILabel()
         label.text = text
         label.textColor = .white
         label.textAlignment = .center
         colorView.addSubview(label)
-        label.frame = CGRect(x: 0, y: 0, width: colorView.frame.width, height: colorView.frame.height)
+        
+        label.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
-    private func addCheckbox(to colorView: UIView) {
+    func addCheckbox(to colorView: UIView) {
         let checkboxButton = UIButton(type: .roundedRect)
         checkboxButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
         checkboxButton.tintColor = .black
-        colorView.addSubview(checkboxButton)
-        checkboxButton.frame = CGRect(x: colorView.frame.width, y: colorView.frame.height / 2 - 12, width: 24, height: 24)
         checkboxButton.addTarget(self, action: #selector(checkboxButtonTapped), for: .touchUpInside)
+        
+        colorView.addSubview(checkboxButton)
+        
+        checkboxButton.snp.makeConstraints { make in
+            make.centerY.equalTo(colorView)
+            make.leading.equalTo(colorView.snp.trailing).offset(10)
+            make.width.equalTo(24)
+            make.height.equalTo(24)
+        }
     }
     
     @objc func checkboxButtonTapped() {

@@ -49,6 +49,7 @@ class GameViewController: UIViewController {
         addSubviews()
         startTimer(with: presenter.elapsedTime)
         configureNavigationBar()
+        addRandomColorView()
         
     }
     
@@ -70,102 +71,12 @@ class GameViewController: UIViewController {
         }
     }
     
-    private func getRandomColor() -> UIColor {
-        guard let colorString = settings?.backgroundForView,
-              let color = GameColor(rawValue: colorString)?.getColor() else {
-            return .black
-        }
-        return color
-    }
-    
-    private func generateRandomColorName() -> String {
-        let colorNames = ["Красный", "Зеленый", "Голубой", "Желтый", "Оранжевый", "Фиолетовый", "Коричневый", "Розовый"]
-        return colorNames.randomElement() ?? "Unknown"
-    }
-    
     private func formattedTime(from timeInterval: TimeInterval) -> String {
         let minutes = Int(timeInterval) / 60
         let seconds = Int(timeInterval) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
-    private func addRandomColorView() {
-        let randomColor = getRandomColor()
-        let colorName = generateRandomColorName()
-
-        let colorView = createColorView(with: randomColor)
-        view.addSubview(colorView)  // Добавьте это здесь
-
-        addLabel(to: colorView, with: colorName)
-
-        presenter.colorViews.append(colorView)
-
-        if presenter.isAnswerVerificationEnabled {
-            addCheckbox(to: colorView)
-        }
-    }
-
-
-    private func createColorView(with color: UIColor) -> UIView {
-        let colorView = UIView()
-        colorView.backgroundColor = color
-        colorView.layer.cornerRadius = 10
-
-        self.view.addSubview(colorView)
-
-        colorView.snp.makeConstraints { make in
-            make.width.equalTo(130)
-            make.height.equalTo(50)
-            make.centerX.equalTo(self.view).offset(CGFloat.random(in: -120...120))
-            make.centerY.equalTo(self.view).offset(CGFloat.random(in: -120...120))
-        }
-
-        return colorView
-    }
-
-
-    private func addLabel(to colorView: UIView, with text: String) {
-        let label = UILabel()
-        label.text = text
-        label.textColor = .white
-        label.textAlignment = .center
-        colorView.addSubview(label)
-
-        label.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-
-    private func addCheckbox(to colorView: UIView) {
-        let checkboxButton = UIButton(type: .roundedRect)
-        checkboxButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
-        checkboxButton.tintColor = .RainbowGameColor.customBlack
-        checkboxButton.addTarget(self, action: #selector(checkboxButtonTapped), for: .touchUpInside)
-        colorView.addSubview(checkboxButton)
-
-        checkboxButton.snp.makeConstraints { make in
-            make.centerY.equalTo(colorView)
-            make.leading.equalTo(colorView.snp.trailing).offset(10)
-        }
-    }
-
-    
-    private func startHidingCycle() {
-        var index = 0
-        let hideInterval = 2.0
-        
-        Timer.scheduledTimer(withTimeInterval: hideInterval, repeats: true) { [weak self] _ in
-            guard let self = self else { return }
-            
-            guard index < presenter.colorViews.count else {
-                index = 0
-                return
-            }
-            
-            presenter.colorViews[index].isHidden = true
-            index += 1
-        }
-    }
     
     @objc func checkboxButtonTapped() {
         presenter.updateStatistics(correctAnswer: true)
@@ -174,6 +85,10 @@ class GameViewController: UIViewController {
 
 // MARK: GameViewProtocol
 extension GameViewController: GameViewProtocol {
+    
+    private func addRandomColorView() {
+        presenter.addRandomColorView()
+    }
 
     internal func startTimer(with elapsedTime: TimeInterval?) {
         timer.invalidate()
@@ -217,10 +132,9 @@ extension GameViewController: GameViewProtocol {
         
         
         if Int(elapsedTime) % 2 == 0 {
-            addRandomColorView()
-            startHidingCycle()
+            presenter.addRandomColorView()
+            presenter.startHidingCycle()
         }
-        
         
         if elapsedTime >= presenter.totalTime {
             timer.invalidate()
@@ -236,6 +150,16 @@ extension GameViewController: GameViewProtocol {
             let resultScreen = ResultsBuilder.build()
             navigationController?.pushViewController(resultScreen, animated: true)
 
+        }
+    }
+
+    func addColorView(_ view: UIView) {
+        self.view.addSubview(view)
+        view.snp.makeConstraints { make in
+            make.width.equalTo(100)
+            make.height.equalTo(50)
+            make.centerX.equalTo(self.view).offset(CGFloat.random(in: -140...140))
+            make.centerY.equalTo(self.view).offset(CGFloat.random(in: -140...140))
         }
     }
 }

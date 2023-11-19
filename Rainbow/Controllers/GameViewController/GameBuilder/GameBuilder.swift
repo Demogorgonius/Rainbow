@@ -5,7 +5,7 @@
 //  Created by Liz-Mary on 17.11.2023.
 //
 
-import UIKit
+
 
 import UIKit
 
@@ -18,8 +18,9 @@ class GameBuilder: GameBuilderProtocol {
     static func build() -> UIViewController {
         let router = GameRouter()
         let settingsManager = SettingsManager()
+        let gameEngine = GameEngine() 
         
-        let presenter = GamePresenter(router: router, settingsManager: settingsManager, resultStorage: settingsManager)
+        let presenter = GamePresenter(router: router, settingsManager: settingsManager, gameEngine: gameEngine, resultStorage: settingsManager)
         let viewController = GameViewController(presenter: presenter)
 
         presenter.view = viewController

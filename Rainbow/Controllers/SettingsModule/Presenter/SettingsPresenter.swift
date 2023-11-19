@@ -29,6 +29,7 @@ protocol SettingsViewProtocol: AnyObject  {
 }
 
 class SettingsPresenter: SettingsPresenterProtocol {
+  
     
     weak var view: SettingsViewProtocol?
     private let router: SettingsRouterProtocol!
@@ -78,8 +79,6 @@ class SettingsPresenter: SettingsPresenterProtocol {
         })
         
     }
-    
-   
     
     func speedGame(speed: Int) {
         settingsManager?.getSettings(completion: { result in

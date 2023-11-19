@@ -13,14 +13,17 @@ protocol GameEngineProtocol {
 }
 
 class GameEngine: GameEngineProtocol {
-    
+    private var settings: GameSettings?
+
     
     func generateRandomColor(with settings: GameSettings) -> UIColor {
+        self.settings = settings
         guard let colorString = settings.backgroundForView,
-              let color = GameColor(rawValue: colorString) else {
+              let gameColor = GameColor(rawValue: colorString) else {
             return .black
         }
-        return color.createColorView()
+        print(gameColor)
+        return UIColor.getColor(for: gameColor)
     }
 
     
