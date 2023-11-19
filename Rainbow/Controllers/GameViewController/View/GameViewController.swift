@@ -49,6 +49,10 @@ class GameViewController: UIViewController {
         addSubviews()
         startTimer(with: presenter.elapsedTime)
         configureNavigationBar()
+        
+        addRandomColorView()
+        generateView()
+        startHidingCycle()
     }
     
     // MARK: Private Methods
@@ -87,6 +91,31 @@ class GameViewController: UIViewController {
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
+    func generateView() -> UIView {
+        let gameView = UIView()
+        if !presenter.backgroundForText {
+            for colorView in presenter.colorViews {
+                colorView.backgroundColor = .clear
+            }
+        } else {
+            for colorName in presenter.colorNames {
+                for colorView in presenter.colorViews {
+                    colorView.backgroundColor = UIColor(named: "presenter.backgroundForView")
+                    colorName.textColor = UIColor.white
+                }
+            }
+        }
+        return gameView
+    }
+    
+//    func generateRandomColor(with settings: GameSettings) -> UIColor {
+//        guard let colorString = settings.backgroundForView,
+//              let gameColor = GameColor(rawValue: colorString) else {
+//            return .black
+//        }
+//        return UIColor.getColor(for: gameColor)
+//    }
+    
     private func addRandomColorView() {
         let randomColor = generateRandomColor()
         let colorName = generateRandomColorName()
@@ -105,15 +134,15 @@ class GameViewController: UIViewController {
 
         let label = UILabel()
         label.text = colorName
-        label.textColor = .white
         label.textAlignment = .center
         colorView.addSubview(label)
 
         label.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
+        
         presenter.colorViews.append(colorView)
+        
     }
     
     private func startHidingCycle() {
@@ -183,6 +212,7 @@ extension GameViewController: GameViewProtocol {
         
         if Int(elapsedTime) % 2 == 0 {
             addRandomColorView()
+            generateView()
             startHidingCycle()
         }
         
