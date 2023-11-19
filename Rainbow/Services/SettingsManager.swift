@@ -7,28 +7,49 @@
 
 import UIKit
 
-enum GameColor: String {
-   case customLightGreen = "customLightGreen"
-   case customDarkGreen = "customDarkGreen"
-   case customPink = "customPink"
-   case customLightBlue = "customLightBlue"
-   case customBurgundy = "customBurgundy"
-   case customViolet = "customViolet"
-   case customDarkBlue = "customDarkBlue"
-   case customOrange = "customOrange"
-   case customRed = "customRed"
-   case customYellow = "customYellow"
-   case customBlack = "customBlack"
-   case customGrayishPurple = "customGrayishPurple"
+struct ColorChecker: Codable{
+    let color: String
+    var isOn: Bool
+    
+    init(color: String, isOn: Bool) {
+        self.color = color
+        self.isOn = isOn
+    }
 }
+
+
+struct ColorButtons: Codable{
+    var colorButtons = [
+        ColorChecker(color: "customLightGreen", isOn: true),
+        ColorChecker(color: "customDarkGreen", isOn: true),
+        ColorChecker(color: "customPink", isOn: true),
+        ColorChecker(color: "customLightBlue", isOn: true),
+        ColorChecker(color: "customBurgundy", isOn: true),
+        ColorChecker(color: "customViolet", isOn: true),
+        ColorChecker(color: "customDarkBlue", isOn: true),
+        ColorChecker(color: "customOrange", isOn: true),
+        ColorChecker(color: "customRed", isOn: true),
+        ColorChecker(color: "customYellow", isOn: true),
+        ColorChecker(color: "customBlack", isOn: true),
+        ColorChecker(color: "customGrayishPurple", isOn: true)]
+    
+//    func toggleState(for i: Int) {
+//        colorButtons = colorButtons[i].isOn
+//    }
+}
+
+let colorButtons = ColorButtons()
+let color = colorButtons.colorButtons
+
 
 struct GameSettings: Codable {
     var durationGame: Int = 10
     var speedGame: Int = 1
     var checkTask: Bool = true
+    var gameColors: [ColorChecker]
     var sizeFont: Double = 12
     var backgroundForText: Bool = true
-    var backgroundForView: String = GameColor.customOrange.rawValue
+    var backgroundForView: String = "customBackground"
     var screenLocation: Bool = true
 }
 
@@ -37,6 +58,7 @@ protocol SettingManagerProtocol {
         durationGame: Int?,
         speedGame: Int?,
         checkTask: Bool?,
+        gameColors: [ColorChecker]?,
         sizeFont: Double?,
         backgroundForText: Bool?,
         backgroundForView: String?,
@@ -54,6 +76,7 @@ protocol ResultsStorageProtocol {
 }
 
 class SettingsManager: SettingManagerProtocol, ResultsStorageProtocol {
+    
     
     let defaults = UserDefaults.standard
     
@@ -84,6 +107,7 @@ class SettingsManager: SettingManagerProtocol, ResultsStorageProtocol {
         durationGame: Int?,
         speedGame: Int?,
         checkTask: Bool?,
+        gameColors: [ColorChecker]?,
         sizeFont: Double?,
         backgroundForText: Bool?,
         backgroundForView: String?,
@@ -95,9 +119,10 @@ class SettingsManager: SettingManagerProtocol, ResultsStorageProtocol {
             durationGame: durationGame ?? 10,
             speedGame: speedGame ?? 1,
             checkTask: checkTask ?? true,
+            gameColors: gameColors ?? [],
             sizeFont: sizeFont ?? 15.0,
             backgroundForText: backgroundForText ?? true,
-            backgroundForView: backgroundForView ?? GameColor.customOrange.rawValue,
+            backgroundForView: backgroundForView ?? "customBackground",
             screenLocation: screenLocation ?? true
         )
         

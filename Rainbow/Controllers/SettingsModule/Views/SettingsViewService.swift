@@ -20,10 +20,9 @@ class SettingsViewService {
         return label
     }
     
-    func createButton(color: UIColor) -> UIButton {
+    func createButton(color: String) -> UIButton {
         let button = UIButton()
-//        button.addTarget(self, action: action, for: .touchUpInside)
-        button.backgroundColor = color
+        button.backgroundColor = UIColor(named: color)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.snp.makeConstraints { make in
             make.height.equalTo(25)

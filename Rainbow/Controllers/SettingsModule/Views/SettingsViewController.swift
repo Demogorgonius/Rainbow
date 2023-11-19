@@ -13,6 +13,7 @@ protocol SettingsInput {
     func getDuration() -> Float
     func getSpeed() -> Float
     func isCheck() -> Bool
+    func getButtonColors() -> [ColorChecker]
     func getFontSize() -> Double
     func isBackground() -> Bool
     func getGameBackground() -> String
@@ -23,25 +24,51 @@ protocol SettingsInput {
 final class SettingsViewController: UIViewController {
     
     var presenter: SettingsPresenterProtocol!
-    
-    let colorCheckerBrain = ColorCheckerBrain()
+    var buttonsArray: [UIButton] = []
+    lazy var colorButtonsArray =  getButtonColors()
+    var standartColors = ColorButtons().colorButtons
+//
+//    lazy var colors = getButtonColors()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        view.backgroundColor = .RainbowGameColor.customBackground
+        view.backgroundColor = UIColor(named: "\(getGameBackground())")
         setupButtons()
         setupViews()
         setupLayout()
         presenter.getSettings()
         presenter.printHello()
+        configureNavigationBar()
         
-        navigationItem.title = "Настройки"
-        navigationController?.setupNavigationBar()
     }
     
+    private func configureNavigationBar() {
+        navigationController?.setupNavigationBar()
+        navigationItem.title = "Статистика"
+
+        let saveSettingsButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.down", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)), style: .plain, target: self, action: #selector(saveGameSettings))
+        navigationItem.rightBarButtonItem = saveSettingsButton
+    }
     
+    @objc private func saveGameSettings() {
+        var locationRandom: Bool
+        var backgroundForViewColor: String
+        if wordPlacementSC.selectedSegmentIndex == 0 {
+            locationRandom = true
+        } else {
+            locationRandom = false
+        }
+        if backgroundForGameSC.selectedSegmentIndex == 0 {
+            backgroundForViewColor = "customBackground"
+        } else if backgroundForGameSC.selectedSegmentIndex == 1 {
+            backgroundForViewColor = "white"
+        } else {
+            backgroundForViewColor = "customBlack"
+        }
+        presenter?.saveGameSettings(durationGame: Int(gameTimeSlider.value), speedGame: Int(gameSpeedSlider.value), checkTask: gameWithAnswerCheckSwitch.isOn, gameColors: colorButtonsArray, sizeFont: gameSizeStepper.value, backgroundForText: backgroundForWordSwitch.isOn, backgroundForView: backgroundForViewColor, screenLocation: locationRandom)
+    }
     
     // MARK: - Main Stack
     lazy var mainStack: UIStackView = {
@@ -124,7 +151,7 @@ final class SettingsViewController: UIViewController {
         slider.addTarget(self, action: #selector(sliderValueChanged), for: UIControl.Event.valueChanged)
         slider.minimumValue = 1.0
         slider.maximumValue = 5.0
-        slider.setValue(2.0, animated: true)
+        slider.setValue(getSpeed(), animated: true)
         slider.minimumTrackTintColor = UIColor.RainbowGameColor.customOrange
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
@@ -159,10 +186,9 @@ final class SettingsViewController: UIViewController {
     
     lazy var gameWithAnswerCheckSwitch: UISwitch = {
         let switcher = UISwitch()
-        switcher.isOn = false
         switcher.onTintColor = UIColor.RainbowGameColor.customOrange
         switcher.translatesAutoresizingMaskIntoConstraints = false
-        switcher.addTarget(self, action: #selector(switcherTapped), for: .valueChanged)
+        switcher.setOn(isCheck(), animated: true)
         return switcher
     }()
     
@@ -234,7 +260,7 @@ final class SettingsViewController: UIViewController {
         stepper.minimumValue = 10.0
         stepper.maximumValue = 30.0
         stepper.stepValue = 1.0
-        stepper.value = 15.0
+        stepper.value = getFontSize()
         return stepper
         
     }()
@@ -283,7 +309,7 @@ final class SettingsViewController: UIViewController {
     
     lazy var backgroundForWordSwitch: UISwitch = {
         let switcher = UISwitch()
-        switcher.isOn = false
+        switcher.isOn = isBackground()
         switcher.onTintColor = UIColor.RainbowGameColor.customOrange
         switcher.translatesAutoresizingMaskIntoConstraints = false
         return switcher
@@ -313,7 +339,7 @@ final class SettingsViewController: UIViewController {
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
         sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
-        sc.setEnabled(true, forSegmentAt: 1)
+        sc.selectedSegmentTintColor = .white
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
     }()
@@ -360,29 +386,18 @@ final class SettingsViewController: UIViewController {
         let currentValue = Int(sender.value)
         if (sender == gameTimeSlider) {
             (gameTimeSliderLabel.text = "\(currentValue)")
-            presenter?.gameDuration(duration: currentValue)
         } else {
             (gameSpeedSliderLabel.text = "\(currentValue)")
-            presenter?.speedGame(speed: currentValue)
         }
     }
         
     @objc func checkboxTaped(sender: UIButton) {
-            isOn.toggle()
-            setBackground(view: sender, onOffStatus: isOn)
-            
+        colorButtonsArray[sender.tag].isOn.toggle()
+        setBackground(view: sender, onOffStatus: colorButtonsArray[sender.tag].isOn)
+        presenter?.colorButtons(colorCheckers: colorButtonsArray)
         }
+
     
-    @objc func switcherTapped(sender: UISwitch) {
-        let currentValue = sender.isOn
-        if (sender == gameWithAnswerCheckSwitch) {
-            presenter?.checkTask(isOn:currentValue)
-        } else {
-            presenter?.backgroundForText(isOn:currentValue)
-        }
-        
-    }
-        
         func setBackground(view: UIButton, onOffStatus: Bool) {
             let whiteCheck = UIImage(named: "checkboxWhire")!
             let blackCheck = UIImage(named: "checkboxBlack")!
@@ -398,10 +413,15 @@ final class SettingsViewController: UIViewController {
         
         func setupButtons() {
             var button = UIButton()
+            colorButtonsArray = getButtonColors()
+            
             for i in 0...11 {
-                button = SettingsViewService.shared.createButton(color: colorCheckerBrain.colorCheckers[i].color)
+                button = SettingsViewService.shared.createButton(color: colorButtonsArray[i].color)
+                
+                setBackground(view: button, onOffStatus: colorButtonsArray[i].isOn)
                 button.addTarget(self, action: #selector(checkboxTaped), for: .touchUpInside)
                 button.tag = i
+                buttonsArray.append(button)
                 i < 6 ? colorPickerButtonStack1.addArrangedSubview(button) : colorPickerButtonStack2.addArrangedSubview(button)
                 
             }
@@ -421,6 +441,17 @@ final class SettingsViewController: UIViewController {
             view.addSubview(mainStack)
             
         }
+    
+    func saveButtons(buttons: [UIButton]) {
+        var result = ColorButtons().colorButtons
+        for button in buttons {
+            if button.currentImage == nil {
+                result[button.tag].isOn.toggle()
+            }
+            presenter?.colorButtons(colorCheckers: result)
+            
+        }
+    }
         
         // MARK: - Layout
         
@@ -580,6 +611,7 @@ final class SettingsViewController: UIViewController {
 
 // MARK: - Extension for SettingsInput - Methods to update View From Settings
 extension SettingsViewController: SettingsInput {
+    
     func getDuration() -> Float {
         presenter.getSettings()
         let duration = presenter.settings?.durationGame
@@ -596,6 +628,11 @@ extension SettingsViewController: SettingsInput {
         presenter.getSettings()
         let isCheck = presenter.settings?.checkTask
         return isCheck ?? true
+    }
+    
+    func getButtonColors() -> [ColorChecker] {
+        let colorButtons = presenter.settings?.gameColors
+        return colorButtons ?? standartColors
     }
     
     func getFontSize() -> Double {
