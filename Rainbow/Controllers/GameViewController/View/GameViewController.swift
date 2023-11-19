@@ -43,9 +43,9 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getSettings()
         navigationItem.title = formattedTime(from: presenter.totalTime)
         navigationController?.setupNavigationBar()
-        
         addSubviews()
         startTimer(with: presenter.elapsedTime)
         configureNavigationBar()
@@ -118,8 +118,8 @@ class GameViewController: UIViewController {
     
     private func startHidingCycle() {
         var index = 0
-        let hideInterval = 2.0
-        
+        var hideInterval = 2.0
+        hideInterval = hideInterval * Double(presenter.speedGame)
         Timer.scheduledTimer(withTimeInterval: hideInterval, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             
@@ -136,7 +136,10 @@ class GameViewController: UIViewController {
 
 // MARK: GameViewProtocol
 extension GameViewController: GameViewProtocol {
-
+    func getSettings() {
+        presenter.getSettings()
+    }
+    
     internal func startTimer(with elapsedTime: TimeInterval?) {
         timer.invalidate()
         presenter.startTime = Date()
