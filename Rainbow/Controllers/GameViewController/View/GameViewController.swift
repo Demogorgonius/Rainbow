@@ -51,6 +51,7 @@ class GameViewController: UIViewController {
         configureNavigationBar()
         
         addRandomColorView()
+        generateView()
         startHidingCycle()
     }
     
@@ -92,8 +93,17 @@ class GameViewController: UIViewController {
     
     func generateView() -> UIView {
         let gameView = UIView()
-        if presenter.backgroundForText  {
-            
+        if !presenter.backgroundForText {
+            for colorView in presenter.colorViews {
+                colorView.backgroundColor = .clear
+            }
+        } else {
+            for colorName in presenter.colorNames {
+                for colorView in presenter.colorViews {
+                    colorView.backgroundColor = UIColor(named: "presenter.backgroundForView")
+                    colorName.textColor = UIColor.white
+                }
+            }
         }
         return gameView
     }
@@ -124,15 +134,15 @@ class GameViewController: UIViewController {
 
         let label = UILabel()
         label.text = colorName
-        label.textColor = .white
         label.textAlignment = .center
         colorView.addSubview(label)
 
         label.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
+        
         presenter.colorViews.append(colorView)
+        
     }
     
     private func startHidingCycle() {
@@ -202,6 +212,7 @@ extension GameViewController: GameViewProtocol {
         
         if Int(elapsedTime) % 2 == 0 {
             addRandomColorView()
+            generateView()
             startHidingCycle()
         }
         

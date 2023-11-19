@@ -16,7 +16,7 @@ protocol GameViewProtocol: AnyObject {
 
 protocol GamePresenterProtocol {
     var colorViews: [UIView] { get set }
-    var colorNames: [String] { get set }
+    var colorNames: [UILabel] { get set }
     var startTime: Date? { get set }
     var elapsedTime: TimeInterval? { get set }
     
@@ -50,7 +50,7 @@ class GamePresenter: GamePresenterProtocol {
     
         
     var colorViews: [UIView] = []
-    var colorNames: [String] = []
+    var colorNames: [UILabel] = []
     
     var settings: GameSettings?
     var resultStorage: ResultsStorageProtocol
