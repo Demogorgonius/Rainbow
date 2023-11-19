@@ -21,6 +21,7 @@ protocol SettingsPresenterProtocol: SettingsViewProtocol {
     func randomScreenLocation(isOn: Bool)
     func getSettings()
     func printHello()
+    func saveGameSettings(durationGame: Int, speedGame: Int, checkTask: Bool, gameColors: [ColorChecker], sizeFont: Double, backgroundForText: Bool, backgroundForView: String, screenLocation: Bool)
     var settings: GameSettings? {get set}
 }
     
@@ -233,26 +234,33 @@ class SettingsPresenter: SettingsPresenterProtocol {
         })
     }
     
-//    func saveGameSettings(durationGame: Int, speedGame: Int, checkTask: Bool, gameColors: [ColorChecker], sizeFont: Double, backgroundForText: Bool, backgroundForView: String, screenLocation: Bool) {
-//        settingsManager?.getSettings(completion: { result in
-//            switch result {
-//            case .success(let settings):
-//                self.settings = settings
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        })
-//        
-//        settings?.backgroundForView = 
-//        settingsManager?.saveSettings(durationGame: duration, speedGame: speed, checkTask: isCheckOn, gameColors: colorCheckers, sizeFont: size, backgroundForText: isBackgroundOn, backgroundForView: color, screenLocation: location, completion: { result in
-//            switch result {
-//            case .success(let settings):
-//                self.settings = settings
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        })
-//    }
+    func saveGameSettings(durationGame: Int, speedGame: Int, checkTask: Bool, gameColors: [ColorChecker], sizeFont: Double, backgroundForText: Bool, backgroundForView: String, screenLocation: Bool) {
+        settingsManager?.getSettings(completion: { result in
+            switch result {
+            case .success(let settings):
+                self.settings = settings
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        })
+        
+        settings?.durationGame = durationGame
+        settings?.speedGame = speedGame
+        settings?.checkTask = checkTask
+        settings?.gameColors = gameColors
+        settings?.sizeFont = sizeFont
+        settings?.backgroundForText = backgroundForText
+        settings?.backgroundForView = backgroundForView
+        settings?.screenLocation = screenLocation
+        settingsManager?.saveSettings(durationGame: durationGame, speedGame: speedGame, checkTask: checkTask, gameColors: gameColors, sizeFont: sizeFont, backgroundForText: backgroundForText, backgroundForView: backgroundForView, screenLocation: screenLocation, completion: { result in
+            switch result {
+            case .success(let settings):
+                self.settings = settings
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        })
+    }
     
     func backButtonTapped() {
         router.goToStartScreen()

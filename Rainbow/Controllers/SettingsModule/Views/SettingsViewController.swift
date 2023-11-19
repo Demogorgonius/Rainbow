@@ -34,7 +34,7 @@ final class SettingsViewController: UIViewController {
         
         super.viewDidLoad()
         
-        view.backgroundColor = .RainbowGameColor.customBackground
+        view.backgroundColor = UIColor(named: "\(getGameBackground())")
         setupButtons()
         setupViews()
         setupLayout()
@@ -48,11 +48,26 @@ final class SettingsViewController: UIViewController {
         navigationController?.setupNavigationBar()
         navigationItem.title = "Статистика"
 
-        let exitBarButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.down", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)), style: .plain, target: self, action: #selector(saveGameSettings))
-        navigationItem.rightBarButtonItem = exitBarButton
+        let saveSettingsButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.down", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)), style: .plain, target: self, action: #selector(saveGameSettings))
+        navigationItem.rightBarButtonItem = saveSettingsButton
     }
     
     @objc private func saveGameSettings() {
+        var locationRandom: Bool
+        var backgroundForViewColor: String
+        if wordPlacementSC.selectedSegmentIndex == 0 {
+            locationRandom = true
+        } else {
+            locationRandom = false
+        }
+        if backgroundForGameSC.selectedSegmentIndex == 0 {
+            backgroundForViewColor = "customBackground"
+        } else if backgroundForGameSC.selectedSegmentIndex == 1 {
+            backgroundForViewColor = "white"
+        } else {
+            backgroundForViewColor = "customBlack"
+        }
+        presenter?.saveGameSettings(durationGame: Int(gameTimeSlider.value), speedGame: Int(gameSpeedSlider.value), checkTask: gameWithAnswerCheckSwitch.isOn, gameColors: colorButtonsArray, sizeFont: gameSizeStepper.value, backgroundForText: backgroundForWordSwitch.isOn, backgroundForView: backgroundForViewColor, screenLocation: locationRandom)
     }
     
     // MARK: - Main Stack
@@ -174,7 +189,6 @@ final class SettingsViewController: UIViewController {
         switcher.onTintColor = UIColor.RainbowGameColor.customOrange
         switcher.translatesAutoresizingMaskIntoConstraints = false
         switcher.setOn(isCheck(), animated: true)
-        switcher.addTarget(self, action: #selector(switcherTapped), for: .valueChanged)
         return switcher
     }()
     
@@ -246,7 +260,7 @@ final class SettingsViewController: UIViewController {
         stepper.minimumValue = 10.0
         stepper.maximumValue = 30.0
         stepper.stepValue = 1.0
-        stepper.value = 15.0
+        stepper.value = getFontSize()
         return stepper
         
     }()
@@ -295,7 +309,7 @@ final class SettingsViewController: UIViewController {
     
     lazy var backgroundForWordSwitch: UISwitch = {
         let switcher = UISwitch()
-        switcher.isOn = false
+        switcher.isOn = isBackground()
         switcher.onTintColor = UIColor.RainbowGameColor.customOrange
         switcher.translatesAutoresizingMaskIntoConstraints = false
         return switcher
@@ -325,7 +339,7 @@ final class SettingsViewController: UIViewController {
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
         sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
-        sc.setEnabled(true, forSegmentAt: 1)
+        sc.selectedSegmentTintColor = .white
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
     }()
@@ -372,10 +386,8 @@ final class SettingsViewController: UIViewController {
         let currentValue = Int(sender.value)
         if (sender == gameTimeSlider) {
             (gameTimeSliderLabel.text = "\(currentValue)")
-            presenter?.gameDuration(duration: currentValue)
         } else {
             (gameSpeedSliderLabel.text = "\(currentValue)")
-            presenter?.speedGame(speed: currentValue)
         }
     }
         
@@ -384,17 +396,8 @@ final class SettingsViewController: UIViewController {
         setBackground(view: sender, onOffStatus: colorButtonsArray[sender.tag].isOn)
         presenter?.colorButtons(colorCheckers: colorButtonsArray)
         }
+
     
-    @objc func switcherTapped(sender: UISwitch) {
-        let currentValue = sender.isOn
-        if (sender == gameWithAnswerCheckSwitch) {
-            presenter?.checkTask(isOn:currentValue)
-        } else {
-            presenter?.backgroundForText(isOn:currentValue)
-        }
-        
-    }
-        
         func setBackground(view: UIButton, onOffStatus: Bool) {
             let whiteCheck = UIImage(named: "checkboxWhire")!
             let blackCheck = UIImage(named: "checkboxBlack")!
