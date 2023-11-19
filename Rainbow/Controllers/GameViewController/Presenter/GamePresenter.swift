@@ -61,7 +61,7 @@ class GamePresenter: GamePresenterProtocol {
     var checkTask: Bool = true
     var sizeFont: Double = 14
     var backgroundForText: Bool = true
-    var backgroundForView: String = ""
+    var backgroundForView: String = "customBackground"
     var screenLocation: Bool = true
     
     init(router: GameRouterProtocol, settingsManager: SettingManagerProtocol, resultStorage: ResultsStorageProtocol) {

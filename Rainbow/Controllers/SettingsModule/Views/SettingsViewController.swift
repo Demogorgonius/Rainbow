@@ -34,7 +34,7 @@ final class SettingsViewController: UIViewController {
         
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(named: "\(getGameBackground())")
+        view.backgroundColor = .RainbowGameColor.customBackground
         setupButtons()
         setupViews()
         setupLayout()

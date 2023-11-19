@@ -83,15 +83,6 @@ final class ResultsTableViewController: UITableViewController {
         tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: -150, right: 0)
     }
     
-    private func orderNumerate() {
-        if !presenter.resultStorage.results.isEmpty {
-            var number = presenter.resultStorage.results.count
-            for index in 0...presenter.resultStorage.results.count-1 {
-              //  presenter.resultStorage.results[index].numberGame = number
-                number -= 1
-            }
-        }
-    }
     
     private func setupClearResultsButton() {
         view.addSubview(clearResultsButton)

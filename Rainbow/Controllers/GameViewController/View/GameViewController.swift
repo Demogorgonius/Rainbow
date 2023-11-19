@@ -63,7 +63,7 @@ class GameViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.backgroundColor = .RainbowGameColor.customBackground
+        view.backgroundColor = UIColor(named: presenter.backgroundForView)
         view.addSubview(speedButton)
         speedButton.snp.makeConstraints { make in
             make.width.equalTo(73)
@@ -100,7 +100,7 @@ class GameViewController: UIViewController {
         } else {
             for colorName in presenter.colorNames {
                 for colorView in presenter.colorViews {
-                    colorView.backgroundColor = UIColor(named: "presenter.backgroundForView")
+                    colorView.backgroundColor = UIColor(named: presenter.backgroundForView)
                     colorName.textColor = UIColor.white
                 }
             }
