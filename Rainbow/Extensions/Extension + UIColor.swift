@@ -25,20 +25,20 @@ extension UIColor {
         static let customGrayishPurple = UIColor(named: "customGrayishPurple") ?? UIColor()
     }
     
-    static func getColor(for gameColor: GameColor) -> UIColor {
-        switch gameColor {
-        case .customLightGreen: return RainbowGameColor.customLightGreen
-        case .customDarkGreen: return RainbowGameColor.customDarkGreen
-        case .customPink: return RainbowGameColor.customPink
-        case .customLightBlue: return RainbowGameColor.customLightBlue
-        case .customBurgundy: return RainbowGameColor.customBurgundy
-        case .customViolet: return RainbowGameColor.customViolet
-        case .customDarkBlue: return RainbowGameColor.customDarkBlue
-        case .customOrange: return RainbowGameColor.customOrange
-        case .customRed: return RainbowGameColor.customRed
-        case .customYellow: return RainbowGameColor.customYellow
-        case .customBlack: return RainbowGameColor.customBlack
-        case .customGrayishPurple: return RainbowGameColor.customGrayishPurple
-        }
-    }
+//    static func getColor(for gameColor: GameColor) -> UIColor {
+//        switch gameColor {
+//        case .customLightGreen: return RainbowGameColor.customLightGreen
+//        case .customDarkGreen: return RainbowGameColor.customDarkGreen
+//        case .customPink: return RainbowGameColor.customPink
+//        case .customLightBlue: return RainbowGameColor.customLightBlue
+//        case .customBurgundy: return RainbowGameColor.customBurgundy
+//        case .customViolet: return RainbowGameColor.customViolet
+//        case .customDarkBlue: return RainbowGameColor.customDarkBlue
+//        case .customOrange: return RainbowGameColor.customOrange
+//        case .customRed: return RainbowGameColor.customRed
+//        case .customYellow: return RainbowGameColor.customYellow
+//        case .customBlack: return RainbowGameColor.customBlack
+//        case .customGrayishPurple: return RainbowGameColor.customGrayishPurple
+//        }
+//    }
 }
