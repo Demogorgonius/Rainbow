@@ -9,14 +9,6 @@ This challenge was a game to develop intellectual abilities for a person.
  - Swift 5 project, supported iOS – 15
  - Code according to guidelines
 
-
-## 💻 Authors in the project
-
-- [TeamLeader - @Demogorgonius](https://github.com/Demogorgonius)
-- [Basic_Developer - @DanilaBolshakov1999](https://github.com/DanilaBolshakov1999)
-- [Basic_Developer - @MaybeRT-rt](https://github.com/MaybeRT-rt)
-- [Basic_Developer - @KellerDmitriy](https://github.com/KellerDmitriy)
-
 ## 🗄️ Stack
 
 [![UIKit](https://img.shields.io/badge/UIKit-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
