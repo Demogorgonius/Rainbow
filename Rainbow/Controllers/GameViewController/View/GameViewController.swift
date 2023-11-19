@@ -49,6 +49,9 @@ class GameViewController: UIViewController {
         addSubviews()
         startTimer(with: presenter.elapsedTime)
         configureNavigationBar()
+        
+        addRandomColorView()
+        startHidingCycle()
     }
     
     // MARK: Private Methods
@@ -86,6 +89,22 @@ class GameViewController: UIViewController {
         let seconds = Int(timeInterval) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
+    
+    func generateView() -> UIView {
+        let gameView = UIView()
+        if presenter.backgroundForText  {
+            
+        }
+        return gameView
+    }
+    
+//    func generateRandomColor(with settings: GameSettings) -> UIColor {
+//        guard let colorString = settings.backgroundForView,
+//              let gameColor = GameColor(rawValue: colorString) else {
+//            return .black
+//        }
+//        return UIColor.getColor(for: gameColor)
+//    }
     
     private func addRandomColorView() {
         let randomColor = generateRandomColor()
