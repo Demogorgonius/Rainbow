@@ -6,19 +6,19 @@
 //
 
 import UIKit
-import SnapKit
 
 extension UIButton {
-    convenience init(imageName: String) {
-        self.init(type: .custom)
-        self.setImage(UIImage(named: imageName), for: .normal)
-       // self.addTarget(target, action: action, for: .touchUpInside)
-        self.translatesAutoresizingMaskIntoConstraints = false
+    convenience init(imageName: String, target: Any?, action: Selector? ) {
+        self.init(frame: .zero)
+        setImage(UIImage(named: imageName), for: .normal)
 
-        
-        self.snp.makeConstraints { make in
-            make.width.equalTo(100)
-            make.height.equalTo(100)
+        if let target = target, let action = action {
+            addTarget(target, action: action, for: .touchUpInside)
         }
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        layer.shadowOpacity = 0.5
+        layer.shadowRadius = 1.0
+        translatesAutoresizingMaskIntoConstraints = false
     }
 }

@@ -14,6 +14,10 @@ extension UILabel {
         self.font = font
         self.textColor = .black
         self.textAlignment = .center
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowRadius = 1.0
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 }

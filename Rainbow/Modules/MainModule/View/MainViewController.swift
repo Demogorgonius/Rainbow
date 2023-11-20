@@ -52,13 +52,35 @@ final class MainViewController: UIViewController {
         return button
     }()
     
-    private lazy var buttonsStackView = UIStackView(axis: .vertical, distribution: .fillEqually, spacing: 16, subview: [startNewGameButton, continueGameButton, statisticGameButton])
+    private lazy var buttonsStackView = UIStackView(
+        axis: .vertical,
+        distribution: .fillEqually,
+        spacing: 16,
+        subview: [startNewGameButton,
+                  continueGameButton,
+                  statisticGameButton
+                 ]
+    )
     
-    private lazy var settingsGameButton = UIButton(imageName: "settings")
+    private lazy var settingsGameButton = UIButton(
+        imageName: "settings",
+        target: self,
+        action: #selector(settingsGameButtonTapped)
+    )
     
-    private lazy var infoGameButton = UIButton(imageName: "info")
+    private lazy var infoGameButton = UIButton(
+        imageName: "info",
+        target: self,
+        action: #selector(infoGameButtonTapped)
+    )
     
-    private lazy var customButtonsStackView = UIStackView(axis: .horizontal, distribution: .fillEqually, spacing: 180, subview: [settingsGameButton, infoGameButton])
+    
+    private lazy var customButtonsStackView = UIStackView(
+        axis: .horizontal,
+        distribution: .fillEqually,
+        spacing: 180,
+        subview: [settingsGameButton, infoGameButton]
+    )
     
     //MARK: Init
     init(presenter: MainPresenterProtocol) {
@@ -75,7 +97,6 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         setViews()
         layoutViews()
-        addTargetButton()
     }
     
     // MARK: - Setup UI
@@ -86,16 +107,15 @@ final class MainViewController: UIViewController {
         view.addSubview(gameLabel)
         view.addSubview(nameGameLabel)
         view.addSubviews(buttonsStackView)
-        view.addSubviews(customButtonsStackView)
+        buttonsStackView.addArrangedSubview(customButtonsStackView)
         
     }
     
     private func layoutViews() {
         rainbowImage.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(77)
             make.leading.equalToSuperview().offset(35)
-            make.trailing.equalToSuperview().offset(38)
+            make.trailing.equalToSuperview().offset(-38)
         }
         
         gameLabel.snp.makeConstraints { make in
@@ -114,25 +134,13 @@ final class MainViewController: UIViewController {
             make.top.equalTo(nameGameLabel.snp.bottom).offset(50)
             make.centerX.equalToSuperview()
             make.leadingMargin.equalToSuperview()
-            make.bottom.equalTo(customButtonsStackView.snp.top).offset(-10)
-            
-        }
-        
-        customButtonsStackView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.leadingMargin.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-5)
-            make.height.equalTo(64)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-8)
+            make.height.equalTo(335)
         }
     }
 }
 
 extension MainViewController: MainViewProtocol {
-    
-    func addTargetButton() {
-        settingsGameButton.addTarget(self, action: #selector(settingsGameButtonTapped), for: .touchUpInside)
-        infoGameButton.addTarget(self, action: #selector(infoGameButtonTapped), for: .touchUpInside)
-    }
     
     // MARK: - Actions
     @objc func startNewGameButtonTapped() {
