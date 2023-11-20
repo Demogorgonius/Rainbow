@@ -13,20 +13,14 @@ class GameViewController: UIViewController {
     private var presenter: GamePresenterProtocol
     
     var timer = Timer()
-
+    
     lazy var speedButton: UIButton = {
-        let bt = UIButton()
-        bt.setTitle("X2", for: .normal)
-        bt.setTitleColor(.white, for: .normal)
-        bt.backgroundColor = .RainbowGameColor.customRed
-        bt.layer.cornerRadius = 36.5
-        bt.layer.shadowOffset = CGSize(width: 0, height: 4)
-        bt.layer.shadowOpacity = 0.9
-        bt.layer.shadowRadius = 3
-        bt.layer.shadowColor = UIColor.black.cgColor
-        bt.addTarget(self, action: #selector(speedButtonPressed), for: .touchUpInside)
-        bt.translatesAutoresizingMaskIntoConstraints = false
-        return bt
+        let button = ShadowButtonFactory.makeShadowButton(
+            backgroundColor: .RainbowGameColor.customRed,
+            title: "X2",
+            target: self,
+            action: #selector(speedButtonPressed))
+        return button
     }()
     
     //MARK: Init
@@ -43,16 +37,14 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         getSettings()
-        navigationItem.title = formattedTime(from: presenter.totalTime)
+        navigationItem.title = formattedTime(from: TimeInterval(presenter.settings?.durationGame ?? 15))
         navigationController?.setupNavigationBar()
         addSubviews()
         startTimer(with: presenter.elapsedTime)
         configureNavigationBar()
         
-        addRandomColorView()
-        generateView()
-        startHidingCycle()
     }
     
     // MARK: Private Methods
@@ -73,95 +65,14 @@ class GameViewController: UIViewController {
         }
     }
     
-    private func generateRandomColor() -> UIColor {
-        let randomRed = CGFloat.random(in: 0...1)
-        let randomGreen = CGFloat.random(in: 0...1)
-        let randomBlue = CGFloat.random(in: 0...1)
-        return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
-    }
-    
-    private func generateRandomColorName() -> String {
-        let colorNames = ["Красный", "Зеленый", "Голубой", "Желтый", "Оранжевый", "Фиолетовый", "Коричневый", "Розовый"]
-        return colorNames.randomElement() ?? "Unknown"
-    }
-    
     private func formattedTime(from timeInterval: TimeInterval) -> String {
         let minutes = Int(timeInterval) / 60
         let seconds = Int(timeInterval) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
-    func generateView() -> UIView {
-        let gameView = UIView()
-        if !presenter.backgroundForText {
-            for colorView in presenter.colorViews {
-                colorView.backgroundColor = .clear
-            }
-        } else {
-            for colorName in presenter.colorNames {
-                for colorView in presenter.colorViews {
-                    colorView.backgroundColor = UIColor(named: "presenter.backgroundForView")
-                    colorName.textColor = UIColor.white
-                }
-            }
-        }
-        return gameView
-    }
-    
-//    func generateRandomColor(with settings: GameSettings) -> UIColor {
-//        guard let colorString = settings.backgroundForView,
-//              let gameColor = GameColor(rawValue: colorString) else {
-//            return .black
-//        }
-//        return UIColor.getColor(for: gameColor)
-//    }
-    
-    private func addRandomColorView() {
-        let randomColor = generateRandomColor()
-        let colorName = generateRandomColorName()
-
-        let colorView = UIView()
-        colorView.backgroundColor = randomColor
-        colorView.layer.cornerRadius = 10
-        view.addSubview(colorView)
-
-        colorView.snp.makeConstraints { make in
-            make.width.equalTo(100)
-            make.height.equalTo(50)
-            make.centerX.equalTo(view).offset(CGFloat.random(in: -140...140))
-            make.centerY.equalTo(view).offset(CGFloat.random(in: -140...140))
-        }
-
-        let label = UILabel()
-        label.text = colorName
-        label.textAlignment = .center
-        colorView.addSubview(label)
-
-        label.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        presenter.colorViews.append(colorView)
-        
-    }
-    
-    private func startHidingCycle() {
-        var index = 0
-        var hideInterval = 2.0
-        hideInterval = hideInterval * Double(presenter.speedGame)
-        Timer.scheduledTimer(withTimeInterval: hideInterval, repeats: true) { [weak self] _ in
-            guard let self = self else { return }
-            
-            guard index < presenter.colorViews.count else {
-                index = 0
-                return
-            }
-            
-            presenter.colorViews[index].isHidden = true
-            index += 1
-        }
-    }
 }
+
 
 // MARK: GameViewProtocol
 extension GameViewController: GameViewProtocol {
@@ -206,31 +117,20 @@ extension GameViewController: GameViewProtocol {
     @objc func updateTimer() {
         guard let startTime = presenter.startTime else { return }
         let elapsedTime = Date().timeIntervalSince(startTime)
-        let remainingTime = max(presenter.totalTime - elapsedTime, 0)
+        let remainingTime = max(TimeInterval(presenter.settings?.durationGame ?? 15) - elapsedTime, 0)
         navigationItem.title = formattedTime(from: remainingTime)
         
-        
-        if Int(elapsedTime) % 2 == 0 {
-            addRandomColorView()
-            generateView()
-            startHidingCycle()
-        }
-        
-        
-        if elapsedTime >= presenter.totalTime {
+        if elapsedTime >= TimeInterval(presenter.settings?.durationGame ?? 15) {
             timer.invalidate()
-            presenter.resultStorage.addStatistic(
-                .init(
-                    numberGame: presenter.numberGame,
-                    durationGame: presenter.totalTime ,
-                    speedGame: 4,
-                    resultGame: "3/4"
-                )
+            
+            presenter.gameManager.addStatistic(.init(
+                numberGame: presenter.numberGame + 1,
+                durationGame: presenter.settings?.durationGame ?? 0,
+                speedGame: presenter.settings?.speedGame ?? 0,
+                resultGame: "3/4"
             )
-            presenter.numberGame += 1
-            let resultScreen = ResultsBuilder.build()
-            navigationController?.pushViewController(resultScreen, animated: true)
-
+            )
+            presenter.routeToResultScreen()
         }
     }
 }

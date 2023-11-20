@@ -75,6 +75,8 @@ protocol ResultsStorageProtocol {
     func clearStatistic()
 }
 
+typealias GameManagerProtocol = SettingManagerProtocol & ResultsStorageProtocol
+
 class SettingsManager: SettingManagerProtocol, ResultsStorageProtocol {
     
     

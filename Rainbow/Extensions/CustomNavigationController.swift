@@ -11,7 +11,6 @@ extension UINavigationController {
     // стрелка назад и настройки для тайтла
     func setupNavigationBar() {
         
-        navigationBar.barTintColor = .RainbowGameColor.customBackground
         navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         let backButtonImage = UIImage(systemName: "arrow.backward")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 45, weight: .bold))

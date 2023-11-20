@@ -195,13 +195,13 @@
 			isa = PBXGroup;
 			children = (
 				E112CBE72B06750000F08206 /* Extension + UIImage.swift */,
-				4AD131752B056781007DA3B7 /* LabelFactory.swift */,
-				4AD131762B056781007DA3B7 /* ViewFactory.swift */,
 				44A57C502B0261AD00C8E383 /* Extension + UIFont.swift */,
 				44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */,
 				44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */,
-				E112CBE52B0674F100F08206 /* CustomNavigationController.swift */,
+				4AD131752B056781007DA3B7 /* LabelFactory.swift */,
 				E183FEBD2B0B465100E3ED41 /* ShadowButtonFactory.swift */,
+				4AD131762B056781007DA3B7 /* ViewFactory.swift */,
+				E112CBE52B0674F100F08206 /* CustomNavigationController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -303,11 +303,11 @@
 		4AD131632B0566E3007DA3B7 /* ResultsModule */ = {
 			isa = PBXGroup;
 			children = (
-				4AD131642B0566E3007DA3B7 /* Routers */,
 				4AD131662B0566E3007DA3B7 /* Presenter */,
-				4AD131682B0566E3007DA3B7 /* Builder */,
 				4AD1316A2B0566E3007DA3B7 /* Views */,
 				E112CBF42B09269400F08206 /* Models */,
+				4AD131682B0566E3007DA3B7 /* Builder */,
+				4AD131642B0566E3007DA3B7 /* Routers */,
 			);
 			path = ResultsModule;
 			sourceTree = "<group>";
@@ -413,10 +413,10 @@
 			isa = PBXGroup;
 			children = (
 				A5B7973E2B02402300B20742 /* MainModule */,
+				4AD131492B03B4D1007DA3B7 /* GameModule */,
 				4AD131632B0566E3007DA3B7 /* ResultsModule */,
 				446F15AA2B065B1C00B10C77 /* RulesViewController */,
 				15F3BE762B02E23E00E74E7A /* SettingsModule */,
-				4AD131492B03B4D1007DA3B7 /* GameModule */,
 				A5B797432B02402300B20742 /* LaunchScreen.storyboard */,
 			);
 			path = Modules;

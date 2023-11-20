@@ -17,6 +17,4 @@ final class ResultsRouter: ResultsRouterProtocol {
         let startScreen = MainBuilder.build()
         view?.navigationController?.setViewControllers([startScreen], animated: true)
     }
-    
-    
 }

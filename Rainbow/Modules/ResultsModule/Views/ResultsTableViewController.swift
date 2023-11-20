@@ -58,8 +58,7 @@ final class ResultsTableViewController: UITableViewController {
     }
     
     @objc private func exitButtonPressed() {
-        let startScreen = MainBuilder.build()
-        navigationController?.setViewControllers([startScreen], animated: true)
+        presenter.exitButtonPressed()
     }
     
     @objc private func clearResultsButtonTap() {
