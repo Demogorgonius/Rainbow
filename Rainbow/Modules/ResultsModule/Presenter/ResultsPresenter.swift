@@ -13,7 +13,6 @@ protocol ResultsPresenterProtocol {
     func getStatistic()
     func clearStatisticOverview()
     func exitButtonPressed()
-    
 }
 
 final class ResultsPresenter: ResultsPresenterProtocol {

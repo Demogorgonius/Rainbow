@@ -17,11 +17,9 @@ class MainBuilder: MainBuilderProtocol {
     static func build() -> UIViewController {
         let router = MainRouter()
         let presenter = MainPresenter(router: router)
-        let mainView = MainView()
-        let viewController = MainViewController()
+        let viewController = MainViewController(presenter: presenter)
         
-        viewController.presenter = presenter
-        presenter.view = mainView
+        presenter.view = viewController
         router.viewController = viewController
         
         return viewController

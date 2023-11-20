@@ -9,7 +9,6 @@ import UIKit
 
 final class RulesViewController: UIViewController {
     
-    var presenter: RulesPresenterProtocol?
     var mainView = InputViewCustom()
     
     //MARK: - UI
@@ -30,9 +29,6 @@ final class RulesViewController: UIViewController {
         setConstrains()
     }
     
-    private func back() {
-        presenter?.playGame()
-    }
     
     //MARK: - Set Views
     private func setViews() {
@@ -57,8 +53,4 @@ extension RulesViewController {
     }
 }
 
-//MARK: - RulesViewProtocol
-extension RulesViewController: RulesViewProtocol {
-    func successfully() { }
-    func unsuccessful() { }
-}
+

@@ -10,15 +10,9 @@
 		15AB85292B042499006B3CCF /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB85282B042499006B3CCF /* SettingsPresenter.swift */; };
 		15AB852B2B0530C9006B3CCF /* ColorChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB852A2B0530C9006B3CCF /* ColorChecker.swift */; };
 		15AB852E2B053285006B3CCF /* ColorCheckerBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB852D2B053285006B3CCF /* ColorCheckerBrain.swift */; };
-		15AB85362B068F34006B3CCF /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB85352B068F34006B3CCF /* SettingsBuilder.swift */; };
-		15AB85382B068F4B006B3CCF /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AB85372B068F4B006B3CCF /* SettingsRouter.swift */; };
 		15F3BE7E2B02E70500E74E7A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3BE7D2B02E70500E74E7A /* SettingsViewController.swift */; };
 		15F3BE842B02F07200E74E7A /* SettingsViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F3BE832B02F07200E74E7A /* SettingsViewService.swift */; };
-		446F15B72B065B1C00B10C77 /* RulesPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15AC2B065B1C00B10C77 /* RulesPresenterProtocol.swift */; };
 		446F15B82B065B1C00B10C77 /* InputViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15AE2B065B1C00B10C77 /* InputViewCustom.swift */; };
-		446F15B92B065B1C00B10C77 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15B02B065B1C00B10C77 /* Model.swift */; };
-		446F15BB2B065B1C00B10C77 /* RulesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15B42B065B1C00B10C77 /* RulesBuilder.swift */; };
-		446F15BC2B065B1C00B10C77 /* RulesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15B62B065B1C00B10C77 /* RulesRouter.swift */; };
 		446F15C02B065F9F00B10C77 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F15BF2B065F9F00B10C77 /* RulesViewController.swift */; };
 		44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */; };
 		44A57C4F2B0254D900C8E383 /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */; };
@@ -35,7 +29,6 @@
 		44A57C662B0269B700C8E383 /* CormorantInfant-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 44A57C652B0269B700C8E383 /* CormorantInfant-Italic.otf */; };
 		4AD1313F2B02A3A0007DA3B7 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD1313E2B02A3A0007DA3B7 /* Extension + UILabel.swift */; };
 		4AD131412B02A664007DA3B7 /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD131402B02A664007DA3B7 /* Extension + UIStackView.swift */; };
-		4AD131432B02A7A9007DA3B7 /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD131422B02A7A9007DA3B7 /* Extension + UIButton.swift */; };
 		4AD131462B02B3CF007DA3B7 /* Extension + CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD131452B02B3CF007DA3B7 /* Extension + CustomButton.swift */; };
 		4AD131482B02B967007DA3B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AD131472B02B967007DA3B7 /* Assets.xcassets */; };
 		4AD1314E2B03D982007DA3B7 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD1314D2B03D982007DA3B7 /* GameModel.swift */; };
@@ -55,34 +48,26 @@
 		4AF8FA942B067D28006EEE4B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF8FA932B067D28006EEE4B /* SnapKit */; };
 		4AF8FA9B2B0749BD006EEE4B /* GameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF8FA9A2B0749BD006EEE4B /* GameRouter.swift */; };
 		4AF8FA9D2B0749DC006EEE4B /* GameBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF8FA9C2B0749DC006EEE4B /* GameBuilder.swift */; };
-		A5B7974B2B02402300B20742 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B7973A2B02402300B20742 /* CustomView.swift */; };
-		A5B7974C2B02402300B20742 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B7973B2B02402300B20742 /* CustomViewController.swift */; };
 		A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797402B02402300B20742 /* MainViewController.swift */; };
-		A5B7974E2B02402300B20742 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797422B02402300B20742 /* MainView.swift */; };
 		A5B7974F2B02402300B20742 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B797432B02402300B20742 /* LaunchScreen.storyboard */; };
 		A5B797502B02402300B20742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797462B02402300B20742 /* AppDelegate.swift */; };
 		A5B797512B02402300B20742 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797472B02402300B20742 /* SceneDelegate.swift */; };
-		A5B7975B2B0249E300B20742 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5B7975A2B0249E300B20742 /* IQKeyboardManagerSwift */; };
 		E112CBE62B0674F100F08206 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBE52B0674F100F08206 /* CustomNavigationController.swift */; };
 		E112CBE82B06750000F08206 /* Extension + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBE72B06750000F08206 /* Extension + UIImage.swift */; };
 		E112CBEF2B08A8E000F08206 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBEE2B08A8E000F08206 /* SettingsManager.swift */; };
 		E112CBF12B08F45900F08206 /* GameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBF02B08F45900F08206 /* GameError.swift */; };
 		E112CBF32B09268E00F08206 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBF22B09268E00F08206 /* ResultModel.swift */; };
+		E183FEBE2B0B465100E3ED41 /* ShadowButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEBD2B0B465100E3ED41 /* ShadowButtonFactory.swift */; };
+		E183FEC12B0B47E500E3ED41 /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEC02B0B47E500E3ED41 /* SettingsBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		15AB85282B042499006B3CCF /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		15AB852A2B0530C9006B3CCF /* ColorChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorChecker.swift; sourceTree = "<group>"; };
 		15AB852D2B053285006B3CCF /* ColorCheckerBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCheckerBrain.swift; sourceTree = "<group>"; };
-		15AB85352B068F34006B3CCF /* SettingsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsBuilder.swift; path = Rainbow/Controllers/SettingsModule/SettingsBuilder.swift; sourceTree = SOURCE_ROOT; };
-		15AB85372B068F4B006B3CCF /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsRouter.swift; path = Rainbow/Controllers/SettingsModule/SettingsRouter.swift; sourceTree = SOURCE_ROOT; };
 		15F3BE7D2B02E70500E74E7A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		15F3BE832B02F07200E74E7A /* SettingsViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewService.swift; sourceTree = "<group>"; };
-		446F15AC2B065B1C00B10C77 /* RulesPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesPresenterProtocol.swift; sourceTree = "<group>"; };
 		446F15AE2B065B1C00B10C77 /* InputViewCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewCustom.swift; sourceTree = "<group>"; };
-		446F15B02B065B1C00B10C77 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		446F15B42B065B1C00B10C77 /* RulesBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesBuilder.swift; sourceTree = "<group>"; };
-		446F15B62B065B1C00B10C77 /* RulesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesRouter.swift; sourceTree = "<group>"; };
 		446F15BF2B065F9F00B10C77 /* RulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
 		44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
@@ -99,7 +84,6 @@
 		44A57C652B0269B700C8E383 /* CormorantInfant-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CormorantInfant-Italic.otf"; sourceTree = "<group>"; };
 		4AD1313E2B02A3A0007DA3B7 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
 		4AD131402B02A664007DA3B7 /* Extension + UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIStackView.swift"; sourceTree = "<group>"; };
-		4AD131422B02A7A9007DA3B7 /* Extension + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIButton.swift"; sourceTree = "<group>"; };
 		4AD131452B02B3CF007DA3B7 /* Extension + CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + CustomButton.swift"; sourceTree = "<group>"; };
 		4AD131472B02B967007DA3B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4AD1314D2B03D982007DA3B7 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
@@ -119,10 +103,7 @@
 		4AF8FA9A2B0749BD006EEE4B /* GameRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRouter.swift; sourceTree = "<group>"; };
 		4AF8FA9C2B0749DC006EEE4B /* GameBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBuilder.swift; sourceTree = "<group>"; };
 		A5B7970A2B010E3100B20742 /* Rainbow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rainbow.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5B7973A2B02402300B20742 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
-		A5B7973B2B02402300B20742 /* CustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		A5B797402B02402300B20742 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		A5B797422B02402300B20742 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A5B797442B02402300B20742 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5B797462B02402300B20742 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5B797472B02402300B20742 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +113,8 @@
 		E112CBEE2B08A8E000F08206 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		E112CBF02B08F45900F08206 /* GameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameError.swift; sourceTree = "<group>"; };
 		E112CBF22B09268E00F08206 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
+		E183FEBD2B0B465100E3ED41 /* ShadowButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButtonFactory.swift; sourceTree = "<group>"; };
+		E183FEC02B0B47E500E3ED41 /* SettingsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsBuilder.swift; path = Rainbow/Modules/SettingsModule/SettingsBuilder.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +122,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5B7975B2B0249E300B20742 /* IQKeyboardManagerSwift in Frameworks */,
 				4AF8FA942B067D28006EEE4B /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,28 +141,11 @@
 		15F3BE762B02E23E00E74E7A /* SettingsModule */ = {
 			isa = PBXGroup;
 			children = (
-				15F3BE782B02E26000E74E7A /* Builder */,
+				E183FEBF2B0B47C600E3ED41 /* Builders */,
 				15F3BE7A2B02E27A00E74E7A /* Presenter */,
-				15F3BE772B02E25500E74E7A /* Router */,
 				15F3BE792B02E26700E74E7A /* Views */,
 			);
 			path = SettingsModule;
-			sourceTree = "<group>";
-		};
-		15F3BE772B02E25500E74E7A /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				15AB85372B068F4B006B3CCF /* SettingsRouter.swift */,
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
-		15F3BE782B02E26000E74E7A /* Builder */ = {
-			isa = PBXGroup;
-			children = (
-				15AB85352B068F34006B3CCF /* SettingsBuilder.swift */,
-			);
-			path = Builder;
 			sourceTree = "<group>";
 		};
 		15F3BE792B02E26700E74E7A /* Views */ = {
@@ -204,22 +169,10 @@
 		446F15AA2B065B1C00B10C77 /* RulesViewController */ = {
 			isa = PBXGroup;
 			children = (
-				446F15AF2B065B1C00B10C77 /* Model */,
 				446F15B12B065B1C00B10C77 /* View */,
-				446F15AB2B065B1C00B10C77 /* Presenter */,
 				446F15AD2B065B1C00B10C77 /* Components */,
-				446F15B32B065B1C00B10C77 /* Builder */,
-				446F15B52B065B1C00B10C77 /* Router */,
 			);
 			path = RulesViewController;
-			sourceTree = "<group>";
-		};
-		446F15AB2B065B1C00B10C77 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				446F15AC2B065B1C00B10C77 /* RulesPresenterProtocol.swift */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		446F15AD2B065B1C00B10C77 /* Components */ = {
@@ -230,36 +183,12 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		446F15AF2B065B1C00B10C77 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				446F15B02B065B1C00B10C77 /* Model.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		446F15B12B065B1C00B10C77 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				446F15BF2B065F9F00B10C77 /* RulesViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		446F15B32B065B1C00B10C77 /* Builder */ = {
-			isa = PBXGroup;
-			children = (
-				446F15B42B065B1C00B10C77 /* RulesBuilder.swift */,
-			);
-			path = Builder;
-			sourceTree = "<group>";
-		};
-		446F15B52B065B1C00B10C77 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				446F15B62B065B1C00B10C77 /* RulesRouter.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		44A57C492B0253ED00C8E383 /* Extensions */ = {
@@ -272,6 +201,7 @@
 				44A57C4A2B0253ED00C8E383 /* Extension + UIColor.swift */,
 				44A57C4E2B0254D900C8E383 /* Extension + UIView.swift */,
 				E112CBE52B0674F100F08206 /* CustomNavigationController.swift */,
+				E183FEBD2B0B465100E3ED41 /* ShadowButtonFactory.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -305,13 +235,12 @@
 			children = (
 				4AD1313E2B02A3A0007DA3B7 /* Extension + UILabel.swift */,
 				4AD131402B02A664007DA3B7 /* Extension + UIStackView.swift */,
-				4AD131422B02A7A9007DA3B7 /* Extension + UIButton.swift */,
 				4AD131452B02B3CF007DA3B7 /* Extension + CustomButton.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		4AD131492B03B4D1007DA3B7 /* GameViewController */ = {
+		4AD131492B03B4D1007DA3B7 /* GameModule */ = {
 			isa = PBXGroup;
 			children = (
 				4AF8FA992B07498A006EEE4B /* GameBuilder */,
@@ -320,7 +249,7 @@
 				4AD1314B2B03B958007DA3B7 /* View */,
 				4AD1314C2B03B965007DA3B7 /* Presenter */,
 			);
-			path = GameViewController;
+			path = GameModule;
 			sourceTree = "<group>";
 		};
 		4AD1314A2B03B94E007DA3B7 /* Model */ = {
@@ -371,7 +300,7 @@
 			path = MainRouter;
 			sourceTree = "<group>";
 		};
-		4AD131632B0566E3007DA3B7 /* StatisticOverviewModule */ = {
+		4AD131632B0566E3007DA3B7 /* ResultsModule */ = {
 			isa = PBXGroup;
 			children = (
 				4AD131642B0566E3007DA3B7 /* Routers */,
@@ -380,7 +309,7 @@
 				4AD1316A2B0566E3007DA3B7 /* Views */,
 				E112CBF42B09269400F08206 /* Models */,
 			);
-			path = StatisticOverviewModule;
+			path = ResultsModule;
 			sourceTree = "<group>";
 		};
 		4AD131642B0566E3007DA3B7 /* Routers */ = {
@@ -462,8 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				A5B797452B02402300B20742 /* App */,
-				A5B7973D2B02402300B20742 /* Controllers */,
-				A5B7973C2B02402300B20742 /* Model */,
+				A5B7973D2B02402300B20742 /* Modules */,
 				A5B797482B02402300B20742 /* Resources */,
 				44A57C492B0253ED00C8E383 /* Extensions */,
 				44A57C522B0263F200C8E383 /* Fonts */,
@@ -475,58 +403,40 @@
 		A5B797392B02402300B20742 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A5B7973A2B02402300B20742 /* CustomView.swift */,
-				A5B7973B2B02402300B20742 /* CustomViewController.swift */,
 				E112CBEE2B08A8E000F08206 /* SettingsManager.swift */,
 				E112CBF02B08F45900F08206 /* GameError.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		A5B7973C2B02402300B20742 /* Model */ = {
+		A5B7973D2B02402300B20742 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		A5B7973D2B02402300B20742 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
+				A5B7973E2B02402300B20742 /* MainModule */,
+				4AD131632B0566E3007DA3B7 /* ResultsModule */,
 				446F15AA2B065B1C00B10C77 /* RulesViewController */,
 				15F3BE762B02E23E00E74E7A /* SettingsModule */,
-				A5B7973E2B02402300B20742 /* MainViewController */,
-				4AD131492B03B4D1007DA3B7 /* GameViewController */,
-				4AD131632B0566E3007DA3B7 /* StatisticOverviewModule */,
+				4AD131492B03B4D1007DA3B7 /* GameModule */,
 				A5B797432B02402300B20742 /* LaunchScreen.storyboard */,
 			);
-			path = Controllers;
+			path = Modules;
 			sourceTree = "<group>";
 		};
-		A5B7973E2B02402300B20742 /* MainViewController */ = {
+		A5B7973E2B02402300B20742 /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
-				A5B7973F2B02402300B20742 /* Controller */,
+				4AD131532B051A5F007DA3B7 /* MainBuilder */,
+				4AD131542B051A76007DA3B7 /* MainPresenter */,
 				A5B797412B02402300B20742 /* View */,
 				4AD131552B051A8E007DA3B7 /* MainRouter */,
-				4AD131542B051A76007DA3B7 /* MainPresenter */,
-				4AD131532B051A5F007DA3B7 /* MainBuilder */,
 			);
-			path = MainViewController;
-			sourceTree = "<group>";
-		};
-		A5B7973F2B02402300B20742 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				A5B797402B02402300B20742 /* MainViewController.swift */,
-			);
-			path = Controller;
+			path = MainModule;
 			sourceTree = "<group>";
 		};
 		A5B797412B02402300B20742 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A5B797422B02402300B20742 /* MainView.swift */,
+				A5B797402B02402300B20742 /* MainViewController.swift */,
 				4AD1313D2B02A30C007DA3B7 /* Extension */,
 			);
 			path = View;
@@ -558,6 +468,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		E183FEBF2B0B47C600E3ED41 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				E183FEC02B0B47E500E3ED41 /* SettingsBuilder.swift */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -575,7 +493,6 @@
 			);
 			name = Rainbow;
 			packageProductDependencies = (
-				A5B7975A2B0249E300B20742 /* IQKeyboardManagerSwift */,
 				4AF8FA932B067D28006EEE4B /* SnapKit */,
 			);
 			productName = Rainbow;
@@ -608,7 +525,6 @@
 			mainGroup = A5B797012B010E3100B20742;
 			packageReferences = (
 				A5B797542B0249C300B20742 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				A5B797592B0249E300B20742 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = A5B7970B2B010E3100B20742 /* Products */;
 			projectDirPath = "";
@@ -648,30 +564,23 @@
 			files = (
 				A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */,
 				15AB852E2B053285006B3CCF /* ColorCheckerBrain.swift in Sources */,
-				15AB85362B068F34006B3CCF /* SettingsBuilder.swift in Sources */,
-				446F15B72B065B1C00B10C77 /* RulesPresenterProtocol.swift in Sources */,
 				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
 				15F3BE7E2B02E70500E74E7A /* SettingsViewController.swift in Sources */,
 				4AD131702B0566E4007DA3B7 /* ResultsPresenter.swift in Sources */,
 				E112CBE62B0674F100F08206 /* CustomNavigationController.swift in Sources */,
-				446F15B92B065B1C00B10C77 /* Model.swift in Sources */,
 				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
 				4AD1313F2B02A3A0007DA3B7 /* Extension + UILabel.swift in Sources */,
 				E112CBF12B08F45900F08206 /* GameError.swift in Sources */,
 				4AD131742B0566E4007DA3B7 /* ResultsTableViewController.swift in Sources */,
+				E183FEBE2B0B465100E3ED41 /* ShadowButtonFactory.swift in Sources */,
 				4AD131412B02A664007DA3B7 /* Extension + UIStackView.swift in Sources */,
-				A5B7974E2B02402300B20742 /* MainView.swift in Sources */,
 				4AD1315B2B051DCD007DA3B7 /* MainBuilder.swift in Sources */,
-				446F15BB2B065B1C00B10C77 /* RulesBuilder.swift in Sources */,
-				A5B7974B2B02402300B20742 /* CustomView.swift in Sources */,
-				4AD131432B02A7A9007DA3B7 /* Extension + UIButton.swift in Sources */,
 				4AD1316F2B0566E4007DA3B7 /* ResultsRouter.swift in Sources */,
 				4AD131732B0566E4007DA3B7 /* ResultsViewProtocol.swift in Sources */,
 				4AD131572B051DAE007DA3B7 /* MainRouter.swift in Sources */,
 				4AD131522B03D9D7007DA3B7 /* GamePresenter.swift in Sources */,
 				4AF8FA9B2B0749BD006EEE4B /* GameRouter.swift in Sources */,
 				4AD131502B03D99F007DA3B7 /* GameViewController.swift in Sources */,
-				15AB85382B068F4B006B3CCF /* SettingsRouter.swift in Sources */,
 				15AB852B2B0530C9006B3CCF /* ColorChecker.swift in Sources */,
 				15F3BE842B02F07200E74E7A /* SettingsViewService.swift in Sources */,
 				E112CBE82B06750000F08206 /* Extension + UIImage.swift in Sources */,
@@ -683,9 +592,8 @@
 				4AD131722B0566E4007DA3B7 /* ResultTableViewCell.swift in Sources */,
 				4AD1314E2B03D982007DA3B7 /* GameModel.swift in Sources */,
 				4AD131782B056781007DA3B7 /* ViewFactory.swift in Sources */,
-				446F15BC2B065B1C00B10C77 /* RulesRouter.swift in Sources */,
 				4AD131462B02B3CF007DA3B7 /* Extension + CustomButton.swift in Sources */,
-				A5B7974C2B02402300B20742 /* CustomViewController.swift in Sources */,
+				E183FEC12B0B47E500E3ED41 /* SettingsBuilder.swift in Sources */,
 				A5B797512B02402300B20742 /* SceneDelegate.swift in Sources */,
 				44A57C512B0261AD00C8E383 /* Extension + UIFont.swift in Sources */,
 				4AD131592B051DBE007DA3B7 /* MainPresenter.swift in Sources */,
@@ -924,25 +832,12 @@
 				minimumVersion = 5.6.0;
 			};
 		};
-		A5B797592B0249E300B20742 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.5.16;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		4AF8FA932B067D28006EEE4B /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SnapKit;
-		};
-		A5B7975A2B0249E300B20742 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A5B797592B0249E300B20742 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

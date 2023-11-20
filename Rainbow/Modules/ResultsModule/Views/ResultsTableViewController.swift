@@ -16,24 +16,19 @@ final class ResultsTableViewController: UITableViewController {
     
     private let cellID = "cell"
     
-    lazy var clearResultsButton: UIButton = {
-        let bt = UIButton()
-        bt.setTitle("Очистить статистику", for: .normal)
-        bt.setTitleColor(.white, for: .normal)
-        bt.backgroundColor = .RainbowGameColor.customRed
-        bt.layer.cornerRadius = 10
-        bt.layer.shadowOffset = CGSize(width: 0, height: 4)
-        bt.layer.shadowOpacity = 0.9
-        bt.layer.shadowRadius = 3
-        bt.layer.shadowColor = UIColor.black.cgColor
-        bt.addTarget(self, action: #selector(clearResultsButtonTap), for: .touchUpInside)
-        return bt
+    private lazy var clearResultsButton: UIButton = {
+        let button = ShadowButtonFactory.makeShadowButton(
+            backgroundColor: .RainbowGameColor.customRed,
+            title: "Очистить статистику",
+            target: self,
+            action: #selector(clearResultsButtonTap))
+        return button
     }()
     
     //MARK: Init
     init(presenter: ResultsPresenterProtocol) {
         self.presenter = presenter
-        super.init(style: .plain)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +36,6 @@ final class ResultsTableViewController: UITableViewController {
     }
     
     //MARK: Life Circle
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +52,7 @@ final class ResultsTableViewController: UITableViewController {
         navigationController?.setupNavigationBar()
         navigationItem.hidesBackButton = true
         navigationItem.title = "Статистика"
-
+        
         let exitBarButton = UIBarButtonItem(image: UIImage(systemName: "xmark", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)), style: .plain, target: self, action: #selector(exitButtonPressed))
         navigationItem.rightBarButtonItem = exitBarButton
     }
@@ -83,15 +77,6 @@ final class ResultsTableViewController: UITableViewController {
         tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: -150, right: 0)
     }
     
-    private func orderNumerate() {
-        if !presenter.resultStorage.results.isEmpty {
-            var number = presenter.resultStorage.results.count
-            for index in 0...presenter.resultStorage.results.count-1 {
-              //  presenter.resultStorage.results[index].numberGame = number
-                number -= 1
-            }
-        }
-    }
     
     private func setupClearResultsButton() {
         view.addSubview(clearResultsButton)

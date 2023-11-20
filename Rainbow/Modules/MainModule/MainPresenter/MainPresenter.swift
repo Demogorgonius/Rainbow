@@ -6,12 +6,8 @@
 //
 
 import Foundation
-
-
-protocol MainPresenterProtocol: AnyObject {
+protocol MainViewProtocol: AnyObject {
     
- 
-    var view: MainView? { get set }
     func startNewGameButtonTapped()
     func continueGameButtonTapped()
     func statisticGameTapped()
@@ -19,9 +15,18 @@ protocol MainPresenterProtocol: AnyObject {
     func infoGameButtonTapped()
 }
 
-class MainPresenter: MainPresenterProtocol {
+protocol MainPresenterProtocol {
     
-    weak var view: MainView?
+    func startNewGameButtonTapped()
+    func continueGameButtonTapped()
+    func statisticGameTapped()
+    func settingsGameButtonTapped()
+    func infoGameButtonTapped()
+}
+
+final class MainPresenter: MainPresenterProtocol {
+    
+    weak var view: MainViewProtocol?
    
     var router: MainRouterProtocol
     
@@ -38,7 +43,7 @@ class MainPresenter: MainPresenterProtocol {
     }
     
     func statisticGameTapped() {
-        router.goToStatistics()
+        router.goToResults()
     }
     
     func settingsGameButtonTapped() {

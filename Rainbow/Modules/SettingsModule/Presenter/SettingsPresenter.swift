@@ -9,8 +9,7 @@ import Foundation
 
 protocol SettingsPresenterProtocol: SettingsViewProtocol {
 
-    init(view: SettingsViewProtocol, router: SettingsRouterProtocol, settingsManager: SettingManagerProtocol)
-    func backButtonTapped()
+    init(view: SettingsViewProtocol, settingsManager: SettingManagerProtocol)
     func gameDuration(duration: Int)
     func speedGame(speed: Int)
     func checkTask(isOn: Bool)
@@ -33,14 +32,13 @@ protocol SettingsViewProtocol: AnyObject  {
 class SettingsPresenter: SettingsPresenterProtocol {
     
     weak var view: SettingsViewProtocol?
-    private let router: SettingsRouterProtocol!
+
     var settingsManager: SettingManagerProtocol?
     var settings: GameSettings?
     
     
-    required init(view: SettingsViewProtocol, router: SettingsRouterProtocol, settingsManager: SettingManagerProtocol) {
+    required init(view: SettingsViewProtocol, settingsManager: SettingManagerProtocol) {
         self.view = view
-        self.router = router
         self.settingsManager = settingsManager
     }
     
@@ -261,11 +259,4 @@ class SettingsPresenter: SettingsPresenterProtocol {
             }
         })
     }
-    
-    func backButtonTapped() {
-        router.goToStartScreen()
-    }
-    
-    
-    
 }
