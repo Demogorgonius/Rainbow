@@ -17,11 +17,6 @@ protocol AlertConfiguration {
 struct AlertAction {
     let title: String
     let style: UIAlertAction.Style
-    
-    init(title: String, style: UIAlertAction.Style) {
-        self.title = title
-        self.style = style
-    }
 }
 
 enum AlertType {
@@ -29,7 +24,6 @@ enum AlertType {
 }
 
 class AlertFactory {
-    
     static func createAlert(for type: AlertType) -> UIAlertController {
         guard let config = alertConfigurations(for: type) else {
             return UIAlertController()
