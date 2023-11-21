@@ -23,7 +23,6 @@ final class RulesViewController: UIViewController {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .customBackground
         setViews()
         setupBackButton()
         setConstrains()
@@ -32,6 +31,7 @@ final class RulesViewController: UIViewController {
     
     //MARK: - Set Views
     private func setViews() {
+        view.addVerticalGradientLayer()
         view.addSubviews(rulesOfTheGame)
     }
     

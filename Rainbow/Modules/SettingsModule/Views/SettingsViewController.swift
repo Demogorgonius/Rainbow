@@ -21,7 +21,7 @@ final class SettingsViewController: UIViewController {
         
         super.viewDidLoad()
         presenter.getSettings()
-        view.backgroundColor = .customBackground
+        view.addVerticalGradientLayer()
         setupButtons()
         setupViews()
         setupLayout()

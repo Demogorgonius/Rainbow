@@ -111,7 +111,7 @@ final class MainViewController: UIViewController {
     
     // MARK: - Setup UI
     private func setViews() {
-        view.backgroundColor = .customBackground
+        view.addVerticalGradientLayer()
         
         view.addSubview(rainbowImage)
         view.addSubview(gameLabel)
