@@ -57,11 +57,14 @@ class GameViewController: UIViewController {
     private func addSubviews() {
         view.backgroundColor = .RainbowGameColor.customBackground
         view.addSubview(speedButton)
+        speedButton.frame = CGRect(x: 0, y: 0, width: 73, height: 73)
         speedButton.snp.makeConstraints { make in
             make.width.equalTo(73)
             make.height.equalTo(73)
             make.trailing.equalTo(-16)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-34)
+            
+            speedButton.layer.cornerRadius = speedButton.frame.size.height / 2
         }
     }
     
@@ -127,8 +130,7 @@ extension GameViewController: GameViewProtocol {
                 numberGame: presenter.numberGame + 1,
                 durationGame: presenter.settings?.durationGame ?? 0,
                 speedGame: presenter.settings?.speedGame ?? 0,
-                resultGame: "3/4"
-            )
+                resultGame: "3/4")
             )
             presenter.routeToResultScreen()
         }

@@ -43,17 +43,19 @@ let color = colorButtons.colorButtons
 
 
 struct GameSettings: Codable {
-    var durationGame: Int = 10
+    var numberGame = 1
+    var durationGame = 10
     var speedGame: Int = 1
-    var checkTask: Bool = true
+    var checkTask = true
     var gameColors: [ColorChecker]
-    var sizeFont: Double = 12
-    var backgroundForText: Bool = true
-    var backgroundForView: String = "customBackground"
-    var screenLocation: Bool = true
+    var sizeFont = 12.0
+    var backgroundForText = true
+    var backgroundForView = "customBackground"
+    var screenLocation = true
 }
 
 protocol SettingManagerProtocol {
+    
     func saveSettings(
         durationGame: Int?,
         speedGame: Int?,
@@ -65,6 +67,7 @@ protocol SettingManagerProtocol {
         screenLocation: Bool?,
         completion: @escaping(Result<GameSettings, Error>)->Void
     )
+    
     func getSettings(completion: @escaping(Result<GameSettings,Error>)->Void)
 }
 
@@ -77,7 +80,7 @@ protocol ResultsStorageProtocol {
 
 typealias GameManagerProtocol = SettingManagerProtocol & ResultsStorageProtocol
 
-class SettingsManager: SettingManagerProtocol, ResultsStorageProtocol {
+class SettingsManager: GameManagerProtocol {
     
     
     let defaults = UserDefaults.standard
@@ -101,9 +104,6 @@ class SettingsManager: SettingManagerProtocol, ResultsStorageProtocol {
         defaults.setValue([], forKey: "addStatistic")
       
     }
-    
-
-
 
     func saveSettings(
         durationGame: Int?,
@@ -128,13 +128,11 @@ class SettingsManager: SettingManagerProtocol, ResultsStorageProtocol {
             screenLocation: screenLocation ?? true
         )
         
-        
         let encoder = JSONEncoder()
         
         if let encoded = try? encoder.encode(settings) {
             
             defaults.set(encoded, forKey: "gameSettings")
-            
         }
         
         if let settings = defaults.object(forKey: "gameSettings") as? Data {

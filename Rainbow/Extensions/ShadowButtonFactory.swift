@@ -7,15 +7,9 @@
 
 import UIKit
 
-enum ShadowButtonStyle {
-    case standard
-    case circular
-}
-
 class ShadowButtonFactory {
     static func makeShadowButton(
         backgroundColor: UIColor,
-        style: ShadowButtonStyle = .standard,
         title: String?,
         target: Any?,
         action: Selector?
@@ -25,14 +19,7 @@ class ShadowButtonFactory {
         button.setTitle(title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = backgroundColor
-        
-        switch style {
-        case .standard:
-            button.layer.cornerRadius = 10
-        case .circular:
-            button.layer.cornerRadius = button.frame.size.height / 2
-        }
-        
+        button.layer.cornerRadius = 10
         button.layer.shadowOffset = CGSize(width: 0, height: 4)
         button.layer.shadowOpacity = 0.9
         button.layer.shadowRadius = 3

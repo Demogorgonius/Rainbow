@@ -420,8 +420,7 @@ final class SettingsViewController: UIViewController {
             }
         }
         
-        
-        
+
         func setupViews() {
             gameTimeShadowView.shadowView.addSubview(gameTimeStack)
             gameSpeedShadowView.shadowView.addSubview(gameSpeedStack)
