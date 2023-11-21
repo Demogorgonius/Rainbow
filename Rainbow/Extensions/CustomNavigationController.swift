@@ -10,7 +10,6 @@ import UIKit
 extension UINavigationController {
     func setupNavigationBar() {
         setBackButtonAppearance()
-        setTitleTextAppearance()
         configureNavigationBarAppearance()
     }
 
@@ -24,18 +23,14 @@ extension UINavigationController {
         navigationBar.tintColor = .white
     }
 
-    private func setTitleTextAppearance() {
-        let titleAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.TextFont.Regular.size(of: 40)
-        ]
-        navigationBar.titleTextAttributes = titleAttributes
-    }
 
     private func configureNavigationBarAppearance() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .customPurple
-        
+        appearance.titleTextAttributes = [
+            .font: UIFont.boldSystemFont(ofSize: 30),
+            .foregroundColor: UIColor.white]
         navigationBar.standardAppearance = appearance
         navigationBar.compactAppearance = appearance
         navigationBar.scrollEdgeAppearance = appearance

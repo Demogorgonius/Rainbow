@@ -15,7 +15,7 @@ extension UIButton {
         if let target = target, let action = action {
             addTarget(target, action: action, for: .touchUpInside)
         }
-        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 1.0
