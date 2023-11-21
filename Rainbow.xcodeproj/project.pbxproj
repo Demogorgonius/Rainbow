@@ -48,6 +48,7 @@
 		4AF8FA942B067D28006EEE4B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF8FA932B067D28006EEE4B /* SnapKit */; };
 		4AF8FA9B2B0749BD006EEE4B /* GameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF8FA9A2B0749BD006EEE4B /* GameRouter.swift */; };
 		4AF8FA9D2B0749DC006EEE4B /* GameBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF8FA9C2B0749DC006EEE4B /* GameBuilder.swift */; };
+		4AF921132B0CF7EC0004126C /* AlertControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF921122B0CF7EC0004126C /* AlertControllerFactory.swift */; };
 		A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797402B02402300B20742 /* MainViewController.swift */; };
 		A5B7974F2B02402300B20742 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B797432B02402300B20742 /* LaunchScreen.storyboard */; };
 		A5B797502B02402300B20742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797462B02402300B20742 /* AppDelegate.swift */; };
@@ -102,6 +103,7 @@
 		4AD131762B056781007DA3B7 /* ViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
 		4AF8FA9A2B0749BD006EEE4B /* GameRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRouter.swift; sourceTree = "<group>"; };
 		4AF8FA9C2B0749DC006EEE4B /* GameBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBuilder.swift; sourceTree = "<group>"; };
+		4AF921122B0CF7EC0004126C /* AlertControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerFactory.swift; sourceTree = "<group>"; };
 		A5B7970A2B010E3100B20742 /* Rainbow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rainbow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B797402B02402300B20742 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A5B797442B02402300B20742 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				4AD131752B056781007DA3B7 /* LabelFactory.swift */,
 				E183FEBD2B0B465100E3ED41 /* ShadowButtonFactory.swift */,
 				4AD131762B056781007DA3B7 /* ViewFactory.swift */,
+				4AF921122B0CF7EC0004126C /* AlertControllerFactory.swift */,
 				E112CBE52B0674F100F08206 /* CustomNavigationController.swift */,
 			);
 			path = Extensions;
@@ -596,6 +599,7 @@
 				E183FEC12B0B47E500E3ED41 /* SettingsBuilder.swift in Sources */,
 				A5B797512B02402300B20742 /* SceneDelegate.swift in Sources */,
 				44A57C512B0261AD00C8E383 /* Extension + UIFont.swift in Sources */,
+				4AF921132B0CF7EC0004126C /* AlertControllerFactory.swift in Sources */,
 				4AD131592B051DBE007DA3B7 /* MainPresenter.swift in Sources */,
 				446F15B82B065B1C00B10C77 /* InputViewCustom.swift in Sources */,
 				E112CBF32B09268E00F08206 /* ResultModel.swift in Sources */,

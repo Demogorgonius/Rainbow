@@ -25,7 +25,8 @@ class MainRouter: MainRouterProtocol {
     }
     
     func goToContinueGame() {
-        
+        let alert = AlertFactory.createAlert(for: .warning)
+        viewController?.present(alert, animated: true, completion: nil)
     }
     
     func goToResults() {
