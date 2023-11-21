@@ -21,7 +21,7 @@ final class SettingsViewController: UIViewController {
         
         super.viewDidLoad()
         presenter.getSettings()
-        view.backgroundColor = UIColor.RainbowGameColor.customBackground
+        view.backgroundColor = .customBackground
         setupButtons()
         setupViews()
         setupLayout()
@@ -79,7 +79,7 @@ final class SettingsViewController: UIViewController {
         slider.minimumValue = 1.0
         slider.maximumValue = 20.0
         slider.setValue(getDuration(), animated: true)
-        slider.minimumTrackTintColor = UIColor.RainbowGameColor.customOrange
+        slider.minimumTrackTintColor = .customOrange
         return slider
     }()
     
@@ -117,7 +117,7 @@ final class SettingsViewController: UIViewController {
         slider.minimumValue = 1.0
         slider.maximumValue = 5.0
         slider.setValue(getSpeed(), animated: true)
-        slider.minimumTrackTintColor = UIColor.RainbowGameColor.customOrange
+        slider.minimumTrackTintColor = .customOrange
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
@@ -151,7 +151,7 @@ final class SettingsViewController: UIViewController {
     
     lazy var gameWithAnswerCheckSwitch: UISwitch = {
         let switcher = UISwitch()
-        switcher.onTintColor = UIColor.RainbowGameColor.customOrange
+        switcher.onTintColor = .customOrange
         switcher.translatesAutoresizingMaskIntoConstraints = false
         switcher.setOn(isCheck(), animated: true)
         return switcher
@@ -275,7 +275,7 @@ final class SettingsViewController: UIViewController {
     lazy var backgroundForWordSwitch: UISwitch = {
         let switcher = UISwitch()
         switcher.isOn = isBackground()
-        switcher.onTintColor = UIColor.RainbowGameColor.customOrange
+        switcher.onTintColor = .customOrange
         switcher.translatesAutoresizingMaskIntoConstraints = false
         return switcher
     }()
@@ -378,7 +378,7 @@ final class SettingsViewController: UIViewController {
             let blackCheck = UIImage(named: "checkboxBlack")!
             switch onOffStatus {
             case true:
-                view.backgroundColor == UIColor.RainbowGameColor.customBlack ? view.setImage(whiteCheck, for: .normal) : view.setImage(blackCheck, for: .normal)
+                view.backgroundColor == .customBlack ? view.setImage(whiteCheck, for: .normal) : view.setImage(blackCheck, for: .normal)
             default:
                 view.setImage(nil, for: .normal)
             }

@@ -101,8 +101,7 @@ class SettingsManager: GameManagerProtocol {
     }
     
     func clearStatistic() {
-        defaults.setValue([], forKey: "addStatistic")
-      
+        defaults.removeObject(forKey: "addStatistic")
     }
 
     func saveSettings(

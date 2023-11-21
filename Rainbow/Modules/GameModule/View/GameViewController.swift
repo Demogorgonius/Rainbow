@@ -8,15 +8,26 @@
 import UIKit
 import SnapKit
 
+enum Speed: String {
+    case x1 = "X1"
+    case x2 = "X2"
+    case x3 = "X3"
+    case x4 = "X4"
+    case x5 = "X5"
+}
+
 class GameViewController: UIViewController {
     
     private var presenter: GamePresenterProtocol
     
     var timer = Timer()
+    var colorsAnimator: UIViewPropertyAnimator?
+    
+    
     
     lazy var speedButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .RainbowGameColor.customRed,
+            backgroundColor: .customRed,
             title: "X2",
             target: self,
             action: #selector(speedButtonPressed))
@@ -55,7 +66,7 @@ class GameViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.backgroundColor = .RainbowGameColor.customBackground
+        view.backgroundColor = .customBackground
         view.addSubview(speedButton)
         speedButton.frame = CGRect(x: 0, y: 0, width: 73, height: 73)
         speedButton.snp.makeConstraints { make in
@@ -79,11 +90,12 @@ class GameViewController: UIViewController {
 
 // MARK: GameViewProtocol
 extension GameViewController: GameViewProtocol {
+    
     func getSettings() {
         presenter.getSettings()
     }
     
-    internal func startTimer(with elapsedTime: TimeInterval?) {
+    func startTimer(with elapsedTime: TimeInterval?) {
         timer.invalidate()
         presenter.startTime = Date()
         
@@ -100,6 +112,13 @@ extension GameViewController: GameViewProtocol {
         )
     }
     
+    func settingSpeed(_ xSpeed: Speed, _ duration: CGFloat) {
+        presenter.defaultSpeed = xSpeed.rawValue
+        speedButton.setTitle(xSpeed.rawValue, for: .normal)
+        colorsAnimator?.pauseAnimation()
+        colorsAnimator?.continueAnimation(withTimingParameters: .none, durationFactor: duration)
+    }
+    
     // MARK: @objc func
     @objc func pauseButtonPressed() {
         if timer.isValid {
@@ -113,7 +132,18 @@ extension GameViewController: GameViewProtocol {
     }
     
     @objc func speedButtonPressed() {
-        // Handle speed button press if needed
+        switch presenter.defaultSpeed {
+        case Speed.x1.rawValue:
+            settingSpeed(Speed.x2, 1/2)
+        case Speed.x2.rawValue:
+            settingSpeed(Speed.x3, 1/3)
+        case Speed.x3.rawValue:
+            settingSpeed(Speed.x4, 1/4)
+        case Speed.x4.rawValue:
+            settingSpeed(Speed.x5, 1/5)
+        default:
+            settingSpeed(Speed.x1, 1/1)
+        }
     }
     
     // MARK: @objc func

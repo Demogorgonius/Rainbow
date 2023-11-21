@@ -59,6 +59,7 @@
 		E112CBF32B09268E00F08206 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBF22B09268E00F08206 /* ResultModel.swift */; };
 		E183FEBE2B0B465100E3ED41 /* ShadowButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEBD2B0B465100E3ED41 /* ShadowButtonFactory.swift */; };
 		E183FEC12B0B47E500E3ED41 /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEC02B0B47E500E3ED41 /* SettingsBuilder.swift */; };
+		E183FEC82B0CC2AA00E3ED41 /* RainbowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEC72B0CC2AA00E3ED41 /* RainbowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +116,7 @@
 		E112CBF22B09268E00F08206 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 		E183FEBD2B0B465100E3ED41 /* ShadowButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButtonFactory.swift; sourceTree = "<group>"; };
 		E183FEC02B0B47E500E3ED41 /* SettingsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsBuilder.swift; path = Rainbow/Modules/SettingsModule/SettingsBuilder.swift; sourceTree = SOURCE_ROOT; };
+		E183FEC72B0CC2AA00E3ED41 /* RainbowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +265,7 @@
 		4AD1314B2B03B958007DA3B7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E183FEC72B0CC2AA00E3ED41 /* RainbowView.swift */,
 				4AD1314F2B03D99F007DA3B7 /* GameViewController.swift */,
 			);
 			path = View;
@@ -571,6 +574,7 @@
 				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
 				4AD1313F2B02A3A0007DA3B7 /* Extension + UILabel.swift in Sources */,
 				E112CBF12B08F45900F08206 /* GameError.swift in Sources */,
+				E183FEC82B0CC2AA00E3ED41 /* RainbowView.swift in Sources */,
 				4AD131742B0566E4007DA3B7 /* ResultsTableViewController.swift in Sources */,
 				E183FEBE2B0B465100E3ED41 /* ShadowButtonFactory.swift in Sources */,
 				4AD131412B02A664007DA3B7 /* Extension + UIStackView.swift in Sources */,
