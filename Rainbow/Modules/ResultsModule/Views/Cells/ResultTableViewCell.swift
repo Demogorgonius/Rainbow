@@ -55,7 +55,7 @@ final class ResultTableViewCell: UITableViewCell {
     
     
     private func addSubviews() {
-        contentView.backgroundColor = UIColor.RainbowGameColor.customBackground
+        contentView.backgroundColor = .customBackground
         let resultView = resultContentView.shadowView
         
         contentView.addSubview(resultContentView.shadowView)

@@ -27,7 +27,7 @@ final class MainViewController: UIViewController {
     
     private lazy var startNewGameButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .RainbowGameColor.customRed,
+            backgroundColor: .customRed,
             title: "Новая игра",
             target: self,
             action: #selector(startNewGameButtonTapped))
@@ -36,7 +36,7 @@ final class MainViewController: UIViewController {
     
     private lazy var continueGameButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .RainbowGameColor.customLightBlue,
+            backgroundColor: .customLightBlue,
             title: "Продолжить",
             target: self,
             action: #selector(continueGameButtonTapped))
@@ -45,7 +45,7 @@ final class MainViewController: UIViewController {
     
     private lazy var statisticGameButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .RainbowGameColor.customGreenForButton,
+            backgroundColor: .customGreenForButton,
             title: "Cтатистика",
             target: self,
             action: #selector(statisticGameTapped))
@@ -73,8 +73,7 @@ final class MainViewController: UIViewController {
         target: self,
         action: #selector(infoGameButtonTapped)
     )
-    
-    
+
     private lazy var customButtonsStackView = UIStackView(
         axis: .horizontal,
         distribution: .fillEqually,
@@ -86,6 +85,7 @@ final class MainViewController: UIViewController {
     init(presenter: MainPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -99,16 +99,25 @@ final class MainViewController: UIViewController {
         layoutViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     // MARK: - Setup UI
     private func setViews() {
-        view.backgroundColor = .RainbowGameColor.customBackground
+        view.addVerticalGradientLayer()
         
         view.addSubview(rainbowImage)
         view.addSubview(gameLabel)
         view.addSubview(nameGameLabel)
         view.addSubviews(buttonsStackView)
         buttonsStackView.addArrangedSubview(customButtonsStackView)
-        
     }
     
     private func layoutViews() {

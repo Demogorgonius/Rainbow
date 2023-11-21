@@ -44,16 +44,16 @@ class LabelFactory {
 }
 // Структуры для конфигураций различных видов лейблов
 struct GamePinkLabelConfig: LabelConfigurable {
-    let textColor: UIColor = UIColor.RainbowGameColor.customPink
+    let textColor: UIColor = .customPink
     let font: UIFont = UIFont.TextFont.Regular.size(of: 20)
 }
 
 struct GameBlackLabelConfig: LabelConfigurable {
-    let textColor: UIColor = UIColor.RainbowGameColor.customBlack
+    let textColor: UIColor = .customBlack
     let font: UIFont = UIFont.TextFont.Regular.size(of: 20)
 }
 
 struct GameLightGreenLabelConfig: LabelConfigurable {
-    let textColor: UIColor = UIColor.RainbowGameColor.customLightGreen
+    let textColor: UIColor = .customLightGreen
     let font: UIFont = UIFont.DisplayFont.Heavy.size(of: 20)
 }

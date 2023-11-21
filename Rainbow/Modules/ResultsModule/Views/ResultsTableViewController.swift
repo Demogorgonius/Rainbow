@@ -18,7 +18,7 @@ final class ResultsTableViewController: UITableViewController {
     
     private lazy var clearResultsButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .RainbowGameColor.customRed,
+            backgroundColor: .customRed,
             title: "Очистить статистику",
             target: self,
             action: #selector(clearResultsButtonTap))
@@ -39,7 +39,7 @@ final class ResultsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.RainbowGameColor.customBackground
+        view.backgroundColor = .customBackground
         configureTableView()
         setupClearResultsButton()
         

@@ -26,7 +26,7 @@ final class InputViewCustom: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = .RainbowGameColor.customBurgundy
+        label.textColor = .customBurgundy
         label.font = UIFont.systemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -44,7 +44,7 @@ final class InputViewCustom: UIView {
     private lazy var substrateFirst: UILabel = {
         let label = UILabel()
         label.text = "подложка включена:"
-        label.textColor = .RainbowGameColor.customBlack
+        label.textColor = .customBlack
         label.font = UIFont.systemFont(ofSize: 10)
         return label
     }()
@@ -52,7 +52,7 @@ final class InputViewCustom: UIView {
     private lazy var substrateSecond: UILabel = {
         let label = UILabel()
         label.text = "подложка выключена:"
-        label.textColor = .RainbowGameColor.customBlack
+        label.textColor = .customBlack
         label.font = UIFont.systemFont(ofSize: 10)
         return label
     }()
@@ -60,11 +60,11 @@ final class InputViewCustom: UIView {
     private lazy var nameShadow: UILabel = {
         let label = UILabel()
         label.text = "СИНИЙ"
-        label.layer.shadowColor = UIColor.RainbowGameColor.customBackground.cgColor
+        label.layer.shadowColor = UIColor.customBackground.cgColor
         label.layer.shadowOffset = CGSize(width: 0, height: 5)
         label.layer.shadowOpacity = 0.5
         label.layer.shadowRadius = 1.5
-        label.textColor = .RainbowGameColor.customLightGreen
+        label.textColor = .customLightGreen
         label.font = UIFont.systemFont(ofSize: 20)
         return label
     }()
@@ -73,9 +73,9 @@ final class InputViewCustom: UIView {
         let button = UIButton()
         button.setTitle("СИНИЙ", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .RainbowGameColor.customLightGreen
+        button.backgroundColor = .customLightGreen
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        button.layer.shadowColor = UIColor.RainbowGameColor.customBackground.cgColor
+        button.layer.shadowColor = UIColor.customBackground.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 5)
         button.layer.shadowOpacity = 0.5
         button.layer.shadowRadius = 2
