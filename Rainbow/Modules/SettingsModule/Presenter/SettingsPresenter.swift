@@ -11,62 +11,40 @@ protocol SettingsPresenterProtocol {
     var settings: GameSettings? { get set }
     
     func getSettings()
-    func colorButtons(colorCheckers: [ColorChecker]) 
+    
     func saveGameSettings(
-        durationGame: Int,
-        speedGame: Int,
-        checkTask: Bool,
-        gameColors: [ColorChecker],
-        sizeFont: Double,
-        backgroundForText: Bool,
-        backgroundForView: String,
-        screenLocation: Bool
+        durationGame: Int?,
+        speedGame: Int?,
+        checkTask: Bool?,
+        gameColors: [ColorChecker]?,
+        sizeFont: Double?,
+        backgroundForText: Bool?,
+        backgroundForView: String?,
+        screenLocation: Bool?
     )
-    
 }
-    
+
 protocol SettingsViewProtocol: AnyObject  {
-    
+    func getDuration() -> Float
+    func getSpeed() -> Float
+    func isCheck() -> Bool
+    func getButtonColors() -> [ColorChecker]
+    func getFontSize() -> Double
+    func isBackground() -> Bool
+    func getGameBackground() -> String
+    func isRandomLocation() -> Bool
 }
 
 class SettingsPresenter: SettingsPresenterProtocol {
-
     weak var view: SettingsViewProtocol?
-
+    
     var settingsManager: SettingManagerProtocol?
     var settings: GameSettings?
     
-    
-    required init(view: SettingsViewProtocol, settingsManager: SettingManagerProtocol) {
+    init(view: SettingsViewProtocol, settingsManager: SettingManagerProtocol) {
         self.view = view
         self.settingsManager = settingsManager
     }
-
-    func colorButtons(colorCheckers: [ColorChecker]) {
-        settingsManager?.getSettings(completion: { result in
-            switch result {
-            case .success(let settings):
-                self.settings = settings
-                print("загрузил ")
-            case .failure(let error):
-                print(error.localizedDescription)
-                print("Не загрузил ")
-            }
-        })
-        
-        settings?.gameColors = colorCheckers
-        settingsManager?.saveSettings(durationGame: nil, speedGame: nil, checkTask: nil, gameColors: colorCheckers, sizeFont: nil, backgroundForText: nil, backgroundForView: nil, screenLocation: nil, completion: { result in
-            switch result {
-            case .success(let settings):
-                print("Сохранил")
-                self.settings = settings
-            case .failure(let error):
-                print(error.localizedDescription)
-                print("Сохранил")
-            }
-        })
-    }
-    
     
     func getSettings() {
         settingsManager?.getSettings(completion: { result in
@@ -78,8 +56,17 @@ class SettingsPresenter: SettingsPresenterProtocol {
             }
         })
     }
-
-    func saveGameSettings(durationGame: Int, speedGame: Int, checkTask: Bool, gameColors: [ColorChecker], sizeFont: Double, backgroundForText: Bool, backgroundForView: String, screenLocation: Bool) {
+    
+    func saveGameSettings(
+        durationGame: Int?,
+        speedGame: Int?,
+        checkTask: Bool?,
+        gameColors: [ColorChecker]?,
+        sizeFont: Double?,
+        backgroundForText: Bool?,
+        backgroundForView: String?,
+        screenLocation: Bool?
+    ) {
         settingsManager?.getSettings(completion: { result in
             switch result {
             case .success(let settings):
@@ -88,24 +75,24 @@ class SettingsPresenter: SettingsPresenterProtocol {
                 print(error.localizedDescription)
             }
         })
-
+        
         settingsManager?.saveSettings(
-            durationGame: settings?.durationGame,
-            speedGame: settings?.speedGame,
-            checkTask: settings?.checkTask,
-            gameColors: settings?.gameColors,
-            sizeFont: settings?.sizeFont,
-            backgroundForText: settings?.backgroundForText,
-            backgroundForView: settings?.backgroundForView,
-            screenLocation: settings?.screenLocation,
-            completion:
-                {  [weak self]  result in
-            switch result {
-            case .success(let settings):
-                self?.settings = settings
-            case .failure(let error):
-                print(error.localizedDescription)
+            durationGame: durationGame ?? settings?.durationGame,
+            speedGame: speedGame ?? settings?.speedGame,
+            checkTask: checkTask ?? settings?.checkTask ?? false,
+            gameColors: gameColors ?? settings?.gameColors,
+            sizeFont: sizeFont ?? settings?.sizeFont,
+            backgroundForText: backgroundForText ?? settings?.backgroundForText ?? false,
+            backgroundForView: backgroundForView ?? settings?.backgroundForView ?? "",
+            screenLocation: screenLocation ?? settings?.screenLocation ?? false,
+            completion: { [weak self] result in
+                switch result {
+                case .success(let settings):
+                    self?.settings = settings
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
-        })
+        )
     }
 }

@@ -5,20 +5,8 @@
 //  Created by Igor Guryan on 14.11.2023.
 //
 
-import Foundation
 import UIKit
 import SnapKit
-
-protocol SettingsInput {
-    func getDuration() -> Float
-    func getSpeed() -> Float
-    func isCheck() -> Bool
-    func getButtonColors() -> [ColorChecker]
-    func getFontSize() -> Double
-    func isBackground() -> Bool
-    func getGameBackground() -> String
-    func isRandomLocation() -> Bool
-}
 
 
 final class SettingsViewController: UIViewController {
@@ -27,8 +15,7 @@ final class SettingsViewController: UIViewController {
     var buttonsArray: [UIButton] = []
     lazy var colorButtonsArray =  getButtonColors()
     var standartColors = ColorButtons().colorButtons
-//
-//    lazy var colors = getButtonColors()
+
     
     override func viewDidLoad() {
         
@@ -45,21 +32,8 @@ final class SettingsViewController: UIViewController {
     private func configureNavigationBar() {
         navigationController?.setupNavigationBar()
         navigationItem.title = "Статистика"
-
-        let saveSettingsButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.down", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)), style: .plain, target: self, action: #selector(saveGameSettings))
-        navigationItem.rightBarButtonItem = saveSettingsButton
     }
     
-    @objc private func saveGameSettings() {
-        var locationRandom: Bool
-        var backgroundForViewColor = "customBackground"
-        if wordPlacementSC.selectedSegmentIndex == 0 {
-            locationRandom = true
-        } else {
-            locationRandom = false
-        }
-        presenter?.saveGameSettings(durationGame: Int(gameTimeSlider.value), speedGame: Int(gameSpeedSlider.value), checkTask: gameWithAnswerCheckSwitch.isOn, gameColors: colorButtonsArray, sizeFont: gameSizeStepper.value, backgroundForText: backgroundForWordSwitch.isOn, backgroundForView: backgroundForViewColor, screenLocation: locationRandom)
-    }
     
     // MARK: - Main Stack
     lazy var mainStack: UIStackView = {
@@ -387,7 +361,15 @@ final class SettingsViewController: UIViewController {
     @objc func checkboxTaped(sender: UIButton) {
         colorButtonsArray[sender.tag].isOn.toggle()
         setBackground(view: sender, onOffStatus: colorButtonsArray[sender.tag].isOn)
-        presenter?.colorButtons(colorCheckers: colorButtonsArray)
+        presenter?.saveGameSettings(
+            durationGame: nil,
+            speedGame: nil,
+            checkTask: nil,
+            gameColors: colorButtonsArray,
+            sizeFont: nil,
+            backgroundForText: nil,
+            backgroundForView: nil,
+            screenLocation: nil)
         }
 
     
@@ -440,8 +422,16 @@ final class SettingsViewController: UIViewController {
             if button.currentImage == nil {
                 result[button.tag].isOn.toggle()
             }
-            presenter?.colorButtons(colorCheckers: result)
-            
+            presenter?.saveGameSettings(
+                durationGame: nil,
+                speedGame: nil,
+                checkTask: nil,
+                gameColors: result,
+                sizeFont: nil,
+                backgroundForText: nil,
+                backgroundForView: nil,
+                screenLocation: nil
+            )
         }
     }
         
@@ -601,8 +591,8 @@ final class SettingsViewController: UIViewController {
     
     }
 
-// MARK: - Extension for SettingsInput - Methods to update View From Settings
-extension SettingsViewController: SettingsInput {
+// MARK: - Extension for SettingsViewProtocol - Methods to update View From Settings
+extension SettingsViewController: SettingsViewProtocol {
     
     func getDuration() -> Float {
         presenter.getSettings()
@@ -650,7 +640,3 @@ extension SettingsViewController: SettingsInput {
     }
 }
 
-extension SettingsViewController: SettingsViewProtocol {
-    
-
-}
