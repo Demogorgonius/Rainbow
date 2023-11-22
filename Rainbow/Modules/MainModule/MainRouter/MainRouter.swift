@@ -13,15 +13,27 @@ protocol MainRouterProtocol: AnyObject {
     func goToResults()
     func goToSettings()
     func goToInfo()
+    init(navigationVC: UINavigationController?)
 }
 
 class MainRouter: MainRouterProtocol {
     
     weak var viewController: UIViewController?
+    var navigationVC: UINavigationController?
+    
+    required init(navigationVC: UINavigationController?) {
+        self.navigationVC = navigationVC
+    }
     
     func goToNewGame() {
-        let gameScreen = GameBuilder.build()
-        self.viewController?.navigationController?.pushViewController(gameScreen, animated: true)
+        
+//        let gameScreen = GameBuilder.build()
+//        self.viewController?.navigationController?.pushViewController(gameScreen, animated: true)
+        
+        guard let navigationVC = navigationVC else { return }
+        let gameScreen = GameBuilder(navigationVC: navigationVC).build()
+        navigationVC.pushViewController(gameScreen, animated: true)
+        
     }
     
     func goToContinueGame() {
@@ -30,7 +42,8 @@ class MainRouter: MainRouterProtocol {
     }
     
     func goToResults() {
-        let resultsScreen = ResultsBuilder.build()
+        guard let navigationVC = navigationVC else { return }
+        let resultsScreen = ResultsBuilder(navigationVC: navigationVC).build()
         viewController?.navigationController?.pushViewController(resultsScreen, animated: true)
     }
     

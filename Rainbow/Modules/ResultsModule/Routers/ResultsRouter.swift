@@ -8,13 +8,25 @@
 import UIKit
 
 protocol ResultsRouterProtocol {
+    
     func routeToStartScreen()
+    init(navigationVC: UINavigationController)
+    
 }
 
 final class ResultsRouter: ResultsRouterProtocol {
-    weak var view: UIViewController?
+    
+    weak var navigationVC: UINavigationController?
+    
+    required init(navigationVC: UINavigationController) {
+        self.navigationVC = navigationVC
+    }
+    
     func routeToStartScreen() {
-        let startScreen = MainBuilder.build()
-        view?.navigationController?.setViewControllers([startScreen], animated: true)
+        
+        guard let navigationVC = navigationVC else { return }
+        let startScreen = MainBuilder(navigationVC: navigationVC).build()
+        navigationVC.setViewControllers([startScreen], animated: true)
+        
     }
 }

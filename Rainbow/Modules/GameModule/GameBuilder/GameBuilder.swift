@@ -10,21 +10,36 @@ import UIKit
 import UIKit
 
 protocol GameBuilderProtocol: AnyObject {
-    static func build() -> UIViewController
+    func build() -> UIViewController
+    init (navigationVC: UINavigationController)
 }
 
 class GameBuilder: GameBuilderProtocol {
     
-    static func build() -> UIViewController {
-        let router = GameRouter()
-        let gameManager = SettingsManager()
+    var navigationVC: UINavigationController?
+    
+    required init(navigationVC: UINavigationController) {
+        self.navigationVC = navigationVC
+    }
+    
+    func build() -> UIViewController {
         
-        let presenter = GamePresenter(router: router, gameManager: gameManager)
-        let viewController = GameViewController(presenter: presenter)
+        if let navigationVC = navigationVC {
+            
+            let router = GameRouter(navigationVC: navigationVC)
+            let gameManager = SettingsManager()
+            
+            let presenter = GamePresenter(router: router, gameManager: gameManager)
+            let viewController = GameViewController(presenter: presenter)
 
-        presenter.view = viewController
-        router.viewController = viewController
+            presenter.view = viewController
+            router.viewController = viewController
+            
+            return viewController
+        }
         
-        return viewController
+        return UIViewController()
+       
+       
     }
 }

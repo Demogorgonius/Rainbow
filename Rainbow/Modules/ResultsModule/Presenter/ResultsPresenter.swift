@@ -13,6 +13,8 @@ protocol ResultsPresenterProtocol {
     func getStatistic()
     func clearStatisticOverview()
     func exitButtonPressed()
+    init(router: ResultsRouterProtocol, resultStorage: ResultsStorageProtocol)
+    
 }
 
 final class ResultsPresenter: ResultsPresenterProtocol {
@@ -21,7 +23,7 @@ final class ResultsPresenter: ResultsPresenterProtocol {
     internal let resultStorage: ResultsStorageProtocol
     private let router: ResultsRouterProtocol
     
-    init(router: ResultsRouterProtocol, resultStorage: ResultsStorageProtocol) {
+    required init(router: ResultsRouterProtocol, resultStorage: ResultsStorageProtocol) {
         self.router = router
         self.resultStorage = resultStorage
     }
