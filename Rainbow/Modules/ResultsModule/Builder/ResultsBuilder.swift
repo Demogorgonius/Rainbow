@@ -7,16 +7,29 @@
 
 import UIKit
 
-final class ResultsBuilder {
-    static func build() -> UIViewController {
-        let router = ResultsRouter()
+
+protocol ResultsBuilderProtocol: AnyObject {
+    func build() -> UIViewController
+    init(navigationController: UINavigationController)
+}
+
+final class ResultsBuilder: ResultsBuilderProtocol {
+    weak var navigationController: UINavigationController?
+    
+    required init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    func build() -> UIViewController {
+        guard let navigationController else {
+            fatalError("ResultsBuilder requires a valid navigationController")
+        }
+        let viewController = ResultsTableViewController()
+        let router = ResultsRouter(navigationController: navigationController)
         let resultStorage = SettingsManager()
         let presenter = ResultsPresenter(router: router, resultStorage: resultStorage)
-        let view = ResultsTableViewController(presenter: presenter)
         
-        presenter.view = view
-        router.view = view
-        
-        return view
+        viewController.presenter = presenter
+        return viewController
     }
 }

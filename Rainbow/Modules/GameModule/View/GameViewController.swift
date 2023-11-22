@@ -18,7 +18,7 @@ enum Speed: String {
 
 class GameViewController: UIViewController {
     
-    private var presenter: GamePresenterProtocol
+    var presenter: GamePresenterProtocol!
     
     var timer = Timer()
     var colorsAnimator: UIViewPropertyAnimator?
@@ -31,21 +31,11 @@ class GameViewController: UIViewController {
             action: #selector(speedButtonPressed))
         return button
     }()
-    
-    //MARK: Init
-    init(presenter: GamePresenterProtocol) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         getSettings()
         navigationItem.title = formattedTime(from: TimeInterval(presenter.settings?.durationGame ?? 15))

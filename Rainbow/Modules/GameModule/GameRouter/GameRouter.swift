@@ -9,13 +9,19 @@ import UIKit
 
 protocol GameRouterProtocol: AnyObject {
     func goToStatistics()
+    init(navigationController: UINavigationController?)
 }
 
 class GameRouter: GameRouterProtocol {
-    weak var viewController: UIViewController?
+    weak var navigationController: UINavigationController?
+    
+    required init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
+    }
     
     func goToStatistics() {
-        let resultsViewController = ResultsBuilder.build()
-        viewController?.navigationController?.pushViewController(resultsViewController, animated: true)
+        guard let navigationController else { return }
+        let resultsViewController = ResultsBuilder(navigationController: navigationController).build()
+        navigationController.pushViewController(resultsViewController, animated: true)
     }
 }

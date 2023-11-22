@@ -8,20 +8,25 @@
 import UIKit
 
 protocol MainRouterProtocol: AnyObject {
+  
     func goToNewGame()
     func goToContinueGame()
     func goToResults()
     func goToSettings()
     func goToInfo()
+    init(navigationController: UINavigationController?)
 }
 
 class MainRouter: MainRouterProtocol {
-    
-    weak var viewController: UIViewController?
-    
+    weak var navigationController: UINavigationController?
+    required init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
+    }
+
     func goToNewGame() {
-        let gameScreen = GameBuilder.build()
-        self.viewController?.navigationController?.pushViewController(gameScreen, animated: true)
+        guard let navigationController else { return }
+        let gameScreen = GameBuilder(navigationController: navigationController).build()
+       navigationController.pushViewController(gameScreen, animated: true)
     }
     
     func goToContinueGame() {
@@ -29,17 +34,20 @@ class MainRouter: MainRouterProtocol {
     }
     
     func goToResults() {
-        let resultsScreen = ResultsBuilder.build()
-        viewController?.navigationController?.pushViewController(resultsScreen, animated: true)
+        guard let navigationController else { return }
+        let resultsScreen = ResultsBuilder(navigationController: navigationController).build()
+        navigationController.pushViewController(resultsScreen, animated: true)
     }
     
     func goToSettings() {
+        guard let navigationController else { return }
         let settingsScreen = SettingsBuilder.build()
-        viewController?.navigationController?.pushViewController(settingsScreen, animated: true)
+        navigationController.pushViewController(settingsScreen, animated: true)
     }
     
     func goToInfo() {
+        guard let navigationController else { return }
         let rulesScreen = RulesViewController()
-        viewController?.navigationController?.pushViewController(rulesScreen, animated: true)
+        navigationController.pushViewController(rulesScreen, animated: true)
     }
 }
