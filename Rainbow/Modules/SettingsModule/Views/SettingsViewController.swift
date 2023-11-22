@@ -29,9 +29,14 @@ final class SettingsViewController: UIViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        presenter?.saveGameSettings(durationGame: Int(gameTimeSlider.value), speedGame: Int(gameSpeedSlider.value), isChecksTask: gameWithAnswerCheckSwitch.isOn, gameColors: colorButtonsArray, sizeFont: gameSizeStepper.value, backgroundForText: backgroundForWordSwitch.isOn, backgroundForView: "customBackground", screenLocation: wordPlacementSC.selectedSegmentIndex == 0)
+
+    }
+    
     private func configureNavigationBar() {
         navigationController?.setupNavigationBar()
-        navigationItem.title = "Статистика"
+        navigationItem.title = "Настройки"
     }
     
     
@@ -297,11 +302,11 @@ final class SettingsViewController: UIViewController {
         return stack
     } ()
     
-    lazy var backgroundForGameLabel = SettingsViewService.shared.createSettingTitle(title: "Цвет фона")
+    lazy var backgroundForGameLabel = SettingsViewService.shared.createSettingTitle(title: "Цветовая палитра")
     
     lazy var backgroundForGameSC: UISegmentedControl = {
-        let sc = UISegmentedControl(items: ["Серый", "Белый", "Черный"])
-        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        let sc = UISegmentedControl(items: ["Светлая", "Темная"])
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "customBlack")!]
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
         sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
         sc.selectedSegmentTintColor = .white
@@ -331,7 +336,7 @@ final class SettingsViewController: UIViewController {
     
     lazy var wordPlacementSC: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Случайное", "По центру"])
-        sc.setEnabled(true, forSegmentAt: 1)
+//        sc.setEnabled(true, forSegmentAt: 1)
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
         sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
@@ -361,15 +366,15 @@ final class SettingsViewController: UIViewController {
     @objc func checkboxTaped(sender: UIButton) {
         colorButtonsArray[sender.tag].isOn.toggle()
         setBackground(view: sender, onOffStatus: colorButtonsArray[sender.tag].isOn)
-        presenter?.saveGameSettings(
-            durationGame: nil,
-            speedGame: nil,
-            isChecksTask: nil,
-            gameColors: colorButtonsArray,
-            sizeFont: nil,
-            backgroundForText: nil,
-            backgroundForView: nil,
-            screenLocation: nil)
+//        presenter?.saveGameSettings(
+//            durationGame: nil,
+//            speedGame: nil,
+//            isChecksTask: nil,
+//            gameColors: colorButtonsArray,
+//            sizeFont: nil,
+//            backgroundForText: nil,
+//            backgroundForView: nil,
+//            screenLocation: nil)
         }
 
     
