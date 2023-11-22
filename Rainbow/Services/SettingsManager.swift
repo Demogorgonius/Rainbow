@@ -14,6 +14,8 @@ struct ColorChecker: Codable{
 
 struct ColorButtons: Codable{
     var colorButtons = [
+        ColorChecker(color: "customWhite", isOn: true),
+        ColorChecker(color: "customClear", isOn: true),
         ColorChecker(color: "customLightGreen", isOn: true),
         ColorChecker(color: "customDarkGreen", isOn: true),
         ColorChecker(color: "customPink", isOn: true),
@@ -52,9 +54,9 @@ protocol SettingManagerProtocol {
         isChecksTask: Bool?,
         gameColors: [ColorChecker]?,
         sizeFont: Double?,
-        backgroundForText: Bool?,
-        backgroundForView: String?,
-        screenLocation: Bool?,
+        isViewForText: Bool?,
+        themeForApp: String?,
+        isCenterOnScreen: Bool?,
         completion: @escaping(Result<GameSettings, Error>)->Void
     )
     
@@ -99,9 +101,9 @@ class SettingsManager: GameManagerProtocol {
         isChecksTask: Bool?,
         gameColors: [ColorChecker]?,
         sizeFont: Double?,
-        backgroundForText: Bool?,
-        backgroundForView: String?,
-        screenLocation: Bool?,
+        isViewForText: Bool?,
+        themeForApp: String?,
+        isCenterOnScreen: Bool?,
         completion: @escaping (Result<GameSettings, Error>) -> Void
     ) {
 
@@ -111,9 +113,9 @@ class SettingsManager: GameManagerProtocol {
             isChecksTask: isChecksTask ?? true,
             gameColors: gameColors ?? [],
             sizeFont: sizeFont ?? 15.0,
-            isViewForText: backgroundForText ?? true,
-            themeForApp: backgroundForView ?? "customBackground",
-            isCenterOnScreen: screenLocation ?? true
+            isViewForText: isViewForText ?? true,
+            themeForApp: themeForApp ?? "customBackground",
+            isCenterOnScreen: isCenterOnScreen ?? true
         )
         
         let encoder = JSONEncoder()

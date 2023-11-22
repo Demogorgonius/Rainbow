@@ -397,10 +397,10 @@
 			children = (
 				A5B797452B02402300B20742 /* App */,
 				A5B7973D2B02402300B20742 /* Modules */,
-				A5B797482B02402300B20742 /* Resources */,
-				44A57C492B0253ED00C8E383 /* Extensions */,
-				44A57C522B0263F200C8E383 /* Fonts */,
 				A5B797392B02402300B20742 /* Services */,
+				44A57C492B0253ED00C8E383 /* Extensions */,
+				A5B797482B02402300B20742 /* Resources */,
+				44A57C522B0263F200C8E383 /* Fonts */,
 			);
 			path = Rainbow;
 			sourceTree = "<group>";

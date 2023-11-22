@@ -18,9 +18,9 @@ protocol SettingsPresenterProtocol {
         isChecksTask: Bool?,
         gameColors: [ColorChecker]?,
         sizeFont: Double?,
-        backgroundForText: Bool?,
-        backgroundForView: String?,
-        screenLocation: Bool?
+        isViewForText: Bool?,
+        themeForApp: String?,
+        isCenterOnScreen: Bool?
     )
 }
 
@@ -63,9 +63,9 @@ class SettingsPresenter: SettingsPresenterProtocol {
         isChecksTask: Bool?,
         gameColors: [ColorChecker]?,
         sizeFont: Double?,
-        backgroundForText: Bool?,
-        backgroundForView: String?,
-        screenLocation: Bool?
+        isViewForText: Bool?,
+        themeForApp: String?,
+        isCenterOnScreen: Bool?
     ) {
         settingsManager?.getSettings(completion: { result in
             switch result {
@@ -82,9 +82,9 @@ class SettingsPresenter: SettingsPresenterProtocol {
             isChecksTask: isChecksTask ?? settings?.isChecksTask ?? false,
             gameColors: gameColors ?? settings?.gameColors,
             sizeFont: sizeFont ?? settings?.sizeFont,
-            backgroundForText: backgroundForText ?? settings?.isViewForText ?? false,
-            backgroundForView: backgroundForView ?? settings?.themeForApp ?? "",
-            screenLocation: screenLocation ?? settings?.isCenterOnScreen ?? false,
+            isViewForText: isViewForText ?? settings?.isViewForText ?? false,
+            themeForApp: themeForApp ?? settings?.themeForApp ?? "",
+            isCenterOnScreen: isCenterOnScreen ?? settings?.isCenterOnScreen ?? false,
             completion: { [weak self] result in
                 switch result {
                 case .success(let settings):

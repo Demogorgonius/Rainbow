@@ -7,11 +7,13 @@
 
 import UIKit
 
+
+
 protocol RainbowViewManagerProtocol {
     func getColorTextShuffle() -> [String]
     func getRandomRainbowView() -> RainbowView
 }
-//#warning реализовать вариант когда нет подложки и сомплишн для нажатия
+
 final class RainbowViewManager: RainbowViewManagerProtocol {
     private var settings: GameSettings?
     private let settingManager: SettingManagerProtocol = SettingsManager()
@@ -28,22 +30,40 @@ final class RainbowViewManager: RainbowViewManagerProtocol {
         "Розовый"
     ]
     
-    func getRandomGameModel() -> GameModel {
-        let shuffledColors = getColorTextShuffle()
-        let text = shuffledColors.randomElement() ?? ""
-        let textColor = settings?.gameColors.randomElement() ?? colorButtons.colorButtons[0]
-        let fontSize = CGFloat(settings?.sizeFont ?? 18)
-        let rainbowViewColor = settings?.gameColors.randomElement() ?? colorButtons.colorButtons[0]
+    private func getRandomGameModel() -> GameModel {
+        switch settings?.isViewForText {
         
-        return GameModel(
-            text: text,
-            textColor: textColor,
-            fontSize: fontSize,
-            rainbowViewColor: rainbowViewColor,
-            didSelectHandler: nil
-        )
+        case .none:
+            let shuffledColors = getColorTextShuffle()
+            let text = shuffledColors.randomElement() ?? ""
+            let textColor = settings?.gameColors[0] ?? colorButtons.colorButtons[0]
+            let fontSize = CGFloat(settings?.sizeFont ?? 18)
+            let rainbowViewColor = settings?.gameColors.randomElement() ?? colorButtons.colorButtons[0]
+            
+            return GameModel(
+                text: text,
+                textColor: textColor,
+                fontSize: fontSize,
+                rainbowViewColor: rainbowViewColor,
+                didSelectHandler: nil
+            )
+        case .some(_):
+            let shuffledColors = getColorTextShuffle()
+            let text = shuffledColors.randomElement() ?? ""
+            let textColor = settings?.gameColors.randomElement() ?? colorButtons.colorButtons[3]
+            let fontSize = CGFloat(settings?.sizeFont ?? 18)
+            let rainbowViewColor = settings?.gameColors[1] ?? colorButtons.colorButtons[1]
+            
+            return GameModel(
+                text: text,
+                textColor: textColor,
+                fontSize: fontSize,
+                rainbowViewColor: rainbowViewColor,
+                didSelectHandler: nil
+            )
+        }
     }
-    
+
     func getRandomRainbowView() -> RainbowView {
         let gameModel = getRandomGameModel()
         let rainbowView = RainbowView()
@@ -57,7 +77,7 @@ final class RainbowViewManager: RainbowViewManagerProtocol {
         return colorNamesShuffle
     }
     
-    func getSettings() {
+    private func getSettings() {
         settingManager.getSettings(completion: { result in
             switch result {
             case .success(let settings):
