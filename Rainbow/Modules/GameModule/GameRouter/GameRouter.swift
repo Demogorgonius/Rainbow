@@ -12,10 +12,17 @@ protocol GameRouterProtocol: AnyObject {
 }
 
 class GameRouter: GameRouterProtocol {
-    weak var viewController: UIViewController?
+    
+    weak var viewController: GameViewProtocol?
+    
+    init(viewController: GameViewProtocol) {
+        self.viewController = viewController
+    }
+    
     
     func goToStatistics() {
-        let resultsViewController = ResultsBuilder.build()
-        viewController?.navigationController?.pushViewController(resultsViewController, animated: true)
+        
+//        let resultsViewController = ResultsBuilder.build()
+//        navigationController?.pushViewController(resultsViewController, animated: true)
     }
 }

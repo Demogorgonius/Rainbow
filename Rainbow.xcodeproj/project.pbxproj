@@ -433,8 +433,8 @@
 			children = (
 				4AD131532B051A5F007DA3B7 /* MainBuilder */,
 				4AD131542B051A76007DA3B7 /* MainPresenter */,
-				A5B797412B02402300B20742 /* View */,
 				4AD131552B051A8E007DA3B7 /* MainRouter */,
+				A5B797412B02402300B20742 /* View */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";

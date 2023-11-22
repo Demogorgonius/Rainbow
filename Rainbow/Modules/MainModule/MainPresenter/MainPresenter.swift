@@ -26,7 +26,6 @@ protocol MainPresenterProtocol {
 
 final class MainPresenter: MainPresenterProtocol {
     
-    weak var view: MainViewProtocol?
    
     var router: MainRouterProtocol
     
@@ -35,6 +34,7 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     func startNewGameButtonTapped() {
+        print("Start New Game button tapped")
         router.goToNewGame()
     }
     

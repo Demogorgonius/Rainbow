@@ -40,6 +40,7 @@ class GamePresenter: GamePresenterProtocol {
     private let router: GameRouterProtocol
     
     var gameManager: GameManagerProtocol
+    
     var startTime: Date?
 
     var elapsedTime: TimeInterval?

@@ -62,6 +62,7 @@ struct WarningAlertConfig: AlertConfiguration {
 }
 
 struct DeleteAlertConfig: AlertConfiguration {
+    
     var title: String? = "Вы точно хотите удалить историю игр?"
     var message: String? = "После нажатия на кнопку Delete история исчезнет"
     var alertAction: [AlertAction] = [

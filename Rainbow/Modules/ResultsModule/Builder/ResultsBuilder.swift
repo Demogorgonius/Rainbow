@@ -15,7 +15,7 @@ final class ResultsBuilder {
         let view = ResultsTableViewController(presenter: presenter)
         
         presenter.view = view
-        router.view = view
+        //router.view = view
         
         return view
     }

@@ -12,9 +12,9 @@ protocol ResultsRouterProtocol {
 }
 
 final class ResultsRouter: ResultsRouterProtocol {
-    weak var view: UIViewController?
+   
     func routeToStartScreen() {
-        let startScreen = MainBuilder.build()
-        view?.navigationController?.setViewControllers([startScreen], animated: true)
+//        let startScreen = MainBuilder.build()
+//        view?.navigationController?.setViewControllers([startScreen], animated: true)
     }
 }

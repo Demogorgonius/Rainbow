@@ -7,24 +7,29 @@
 
 import UIKit
 
-import UIKit
-
 protocol GameBuilderProtocol: AnyObject {
-    static func build() -> UIViewController
+    func build() -> UIViewController
+   init(navigationController: UINavigationController?)
 }
 
 class GameBuilder: GameBuilderProtocol {
     
-    static func build() -> UIViewController {
-        let router = GameRouter()
+    var navigationController: UINavigationController?
+    
+    required init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
+    }
+    
+    func build() -> UIViewController {
+        print("Building GameViewController")
+        let gameViewController = GameViewController(presenter: GamePresenterProtocol.self as! GamePresenterProtocol)
+        let router = GameRouter(viewController: gameViewController)
         let gameManager = SettingsManager()
-        
         let presenter = GamePresenter(router: router, gameManager: gameManager)
-        let viewController = GameViewController(presenter: presenter)
-
-        presenter.view = viewController
-        router.viewController = viewController
+        presenter.view = gameViewController
         
-        return viewController
+        router.viewController = gameViewController
+        
+        return gameViewController
     }
 }
