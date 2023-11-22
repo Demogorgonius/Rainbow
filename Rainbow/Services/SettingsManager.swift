@@ -10,13 +10,7 @@ import UIKit
 struct ColorChecker: Codable{
     let color: String
     var isOn: Bool
-    
-    init(color: String, isOn: Bool) {
-        self.color = color
-        self.isOn = isOn
-    }
 }
-
 
 struct ColorButtons: Codable{
     var colorButtons = [
@@ -33,9 +27,6 @@ struct ColorButtons: Codable{
         ColorChecker(color: "customBlack", isOn: true),
         ColorChecker(color: "customGrayishPurple", isOn: true)]
     
-//    func toggleState(for i: Int) {
-//        colorButtons = colorButtons[i].isOn
-//    }
 }
 
 let colorButtons = ColorButtons()
@@ -43,15 +34,14 @@ let color = colorButtons.colorButtons
 
 
 struct GameSettings: Codable {
-    var numberGame = 1
     var durationGame = 10
     var speedGame: Int = 1
-    var checkTask = true
+    var isChecksTask = true
     var gameColors: [ColorChecker]
-    var sizeFont = 12.0
-    var backgroundForText = true
-    var backgroundForView = "customBackground"
-    var screenLocation = true
+    var sizeFont = 15.0
+    var isViewForText = true
+    var themeForApp = "customBackground"
+    var isCenterOnScreen = true
 }
 
 protocol SettingManagerProtocol {
@@ -59,7 +49,7 @@ protocol SettingManagerProtocol {
     func saveSettings(
         durationGame: Int?,
         speedGame: Int?,
-        checkTask: Bool?,
+        isChecksTask: Bool?,
         gameColors: [ColorChecker]?,
         sizeFont: Double?,
         backgroundForText: Bool?,
@@ -82,11 +72,10 @@ typealias GameManagerProtocol = SettingManagerProtocol & ResultsStorageProtocol
 
 class SettingsManager: GameManagerProtocol {
     
-    
     let defaults = UserDefaults.standard
     
     var results: [GameResultModel] {
-        guard let data = defaults.data(forKey: "addStatistic"),
+        guard let data = defaults.data(forKey: Keys.statistic.rawValue),
               let results = try? JSONDecoder().decode([GameResultModel].self, from: data) else {
             return []
         }
@@ -96,18 +85,18 @@ class SettingsManager: GameManagerProtocol {
     func addStatistic(_ result: GameResultModel) {
         let results = [result] + self.results
         if let encoded = try? JSONEncoder().encode(results) {
-            defaults.setValue(encoded, forKey: "addStatistic")
+            defaults.setValue(encoded, forKey: Keys.statistic.rawValue)
         }
     }
     
     func clearStatistic() {
-        defaults.removeObject(forKey: "addStatistic")
+        defaults.removeObject(forKey: Keys.statistic.rawValue)
     }
 
     func saveSettings(
         durationGame: Int?,
         speedGame: Int?,
-        checkTask: Bool?,
+        isChecksTask: Bool?,
         gameColors: [ColorChecker]?,
         sizeFont: Double?,
         backgroundForText: Bool?,
@@ -119,22 +108,22 @@ class SettingsManager: GameManagerProtocol {
         let settings = GameSettings(
             durationGame: durationGame ?? 10,
             speedGame: speedGame ?? 1,
-            checkTask: checkTask ?? true,
+            isChecksTask: isChecksTask ?? true,
             gameColors: gameColors ?? [],
             sizeFont: sizeFont ?? 15.0,
-            backgroundForText: backgroundForText ?? true,
-            backgroundForView: backgroundForView ?? "customBackground",
-            screenLocation: screenLocation ?? true
+            isViewForText: backgroundForText ?? true,
+            themeForApp: backgroundForView ?? "customBackground",
+            isCenterOnScreen: screenLocation ?? true
         )
         
         let encoder = JSONEncoder()
         
         if let encoded = try? encoder.encode(settings) {
             
-            defaults.set(encoded, forKey: "gameSettings")
+            defaults.set(encoded, forKey: Keys.gameSettings.rawValue)
         }
         
-        if let settings = defaults.object(forKey: "gameSettings") as? Data {
+        if let settings = defaults.object(forKey: Keys.gameSettings.rawValue) as? Data {
             let decoder = JSONDecoder()
                 if let loadedSettings = try? decoder.decode(GameSettings.self, from: settings) {
                     completion(.success(loadedSettings))
@@ -146,7 +135,7 @@ class SettingsManager: GameManagerProtocol {
     }
     
     func getSettings(completion: @escaping (Result<GameSettings, Error>) -> Void) {
-        if let settings = defaults.object(forKey: "gameSettings") as? Data {
+        if let settings = defaults.object(forKey: Keys.gameSettings.rawValue) as? Data {
             let decoder = JSONDecoder()
                 if let loadedSettings = try? decoder.decode(GameSettings.self, from: settings) {
                     print("Settings loaded")

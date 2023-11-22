@@ -14,9 +14,8 @@ protocol GameViewProtocol: AnyObject {
     func startTimer(with elapsedTime: TimeInterval?)
 }
 
-
 protocol GamePresenterProtocol {
-    var colorViews: [UIView] { get set }
+    var colorViews: [RainbowView] { get set }
     var colorNames: [UILabel] { get set }
     
     var gameManager: GameManagerProtocol { get set }
@@ -34,7 +33,7 @@ protocol GamePresenterProtocol {
 }
 
 class GamePresenter: GamePresenterProtocol {
-    
+
     weak var view: GameViewProtocol?
     
     private let router: GameRouterProtocol
@@ -45,9 +44,9 @@ class GamePresenter: GamePresenterProtocol {
     var elapsedTime: TimeInterval?
     
     var numberGame = 1
-    var defaultSpeed = ""
-      
-    var colorViews: [UIView] = []
+    var defaultSpeed = Speed.x1.rawValue
+    
+    var colorViews: [RainbowView] = []
     var colorNames: [UILabel] = []
     
     var settings: GameSettings?

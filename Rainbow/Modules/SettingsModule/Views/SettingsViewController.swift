@@ -364,7 +364,7 @@ final class SettingsViewController: UIViewController {
         presenter?.saveGameSettings(
             durationGame: nil,
             speedGame: nil,
-            checkTask: nil,
+            isChecksTask: nil,
             gameColors: colorButtonsArray,
             sizeFont: nil,
             backgroundForText: nil,
@@ -425,7 +425,7 @@ final class SettingsViewController: UIViewController {
             presenter?.saveGameSettings(
                 durationGame: nil,
                 speedGame: nil,
-                checkTask: nil,
+                isChecksTask: nil,
                 gameColors: result,
                 sizeFont: nil,
                 backgroundForText: nil,
@@ -608,7 +608,7 @@ extension SettingsViewController: SettingsViewProtocol {
     
     func isCheck() -> Bool {
         presenter.getSettings()
-        let isCheck = presenter.settings?.checkTask
+        let isCheck = presenter.settings?.isChecksTask
         return isCheck ?? true
     }
     
@@ -624,18 +624,18 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     func isBackground() -> Bool {
         presenter.getSettings()
-        let isCheck = presenter.settings?.backgroundForText
+        let isCheck = presenter.settings?.isViewForText
         return isCheck ?? true
     }
     
     func getGameBackground() -> String {
         presenter.getSettings()
-        let colorString = presenter.settings?.backgroundForView
+        let colorString = presenter.settings?.themeForApp
         return colorString ?? "customBackground"
     }
     func isRandomLocation() -> Bool {
         presenter.getSettings()
-        let isCheck = presenter.settings?.screenLocation
+        let isCheck = presenter.settings?.isCenterOnScreen
         return isCheck ?? true
     }
 }

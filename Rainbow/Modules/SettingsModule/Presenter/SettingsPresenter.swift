@@ -15,7 +15,7 @@ protocol SettingsPresenterProtocol {
     func saveGameSettings(
         durationGame: Int?,
         speedGame: Int?,
-        checkTask: Bool?,
+        isChecksTask: Bool?,
         gameColors: [ColorChecker]?,
         sizeFont: Double?,
         backgroundForText: Bool?,
@@ -60,7 +60,7 @@ class SettingsPresenter: SettingsPresenterProtocol {
     func saveGameSettings(
         durationGame: Int?,
         speedGame: Int?,
-        checkTask: Bool?,
+        isChecksTask: Bool?,
         gameColors: [ColorChecker]?,
         sizeFont: Double?,
         backgroundForText: Bool?,
@@ -79,12 +79,12 @@ class SettingsPresenter: SettingsPresenterProtocol {
         settingsManager?.saveSettings(
             durationGame: durationGame ?? settings?.durationGame,
             speedGame: speedGame ?? settings?.speedGame,
-            checkTask: checkTask ?? settings?.checkTask ?? false,
+            isChecksTask: isChecksTask ?? settings?.isChecksTask ?? false,
             gameColors: gameColors ?? settings?.gameColors,
             sizeFont: sizeFont ?? settings?.sizeFont,
-            backgroundForText: backgroundForText ?? settings?.backgroundForText ?? false,
-            backgroundForView: backgroundForView ?? settings?.backgroundForView ?? "",
-            screenLocation: screenLocation ?? settings?.screenLocation ?? false,
+            backgroundForText: backgroundForText ?? settings?.isViewForText ?? false,
+            backgroundForView: backgroundForView ?? settings?.themeForApp ?? "",
+            screenLocation: screenLocation ?? settings?.isCenterOnScreen ?? false,
             completion: { [weak self] result in
                 switch result {
                 case .success(let settings):

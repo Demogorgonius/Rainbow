@@ -7,11 +7,17 @@
 
 import Foundation
 
+enum Keys: String {
+    case statistic
+    case gameSettings
+}
+
 enum GameErrors: Error {
     case saveGameRound
     case saveSettingsError
     case getSettingsError
 }
+
 extension GameErrors: LocalizedError {
     public var errorDescription: String? {
         switch self {
@@ -25,3 +31,5 @@ extension GameErrors: LocalizedError {
         }
     }
 }
+
+

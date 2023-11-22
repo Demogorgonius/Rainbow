@@ -63,7 +63,7 @@ final class ResultsTableViewController: UITableViewController {
     
     @objc private func clearResultsButtonTap() {
         presenter.clearStatisticOverview()
-        UIView.transition(with: tableView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: tableView, duration: 0.9, options: .transitionCrossDissolve, animations: {
             self.tableView.reloadData()
         }, completion: nil)
     }

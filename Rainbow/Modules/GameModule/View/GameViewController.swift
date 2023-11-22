@@ -23,12 +23,10 @@ class GameViewController: UIViewController {
     var timer = Timer()
     var colorsAnimator: UIViewPropertyAnimator?
     
-    
-    
     lazy var speedButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
             backgroundColor: .customRed,
-            title: "X2",
+            title: presenter.defaultSpeed,
             target: self,
             action: #selector(speedButtonPressed))
         return button
@@ -124,9 +122,11 @@ extension GameViewController: GameViewProtocol {
         if timer.isValid {
             presenter.elapsedTime = Date().timeIntervalSince(presenter.startTime ?? Date())
             timer.invalidate()
+            speedButton.isHidden = true
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "play.fill")
         } else {
             startTimer(with: presenter.elapsedTime)
+            speedButton.isHidden = false
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "pause.fill")
         }
     }
@@ -157,7 +157,7 @@ extension GameViewController: GameViewProtocol {
             timer.invalidate()
             
             presenter.gameManager.addStatistic(.init(
-                numberGame: presenter.numberGame + 1,
+                numberGame: presenter.numberGame,
                 durationGame: presenter.settings?.durationGame ?? 0,
                 speedGame: presenter.settings?.speedGame ?? 0,
                 resultGame: "3/4")
