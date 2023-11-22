@@ -13,7 +13,7 @@ protocol MainBuilderProtocol: AnyObject {
 }
 
 class MainBuilder: MainBuilderProtocol {
-    private weak var navigationController: UINavigationController?
+    weak var navigationController: UINavigationController?
 
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController

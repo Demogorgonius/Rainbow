@@ -21,15 +21,20 @@ class GameBuilder: GameBuilderProtocol {
     }
     
     func build() -> UIViewController {
-        print("Building GameViewController")
-        let gameViewController = GameViewController(presenter: GamePresenterProtocol.self as! GamePresenterProtocol)
-        let router = GameRouter(viewController: gameViewController)
-        let gameManager = SettingsManager()
-        let presenter = GamePresenter(router: router, gameManager: gameManager)
-        presenter.view = gameViewController
+        if let navigationController = navigationController {
+            
+            let router = GameRouter(navigationController: navigationController)
+            let gameManager = SettingsManager()
+            
+            let presenter = GamePresenter(router: router, gameManager: gameManager)
+            let viewController = GameViewController(presenter: presenter)
+            
+            presenter.view = viewController
+            router.viewController = viewController
+            
+            return viewController
+        }
         
-        router.viewController = gameViewController
-        
-        return gameViewController
+        return UIViewController()
     }
 }

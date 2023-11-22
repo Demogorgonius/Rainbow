@@ -29,7 +29,6 @@ class MainRouter: MainRouterProtocol {
         print("GameRouter - Going to New Game")
         
         guard let navigationController = navigationController else { return }
-        navigationController.popToRootViewController(animated: false)
         
         let gameBuilder = GameBuilder(navigationController: navigationController)
         let gameScreen = gameBuilder.build()

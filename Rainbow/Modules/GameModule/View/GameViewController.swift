@@ -18,7 +18,7 @@ enum Speed: String {
 
 class GameViewController: UIViewController {
     
-     private var presenter: GamePresenterProtocol
+    var presenter: GamePresenterProtocol
     
     var timer = Timer()
     var colorsAnimator: UIViewPropertyAnimator?
