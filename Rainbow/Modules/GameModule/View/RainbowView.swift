@@ -78,21 +78,21 @@ final class RainbowView: UIView {
         markView.isHidden = selectHandler == nil
     }
     
-    func update(_ model: Model) {
+    func update(_ model: GameModel) {
         titleLabel.text = model.text
-        titleLabel.textColor = model.textColor
+     //   titleLabel.textColor = model.textColor
         titleLabel.font = titleLabel.font.withSize(model.fontSize)
         selectHandler = model.didSelectHandler
         markView.isHidden = model.didSelectHandler == nil
         markView.isHidden = false
         
-        
-        if let frameColor = model.frameColor {
-            coloredView.backgroundColor = frameColor
-            coloredView.isHidden = false
-        } else {
-            coloredView.isHidden = true
-        }
+//
+//        if let frameColor = model.rainbowViewColor {
+//            coloredView.backgroundColor = frameColor
+//            coloredView.isHidden = false
+//        } else {
+//            coloredView.isHidden = true
+//        }
     }
 }
 

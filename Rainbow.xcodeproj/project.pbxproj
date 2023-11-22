@@ -60,7 +60,7 @@
 		E183FEBE2B0B465100E3ED41 /* ShadowButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEBD2B0B465100E3ED41 /* ShadowButtonFactory.swift */; };
 		E183FEC12B0B47E500E3ED41 /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEC02B0B47E500E3ED41 /* SettingsBuilder.swift */; };
 		E183FEC82B0CC2AA00E3ED41 /* RainbowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEC72B0CC2AA00E3ED41 /* RainbowView.swift */; };
-		E183FECA2B0DF4D800E3ED41 /* GameViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEC92B0DF4D800E3ED41 /* GameViewManager.swift */; };
+		E183FECA2B0DF4D800E3ED41 /* RainbowViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEC92B0DF4D800E3ED41 /* RainbowViewManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,7 +118,7 @@
 		E183FEBD2B0B465100E3ED41 /* ShadowButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButtonFactory.swift; sourceTree = "<group>"; };
 		E183FEC02B0B47E500E3ED41 /* SettingsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsBuilder.swift; path = Rainbow/Modules/SettingsModule/SettingsBuilder.swift; sourceTree = SOURCE_ROOT; };
 		E183FEC72B0CC2AA00E3ED41 /* RainbowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowView.swift; sourceTree = "<group>"; };
-		E183FEC92B0DF4D800E3ED41 /* GameViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewManager.swift; sourceTree = "<group>"; };
+		E183FEC92B0DF4D800E3ED41 /* RainbowViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowViewManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,7 +408,7 @@
 		A5B797392B02402300B20742 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E183FEC92B0DF4D800E3ED41 /* GameViewManager.swift */,
+				E183FEC92B0DF4D800E3ED41 /* RainbowViewManager.swift */,
 				E112CBEE2B08A8E000F08206 /* SettingsManager.swift */,
 				E112CBF02B08F45900F08206 /* GameErrorAndKeys.swift */,
 			);
@@ -599,7 +599,7 @@
 				4AD131722B0566E4007DA3B7 /* ResultTableViewCell.swift in Sources */,
 				4AD1314E2B03D982007DA3B7 /* GameModel.swift in Sources */,
 				4AD131782B056781007DA3B7 /* ViewFactory.swift in Sources */,
-				E183FECA2B0DF4D800E3ED41 /* GameViewManager.swift in Sources */,
+				E183FECA2B0DF4D800E3ED41 /* RainbowViewManager.swift in Sources */,
 				4AD131462B02B3CF007DA3B7 /* Extension + CustomButton.swift in Sources */,
 				E183FEC12B0B47E500E3ED41 /* SettingsBuilder.swift in Sources */,
 				A5B797512B02402300B20742 /* SceneDelegate.swift in Sources */,

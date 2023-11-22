@@ -7,10 +7,10 @@
 
 import UIKit
 
-struct Model {
+struct GameModel {
     let text: String
-    let textColor: UIColor
+    let textColor: ColorChecker
     let fontSize: CGFloat
-    let frameColor: UIColor?
+    let rainbowViewColor: ColorChecker
     let didSelectHandler: (() -> Void)?
 }
