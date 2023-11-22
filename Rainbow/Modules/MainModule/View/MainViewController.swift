@@ -10,7 +10,7 @@ import SnapKit
 
 final class MainViewController: UIViewController {
     
-    private let presenter: MainPresenterProtocol
+    var presenter: MainPresenterProtocol!
     
     // MARK: - UI
     private lazy var rainbowImage: UIImageView = {
@@ -80,17 +80,6 @@ final class MainViewController: UIViewController {
         spacing: 180,
         subview: [settingsGameButton, infoGameButton]
     )
-    
-    //MARK: Init
-    init(presenter: MainPresenterProtocol) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     //MARK: - Life Cycle
     override func viewDidLoad() {

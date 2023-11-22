@@ -12,7 +12,7 @@ final class ResultsTableViewController: UITableViewController {
     
     //MARK: Properties
     
-    private let presenter: ResultsPresenterProtocol
+  var presenter: ResultsPresenterProtocol!
     
     private let cellID = "cell"
     
@@ -24,16 +24,6 @@ final class ResultsTableViewController: UITableViewController {
             action: #selector(clearResultsButtonTap))
         return button
     }()
-    
-    //MARK: Init
-    init(presenter: ResultsPresenterProtocol) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     //MARK: Life Circle
     

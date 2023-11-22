@@ -5,22 +5,29 @@
 //  Created by Liz-Mary on 15.11.2023.
 //
 
-import Foundation
 import UIKit
 
 protocol MainBuilderProtocol: AnyObject {
-    static func build() -> UIViewController
+    func build() -> UIViewController
+    init(navigationController: UINavigationController)
 }
 
 class MainBuilder: MainBuilderProtocol {
+    weak var navigationController: UINavigationController?
     
-    static func build() -> UIViewController {
-        let router = MainRouter()
+    required init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    func build() -> UIViewController {
+        guard let navigationController else {
+            fatalError("MainBuilder requires a valid navigationController")
+        }
+        let viewController = MainViewController()
+        let router = MainRouter(navigationController: navigationController)
         let presenter = MainPresenter(router: router)
-        let viewController = MainViewController(presenter: presenter)
         
-        presenter.view = viewController
-        router.viewController = viewController
+        viewController.presenter = presenter
         
         return viewController
     }
