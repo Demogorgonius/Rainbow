@@ -14,8 +14,6 @@ struct ColorChecker: Codable{
 
 struct ColorButtons: Codable{
     var colorButtons = [
-        ColorChecker(color: "customWhite", isOn: true),
-        ColorChecker(color: "customClear", isOn: true),
         ColorChecker(color: "customLightGreen", isOn: true),
         ColorChecker(color: "customDarkGreen", isOn: true),
         ColorChecker(color: "customPink", isOn: true),
@@ -28,7 +26,6 @@ struct ColorButtons: Codable{
         ColorChecker(color: "customYellow", isOn: true),
         ColorChecker(color: "customBlack", isOn: true),
         ColorChecker(color: "customGrayishPurple", isOn: true)]
-    
 }
 
 let colorButtons = ColorButtons()

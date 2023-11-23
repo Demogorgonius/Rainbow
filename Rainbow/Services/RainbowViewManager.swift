@@ -7,15 +7,12 @@
 
 import UIKit
 
-
-
 protocol RainbowViewManagerProtocol {
-    func getColorTextShuffle() -> [String]
     func getRandomRainbowView() -> RainbowView
 }
 
 final class RainbowViewManager: RainbowViewManagerProtocol {
-    private var settings: GameSettings?
+    private var settings: GameSettings!
     private let settingManager: SettingManagerProtocol = SettingsManager()
     
     private let colorNames = [
@@ -31,14 +28,15 @@ final class RainbowViewManager: RainbowViewManagerProtocol {
     ]
     
     private func getRandomGameModel() -> GameModel {
-        switch settings?.isViewForText {
-        
-        case .none:
+        if settings.isViewForText {
+            
             let shuffledColors = getColorTextShuffle()
             let text = shuffledColors.randomElement() ?? ""
-            let textColor = settings?.gameColors[0] ?? colorButtons.colorButtons[0]
+            let textColor = UIColor.white
             let fontSize = CGFloat(settings?.sizeFont ?? 18)
-            let rainbowViewColor = settings?.gameColors.randomElement() ?? colorButtons.colorButtons[0]
+            let rainbowViewColor = getColorFromButtons()
+                .randomElement()
+            ?? .customDarkBlue
             
             return GameModel(
                 text: text,
@@ -47,12 +45,14 @@ final class RainbowViewManager: RainbowViewManagerProtocol {
                 rainbowViewColor: rainbowViewColor,
                 didSelectHandler: nil
             )
-        case .some(_):
+        } else {
             let shuffledColors = getColorTextShuffle()
             let text = shuffledColors.randomElement() ?? ""
-            let textColor = settings?.gameColors.randomElement() ?? colorButtons.colorButtons[3]
+            let textColor = getColorFromButtons()
+                .randomElement()
+                ?? .customDarkBlue
             let fontSize = CGFloat(settings?.sizeFont ?? 18)
-            let rainbowViewColor = settings?.gameColors[1] ?? colorButtons.colorButtons[1]
+            let rainbowViewColor = UIColor.clear
             
             return GameModel(
                 text: text,
@@ -71,10 +71,23 @@ final class RainbowViewManager: RainbowViewManagerProtocol {
         return rainbowView
     }
     
-    func getColorTextShuffle() -> [String] {
+    private func getColorTextShuffle() -> [String] {
         var colorNamesShuffle: [String] = []
         colorNamesShuffle.append(contentsOf: colorNames.shuffled())
         return colorNamesShuffle
+    }
+    
+    private func getColorFromButtons() -> [UIColor] {
+        let colorButtons = settings.gameColors
+        var colors: [UIColor] = []
+        for button in colorButtons {
+            if button.isOn {
+                if let color = UIColor(named: button.color) {
+                    colors.append(color)
+                }
+            }
+        }
+        return colors
     }
     
     private func getSettings() {

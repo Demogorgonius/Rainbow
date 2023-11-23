@@ -9,8 +9,8 @@ import UIKit
 
 struct GameModel {
     let text: String
-    let textColor: ColorChecker
+    let textColor: UIColor
     let fontSize: CGFloat
-    let rainbowViewColor: ColorChecker
+    let rainbowViewColor: UIColor
     let didSelectHandler: (() -> Void)?
 }

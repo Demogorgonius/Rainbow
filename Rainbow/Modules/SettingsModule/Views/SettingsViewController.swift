@@ -30,7 +30,7 @@ final class SettingsViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        presenter?.saveGameSettings(durationGame: Int(gameTimeSlider.value), speedGame: Int(gameSpeedSlider.value), isChecksTask: gameWithAnswerCheckSwitch.isOn, gameColors: colorButtonsArray, sizeFont: gameSizeStepper.value, backgroundForText: backgroundForWordSwitch.isOn, backgroundForView: "customBackground", screenLocation: wordPlacementSC.selectedSegmentIndex == 0)
+        presenter?.saveGameSettings(durationGame: Int(gameTimeSlider.value), speedGame: Int(gameSpeedSlider.value), isChecksTask: gameWithAnswerCheckSwitch.isOn, gameColors: colorButtonsArray, sizeFont: gameSizeStepper.value, isViewForText: backgroundForWordSwitch.isOn, themeForApp: "customBackground", isCenterOnScreen: wordPlacementSC.selectedSegmentIndex == 0)
 
     }
     
@@ -433,9 +433,9 @@ final class SettingsViewController: UIViewController {
                 isChecksTask: nil,
                 gameColors: result,
                 sizeFont: nil,
-                backgroundForText: nil,
-                backgroundForView: nil,
-                screenLocation: nil
+                isViewForText: nil,
+                themeForApp: nil,
+                isCenterOnScreen: nil
             )
         }
     }

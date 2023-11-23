@@ -46,6 +46,10 @@ class GameViewController: UIViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        timer.invalidate()
+    }
+    
     // MARK: Private Methods
     
     private func configureNavigationBar() {

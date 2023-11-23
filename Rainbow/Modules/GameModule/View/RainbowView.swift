@@ -19,17 +19,6 @@ final class RainbowView: UIView {
         return view
     }()
     
-    private let markView:  UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.customLightGreen
-        view.layer.cornerRadius = 10
-        view.layer.shadowColor = UIColor.customLightGreen.cgColor
-        view.layer.shadowOffset = .init(width: 0, height: 5)
-        view.layer.shadowOpacity = 0.50
-        view.isHidden = false
-        return view
-    }()
-    
     private let titleLabel = UILabel()
     private var selectHandler: (() -> Void)?
     
@@ -47,16 +36,11 @@ final class RainbowView: UIView {
     private func configure() {
         addSubview(coloredView)
         addSubview(titleLabel)
-        addSubview(markView)
-
+        
         titleLabel.font = UIFont.DisplayFont.Heavy.size(of: 20)
         
         coloredView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
-        
-        markView.snp.makeConstraints {
-            $0.edges.equalTo(coloredView)
         }
         
         titleLabel.snp.makeConstraints {
@@ -65,7 +49,7 @@ final class RainbowView: UIView {
             $0.leading.greaterThanOrEqualToSuperview().inset(6)
             $0.centerX.equalToSuperview().priority(.medium)
         }
-
+        
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(didSelect))
         tapGR.cancelsTouchesInView = false
         addGestureRecognizer(tapGR)
@@ -74,25 +58,18 @@ final class RainbowView: UIView {
     @objc
     private func didSelect() {
         selectHandler?()
+        titleLabel.textColor = .customBlack
         titleLabel.text = "верно"
-        markView.isHidden = selectHandler == nil
+        coloredView.backgroundColor = .customGreenForButton
     }
     
     func update(_ model: GameModel) {
         titleLabel.text = model.text
-        titleLabel.textColor = UIColor(named: model.textColor.color)
+        titleLabel.textColor = .white
         titleLabel.font = titleLabel.font.withSize(model.fontSize)
         selectHandler = model.didSelectHandler
-        markView.isHidden = model.didSelectHandler == nil
-        markView.isHidden = false
-        
-        
-        if let rainbowViewColor = UIColor(named: model.rainbowViewColor.color) {
-            coloredView.backgroundColor = rainbowViewColor
-            coloredView.isHidden = false
-        } else {
-            coloredView.isHidden = true
-        }
+        coloredView.backgroundColor = model.rainbowViewColor
     }
 }
+
 
