@@ -341,7 +341,7 @@ final class SettingsViewController: UIViewController {
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
         sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
         sc.selectedSegmentTintColor = .white
-        sc.selectedSegmentIndex = 0
+        sc.selectedSegmentIndex = isRandomLocation() ? 0 : 1
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
     }()
