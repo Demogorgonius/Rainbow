@@ -119,7 +119,7 @@ extension GameViewController: GameViewProtocol {
     }
     
     private func addPatterns() {
-        var sizeBetweenColors = 200.0
+        var sizeBetweenColors = 0.0
         
         for colorView in presenter.colorViews {
             view.addSubview(colorView)
@@ -134,7 +134,7 @@ extension GameViewController: GameViewProtocol {
             sizeBetweenColors -= 250
         }
         
-        colorsAnimator = UIViewPropertyAnimator(duration: presenter.speed, curve: .linear) {
+        colorsAnimator = UIViewPropertyAnimator(duration: TimeInterval(presenter.speed), curve: .linear) {
             self.presenter.colorViews.forEach { colorView in
                 colorView.frame = CGRect(
                     x: colorView.frame.origin.x,
@@ -153,10 +153,12 @@ extension GameViewController: GameViewProtocol {
         if timer.isValid {
             presenter.elapsedTime = Date().timeIntervalSince(presenter.startTime ?? Date())
             timer.invalidate()
+            colorsAnimator?.pauseAnimation()
             speedButton.isHidden = true
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "play.fill")
         } else {
             startTimer(with: presenter.elapsedTime)
+            colorsAnimator?.startAnimation()
             speedButton.isHidden = false
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "pause.fill")
         }
