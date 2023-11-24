@@ -31,17 +31,20 @@ class GameViewController: UIViewController {
             action: #selector(speedButtonPressed))
         return button
     }()
-
+    
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getSettings()
+        getRainbowView()
+        
         navigationItem.title = formattedTime(from: TimeInterval(presenter.settings?.durationGame ?? 15))
         navigationController?.setupNavigationBar()
         addSubviews()
         startTimer(with: presenter.elapsedTime)
+        addPatterns()
         configureNavigationBar()
         
     }
@@ -82,6 +85,10 @@ class GameViewController: UIViewController {
 
 // MARK: GameViewProtocol
 extension GameViewController: GameViewProtocol {
+    func getRainbowView() {
+        presenter.getRainbowView(count: Int(presenter.countColors))
+    }
+    
     
     func getSettings() {
         presenter.getSettings()
@@ -109,6 +116,36 @@ extension GameViewController: GameViewProtocol {
         speedButton.setTitle(xSpeed.rawValue, for: .normal)
         colorsAnimator?.pauseAnimation()
         colorsAnimator?.continueAnimation(withTimingParameters: .none, durationFactor: duration)
+    }
+    
+    private func addPatterns() {
+        var sizeBetweenColors = 200.0
+        
+        for colorView in presenter.colorViews {
+            view.addSubview(colorView)
+            view.bringSubviewToFront(speedButton)
+            colorView.frame = CGRect(
+                x: Double.random(in: presenter.settings?.isCenterOnScreen ?? true ? 20...280 : 10...260),
+                y: UIScreen.main.bounds.height - sizeBetweenColors,
+                width: 100,
+                height: 100
+            )
+            
+            sizeBetweenColors -= 250
+        }
+        
+        colorsAnimator = UIViewPropertyAnimator(duration: presenter.speed, curve: .linear) {
+            self.presenter.colorViews.forEach { colorView in
+                colorView.frame = CGRect(
+                    x: colorView.frame.origin.x,
+                    y: self.view.frame.height + sizeBetweenColors,
+                    width: 100,
+                    height: 100
+                )
+                colorView.alpha = 0
+            }
+        }
+        colorsAnimator?.startAnimation()
     }
     
     // MARK: @objc func
@@ -153,9 +190,10 @@ extension GameViewController: GameViewProtocol {
             presenter.gameManager.addStatistic(.init(
                 numberGame: presenter.numberGame,
                 durationGame: presenter.settings?.durationGame ?? 0,
-                speedGame: presenter.settings?.speedGame ?? 0,
+                speedGame: presenter.settings?.speedGame ?? 6,
                 resultGame: "3/4")
             )
+            
             presenter.routeToResultScreen()
         }
     }

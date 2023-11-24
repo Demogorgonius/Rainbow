@@ -10,50 +10,59 @@ import UIKit
 
 protocol GameViewProtocol: AnyObject {
     func getSettings()
+    func getRainbowView()
     func settingSpeed(_ xSpeed: Speed, _ duration: CGFloat)
     func startTimer(with elapsedTime: TimeInterval?)
 }
 
 protocol GamePresenterProtocol {
-    var colorViews: [RainbowView] { get set }
-    var colorNames: [UILabel] { get set }
     
     var gameManager: GameManagerProtocol { get set }
-    
+    var colorViews: [RainbowView] { get set }
     var startTime: Date? { get set }
     var numberGame: Int { get set }
     var elapsedTime: TimeInterval? { get set }
     
+    var countColors: Double { get set }
     var defaultSpeed: String { get set }
-    
+    var speed: Double { get set }
     var settings: GameSettings? { get set }
     func getSettings()
     
+    func getRainbowView(count: Int)
     func routeToResultScreen()
 }
 
 class GamePresenter: GamePresenterProtocol {
-
+    
     weak var view: GameViewProtocol?
     
     private let router: GameRouterProtocol
     
     var gameManager: GameManagerProtocol
+    var rainbowViewManager: RainbowViewManagerProtocol
+    
     var startTime: Date?
-
     var elapsedTime: TimeInterval?
     
     var numberGame = 1
+    lazy var countColors = 150 * Double(settings?.durationGame ?? 2)
+    lazy var speed = countColors * 4
     var defaultSpeed = Speed.x1.rawValue
     
     var colorViews: [RainbowView] = []
-    var colorNames: [UILabel] = []
     
     var settings: GameSettings?
     
-    init(router: GameRouterProtocol, gameManager: GameManagerProtocol) {
+    init(
+        router: GameRouterProtocol,
+        gameManager: GameManagerProtocol,
+        rainbowViewManager: RainbowViewManagerProtocol
+    )
+    {
         self.router = router
         self.gameManager = gameManager
+        self.rainbowViewManager = rainbowViewManager
     }
     
     func getSettings() {
@@ -65,6 +74,13 @@ class GamePresenter: GamePresenterProtocol {
                 print(error.localizedDescription)
             }
         })
+    }
+    
+    func getRainbowView(count: Int) {
+        for _ in 0..<count {
+            let rainbowView = rainbowViewManager.getRandomRainbowView()
+            colorViews.append(rainbowView)
+        }
     }
     
     func routeToResultScreen() {

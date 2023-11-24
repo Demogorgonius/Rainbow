@@ -27,8 +27,12 @@ class GameBuilder: GameBuilderProtocol {
 
         let router = GameRouter(navigationController: navigationController)
         let gameManager = SettingsManager()
-        
-        let presenter = GamePresenter(router: router, gameManager: gameManager)
+        let gameSettings = GameSettings()
+        let rainbowViewManager = RainbowViewManager(settings: gameSettings)
+        let presenter = GamePresenter(
+            router: router,
+            gameManager: gameManager,
+            rainbowViewManager: rainbowViewManager)
         let viewController = GameViewController()
 
         viewController.presenter = presenter

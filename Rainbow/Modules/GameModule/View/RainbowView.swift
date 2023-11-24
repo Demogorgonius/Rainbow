@@ -15,7 +15,6 @@ final class RainbowView: UIView {
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = .init(width: 0, height: 4)
         view.layer.shadowOpacity = 0.25
-        view.isHidden = true
         return view
     }()
     
@@ -35,7 +34,7 @@ final class RainbowView: UIView {
     
     private func configure() {
         addSubview(coloredView)
-        addSubview(titleLabel)
+        coloredView.addSubview(titleLabel)
         
         titleLabel.font = UIFont.DisplayFont.Heavy.size(of: 20)
         
