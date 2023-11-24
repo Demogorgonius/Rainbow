@@ -19,12 +19,13 @@ protocol GamePresenterProtocol {
     
     var gameManager: GameManagerProtocol { get set }
     var colorViews: [RainbowView] { get set }
+    var rainbowViewManager: RainbowViewManagerProtocol { get set }
     var startTime: Date? { get set }
     var numberGame: Int { get set }
     var elapsedTime: TimeInterval? { get set }
     
-    var countColors: Int { get set }
-    var defaultSpeed: String { get set }
+    var countRainbowView: Int { get set }
+    var defaultSpeed: Int { get set }
     var speed: Int { get set }
     var settings: GameSettings? { get set }
     func getSettings()
@@ -45,9 +46,9 @@ class GamePresenter: GamePresenterProtocol {
     var elapsedTime: TimeInterval?
     
     var numberGame = 1
-    lazy var countColors = 15 * (settings?.durationGame ?? 10)
-    lazy var speed = countColors * (settings?.speedGame ?? 3)
-    var defaultSpeed = Speed.x1.rawValue
+    lazy var defaultSpeed = settings?.speedGame ?? 1
+    lazy var countRainbowView = 30 * (settings?.durationGame ?? 10)
+    lazy var speed = countRainbowView * defaultSpeed
     
     var colorViews: [RainbowView] = []
     

@@ -8,12 +8,12 @@
 import UIKit
 import SnapKit
 
-enum Speed: String {
-    case x1 = "X1"
-    case x2 = "X2"
-    case x3 = "X3"
-    case x4 = "X4"
-    case x5 = "X5"
+enum Speed: Int {
+    case x1 = 1
+    case x2 = 2
+    case x3 = 3
+    case x4 = 4
+    case x5 = 5
 }
 
 class GameViewController: UIViewController {
@@ -26,7 +26,7 @@ class GameViewController: UIViewController {
     lazy var speedButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
             backgroundColor: .customRed,
-            title: presenter.defaultSpeed,
+            title: "X\(presenter.defaultSpeed)",
             target: self,
             action: #selector(speedButtonPressed))
         return button
@@ -79,16 +79,13 @@ class GameViewController: UIViewController {
         let seconds = Int(timeInterval) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
-    
 }
-
 
 // MARK: GameViewProtocol
 extension GameViewController: GameViewProtocol {
     func getRainbowView() {
-        presenter.getRainbowView(count: Int(presenter.countColors))
+        presenter.getRainbowView(count: Int(presenter.countRainbowView))
     }
-    
     
     func getSettings() {
         presenter.getSettings()
@@ -113,7 +110,7 @@ extension GameViewController: GameViewProtocol {
     
     func settingSpeed(_ xSpeed: Speed, _ duration: CGFloat) {
         presenter.defaultSpeed = xSpeed.rawValue
-        speedButton.setTitle(xSpeed.rawValue, for: .normal)
+        speedButton.setTitle("X \(xSpeed.rawValue)", for: .normal)
         colorsAnimator?.pauseAnimation()
         colorsAnimator?.continueAnimation(withTimingParameters: .none, durationFactor: duration)
     }
@@ -125,10 +122,14 @@ extension GameViewController: GameViewProtocol {
             view.addSubview(colorView)
             view.bringSubviewToFront(speedButton)
             colorView.frame = CGRect(
-                x: Double.random(in: presenter.settings?.isCenterOnScreen ?? true ? 20...280 : 10...260),
+                x: Double.random(
+                    in: presenter.settings?.isCenterOnScreen ?? true
+                    ? 8...300
+                    : 149...150
+                ),
                 y: UIScreen.main.bounds.height - sizeBetweenColors,
                 width: 100,
-                height: 100
+                height: 50
             )
             
             sizeBetweenColors -= 250
@@ -140,7 +141,7 @@ extension GameViewController: GameViewProtocol {
                     x: colorView.frame.origin.x,
                     y: self.view.frame.height + sizeBetweenColors,
                     width: 100,
-                    height: 100
+                    height: 50
                 )
                 colorView.alpha = 0
             }
@@ -193,7 +194,7 @@ extension GameViewController: GameViewProtocol {
                 numberGame: presenter.numberGame,
                 durationGame: presenter.settings?.durationGame ?? 0,
                 speedGame: presenter.settings?.speedGame ?? 6,
-                resultGame: "3/4")
+                resultGame: String(presenter.rainbowViewManager.roundPoints))
             )
             
             presenter.routeToResultScreen()

@@ -47,8 +47,8 @@ final class ResultTableViewCell: UITableViewCell {
         gameNumberLabel.text = "Игра №\(result.numberGame)"
         gameTimeLabel.text = String(result.durationGame)
         gameSpeedLabel.text = "Скорость: \(result.speedGame)x"
+        gameResultLabel.text = "\(result.resultGame)"
         //gameResultLabel.text = "\(result.score)/\(result.totalColors)"
-        
     }
     
     // MARK: - Private Methods

@@ -14,7 +14,7 @@ final class RainbowView: UIView {
         view.layer.cornerRadius = 10
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = .init(width: 0, height: 4)
-        view.layer.shadowOpacity = 0.25
+        view.layer.shadowOpacity = 0.8
         return view
     }()
     
@@ -64,10 +64,11 @@ final class RainbowView: UIView {
     
     func update(_ model: GameModel) {
         titleLabel.text = model.text
-        titleLabel.textColor = .white
+        titleLabel.textColor = model.textColor
         titleLabel.font = titleLabel.font.withSize(model.fontSize)
         selectHandler = model.didSelectHandler
-        coloredView.backgroundColor = model.rainbowViewColor
+         coloredView.backgroundColor = model.rainbowViewColor
+        
     }
 }
 

@@ -8,11 +8,14 @@
 import UIKit
 
 protocol RainbowViewManagerProtocol {
+    var roundPoints: Int { get set }
     func getRandomRainbowView() -> RainbowView
 }
 
 final class RainbowViewManager: RainbowViewManagerProtocol {
+    var roundPoints = 0
     var settings: GameSettings
+    
     private let settingManager: SettingManagerProtocol = SettingsManager()
     
     private let colorNames = [
@@ -33,7 +36,7 @@ final class RainbowViewManager: RainbowViewManagerProtocol {
     
     private func getRandomGameModel() -> GameModel {
 
-        if !settings.isViewForText {
+        if settings.isViewForText {
             
             let shuffledColors = getColorTextShuffle()
             let text = shuffledColors.randomElement() ?? "Желтый"
@@ -48,7 +51,10 @@ final class RainbowViewManager: RainbowViewManagerProtocol {
                 textColor: textColor,
                 fontSize: fontSize,
                 rainbowViewColor: rainbowViewColor,
-                didSelectHandler: nil
+                didSelectHandler: settings.isChecksTask ? {
+                    [weak self] in
+                    self?.roundPoints += 1
+                } : nil
             )
         } else {
             let shuffledColors = getColorTextShuffle()
@@ -64,7 +70,10 @@ final class RainbowViewManager: RainbowViewManagerProtocol {
                 textColor: textColor,
                 fontSize: fontSize,
                 rainbowViewColor: rainbowViewColor,
-                didSelectHandler: nil
+                didSelectHandler: settings.isChecksTask ? {
+                    [weak self] in
+                    self?.roundPoints += 1
+                } : nil
             )
         }
     }
