@@ -2,21 +2,15 @@
 import UIKit
 import SnapKit
 
-protocol GameViewDelegate: AnyObject {
-    func speedButtonPressed()
-    func colorButtonPressed()
-}
 
 class GameView: UIView {
-    
-    weak var delegate: GameViewDelegate?
     
     lazy var speedButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
             backgroundColor: .customRed,
             title: "X1",
             target: self,
-            action: #selector(speedButtonPressed))
+            action: nil)
         return button
     }()
     
@@ -53,7 +47,7 @@ class GameView: UIView {
             backgroundColor: .customLightGreen,
             title: "",
             target: self,
-            action: #selector(colorButtonPressed))
+            action: nil)
         return button
     }()
     
@@ -62,7 +56,7 @@ class GameView: UIView {
             backgroundColor: .customPink,
             title: "",
             target: self,
-            action: #selector(colorButtonPressed))
+            action: nil)
         return button
     }()
     
@@ -71,7 +65,7 @@ class GameView: UIView {
             backgroundColor: .customLightBlue,
             title: "",
             target: self,
-            action: #selector(colorButtonPressed))
+            action: nil)
         return button
     }()
     
@@ -80,7 +74,7 @@ class GameView: UIView {
             backgroundColor: .customBurgundy,
             title: "",
             target: self,
-            action: #selector(colorButtonPressed))
+            action: nil)
         return button
     }()
     
@@ -89,7 +83,7 @@ class GameView: UIView {
             backgroundColor: .customViolet,
             title: "",
             target: self,
-            action: #selector(colorButtonPressed))
+            action: nil)
         return button
     }()
     
@@ -98,7 +92,7 @@ class GameView: UIView {
             backgroundColor: .customOrange,
             title: "",
             target: self,
-            action: #selector(colorButtonPressed))
+            action: nil)
         return button
     }()
     
@@ -107,7 +101,7 @@ class GameView: UIView {
             backgroundColor: .customRed,
             title: "",
             target: self,
-            action: #selector(colorButtonPressed))
+            action: nil)
         return button
     }()
     
@@ -116,7 +110,7 @@ class GameView: UIView {
             backgroundColor: .customYellow,
             title: "",
             target: self,
-            action: #selector(colorButtonPressed))
+            action: nil)
         return button
     }()
     
@@ -156,12 +150,12 @@ class GameView: UIView {
         }
     }
     
-    // MARK: @objc func
-    @objc private func speedButtonPressed() {
-        delegate?.speedButtonPressed()
-    }
-    
-    @objc private func colorButtonPressed() {
-        delegate?.colorButtonPressed()
-    }
+//    // MARK: @objc func
+//    @objc private func speedButtonPressed() {
+//        delegate?.speedButtonPressed()
+//    }
+//
+//    @objc private func colorButtonPressed() {
+//        delegate?.colorButtonPressed()
+//    }
 }

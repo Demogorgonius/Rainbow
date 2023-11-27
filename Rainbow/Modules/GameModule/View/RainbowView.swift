@@ -29,7 +29,7 @@ final class RainbowView: UIView {
         addSubview(coloredView)
         coloredView.addSubview(titleLabel)
         
-        titleLabel.font = UIFont.DisplayFont.Heavy.size(of: 20)
+        titleLabel.font = UIFont.DisplayFont.Heavy.size(of: 18)
         
         coloredView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -38,8 +38,8 @@ final class RainbowView: UIView {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(8)
             $0.bottom.equalToSuperview().inset(8)
-            $0.leading.greaterThanOrEqualToSuperview().inset(6)
-            $0.centerX.equalToSuperview().priority(.medium)
+            $0.leading.greaterThanOrEqualToSuperview().inset(4)
+            $0.centerX.equalToSuperview().priority(.high)
         }
     }
     
@@ -47,7 +47,7 @@ final class RainbowView: UIView {
         titleLabel.text = model.text
         titleLabel.textColor = model.textColor
         titleLabel.font = titleLabel.font.withSize(model.fontSize)
-         coloredView.backgroundColor = model.rainbowViewColor
+        coloredView.backgroundColor = model.rainbowViewColor
     }
 }
 

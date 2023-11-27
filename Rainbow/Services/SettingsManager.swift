@@ -31,7 +31,7 @@ struct GameSettings: Codable {
     var speedGame = 1
     var isChecksTask = true
     var gameColors: [ColorChecker] = color
-    var sizeFont = 15.0
+    var sizeFont = 18.0
     var isViewForText = true
     var themeForApp = "customBackground"
     var isCenterOnScreen = true
