@@ -1,9 +1,4 @@
-//
-//  InputViewCustom.swift
-//  RainbowGame
-//
-//  Created by Danila Bolshakov on 13.11.2023.
-//
+
 
 import UIKit
 

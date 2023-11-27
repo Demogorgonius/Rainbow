@@ -1,9 +1,3 @@
-//
-//  SettingsViewController.swift
-//  Rainbow
-//
-//  Created by Igor Guryan on 14.11.2023.
-//
 
 import UIKit
 import SnapKit

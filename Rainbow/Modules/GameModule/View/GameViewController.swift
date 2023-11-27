@@ -1,9 +1,3 @@
-//
-//  GameViewController.swift
-//  Rainbow
-//
-//  Created by Liz-Mary on 14.11.2023.
-//
 
 import UIKit
 import SnapKit
@@ -46,7 +40,6 @@ class GameViewController: UIViewController {
         startTimer(with: presenter.elapsedTime)
         addPatterns()
         configureNavigationBar()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -111,9 +104,13 @@ extension GameViewController: GameViewProtocol {
     func settingSpeed(_ xSpeed: Speed, _ duration: CGFloat) {
         presenter.defaultSpeed = xSpeed.rawValue
         speedButton.setTitle("X \(xSpeed.rawValue)", for: .normal)
-        colorsAnimator?.pauseAnimation()
-        colorsAnimator?.continueAnimation(withTimingParameters: .none, durationFactor: duration)
+        
+        if let colorsAnimator = colorsAnimator {
+            colorsAnimator.pauseAnimation()
+            colorsAnimator.continueAnimation(withTimingParameters: .none, durationFactor: duration)
+        }
     }
+    
     
     private func addPatterns() {
         var sizeBetweenColors = 0.0
@@ -165,22 +162,14 @@ extension GameViewController: GameViewProtocol {
         }
     }
     
+    // MARK: @objc func
     @objc func speedButtonPressed() {
-        switch presenter.defaultSpeed {
-        case Speed.x1.rawValue:
-            settingSpeed(Speed.x2, 1/2)
-        case Speed.x2.rawValue:
-            settingSpeed(Speed.x3, 1/3)
-        case Speed.x3.rawValue:
-            settingSpeed(Speed.x4, 1/4)
-        case Speed.x4.rawValue:
-            settingSpeed(Speed.x5, 1/5)
-        default:
-            settingSpeed(Speed.x1, 1/1)
-        }
+        let currentSpeed = presenter.defaultSpeed
+        let nextSpeed = Speed(rawValue: currentSpeed + 1) ?? .x1
+        
+        settingSpeed(nextSpeed, 1.0 / CGFloat(nextSpeed.rawValue))
     }
     
-    // MARK: @objc func
     @objc func updateTimer() {
         guard let startTime = presenter.startTime else { return }
         let elapsedTime = Date().timeIntervalSince(startTime)
@@ -193,7 +182,7 @@ extension GameViewController: GameViewProtocol {
             presenter.gameManager.addStatistic(.init(
                 numberGame: presenter.numberGame,
                 durationGame: presenter.settings?.durationGame ?? 0,
-                speedGame: presenter.settings?.speedGame ?? 6,
+                speedGame: presenter.defaultSpeed,
                 resultGame: String(presenter.rainbowViewManager.roundPoints))
             )
             

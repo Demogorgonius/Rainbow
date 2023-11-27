@@ -1,11 +1,7 @@
-//
-//  MainPresenter.swift
-//  Rainbow
-//
-//  Created by Liz-Mary on 15.11.2023.
-//
+
 
 import Foundation
+
 protocol MainViewProtocol: AnyObject {
     
     func startNewGameButtonTapped()

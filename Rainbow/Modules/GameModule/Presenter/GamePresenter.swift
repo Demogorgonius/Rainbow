@@ -1,18 +1,10 @@
-//
-//  GamePresenter.swift
-//  Rainbow
-//
-//  Created by Liz-Mary on 14.11.2023.
-//
-
 
 import UIKit
 
 protocol GameViewProtocol: AnyObject {
     func getSettings()
     func getRainbowView()
-    func settingSpeed(_ xSpeed: Speed, _ duration: CGFloat)
-    func startTimer(with elapsedTime: TimeInterval?)
+
 }
 
 protocol GamePresenterProtocol {
@@ -86,4 +78,6 @@ class GamePresenter: GamePresenterProtocol {
     func routeToResultScreen() {
         router.goToStatistics()
     }
+    
+    
 }

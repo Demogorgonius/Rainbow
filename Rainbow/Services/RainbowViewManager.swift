@@ -1,9 +1,3 @@
-//
-//  GameViewManager.swift
-//  Rainbow
-//
-//  Created by Келлер Дмитрий on 22.11.2023.
-//
 
 import UIKit
 
@@ -50,12 +44,8 @@ final class RainbowViewManager: RainbowViewManagerProtocol {
                 text: text,
                 textColor: textColor,
                 fontSize: fontSize,
-                rainbowViewColor: rainbowViewColor,
-                didSelectHandler: settings.isChecksTask ? {
-                    [weak self] in
-                    self?.roundPoints += 1
-                } : nil
-            )
+                rainbowViewColor: rainbowViewColor
+                )
         } else {
             let shuffledColors = getColorTextShuffle()
             let text = shuffledColors.randomElement() ?? ""
@@ -69,12 +59,8 @@ final class RainbowViewManager: RainbowViewManagerProtocol {
                 text: text,
                 textColor: textColor,
                 fontSize: fontSize,
-                rainbowViewColor: rainbowViewColor,
-                didSelectHandler: settings.isChecksTask ? {
-                    [weak self] in
-                    self?.roundPoints += 1
-                } : nil
-            )
+                rainbowViewColor: rainbowViewColor
+                )
         }
     }
 

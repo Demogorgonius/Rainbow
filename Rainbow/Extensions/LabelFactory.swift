@@ -1,9 +1,3 @@
-//
-//  LabelFactory.swift
-//  Rainbow
-//
-//  Created by Келлер Дмитрий on 14.11.2023.
-//
 
 import UIKit
 // Протокол для настраиваемого label
