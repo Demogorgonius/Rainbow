@@ -39,7 +39,7 @@ class GamePresenter: GamePresenterProtocol {
     
     var numberGame = 1
     lazy var defaultSpeed = settings?.speedGame ?? 1
-    lazy var countRainbowView = 30 * (settings?.durationGame ?? 10)
+    lazy var countRainbowView = defaultSpeed * (settings?.durationGame ?? 10)
     lazy var speed = countRainbowView * defaultSpeed
     
     var colorViews: [RainbowView] = []

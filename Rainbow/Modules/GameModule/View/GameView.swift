@@ -2,15 +2,15 @@
 import UIKit
 import SnapKit
 
-
 class GameView: UIView {
-    
+    // MARK: Properties
     lazy var speedButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
             backgroundColor: .customRed,
-            title: "X1",
+            title: "Speed +",
             target: self,
             action: nil)
+        button.layer.cornerRadius = 40
         return button
     }()
     
@@ -25,97 +25,28 @@ class GameView: UIView {
         return view
     }()
     
-    lazy var colorButtonStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            greenButton,
-            pinkButton,
-            blueButton,
-            burgundyButton,
-            violetButton,
-            orangeButton,
-            redButton,
-            yellowButton
-        ])
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.spacing = 8.0
-        return stackView
-    } ()
+    private lazy var colorButtons: [UIButton] = [
+        makeColorButton(backgroundColor: .customLightGreen),
+        makeColorButton(backgroundColor: .customDarkGreen),
+        makeColorButton(backgroundColor: .customPink),
+        makeColorButton(backgroundColor: .customLightBlue),
+        makeColorButton(backgroundColor: .customBurgundy),
+        makeColorButton(backgroundColor: .customViolet)
+        
+    ]
     
-    lazy var greenButton: UIButton = {
-        let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .customLightGreen,
-            title: "",
-            target: self,
-            action: nil)
-        return button
-    }()
+    private lazy var secondColorButtons: [UIButton] = [
+        
+        makeColorButton(backgroundColor: .customDarkBlue),
+        makeColorButton(backgroundColor: .customOrange),
+        makeColorButton(backgroundColor: .customRed),
+        makeColorButton(backgroundColor: .customYellow),
+        makeColorButton(backgroundColor: .customBlack),
+        makeColorButton(backgroundColor: .customGrayishPurple)
+    ]
     
-    lazy var pinkButton: UIButton = {
-        let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .customPink,
-            title: "",
-            target: self,
-            action: nil)
-        return button
-    }()
-    
-    lazy var blueButton: UIButton = {
-        let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .customLightBlue,
-            title: "",
-            target: self,
-            action: nil)
-        return button
-    }()
-    
-    lazy var burgundyButton: UIButton = {
-        let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .customBurgundy,
-            title: "",
-            target: self,
-            action: nil)
-        return button
-    }()
-    
-    lazy var violetButton: UIButton = {
-        let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .customViolet,
-            title: "",
-            target: self,
-            action: nil)
-        return button
-    }()
-    
-    lazy var orangeButton: UIButton = {
-        let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .customOrange,
-            title: "",
-            target: self,
-            action: nil)
-        return button
-    }()
-    
-    lazy var redButton: UIButton = {
-        let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .customRed,
-            title: "",
-            target: self,
-            action: nil)
-        return button
-    }()
-    
-    lazy var yellowButton: UIButton = {
-        let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .customYellow,
-            title: "",
-            target: self,
-            action: nil)
-        return button
-    }()
-    
+
     // MARK: - LifeCycle
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
@@ -126,36 +57,66 @@ class GameView: UIView {
         setupSubviews()
     }
     
+    // MARK: Private Methods
     private func setupSubviews() {
         addSubview(gradientView)
         addSubview(speedButton)
-        gradientView.addSubview(colorButtonStackView)
-        
+
         speedButton.snp.makeConstraints { make in
-            make.width.equalTo(63)
-            make.height.equalTo(43)
-            make.trailing.equalTo(-16)
-            make.bottom.equalTo(safeAreaLayoutGuide).offset(-52)
+            make.width.equalTo(80)
+            make.height.equalTo(80)
+            make.center.equalTo(gradientView)
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
         }
-        
+
         gradientView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(snp.height).multipliedBy(0.1)
         }
-        
-        colorButtonStackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-23)
-            make.height.equalTo(gradientView.snp.height).multipliedBy(0.8)
+
+        let buttonSize = CGSize(width: 50, height: 50)
+
+        let angleStep = CGFloat.pi / CGFloat(colorButtons.count - 1)
+
+        for (index, button) in colorButtons.enumerated() {
+            addSubview(button)
+
+            let angle = CGFloat.pi + CGFloat(index) * angleStep
+
+            // Calculate the radius for the circular layout
+            let radius: CGFloat = 85.0
+
+            button.snp.makeConstraints { make in
+                make.size.equalTo(buttonSize)
+                make.centerX.equalTo(speedButton.snp.centerX).offset(cos(angle) * radius )
+                make.centerY.equalTo(speedButton.snp.centerY).offset(sin(angle) * radius + 10)
+            }
+        }
+
+        // Create a second row of colorButtons parallel to the first row
+        for (index, button) in secondColorButtons.enumerated() {
+            addSubview(button)
+
+            let angle = CGFloat.pi + CGFloat(index) * angleStep
+
+            // Adjust the radius for the second row
+            let radius: CGFloat = 140.0
+
+            button.snp.makeConstraints { make in
+                make.size.equalTo(buttonSize)
+                make.centerX.equalTo(speedButton.snp.centerX).offset(cos(angle) * radius)
+                make.centerY.equalTo(speedButton.snp.centerY).offset(sin(angle) * radius)
+            }
         }
     }
     
-//    // MARK: @objc func
-//    @objc private func speedButtonPressed() {
-//        delegate?.speedButtonPressed()
-//    }
-//
-//    @objc private func colorButtonPressed() {
-//        delegate?.colorButtonPressed()
-//    }
+    private func makeColorButton(backgroundColor: UIColor) -> UIButton {
+        let button = ShadowButtonFactory.makeShadowButton(
+            backgroundColor: backgroundColor,
+            title: "",
+            target: self,
+            action: nil)
+        button.layer.cornerRadius = 25
+        return button
+    }
 }

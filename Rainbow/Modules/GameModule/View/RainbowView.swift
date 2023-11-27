@@ -5,7 +5,7 @@ final class RainbowView: UIView {
     
     private let coloredView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 20
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = .init(width: 0, height: 4)
         view.layer.shadowOpacity = 0.8

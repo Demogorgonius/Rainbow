@@ -3,7 +3,7 @@ import UIKit
 import SnapKit
 
 
-class GameViewController: UIViewController {
+final class GameViewController: UIViewController {
     
     // MARK: Properties
     var presenter: GamePresenterProtocol!
@@ -126,7 +126,7 @@ extension GameViewController: GameViewProtocol {
             x: xPosition,
             y: yPosition,
             width: 120,
-            height: 50
+            height: 40
         )
     }
 
@@ -135,7 +135,7 @@ extension GameViewController: GameViewProtocol {
             x: colorView.frame.origin.x,
             y: self.view.frame.height + sizeBetweenColors,
             width: 120,
-            height: 50
+            height: 40
         )
         colorView.alpha = 0
     }
