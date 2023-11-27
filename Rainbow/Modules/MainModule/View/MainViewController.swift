@@ -125,8 +125,8 @@ final class MainViewController: UIViewController {
         
         buttonsStackView.snp.makeConstraints { make in
             make.top.equalTo(nameGameLabel.snp.bottom).offset(50)
-            make.centerX.equalToSuperview()
-            make.leadingMargin.equalToSuperview()
+            make.leading.equalToSuperview().offset(36)
+            make.trailing.equalToSuperview().offset(-36)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-8)
             make.height.equalTo(335)
         }

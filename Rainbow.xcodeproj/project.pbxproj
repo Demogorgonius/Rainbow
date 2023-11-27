@@ -55,6 +55,7 @@
 		E112CBEF2B08A8E000F08206 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBEE2B08A8E000F08206 /* SettingsManager.swift */; };
 		E112CBF12B08F45900F08206 /* GameErrorAndKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBF02B08F45900F08206 /* GameErrorAndKeys.swift */; };
 		E112CBF32B09268E00F08206 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBF22B09268E00F08206 /* ResultModel.swift */; };
+		E1255A9F2B14A9F000F2C734 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1255A9E2B14A9F000F2C734 /* GameView.swift */; };
 		E183FEBE2B0B465100E3ED41 /* ShadowButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEBD2B0B465100E3ED41 /* ShadowButtonFactory.swift */; };
 		E183FEC12B0B47E500E3ED41 /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEC02B0B47E500E3ED41 /* SettingsBuilder.swift */; };
 		E183FEC82B0CC2AA00E3ED41 /* RainbowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183FEC72B0CC2AA00E3ED41 /* RainbowView.swift */; };
@@ -111,6 +112,7 @@
 		E112CBEE2B08A8E000F08206 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		E112CBF02B08F45900F08206 /* GameErrorAndKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameErrorAndKeys.swift; sourceTree = "<group>"; };
 		E112CBF22B09268E00F08206 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
+		E1255A9E2B14A9F000F2C734 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		E183FEBD2B0B465100E3ED41 /* ShadowButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButtonFactory.swift; sourceTree = "<group>"; };
 		E183FEC02B0B47E500E3ED41 /* SettingsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsBuilder.swift; path = Rainbow/Modules/SettingsModule/SettingsBuilder.swift; sourceTree = SOURCE_ROOT; };
 		E183FEC72B0CC2AA00E3ED41 /* RainbowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowView.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				E183FEC72B0CC2AA00E3ED41 /* RainbowView.swift */,
+				E1255A9E2B14A9F000F2C734 /* GameView.swift */,
 				4AD1314F2B03D99F007DA3B7 /* GameViewController.swift */,
 			);
 			path = View;
@@ -578,6 +581,7 @@
 				4AD1316F2B0566E4007DA3B7 /* ResultsRouter.swift in Sources */,
 				4AD131732B0566E4007DA3B7 /* ResultsViewProtocol.swift in Sources */,
 				4AD131572B051DAE007DA3B7 /* MainRouter.swift in Sources */,
+				E1255A9F2B14A9F000F2C734 /* GameView.swift in Sources */,
 				4AD131522B03D9D7007DA3B7 /* GamePresenter.swift in Sources */,
 				4AF8FA9B2B0749BD006EEE4B /* GameRouter.swift in Sources */,
 				4AD131502B03D99F007DA3B7 /* GameViewController.swift in Sources */,
