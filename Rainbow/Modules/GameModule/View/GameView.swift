@@ -17,7 +17,6 @@ class GameView: UIView {
             title: "X1",
             target: self,
             action: #selector(speedButtonPressed))
-        button.layer.cornerRadius = 20
         return button
     }()
     
@@ -142,7 +141,7 @@ class GameView: UIView {
             make.width.equalTo(63)
             make.height.equalTo(43)
             make.trailing.equalTo(-16)
-            make.top.equalTo(safeAreaLayoutGuide).offset(34)
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-52)
         }
         
         gradientView.snp.makeConstraints { make in

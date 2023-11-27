@@ -264,8 +264,8 @@
 			isa = PBXGroup;
 			children = (
 				E183FEC72B0CC2AA00E3ED41 /* RainbowView.swift */,
-				4AD1314F2B03D99F007DA3B7 /* GameViewController.swift */,
 				E1255A9E2B14A9F000F2C734 /* GameView.swift */,
+				4AD1314F2B03D99F007DA3B7 /* GameViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

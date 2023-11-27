@@ -44,7 +44,7 @@ class GameViewController: UIViewController {
     
     // MARK: Private Methods
     private func addSubviews() {
-            view.backgroundColor = .customBackground
+        view.addVerticalGradientLayer()
             view.addSubview(gameView)
             
             gameView.snp.makeConstraints { make in
