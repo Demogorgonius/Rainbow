@@ -2,25 +2,17 @@
 import UIKit
 import SnapKit
 
-enum Speed: Int {
-    case x1 = 1
-    case x2 = 2
-    case x3 = 3
-    case x4 = 4
-    case x5 = 5
-}
 
 class GameViewController: UIViewController {
     
+    // MARK: Properties
     var presenter: GamePresenterProtocol!
-    
+
     var timer = Timer()
-    
     var colorsAnimator: UIViewPropertyAnimator?
     
     private let gameView: GameView = {
         let view = GameView()
-        //view.delegate = self
         return view
     }()
     
@@ -31,10 +23,9 @@ class GameViewController: UIViewController {
         getSettings()
         getRainbowView()
         addSubviews()
-        navigationItem.title = formattedTime(from: TimeInterval(presenter.settings?.durationGame ?? 15))
-        navigationController?.setupNavigationBar()
+        
         startTimer(with: presenter.elapsedTime)
-        addPatterns()
+        startColorsAnimation()
         configureNavigationBar()
     }
     
@@ -45,14 +36,18 @@ class GameViewController: UIViewController {
     // MARK: Private Methods
     private func addSubviews() {
         view.addVerticalGradientLayer()
-            view.addSubview(gameView)
-            
-            gameView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
+        view.addSubview(gameView)
+        
+        gameView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
+    }
     
     private func configureNavigationBar() {
+        navigationController?.setupNavigationBar()
+        
+        navigationItem.title = formattedTime(from: TimeInterval(presenter.settings?.durationGame ?? 15))
+        
         let pauseBarButton = UIBarButtonItem(image: UIImage(systemName: "pause.fill"), style: .plain, target: self, action: #selector(pauseButtonPressed))
         navigationItem.rightBarButtonItem = pauseBarButton
     }
@@ -61,20 +56,6 @@ class GameViewController: UIViewController {
         let minutes = Int(timeInterval) / 60
         let seconds = Int(timeInterval) % 60
         return String(format: "%02d:%02d", minutes, seconds)
-    }
-}
-
-// MARK: GameViewDelegate
-extension GameViewController: GameViewDelegate {
-    func colorButtonPressed() {
-        //
-    }
-    
-    func speedButtonPressed() {
-        let currentSpeed = presenter.defaultSpeed
-        let nextSpeed = Speed(rawValue: currentSpeed + 1) ?? .x1
-        
-        settingSpeed(nextSpeed, 1.0 / CGFloat(nextSpeed.rawValue))
     }
 }
 
@@ -105,9 +86,9 @@ extension GameViewController: GameViewProtocol {
         )
     }
     
-    func settingSpeed(_ xSpeed: Speed, _ duration: CGFloat) {
-        presenter.defaultSpeed = xSpeed.rawValue
-        gameView.speedButton.setTitle("X \(xSpeed.rawValue)", for: .normal)
+    func settingSpeed(_ xSpeed: Int, _ duration: CGFloat) {
+        presenter.defaultSpeed = xSpeed
+        gameView.speedButton.setTitle("X \(xSpeed)", for: .normal)
         
         if let colorsAnimator = colorsAnimator {
             colorsAnimator.pauseAnimation()
@@ -115,40 +96,50 @@ extension GameViewController: GameViewProtocol {
         }
     }
     
-    
-    private func addPatterns() {
+    private func startColorsAnimation() {
         var sizeBetweenColors = 0.0
-        
+
         for colorView in presenter.colorViews {
             view.addSubview(colorView)
             view.bringSubviewToFront(gameView.speedButton)
-            colorView.frame = CGRect(
-                x: Double.random(
-                    in: presenter.settings?.isCenterOnScreen ?? true
-                    ? 8...300
-                    : 149...150
-                ),
-                y: UIScreen.main.bounds.height - sizeBetweenColors,
-                width: 100,
-                height: 50
-            )
-            
+            view.bringSubviewToFront(gameView)
+            setInitialColorViewPosition(colorView, sizeBetweenColors: sizeBetweenColors)
             sizeBetweenColors -= 250
         }
-        
+
         colorsAnimator = UIViewPropertyAnimator(duration: TimeInterval(presenter.speed), curve: .linear) {
             self.presenter.colorViews.forEach { colorView in
-                colorView.frame = CGRect(
-                    x: colorView.frame.origin.x,
-                    y: self.view.frame.height + sizeBetweenColors,
-                    width: 100,
-                    height: 50
-                )
-                colorView.alpha = 0
+                self.moveColorViewOffScreen(colorView, sizeBetweenColors: sizeBetweenColors)
             }
         }
         colorsAnimator?.startAnimation()
     }
+
+    private func setInitialColorViewPosition(_ colorView: RainbowView, sizeBetweenColors: Double) {
+        let xPosition = Double.random(
+            in: presenter.settings?.isCenterOnScreen ?? true
+            ? 8...300
+            : 149...150
+        )
+        let yPosition = UIScreen.main.bounds.height - sizeBetweenColors
+        colorView.frame = CGRect(
+            x: xPosition,
+            y: yPosition,
+            width: 120,
+            height: 50
+        )
+    }
+
+    private func moveColorViewOffScreen(_ colorView: RainbowView, sizeBetweenColors: Double) {
+        colorView.frame = CGRect(
+            x: colorView.frame.origin.x,
+            y: self.view.frame.height + sizeBetweenColors,
+            width: 120,
+            height: 50
+        )
+        colorView.alpha = 0
+    }
+    
     
     // MARK: @objc func
     @objc func pauseButtonPressed() {
@@ -166,8 +157,12 @@ extension GameViewController: GameViewProtocol {
         }
     }
     
-    // MARK: @objc func
-
+    @objc func speedButtonPressed() {
+        let currentSpeed = presenter.defaultSpeed
+        let nextSpeed = currentSpeed + 1
+        
+        settingSpeed(nextSpeed, 1.0 / CGFloat(nextSpeed))
+    }
     
     @objc func updateTimer() {
         guard let startTime = presenter.startTime else { return }
