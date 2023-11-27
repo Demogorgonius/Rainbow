@@ -1,9 +1,3 @@
-//
-//  GameBuilder.swift
-//  Rainbow
-//
-//  Created by Liz-Mary on 17.11.2023.
-//
 
 import UIKit
 

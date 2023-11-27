@@ -1,9 +1,3 @@
-//
-//  SettingsManager.swift
-//  Rainbow
-//
-//  Created by Келлер Дмитрий on 18.11.2023.
-//
 
 import UIKit
 
@@ -34,7 +28,7 @@ let color = colorButtons.colorButtons
 
 struct GameSettings: Codable {
     var durationGame = 10
-    var speedGame: Int = 1
+    var speedGame = 1
     var isChecksTask = true
     var gameColors: [ColorChecker] = color
     var sizeFont = 15.0

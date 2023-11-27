@@ -1,9 +1,3 @@
-//
-//  RainbowView.swift
-//  Rainbow
-//
-//  Created by Келлер Дмитрий on 21.11.2023.
-//
 
 import UIKit
 
@@ -14,12 +8,11 @@ final class RainbowView: UIView {
         view.layer.cornerRadius = 10
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = .init(width: 0, height: 4)
-        view.layer.shadowOpacity = 0.25
+        view.layer.shadowOpacity = 0.8
         return view
     }()
     
     private let titleLabel = UILabel()
-    private var selectHandler: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,26 +41,13 @@ final class RainbowView: UIView {
             $0.leading.greaterThanOrEqualToSuperview().inset(6)
             $0.centerX.equalToSuperview().priority(.medium)
         }
-        
-        let tapGR = UITapGestureRecognizer(target: self, action: #selector(didSelect))
-        tapGR.cancelsTouchesInView = false
-        addGestureRecognizer(tapGR)
-    }
-    
-    @objc
-    private func didSelect() {
-        selectHandler?()
-        titleLabel.textColor = .customBlack
-        titleLabel.text = "верно"
-        coloredView.backgroundColor = .customGreenForButton
     }
     
     func update(_ model: GameModel) {
         titleLabel.text = model.text
-        titleLabel.textColor = .white
+        titleLabel.textColor = model.textColor
         titleLabel.font = titleLabel.font.withSize(model.fontSize)
-        selectHandler = model.didSelectHandler
-        coloredView.backgroundColor = model.rainbowViewColor
+         coloredView.backgroundColor = model.rainbowViewColor
     }
 }
 

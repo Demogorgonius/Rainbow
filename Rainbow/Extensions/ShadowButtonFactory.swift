@@ -1,9 +1,3 @@
-//
-//  ShadowButtonFactory.swift
-//  Rainbow
-//
-//  Created by Келлер Дмитрий on 20.11.2023.
-//
 
 import UIKit
 

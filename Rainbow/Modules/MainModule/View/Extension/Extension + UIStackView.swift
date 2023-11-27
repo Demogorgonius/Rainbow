@@ -1,9 +1,3 @@
-//
-//  Extension + UIStackView.swift
-//  Rainbow
-//
-//  Created by Liz-Mary on 13.11.2023.
-//
 
 import UIKit
 

@@ -1,19 +1,13 @@
-//
-//  GameViewController.swift
-//  Rainbow
-//
-//  Created by Liz-Mary on 14.11.2023.
-//
 
 import UIKit
 import SnapKit
 
-enum Speed: String {
-    case x1 = "X1"
-    case x2 = "X2"
-    case x3 = "X3"
-    case x4 = "X4"
-    case x5 = "X5"
+enum Speed: Int {
+    case x1 = 1
+    case x2 = 2
+    case x3 = 3
+    case x4 = 4
+    case x5 = 5
 }
 
 class GameViewController: UIViewController {
@@ -26,7 +20,7 @@ class GameViewController: UIViewController {
     lazy var speedButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
             backgroundColor: .customRed,
-            title: presenter.defaultSpeed,
+            title: "X\(presenter.defaultSpeed)",
             target: self,
             action: #selector(speedButtonPressed))
         return button
@@ -46,7 +40,6 @@ class GameViewController: UIViewController {
         startTimer(with: presenter.elapsedTime)
         addPatterns()
         configureNavigationBar()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -79,16 +72,13 @@ class GameViewController: UIViewController {
         let seconds = Int(timeInterval) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
-    
 }
-
 
 // MARK: GameViewProtocol
 extension GameViewController: GameViewProtocol {
     func getRainbowView() {
-        presenter.getRainbowView(count: Int(presenter.countColors))
+        presenter.getRainbowView(count: Int(presenter.countRainbowView))
     }
-    
     
     func getSettings() {
         presenter.getSettings()
@@ -113,34 +103,42 @@ extension GameViewController: GameViewProtocol {
     
     func settingSpeed(_ xSpeed: Speed, _ duration: CGFloat) {
         presenter.defaultSpeed = xSpeed.rawValue
-        speedButton.setTitle(xSpeed.rawValue, for: .normal)
-        colorsAnimator?.pauseAnimation()
-        colorsAnimator?.continueAnimation(withTimingParameters: .none, durationFactor: duration)
+        speedButton.setTitle("X \(xSpeed.rawValue)", for: .normal)
+        
+        if let colorsAnimator = colorsAnimator {
+            colorsAnimator.pauseAnimation()
+            colorsAnimator.continueAnimation(withTimingParameters: .none, durationFactor: duration)
+        }
     }
     
+    
     private func addPatterns() {
-        var sizeBetweenColors = 200.0
+        var sizeBetweenColors = 0.0
         
         for colorView in presenter.colorViews {
             view.addSubview(colorView)
             view.bringSubviewToFront(speedButton)
             colorView.frame = CGRect(
-                x: Double.random(in: presenter.settings?.isCenterOnScreen ?? true ? 20...280 : 10...260),
+                x: Double.random(
+                    in: presenter.settings?.isCenterOnScreen ?? true
+                    ? 8...300
+                    : 149...150
+                ),
                 y: UIScreen.main.bounds.height - sizeBetweenColors,
                 width: 100,
-                height: 100
+                height: 50
             )
             
             sizeBetweenColors -= 250
         }
         
-        colorsAnimator = UIViewPropertyAnimator(duration: presenter.speed, curve: .linear) {
+        colorsAnimator = UIViewPropertyAnimator(duration: TimeInterval(presenter.speed), curve: .linear) {
             self.presenter.colorViews.forEach { colorView in
                 colorView.frame = CGRect(
                     x: colorView.frame.origin.x,
                     y: self.view.frame.height + sizeBetweenColors,
                     width: 100,
-                    height: 100
+                    height: 50
                 )
                 colorView.alpha = 0
             }
@@ -153,31 +151,25 @@ extension GameViewController: GameViewProtocol {
         if timer.isValid {
             presenter.elapsedTime = Date().timeIntervalSince(presenter.startTime ?? Date())
             timer.invalidate()
+            colorsAnimator?.pauseAnimation()
             speedButton.isHidden = true
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "play.fill")
         } else {
             startTimer(with: presenter.elapsedTime)
+            colorsAnimator?.startAnimation()
             speedButton.isHidden = false
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "pause.fill")
         }
     }
     
+    // MARK: @objc func
     @objc func speedButtonPressed() {
-        switch presenter.defaultSpeed {
-        case Speed.x1.rawValue:
-            settingSpeed(Speed.x2, 1/2)
-        case Speed.x2.rawValue:
-            settingSpeed(Speed.x3, 1/3)
-        case Speed.x3.rawValue:
-            settingSpeed(Speed.x4, 1/4)
-        case Speed.x4.rawValue:
-            settingSpeed(Speed.x5, 1/5)
-        default:
-            settingSpeed(Speed.x1, 1/1)
-        }
+        let currentSpeed = presenter.defaultSpeed
+        let nextSpeed = Speed(rawValue: currentSpeed + 1) ?? .x1
+        
+        settingSpeed(nextSpeed, 1.0 / CGFloat(nextSpeed.rawValue))
     }
     
-    // MARK: @objc func
     @objc func updateTimer() {
         guard let startTime = presenter.startTime else { return }
         let elapsedTime = Date().timeIntervalSince(startTime)
@@ -190,8 +182,8 @@ extension GameViewController: GameViewProtocol {
             presenter.gameManager.addStatistic(.init(
                 numberGame: presenter.numberGame,
                 durationGame: presenter.settings?.durationGame ?? 0,
-                speedGame: presenter.settings?.speedGame ?? 6,
-                resultGame: "3/4")
+                speedGame: presenter.defaultSpeed,
+                resultGame: String(presenter.rainbowViewManager.roundPoints))
             )
             
             presenter.routeToResultScreen()

@@ -1,31 +1,24 @@
-//
-//  GamePresenter.swift
-//  Rainbow
-//
-//  Created by Liz-Mary on 14.11.2023.
-//
-
 
 import UIKit
 
 protocol GameViewProtocol: AnyObject {
     func getSettings()
     func getRainbowView()
-    func settingSpeed(_ xSpeed: Speed, _ duration: CGFloat)
-    func startTimer(with elapsedTime: TimeInterval?)
+
 }
 
 protocol GamePresenterProtocol {
     
     var gameManager: GameManagerProtocol { get set }
     var colorViews: [RainbowView] { get set }
+    var rainbowViewManager: RainbowViewManagerProtocol { get set }
     var startTime: Date? { get set }
     var numberGame: Int { get set }
     var elapsedTime: TimeInterval? { get set }
     
-    var countColors: Double { get set }
-    var defaultSpeed: String { get set }
-    var speed: Double { get set }
+    var countRainbowView: Int { get set }
+    var defaultSpeed: Int { get set }
+    var speed: Int { get set }
     var settings: GameSettings? { get set }
     func getSettings()
     
@@ -34,7 +27,6 @@ protocol GamePresenterProtocol {
 }
 
 class GamePresenter: GamePresenterProtocol {
-    
     weak var view: GameViewProtocol?
     
     private let router: GameRouterProtocol
@@ -46,9 +38,9 @@ class GamePresenter: GamePresenterProtocol {
     var elapsedTime: TimeInterval?
     
     var numberGame = 1
-    lazy var countColors = 150 * Double(settings?.durationGame ?? 2)
-    lazy var speed = countColors * 4
-    var defaultSpeed = Speed.x1.rawValue
+    lazy var defaultSpeed = settings?.speedGame ?? 1
+    lazy var countRainbowView = 30 * (settings?.durationGame ?? 10)
+    lazy var speed = countRainbowView * defaultSpeed
     
     var colorViews: [RainbowView] = []
     
@@ -86,4 +78,6 @@ class GamePresenter: GamePresenterProtocol {
     func routeToResultScreen() {
         router.goToStatistics()
     }
+    
+    
 }

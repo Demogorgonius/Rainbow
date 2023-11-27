@@ -1,9 +1,3 @@
-//
-//  SettingsBuilder.swift
-//  Rainbow
-//
-//  Created by Igor Guryan on 16.11.2023.
-//
 
 import UIKit
 
@@ -17,7 +11,6 @@ final class SettingsBuilder {
         viewController.presenter = presenter
         presenter.view = viewController
 
-        
         return viewController
     }
 }
