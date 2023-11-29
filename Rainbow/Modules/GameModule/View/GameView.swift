@@ -4,6 +4,10 @@ import SnapKit
 
 class GameView: UIView {
     // MARK: Properties
+    lazy var pauseLabel: UILabel = {
+        return LabelFactory.createLabel(type: .gameLightGreen, text: "Пауза!!!")
+    }()
+    
     lazy var speedButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
             backgroundColor: .customRed,
@@ -25,17 +29,16 @@ class GameView: UIView {
         return view
     }()
     
-    private lazy var colorButtons: [UIButton] = [
+    lazy var colorButtons: [UIButton] = [
         makeColorButton(backgroundColor: .customLightGreen),
         makeColorButton(backgroundColor: .customDarkGreen),
         makeColorButton(backgroundColor: .customPink),
         makeColorButton(backgroundColor: .customLightBlue),
         makeColorButton(backgroundColor: .customBurgundy),
         makeColorButton(backgroundColor: .customViolet)
-        
     ]
     
-    private lazy var secondColorButtons: [UIButton] = [
+    lazy var secondColorButtons: [UIButton] = [
         
         makeColorButton(backgroundColor: .customDarkBlue),
         makeColorButton(backgroundColor: .customOrange),
@@ -45,11 +48,12 @@ class GameView: UIView {
         makeColorButton(backgroundColor: .customGrayishPurple)
     ]
     
-
+    
     // MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
+  
     }
     
     required init?(coder: NSCoder) {
@@ -61,47 +65,50 @@ class GameView: UIView {
     private func setupSubviews() {
         addSubview(gradientView)
         addSubview(speedButton)
-
+        addSubviews(pauseLabel)
+        
+        pauseLabel.isHidden = true
+        pauseLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
         speedButton.snp.makeConstraints { make in
             make.width.equalTo(80)
             make.height.equalTo(80)
             make.center.equalTo(gradientView)
             make.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
         }
-
+        
         gradientView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(snp.height).multipliedBy(0.1)
         }
-
+        
         let buttonSize = CGSize(width: 50, height: 50)
-
+        
         let angleStep = CGFloat.pi / CGFloat(colorButtons.count - 1)
-
+        
         for (index, button) in colorButtons.enumerated() {
             addSubview(button)
-
+            
             let angle = CGFloat.pi + CGFloat(index) * angleStep
-
-            // Calculate the radius for the circular layout
+            
             let radius: CGFloat = 85.0
-
+            
             button.snp.makeConstraints { make in
                 make.size.equalTo(buttonSize)
                 make.centerX.equalTo(speedButton.snp.centerX).offset(cos(angle) * radius )
                 make.centerY.equalTo(speedButton.snp.centerY).offset(sin(angle) * radius + 10)
             }
         }
-
-        // Create a second row of colorButtons parallel to the first row
+        
         for (index, button) in secondColorButtons.enumerated() {
             addSubview(button)
-
+            
             let angle = CGFloat.pi + CGFloat(index) * angleStep
-
-            // Adjust the radius for the second row
-            let radius: CGFloat = 140.0
-
+            
+            let radius: CGFloat = 155.0
+            
             button.snp.makeConstraints { make in
                 make.size.equalTo(buttonSize)
                 make.centerX.equalTo(speedButton.snp.centerX).offset(cos(angle) * radius)

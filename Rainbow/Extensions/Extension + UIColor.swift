@@ -17,6 +17,7 @@ extension UIColor {
     static let customBlack = UIColor(named: "customBlack") ?? UIColor()
     static let customGrayishPurple = UIColor(named: "customGrayishPurple") ?? UIColor()
     static let customPurple = UIColor(named: "customPurple") ?? UIColor()
+    static let customPeach = UIColor(named: "customPeach") ?? UIColor()
     
     
 }

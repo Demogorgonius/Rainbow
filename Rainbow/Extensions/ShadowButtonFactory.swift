@@ -13,12 +13,12 @@ class ShadowButtonFactory {
         button.setTitle(title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = backgroundColor
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 20
         button.layer.shadowOffset = CGSize(width: 0, height: 4)
         button.layer.shadowOpacity = 0.9
         button.layer.shadowRadius = 3
         button.layer.shadowColor = UIColor.black.cgColor
-        
+        button.layer.borderWidth = 1
         if let target = target, let action = action {
             button.addTarget(target, action: action, for: .touchUpInside)
         }

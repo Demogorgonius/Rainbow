@@ -29,10 +29,9 @@ let color = colorButtons.colorButtons
 struct GameSettings: Codable {
     var durationGame = 10
     var speedGame = 1
-    var isChecksTask = true
     var gameColors: [ColorChecker] = color
     var sizeFont = 18.0
-    var isViewForText = true
+    var isViewForText = false
     var themeForApp = "customBackground"
     var isCenterOnScreen = true
 }
@@ -42,7 +41,6 @@ protocol SettingManagerProtocol {
     func saveSettings(
         durationGame: Int?,
         speedGame: Int?,
-        isChecksTask: Bool?,
         gameColors: [ColorChecker]?,
         sizeFont: Double?,
         isViewForText: Bool?,
@@ -89,7 +87,6 @@ class SettingsManager: GameManagerProtocol {
     func saveSettings(
         durationGame: Int?,
         speedGame: Int?,
-        isChecksTask: Bool?,
         gameColors: [ColorChecker]?,
         sizeFont: Double?,
         isViewForText: Bool?,
@@ -101,7 +98,6 @@ class SettingsManager: GameManagerProtocol {
         let settings = GameSettings(
             durationGame: durationGame ?? 10,
             speedGame: speedGame ?? 1,
-            isChecksTask: isChecksTask ?? true,
             gameColors: gameColors ?? [],
             sizeFont: sizeFont ?? 15.0,
             isViewForText: isViewForText ?? true,

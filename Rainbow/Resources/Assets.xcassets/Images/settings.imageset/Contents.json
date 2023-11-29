@@ -1,8 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "cogwheel.png",
-      "idiom" : "universal"
+      "filename" : "settings2_118056.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

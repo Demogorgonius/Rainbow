@@ -72,7 +72,7 @@ final class MainViewController: UIViewController {
     private lazy var customButtonsStackView = UIStackView(
         axis: .horizontal,
         distribution: .fillEqually,
-        spacing: 180,
+        spacing: 150,
         subview: [settingsGameButton, infoGameButton]
     )
     
@@ -125,8 +125,8 @@ final class MainViewController: UIViewController {
         
         buttonsStackView.snp.makeConstraints { make in
             make.top.equalTo(nameGameLabel.snp.bottom).offset(50)
-            make.leading.equalToSuperview().offset(36)
-            make.trailing.equalToSuperview().offset(-36)
+            make.leading.equalToSuperview().offset(50)
+            make.trailing.equalToSuperview().offset(-50)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-8)
             make.height.equalTo(335)
         }
