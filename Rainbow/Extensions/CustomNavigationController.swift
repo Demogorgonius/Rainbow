@@ -14,7 +14,7 @@ extension UINavigationController {
         navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationBar.backIndicatorImage = backButtonImage?.withAlignmentRectInsets(alignInsets)
         navigationBar.backIndicatorTransitionMaskImage = backButtonImage
-        navigationBar.tintColor = .white
+        navigationBar.tintColor = .customPeach
     }
 
 
@@ -24,7 +24,7 @@ extension UINavigationController {
         appearance.backgroundColor = .customPurple
         appearance.titleTextAttributes = [
             .font: UIFont.boldSystemFont(ofSize: 30),
-            .foregroundColor: UIColor.white]
+            .foregroundColor: UIColor.customPeach]
         navigationBar.standardAppearance = appearance
         navigationBar.compactAppearance = appearance
         navigationBar.scrollEdgeAppearance = appearance

@@ -18,7 +18,8 @@ class ViewFactory {
     static func createShadowView() -> ContenableView {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 15
+        view.layer.borderWidth = 1
         view.layer.shadowOffset = CGSize(width: 0, height: 4)
         view.layer.shadowOpacity = 0.9
         view.layer.shadowRadius = 3

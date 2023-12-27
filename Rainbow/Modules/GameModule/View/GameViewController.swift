@@ -70,6 +70,7 @@ extension GameViewController: GameViewProtocol {
     }
     
     func startTimer(with elapsedTime: TimeInterval?) {
+        gameView.speedButton.addTarget(self, action: #selector(speedButtonPressed), for: .touchUpInside)
         timer.invalidate()
         presenter.startTime = Date()
         
@@ -140,6 +141,7 @@ extension GameViewController: GameViewProtocol {
         colorView.alpha = 0
     }
     
+
     
     // MARK: @objc func
     @objc func pauseButtonPressed() {
@@ -148,18 +150,32 @@ extension GameViewController: GameViewProtocol {
             timer.invalidate()
             colorsAnimator?.pauseAnimation()
             gameView.speedButton.isHidden = true
+            gameView.pauseLabel.isHidden = false
+            gameView.colorButtons.forEach { button in
+                button.isHidden = true
+            }
+            gameView.secondColorButtons.forEach { button in
+                button.isHidden = true
+            }
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "play.fill")
         } else {
             startTimer(with: presenter.elapsedTime)
             colorsAnimator?.startAnimation()
             gameView.speedButton.isHidden = false
+            gameView.colorButtons.forEach { button in
+                button.isHidden = false
+            }
+            gameView.secondColorButtons.forEach { button in
+                button.isHidden = false
+            }
+            gameView.pauseLabel.isHidden = true
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "pause.fill")
         }
     }
     
     @objc func speedButtonPressed() {
         let currentSpeed = presenter.defaultSpeed
-        let nextSpeed = currentSpeed + 1
+        let nextSpeed = currentSpeed + 1 > 5 ? 1 : currentSpeed + 1
         
         settingSpeed(nextSpeed, 1.0 / CGFloat(nextSpeed))
     }
