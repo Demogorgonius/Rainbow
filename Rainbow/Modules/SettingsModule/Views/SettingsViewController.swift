@@ -378,7 +378,7 @@ final class SettingsViewController: UIViewController {
     
     func setupButtons() {
         var button = UIButton()
-        colorButtonsArray = getButtonColors()
+         colorButtonsArray = getButtonColors()
         
         for i in 0...11 {
             button = SettingsViewService.shared.createButton(color: colorButtonsArray[i].color)
