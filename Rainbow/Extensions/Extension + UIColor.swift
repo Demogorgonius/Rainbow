@@ -1,7 +1,9 @@
 
 import UIKit.UIColor
 
-//extension UIColor {
+
+extension UIColor {
+
 //    static let customBackground = UIColor(named: "customBackground") ?? UIColor()
 //    static let customLightGreen = UIColor(named: "customLightGreen") ?? UIColor()
 //    static let customGreenForButton = UIColor(named: "customGreenForButton") ?? UIColor()
@@ -18,6 +20,5 @@ import UIKit.UIColor
 //    static let customGrayishPurple = UIColor(named: "customGrayishPurple") ?? UIColor()
 //    static let customPurple = UIColor(named: "customPurple") ?? UIColor()
 //    static let customPeach = UIColor(named: "customPeach") ?? UIColor()
-//    
-//    
-//}
+   
+}

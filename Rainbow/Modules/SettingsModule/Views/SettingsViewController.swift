@@ -22,6 +22,13 @@ final class SettingsViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setAppThemeSwitch()
+        
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         presenter?.saveGameSettings(
             durationGame: Int(gameTimeSlider.value),
@@ -287,6 +294,7 @@ final class SettingsViewController: UIViewController {
         sc.selectedSegmentTintColor = .white
         sc.selectedSegmentIndex = 0
         sc.translatesAutoresizingMaskIntoConstraints = false
+        sc.addTarget(self, action: #selector(appThemeSelected), for: .valueChanged)
         return sc
     }()
     
@@ -343,6 +351,19 @@ final class SettingsViewController: UIViewController {
         setBackground(view: sender, onOffStatus: colorButtonsArray[sender.tag].isOn)
     }
     
+    @objc func appThemeSelected(_ sender: UISegmentedControl) {
+        
+        if (sender.selectedSegmentIndex == 1 ){
+                   print("UISwitch state is now ON")
+                   UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
+               }
+               else{
+                   print("UISwitch state is now Off")
+                   UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
+               }
+        
+    }
+    
     
     func setBackground(view: UIButton, onOffStatus: Bool) {
         let whiteCheck = UIImage(named: "checkboxWhire")!
@@ -379,6 +400,18 @@ final class SettingsViewController: UIViewController {
         backgroundForGameShadowView.shadowView.addSubview(backgroundForGameStack)
         wordPlacementShadowView.shadowView.addSubview(wordPlacementStack)
         view.addSubview(mainStack)
+        
+    }
+    
+    func setAppThemeSwitch() {
+        
+        let theme = UserDefaults.standard.object(forKey: "theme") as? String
+        if theme == "light" {
+            backgroundForGameSC.selectedSegmentIndex = 0
+        } else {
+            backgroundForGameSC.selectedSegmentIndex = 1
+        }
+        
         
     }
     

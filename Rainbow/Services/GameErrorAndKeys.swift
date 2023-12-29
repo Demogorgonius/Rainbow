@@ -3,7 +3,7 @@ import Foundation
 
 enum Keys: String {
     case statistic
-    case gameSettings = "GameSettings"
+    case gameSettings = "RainbowGameSettings" 
 }
 
 enum GameErrors: Error {

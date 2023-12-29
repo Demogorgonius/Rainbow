@@ -124,6 +124,7 @@ class SettingsManager: GameManagerProtocol {
     }
     
     func getSettings(completion: @escaping (Result<GameSettings, Error>) -> Void) {
+      
         if let settings = defaults.object(forKey: Keys.gameSettings.rawValue) as? Data {
             let decoder = JSONDecoder()
             if let loadedSettings = try? decoder.decode(GameSettings.self, from: settings) {
@@ -134,53 +135,47 @@ class SettingsManager: GameManagerProtocol {
         } else {
             
             if createStartSettings() {
-                
+              
                 if let settings = defaults.object(forKey: Keys.gameSettings.rawValue) as? Data {
                     let decoder = JSONDecoder()
-                    if let loadedSettings = try? decoder.decode(GameSettings.self, from: settings) {
-                        print("Settings loaded")
-                        completion(.success(loadedSettings))
-                    }
+                        if let loadedSettings = try? decoder.decode(GameSettings.self, from: settings) {
+                            print("Settings loaded")
+                            completion(.success(loadedSettings))
+                        }
+                    
                 }
                 
             } else {
                 
                 completion(.failure(GameErrors.saveSettingsError))
                 print("Settings didn't loaded")
-                
+
             }
-            
-            
-            
-//            completion(.failure(GameErrors.saveSettingsError))
-//            print("Settings didn't loaded")
+
         }
     }
     
     func createStartSettings() -> Bool {
         
-        
+
         let colorButtons = ColorButtons()
         
-        
-        
         let settings = GameSettings(
-            durationGame:  10,
-            speedGame:  1,
-            gameColors:  colorButtons.colorButtons,
+            durationGame: 10,
+            speedGame: 1,
+            gameColors: colorButtons.colorButtons,
             sizeFont: 15.0,
             isViewForText: true,
             themeForApp: "customBackground",
-            isCenterOnScreen:  true
-        )
-        
+            isCenterOnScreen: true)
+
         
         let encoder = JSONEncoder()
         
         if let encoded = try? encoder.encode(settings) {
-            
+
             defaults.set(encoded, forKey: Keys.gameSettings.rawValue)
-            
+
             return true
         }
         
