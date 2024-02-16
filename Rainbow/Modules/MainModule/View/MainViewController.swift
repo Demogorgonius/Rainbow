@@ -16,14 +16,14 @@ final class MainViewController: UIViewController {
         return element
     }()
     
-    private lazy var gameLabel = UILabel(text: "HЛП игра", font: UIFont.systemFont(ofSize: 36))
+    private lazy var gameLabel = UILabel(text: NSLocalizedString("gameLabel", comment: ""), font: UIFont.systemFont(ofSize: 36))
     
-    private lazy var nameGameLabel = UILabel(text: "Радуга", font: UIFont.CormorantFont.RegularItalic.size(of: 64))
+    private lazy var nameGameLabel = UILabel(text: NSLocalizedString("nameGameLabel", comment: ""), font: UIFont.CormorantFont.RegularItalic.size(of: 64))
     
     private lazy var startNewGameButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
             backgroundColor: .customRed,
-            title: "Новая игра",
+            title: NSLocalizedString("startNewGameButton", comment: ""),
             target: self,
             action: #selector(startNewGameButtonTapped))
         return button
@@ -32,7 +32,7 @@ final class MainViewController: UIViewController {
     private lazy var continueGameButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
             backgroundColor: .customLightBlue,
-            title: "Продолжить",
+            title: NSLocalizedString("continueGameButton", comment: ""),
             target: self,
             action: #selector(continueGameButtonTapped))
         return button
@@ -41,7 +41,7 @@ final class MainViewController: UIViewController {
     private lazy var statisticGameButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
             backgroundColor: .customGreenForButton,
-            title: "Cтатистика",
+            title: NSLocalizedString("statisticGameButton", comment: ""),
             target: self,
             action: #selector(statisticGameTapped))
         return button

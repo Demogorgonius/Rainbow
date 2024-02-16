@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  Rainbow
+
+  Created by Sergey on 16.02.2024.
+  
+*/
+
+//MARK: - Main Module
+
+"gameLabel" = "HЛП игра";
+"nameGameLabel" = "Радуга";
+"startNewGameButton" = "Новая игра";
+"continueGameButton" = "Продолжить";
+"statisticGameButton" = "Cтатистика";
+
+//MARK: - Settings Module
+
+"navBarTitle" = "Настройки";
+"gameTimeLabel" = "Время игры, мин";
+"gameSpeedLabel" = "Скорость смены заданий, сек";
+"colorPickerLabel" = "Цвета букв";
+"gameSizeLabel" = "Размер букв";
+"backgroundForWordLabel" = "Подложка для букв";
+"backgroundForGameLabel" = "Цветовая схема приложения";
+"backgroundForGameSCLight" = "Светлая";
+"backgroundForGameSCDark" = "Темная";
+"wordPlacementLabel" = "Расположение слова на экране";
+"wordPlacementSCRandom" = "Случайное";
+"wordPlacementSCCentre" = "По центру";
+"appLangLabel" = "Язык приложения";
+"appLangSCRus" = "Русский";
+"appLangSCEn" = "English";
+"langChangeMessage" = "Для смены языка закройте приложение и запустите его заново.";
+"alertTitle" = "Внимание!";
