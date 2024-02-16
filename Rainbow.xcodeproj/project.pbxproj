@@ -51,6 +51,7 @@
 		A5B797502B02402300B20742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797462B02402300B20742 /* AppDelegate.swift */; };
 		A5B797512B02402300B20742 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797472B02402300B20742 /* SceneDelegate.swift */; };
 		A5DAD8772B3F2DF100FDED74 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DAD8762B3F2DF100FDED74 /* Theme.swift */; };
+		A5E867D92B7FD65A00DD6DBF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5E867DB2B7FD65A00DD6DBF /* Localizable.strings */; };
 		E112CBE62B0674F100F08206 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBE52B0674F100F08206 /* CustomNavigationController.swift */; };
 		E112CBE82B06750000F08206 /* Extension + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBE72B06750000F08206 /* Extension + UIImage.swift */; };
 		E112CBEF2B08A8E000F08206 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBEE2B08A8E000F08206 /* SettingsManager.swift */; };
@@ -109,6 +110,8 @@
 		A5B797472B02402300B20742 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A5B7974A2B02402300B20742 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5DAD8762B3F2DF100FDED74 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A5E867DA2B7FD65A00DD6DBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5E867DC2B7FD67200DD6DBF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E112CBE52B0674F100F08206 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		E112CBE72B06750000F08206 /* Extension + UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIImage.swift"; sourceTree = "<group>"; };
 		E112CBEE2B08A8E000F08206 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
@@ -454,6 +457,7 @@
 			children = (
 				4AD131472B02B967007DA3B7 /* Assets.xcassets */,
 				A5B7974A2B02402300B20742 /* Info.plist */,
+				A5E867DB2B7FD65A00DD6DBF /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -511,6 +515,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = A5B797012B010E3100B20742;
 			packageReferences = (
@@ -539,6 +544,7 @@
 				44A57C5E2B02641900C8E383 /* SF-Pro-Display-Regular.otf in Resources */,
 				44A57C5C2B02641900C8E383 /* SF-Pro-Display-Black.otf in Resources */,
 				44A57C612B02641900C8E383 /* SF-Pro-Text-Regular.otf in Resources */,
+				A5E867D92B7FD65A00DD6DBF /* Localizable.strings in Resources */,
 				44A57C622B02641900C8E383 /* SF-Compact-Display-Heavy.otf in Resources */,
 				4AD131482B02B967007DA3B7 /* Assets.xcassets in Resources */,
 				44A57C662B0269B700C8E383 /* CormorantInfant-Italic.otf in Resources */,
@@ -608,6 +614,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		A5E867DB2B7FD65A00DD6DBF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5E867DA2B7FD65A00DD6DBF /* en */,
+				A5E867DC2B7FD67200DD6DBF /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -616,6 +631,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -679,6 +695,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -737,7 +754,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7PUJF8P767;
+				DEVELOPMENT_TEAM = TWQL7PLAUC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Rainbow/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -755,6 +772,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -768,7 +786,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7PUJF8P767;
+				DEVELOPMENT_TEAM = TWQL7PLAUC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Rainbow/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -786,6 +804,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

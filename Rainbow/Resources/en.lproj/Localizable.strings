@@ -5,4 +5,29 @@
   Created by Sergey on 16.02.2024.
   
 */
+//MARK: - Main Module
 
+"gameLabel" = "NLP game";
+"nameGameLabel" = "Rainbow";
+"startNewGameButton" = "New game";
+"continueGameButton" = "Continue";
+"statisticGameButton" = "Statistic";
+
+//MARK: - Settings Module
+"navBarTitle" = "Settings";
+"gameTimeLabel" = "Game time, min";
+"gameSpeedLabel" = "Speed of change of assignments, sec";
+"colorPickerLabel" = "The colours of the letters";
+"gameSizeLabel" = "Letters Size";
+"backgroundForWordLabel" = "Background for letters";
+"backgroundForGameLabel" = "The color scheme of the application";
+"backgroundForGameSCLight" = "Light";
+"backgroundForGameSCDark" = "Dark";
+"wordPlacementLabel" = "Location of the word on the screen";
+"wordPlacementSCRandom" = "Random";
+"wordPlacementSCCentre" = "Centre";
+"appLangLabel" = "Language of the application";
+"appLangSCRus" = "Русский";
+"appLangSCEn" = "English";
+"langChangeMessage" = "To change the language, close the app and re-launch it.";
+"alertTitle" = "Warning!";

@@ -36,6 +36,7 @@ class SettingsPresenter: SettingsPresenterProtocol {
     init(view: SettingsViewProtocol, settingsManager: SettingManagerProtocol) {
         self.view = view
         self.settingsManager = settingsManager
+        getSettings()
     }
     
     func getSettings() {

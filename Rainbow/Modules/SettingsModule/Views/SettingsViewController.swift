@@ -35,7 +35,7 @@ final class SettingsViewController: UIViewController {
             speedGame: Int(gameSpeedSlider.value),
             gameColors: colorButtonsArray,
             sizeFont: gameSizeStepper.value,
-            isViewForText: false,
+            isViewForText: switchedViewForLabel.isOn,
             themeForApp: "customBackground",
             isCenterOnScreen: wordPlacementSC.selectedSegmentIndex == 0)
         
@@ -43,7 +43,7 @@ final class SettingsViewController: UIViewController {
     
     private func configureNavigationBar() {
         navigationController?.setupNavigationBar()
-        navigationItem.title = "Настройки"
+        navigationItem.title = NSLocalizedString("navBarTitle", comment: "")
     }
     
     
@@ -61,7 +61,8 @@ final class SettingsViewController: UIViewController {
          gameSizeShadowView.shadowView,
          backgroundForWordShadowView.shadowView,
          backgroundForGameShadowView.shadowView,
-         wordPlacementShadowView.shadowView].forEach {
+         wordPlacementShadowView.shadowView,
+         appLangShadowView.shadowView].forEach {
             stack.addArrangedSubview($0)
         }
         return stack
@@ -82,7 +83,7 @@ final class SettingsViewController: UIViewController {
         return stack
     } ()
     
-    lazy var gameTimeLabel = SettingsViewService.shared.createSettingTitle(title: "Время игры, мин")
+    lazy var gameTimeLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("gameTimeLabel", comment: ""))
     
     lazy var gameTimeSlider: UISlider = {
         let slider = UISlider()
@@ -120,7 +121,7 @@ final class SettingsViewController: UIViewController {
         return stack
     } ()
     
-    lazy var gameSpeedLabel = SettingsViewService.shared.createSettingTitle(title: "Скорость смены заданий, сек")
+    lazy var gameSpeedLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("gameSpeedLabel", comment: ""))
     
     lazy var gameSpeedSlider: UISlider = {
         let slider = UISlider()
@@ -196,11 +197,11 @@ final class SettingsViewController: UIViewController {
     }()
     
     
-    lazy var colorPickerLabel = SettingsViewService.shared.createSettingTitle(title: "Цвета букв")
+    lazy var colorPickerLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("colorPickerLabel", comment: ""))
     
     // MARK: - gameSize UI
     
-    lazy var gameSizeLabel = SettingsViewService.shared.createSettingTitle(title: "Размер букв")
+    lazy var gameSizeLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("gameSizeLabel", comment: ""))
     
     
     lazy var gameSizeShadowView = ViewFactory.createShadowView()
@@ -256,11 +257,11 @@ final class SettingsViewController: UIViewController {
         return stack
     } ()
     
-    lazy var backgroundForWordLabel = SettingsViewService.shared.createSettingTitle(title: "Подложка для букв")
+    lazy var backgroundForWordLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("backgroundForWordLabel", comment: ""))
     
     lazy var switchedViewForLabel: UISwitch = {
         let switcher = UISwitch()
-        switcher.isOn = false
+        switcher.isOn = presenter.settings?.isViewForText ?? false
         switcher.onTintColor = .customOrange
         switcher.addTarget(self, action: #selector(toggledSwitchValue), for: .valueChanged)
         switcher.translatesAutoresizingMaskIntoConstraints = false
@@ -284,10 +285,10 @@ final class SettingsViewController: UIViewController {
         return stack
     } ()
     
-    lazy var backgroundForGameLabel = SettingsViewService.shared.createSettingTitle(title: "Цветовая схема приложения")
+    lazy var backgroundForGameLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("backgroundForGameLabel", comment: ""))
     
     lazy var backgroundForGameSC: UISegmentedControl = {
-        let sc = UISegmentedControl(items: ["Светлая", "Темная"])
+        let sc = UISegmentedControl(items: [NSLocalizedString("backgroundForGameSCLight", comment: ""), NSLocalizedString("backgroundForGameSCDark", comment: "")])
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "customBlack")!]
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
         sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
@@ -315,10 +316,10 @@ final class SettingsViewController: UIViewController {
         return stack
     } ()
     
-    lazy var wordPlacementLabel = SettingsViewService.shared.createSettingTitle(title: "Расположение слова на экране")
+    lazy var wordPlacementLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("wordPlacementLabel", comment: ""))
     
     lazy var wordPlacementSC: UISegmentedControl = {
-        let sc = UISegmentedControl(items: ["Случайное", "По центру"])
+        let sc = UISegmentedControl(items: [NSLocalizedString("wordPlacementSCRandom", comment: ""), NSLocalizedString("wordPlacementSCCentre", comment: "")])
         //        sc.setEnabled(true, forSegmentAt: 1)
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
@@ -329,6 +330,47 @@ final class SettingsViewController: UIViewController {
         return sc
     }()
     
+    // MARK: - App language UI
+    
+    lazy var appLangShadowView = ViewFactory.createShadowView()
+    
+    lazy var appLangStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 10
+        stack.distribution = .fillEqually
+        stack.alignment = .leading
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        [appLangLabel, appLangSC].forEach {
+            stack.addArrangedSubview($0)
+        }
+        return stack
+    } ()
+    
+    lazy var appLangLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("appLangLabel", comment: ""))
+    
+    lazy var appLangSC: UISegmentedControl = {
+        let sc = UISegmentedControl(items: [NSLocalizedString("appLangSCRus", comment: ""), NSLocalizedString("appLangSCEn", comment: "")])
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
+        sc.selectedSegmentTintColor = .white
+        sc.selectedSegmentIndex = isSelectedLangRu() ? 0 : 1
+        sc.translatesAutoresizingMaskIntoConstraints = false
+        sc.addTarget(self, action: #selector(changeLangSelected), for: .valueChanged)
+        return sc
+    }()
+    
+    //MARK: - Alert controller
+    
+    func showAlert(title: String, message: String) -> UIAlertController {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        return alert
+        
+    }
     // MARK: - Methods UI
     
     var isOn = false
@@ -361,6 +403,22 @@ final class SettingsViewController: UIViewController {
                    print("UISwitch state is now Off")
                    UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
                }
+        
+    }
+    
+    @objc func changeLangSelected(_ sender: UISegmentedControl) {
+        
+        if (sender.selectedSegmentIndex == 1 ) {
+            changeLang(lang: "en-US")
+        }
+        else{
+            changeLang(lang: "ru-RU")
+        }
+        
+    }
+    
+    @objc func toggledSwitchValue(_ sender: UISwitch) {
+        
         
     }
     
@@ -399,6 +457,7 @@ final class SettingsViewController: UIViewController {
         backgroundForWordShadowView.shadowView.addSubview(backgroundForWordStack)
         backgroundForGameShadowView.shadowView.addSubview(backgroundForGameStack)
         wordPlacementShadowView.shadowView.addSubview(wordPlacementStack)
+        appLangShadowView.shadowView.addSubview(appLangStack)
         view.addSubview(mainStack)
         
     }
@@ -406,10 +465,10 @@ final class SettingsViewController: UIViewController {
     func setAppThemeSwitch() {
         
         let theme = UserDefaults.standard.object(forKey: "theme") as? String
-        if theme == "light" {
-            backgroundForGameSC.selectedSegmentIndex = 0
-        } else {
+        if theme == "dark" {
             backgroundForGameSC.selectedSegmentIndex = 1
+        } else {
+            backgroundForGameSC.selectedSegmentIndex = 0
         }
         
         
@@ -431,6 +490,26 @@ final class SettingsViewController: UIViewController {
                 isCenterOnScreen: nil
             )
         }
+    }
+    
+    private func changeLang(lang: String) {
+        
+        let defaults = UserDefaults.standard
+        defaults.set([lang], forKey: "AppleLanguages")
+        defaults.synchronize()
+        present(showAlert(title: NSLocalizedString("alertTitle", comment: ""), message: NSLocalizedString("langChangeMessage", comment: "")), animated: true)
+//        navigationController?.popToRootViewController(animated: true)
+        
+    }
+    private func isSelectedLangRu() -> Bool {
+        
+        
+        if Locale.preferredLanguages[0] == "ru-RU" {
+            return true
+        } else  {
+            return false
+        }
+        
     }
     
     // MARK: - Layout
@@ -566,6 +645,27 @@ final class SettingsViewController: UIViewController {
             make.width.equalTo(298)
         }
         
+        appLangStack.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.height.equalToSuperview().offset(-20)
+            make.width.equalToSuperview().offset(-20)
+        }
+        
+        appLangShadowView.shadowView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            //            make.top.equalToSuperview().offset(121)
+            make.height.equalTo(80)
+            make.width.equalTo(298)
+        }
+        
+        appLangSC.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            //            make.top.equalToSuperview().offset(121)
+            make.height.equalTo(20)
+            make.width.equalTo(298)
+        }
+        
         mainStack.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(121)
@@ -611,8 +711,5 @@ extension SettingsViewController: SettingsViewProtocol {
         return settings.isCenterOnScreen
     }
     
-    @objc func toggledSwitchValue(_ sender: UISwitch) -> Bool {
-        return sender.isOn
-    }
 }
 
