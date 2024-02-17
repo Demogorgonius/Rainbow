@@ -10,41 +10,11 @@ final class SettingsViewController: UIViewController {
     lazy var colorButtonsArray =  getButtonColors()
     var standartColors = ColorButtons().colorButtons
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        presenter.getSettings()
-        view.addVerticalGradientLayer()
-        setupButtons()
-        setupViews()
-        setupLayout()
-        configureNavigationBar()
-        
-    }
+   
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        setAppThemeSwitch()
-        
-    }
+    //MARK: - ScrollView
     
-    override func viewWillDisappear(_ animated: Bool) {
-        presenter?.saveGameSettings(
-            durationGame: Int(gameTimeSlider.value),
-            speedGame: Int(gameSpeedSlider.value),
-            gameColors: colorButtonsArray,
-            sizeFont: gameSizeStepper.value,
-            isViewForText: switchedViewForLabel.isOn,
-            themeForApp: "customBackground",
-            isCenterOnScreen: wordPlacementSC.selectedSegmentIndex == 0)
-        
-    }
-    
-    private func configureNavigationBar() {
-        navigationController?.setupNavigationBar()
-        navigationItem.title = NSLocalizedString("navBarTitle", comment: "")
-    }
+    private lazy var scrollView = UIScrollView()
     
     
     // MARK: - Main Stack
@@ -361,6 +331,45 @@ final class SettingsViewController: UIViewController {
         return sc
     }()
     
+    
+    //MARK: - ViewDidLoad
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        presenter.getSettings()
+        view.addVerticalGradientLayer()
+        setupButtons()
+        setupViews()
+        setupLayout()
+        configureNavigationBar()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setAppThemeSwitch()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        presenter?.saveGameSettings(
+            durationGame: Int(gameTimeSlider.value),
+            speedGame: Int(gameSpeedSlider.value),
+            gameColors: colorButtonsArray,
+            sizeFont: gameSizeStepper.value,
+            isViewForText: switchedViewForLabel.isOn,
+            themeForApp: "customBackground",
+            isCenterOnScreen: wordPlacementSC.selectedSegmentIndex == 0)
+        
+    }
+    
+    private func configureNavigationBar() {
+        navigationController?.setupNavigationBar()
+        navigationItem.title = NSLocalizedString("navBarTitle", comment: "")
+    }
+    
     //MARK: - Alert controller
     
     func showAlert(title: String, message: String) -> UIAlertController {
@@ -450,6 +459,8 @@ final class SettingsViewController: UIViewController {
     }
     
     func setupViews() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(mainStack)
         gameTimeShadowView.shadowView.addSubview(gameTimeStack)
         gameSpeedShadowView.shadowView.addSubview(gameSpeedStack)
         colorPickerShadowView.shadowView.addSubview(colorPickerStack)
@@ -458,7 +469,6 @@ final class SettingsViewController: UIViewController {
         backgroundForGameShadowView.shadowView.addSubview(backgroundForGameStack)
         wordPlacementShadowView.shadowView.addSubview(wordPlacementStack)
         appLangShadowView.shadowView.addSubview(appLangStack)
-        view.addSubview(mainStack)
         
     }
     
@@ -515,6 +525,13 @@ final class SettingsViewController: UIViewController {
     // MARK: - Layout
     
     func setupLayout() {
+        
+        scrollView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(5)
+            $0.top.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
         gameTimeStack.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
@@ -668,7 +685,8 @@ final class SettingsViewController: UIViewController {
         
         mainStack.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(121)
+            make.top.equalToSuperview().offset(10)
+            make.bottom.equalTo(scrollView.snp.bottom)
         }
     }
 }
