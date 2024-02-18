@@ -33,3 +33,47 @@
 "appLangSCEn" = "English";
 "langChangeMessage" = "Для смены языка закройте приложение и запустите его заново.";
 "alertTitle" = "Внимание!";
+
+//MARK: - Results Module
+
+"clearResultsButton" = "Очистить статистику";
+"configureNavigationBar" = "Статистика";
+
+//MARK: - Game Module
+
+"pauseLabel" = "Пауза!!!";
+"speedButton" = "Скорость +";
+
+//MARK: - Rules module
+
+"navigationItemTitle" = "Помощь";
+"substrateFirst" = "подложка включена:";
+"substrateSecond" = "подложка выключена:";
+"nameShadow" = "СИНИЙ";
+"buttonView" = "СИНИЙ";
+"rulesOfTheGame" = "ПРАВИЛА ИГРЫ";
+"newRulesOfTheGame" = "НОВЫЕ ПРАВИЛА ИГРЫ";
+"rangeFirst" = "синий";
+"rangeSecond" = "говорим «зеленый»";
+"attributesFirst" = "На экране в случайном
+        месте появляется слово,
+        обозначающее цвет,
+        например: написано
+        «синий»:";
+"attributesSecond" = "Нужно произнести вслух
+        цвет слова (если опция
+        «подложка для букв»
+        выключена) или цвет фона,
+        на котором написано
+        слово (если опция
+        «подложка для букв»
+        включена):
+        говорим «зеленый».
+        
+        В игре можно изменять
+        скорость от 1x до 5x. А так
+        же длительность игры.";
+
+
+
+
