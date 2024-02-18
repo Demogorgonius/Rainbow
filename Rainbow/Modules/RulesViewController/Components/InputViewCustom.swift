@@ -38,7 +38,7 @@ final class InputViewCustom: UIView {
     
     private lazy var substrateFirst: UILabel = {
         let label = UILabel()
-        label.text = "подложка включена:"
+        label.text = NSLocalizedString("substrateFirst", comment: "")
         label.textColor = .customBlack
         label.font = UIFont.systemFont(ofSize: 10)
         return label
@@ -46,7 +46,7 @@ final class InputViewCustom: UIView {
     
     private lazy var substrateSecond: UILabel = {
         let label = UILabel()
-        label.text = "подложка выключена:"
+        label.text = NSLocalizedString("substrateSecond", comment: "")
         label.textColor = .customBlack
         label.font = UIFont.systemFont(ofSize: 10)
         return label
@@ -54,7 +54,7 @@ final class InputViewCustom: UIView {
     
     private lazy var nameShadow: UILabel = {
         let label = UILabel()
-        label.text = "СИНИЙ"
+        label.text = NSLocalizedString("nameShadow", comment: "")
         label.layer.shadowColor = UIColor.customBackground.cgColor
         label.layer.shadowOffset = CGSize(width: 0, height: 5)
         label.layer.shadowOpacity = 0.5
@@ -66,7 +66,7 @@ final class InputViewCustom: UIView {
     
     private lazy var buttonView: UIButton = {
         let button = UIButton()
-        button.setTitle("СИНИЙ", for: .normal)
+        button.setTitle(NSLocalizedString("buttonView", comment: ""), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .customLightGreen
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
@@ -108,9 +108,9 @@ final class InputViewCustom: UIView {
     private func setupViews() {
         switch style {
         case .rulesOfTheGame:
-            titleLabel.text = "ПРАВИЛА ИГРЫ"
+            titleLabel.text = NSLocalizedString("rulesOfTheGame", comment: "")
         case .newRulesOfTheGame:
-            titleLabel.text = " НОВЫЕ ПРАВИЛА ИГРЫ"
+            titleLabel.text = NSLocalizedString("newRulesOfTheGame", comment: "")
         }
         addSubviews(titleLabel, textView, substrateFirst, substrateSecond, nameShadow, buttonView, textViewSecond)
     }
@@ -119,36 +119,16 @@ final class InputViewCustom: UIView {
 //MARK: - InputViewCustom
 extension InputViewCustom: SettingsView {
     func attributesFirst() {
-        let attributedString = NSMutableAttributedString(string: """
-        На экране в случайном
-        месте появляется слово,
-        обозначающее цвет,
-        например: написано
-        «синий»:
-        """)
-        let range = (attributedString.string as NSString).range(of: "«синий»")
+        let attributedString = NSMutableAttributedString(string: NSLocalizedString("attributesFirst", comment: ""))
+        let range = (attributedString.string as NSString).range(of: NSLocalizedString("rangeFirst", comment: ""))
         attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range)
         textView.attributedText = attributedString
         textView.font = UIFont.systemFont(ofSize: 20)
     }
     
     func attributesSecond() {
-        let attributedString = NSMutableAttributedString(string: """
-        Нужно произнести вслух
-        цвет слова (если опция
-        «подложка для букв»
-        выключена) или цвет фона,
-        на котором написано
-        слово (если опция
-        «подложка для букв»
-        включена):
-        говорим «зеленый».
-        
-        В игре можно изменять
-        скорость от 1x до 5x. А так
-        же длительность игры.
-        """)
-        let range = (attributedString.string as NSString).range(of: "говорим «зеленый»")
+        let attributedString = NSMutableAttributedString(string: NSLocalizedString("attributesSecond", comment: ""))
+        let range = (attributedString.string as NSString).range(of: NSLocalizedString("rangeSecond", comment: ""))
         attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range)
         textViewSecond.attributedText = attributedString
         textViewSecond.font = UIFont.systemFont(ofSize: 20)

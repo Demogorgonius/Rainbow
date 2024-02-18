@@ -13,7 +13,7 @@ final class ResultsTableViewController: UITableViewController {
     private lazy var clearResultsButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
             backgroundColor: .customRed,
-            title: "Очистить статистику",
+            title: NSLocalizedString("clearResultsButton", comment: ""),
             target: self,
             action: #selector(clearResultsButtonTap))
         return button
@@ -35,7 +35,7 @@ final class ResultsTableViewController: UITableViewController {
     private func configureNavigationBar() {
         navigationController?.setupNavigationBar()
         navigationItem.hidesBackButton = true
-        navigationItem.title = "Статистика"
+        navigationItem.title = NSLocalizedString("configureNavigationBar", comment: "")
         
         let exitBarButton = UIBarButtonItem(image: UIImage(systemName: "xmark", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)), style: .plain, target: self, action: #selector(exitButtonPressed))
         navigationItem.rightBarButtonItem = exitBarButton

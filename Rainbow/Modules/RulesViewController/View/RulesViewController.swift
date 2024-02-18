@@ -30,7 +30,7 @@ final class RulesViewController: UIViewController {
     }
     
     private func setupBackButton() {
-        navigationItem.title = "Помощь"
+        navigationItem.title = NSLocalizedString("navigationItemTitle", comment: "")
         navigationController?.setupNavigationBar()
     }
 }

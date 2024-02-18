@@ -5,13 +5,13 @@ import SnapKit
 class GameView: UIView {
     // MARK: Properties
     lazy var pauseLabel: UILabel = {
-        return LabelFactory.createLabel(type: .gameLightGreen, text: "Пауза!!!")
+        return LabelFactory.createLabel(type: .gameLightGreen, text: NSLocalizedString("pauseLabel", comment: ""))
     }()
     
     lazy var speedButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
             backgroundColor: .customRed,
-            title: "Speed +",
+            title: NSLocalizedString("speedButton", comment: ""),
             target: self,
             action: nil)
         button.layer.cornerRadius = 40

@@ -31,3 +31,42 @@
 "appLangSCEn" = "English";
 "langChangeMessage" = "To change the language, close the app and re-launch it.";
 "alertTitle" = "Warning!";
+
+//MARK: - Results Module
+
+"clearResultsButton" = "Clear statistic";
+"configureNavigationBar" = "Statistic";
+
+//MARK: - Game Module
+
+"pauseLabel" = "Pause!!!";
+"speedButton" = "Speed +";
+
+//MARK: - Rules module
+
+"navigationItemTitle" = "Rules";
+"substrateFirst" = "the substrate is on:";
+"substrateSecond" = "the substrate is off:";
+"nameShadow" = "BLUE";
+"buttonView" = "BLUE";
+"rulesOfTheGame" = "RULES OF GAME";
+"newRulesOfTheGame" = "NEW RULES OF GAME";
+"rangeFirst" = "Blue";
+"rangeSecond" = "Green";
+"attributesFirst" = "A word for color appears
+        on random place
+        of the screen,
+        for example: \"Blue\":";
+"attributesSecond" = "We have to say out loud
+        the color of the word (if option)
+        \"letter substrate\"
+        turn off) or background color,
+        it is written
+        the word (if option)
+        \"letter substrate\"
+        included):
+        we say \"Green\".
+
+        You can change the game
+        speed from 1x to 5x. Right
+        the duration of the game.";
