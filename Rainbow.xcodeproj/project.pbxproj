@@ -50,6 +50,14 @@
 		A5B7974F2B02402300B20742 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B797432B02402300B20742 /* LaunchScreen.storyboard */; };
 		A5B797502B02402300B20742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797462B02402300B20742 /* AppDelegate.swift */; };
 		A5B797512B02402300B20742 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B797472B02402300B20742 /* SceneDelegate.swift */; };
+		A5CBDB7A2B987AEF00C81385 /* GameAnimateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB792B987AEF00C81385 /* GameAnimateService.swift */; };
+		A5CBDB7C2B987B3D00C81385 /* ObservableUIViewPropertyAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB7B2B987B3D00C81385 /* ObservableUIViewPropertyAnimator.swift */; };
+		A5CBDB7E2B987B6F00C81385 /* ColorViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB7D2B987B6F00C81385 /* ColorViewFactory.swift */; };
+		A5CBDB802B987BE100C81385 /* ColorLabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB7F2B987BE100C81385 /* ColorLabelFactory.swift */; };
+		A5CBDB822B987C4300C81385 /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB812B987C4300C81385 /* StateManager.swift */; };
+		A5CBDB842B987C9600C81385 /* AnimateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB832B987C9600C81385 /* AnimateViewModel.swift */; };
+		A5CBDB862B987CD800C81385 /* ErrorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB852B987CD800C81385 /* ErrorList.swift */; };
+		A5CBDB882B987D3F00C81385 /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB872B987D3F00C81385 /* CustomTimer.swift */; };
 		A5DAD8772B3F2DF100FDED74 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DAD8762B3F2DF100FDED74 /* Theme.swift */; };
 		A5E867D92B7FD65A00DD6DBF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5E867DB2B7FD65A00DD6DBF /* Localizable.strings */; };
 		E112CBE62B0674F100F08206 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBE52B0674F100F08206 /* CustomNavigationController.swift */; };
@@ -109,6 +117,14 @@
 		A5B797462B02402300B20742 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5B797472B02402300B20742 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A5B7974A2B02402300B20742 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5CBDB792B987AEF00C81385 /* GameAnimateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAnimateService.swift; sourceTree = "<group>"; };
+		A5CBDB7B2B987B3D00C81385 /* ObservableUIViewPropertyAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableUIViewPropertyAnimator.swift; sourceTree = "<group>"; };
+		A5CBDB7D2B987B6F00C81385 /* ColorViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewFactory.swift; sourceTree = "<group>"; };
+		A5CBDB7F2B987BE100C81385 /* ColorLabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLabelFactory.swift; sourceTree = "<group>"; };
+		A5CBDB812B987C4300C81385 /* StateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
+		A5CBDB832B987C9600C81385 /* AnimateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateViewModel.swift; sourceTree = "<group>"; };
+		A5CBDB852B987CD800C81385 /* ErrorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorList.swift; sourceTree = "<group>"; };
+		A5CBDB872B987D3F00C81385 /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
 		A5DAD8762B3F2DF100FDED74 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A5E867DA2B7FD65A00DD6DBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5E867DC2B7FD67200DD6DBF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -199,6 +215,8 @@
 				E183FEBD2B0B465100E3ED41 /* ShadowButtonFactory.swift */,
 				4AD131762B056781007DA3B7 /* ViewFactory.swift */,
 				E112CBE52B0674F100F08206 /* CustomNavigationController.swift */,
+				A5CBDB7D2B987B6F00C81385 /* ColorViewFactory.swift */,
+				A5CBDB7F2B987BE100C81385 /* ColorLabelFactory.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -253,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				4AD1314D2B03D982007DA3B7 /* GameModel.swift */,
+				A5CBDB832B987C9600C81385 /* AnimateViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -406,6 +425,11 @@
 				E112CBEE2B08A8E000F08206 /* SettingsManager.swift */,
 				E112CBF02B08F45900F08206 /* GameErrorAndKeys.swift */,
 				A5DAD8762B3F2DF100FDED74 /* Theme.swift */,
+				A5CBDB792B987AEF00C81385 /* GameAnimateService.swift */,
+				A5CBDB7B2B987B3D00C81385 /* ObservableUIViewPropertyAnimator.swift */,
+				A5CBDB812B987C4300C81385 /* StateManager.swift */,
+				A5CBDB852B987CD800C81385 /* ErrorList.swift */,
+				A5CBDB872B987D3F00C81385 /* CustomTimer.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -501,7 +525,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					A5B797092B010E3100B20742 = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -558,16 +582,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5CBDB862B987CD800C81385 /* ErrorList.swift in Sources */,
 				A5B7974D2B02402300B20742 /* MainViewController.swift in Sources */,
 				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
 				15F3BE7E2B02E70500E74E7A /* SettingsViewController.swift in Sources */,
 				4AD131702B0566E4007DA3B7 /* ResultsPresenter.swift in Sources */,
 				E112CBE62B0674F100F08206 /* CustomNavigationController.swift in Sources */,
-				44A57C4B2B0253ED00C8E383 /* Extension + UIColor.swift in Sources */,
 				4AD1313F2B02A3A0007DA3B7 /* Extension + UILabel.swift in Sources */,
+				A5CBDB882B987D3F00C81385 /* CustomTimer.swift in Sources */,
+				A5CBDB802B987BE100C81385 /* ColorLabelFactory.swift in Sources */,
 				E112CBF12B08F45900F08206 /* GameErrorAndKeys.swift in Sources */,
+				A5CBDB842B987C9600C81385 /* AnimateViewModel.swift in Sources */,
+				A5CBDB7E2B987B6F00C81385 /* ColorViewFactory.swift in Sources */,
 				E183FEC82B0CC2AA00E3ED41 /* RainbowView.swift in Sources */,
 				4AD131742B0566E4007DA3B7 /* ResultsTableViewController.swift in Sources */,
+				A5CBDB822B987C4300C81385 /* StateManager.swift in Sources */,
 				E183FEBE2B0B465100E3ED41 /* ShadowButtonFactory.swift in Sources */,
 				4AD131412B02A664007DA3B7 /* Extension + UIStackView.swift in Sources */,
 				4AD1315B2B051DCD007DA3B7 /* MainBuilder.swift in Sources */,
@@ -587,6 +616,7 @@
 				A5B797502B02402300B20742 /* AppDelegate.swift in Sources */,
 				A5DAD8772B3F2DF100FDED74 /* Theme.swift in Sources */,
 				4AD131722B0566E4007DA3B7 /* ResultTableViewCell.swift in Sources */,
+				A5CBDB7C2B987B3D00C81385 /* ObservableUIViewPropertyAnimator.swift in Sources */,
 				4AD1314E2B03D982007DA3B7 /* GameModel.swift in Sources */,
 				4AD131782B056781007DA3B7 /* ViewFactory.swift in Sources */,
 				E183FECA2B0DF4D800E3ED41 /* RainbowViewManager.swift in Sources */,
@@ -596,6 +626,7 @@
 				44A57C512B0261AD00C8E383 /* Extension + UIFont.swift in Sources */,
 				4AD131592B051DBE007DA3B7 /* MainPresenter.swift in Sources */,
 				446F15B82B065B1C00B10C77 /* InputViewCustom.swift in Sources */,
+				A5CBDB7A2B987AEF00C81385 /* GameAnimateService.swift in Sources */,
 				E112CBF32B09268E00F08206 /* ResultModel.swift in Sources */,
 				446F15C02B065F9F00B10C77 /* RulesViewController.swift in Sources */,
 				4AD131712B0566E4007DA3B7 /* ResultsBuilder.swift in Sources */,
