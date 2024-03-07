@@ -21,7 +21,7 @@ final class BackgroundForGameView: UIView {
         return LabelFactory.createLabel(
             type: .gameBlack,
             text:  NSLocalizedString("backgroundForGameLabel",
-                                     comment: "")
+            comment: "")
         )
     }()
     
@@ -33,7 +33,6 @@ final class BackgroundForGameView: UIView {
         sc.selectedSegmentTintColor = .white
         sc.selectedSegmentIndex = 0
         sc.translatesAutoresizingMaskIntoConstraints = false
-        //        sc.addTarget(self, action: #selector(appThemeSelected), for: .valueChanged)
         return sc
     }()
     

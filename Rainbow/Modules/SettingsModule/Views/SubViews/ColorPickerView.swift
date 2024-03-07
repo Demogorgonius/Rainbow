@@ -3,7 +3,7 @@ import UIKit
 
 final class ColorPickerView: UIView {
     var presenter: SettingsPresenterProtocol!
-    var isExpanded = false
+   
     var buttonsArray: [UIButton] = []
     lazy var colorButtonsArray =  getButtonColors()
     var standartColors = ColorButtons().colorButtons
@@ -17,9 +17,7 @@ final class ColorPickerView: UIView {
             string: NSLocalizedString("colorPickerLabel",
                                       comment: ""),
             attributes: [:]), for: .normal)
-                colorButton.addAction(UIAction { [weak self] _ in
-                    self?.colorPickerButtonTap()
-                }, for: .touchUpInside)
+                
         colorButton.layer.cornerRadius = 15
         colorButton.clipsToBounds = true
         colorButton.translatesAutoresizingMaskIntoConstraints = false
@@ -154,27 +152,6 @@ final class ColorPickerView: UIView {
     func getButtonColors() -> [ColorChecker] {
         guard let settings = presenter.settings else { return [] }
         return settings.gameColors
-    }
-    
-    private func colorPickerButtonTap() {
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            if self?.isExpanded == false {
-                self?.colorPickerView.shadowView.snp.remakeConstraints { make in
-                    make.centerX.equalToSuperview()
-                    make.centerY.equalToSuperview()
-                    make.width.equalTo(300)
-                    make.height.equalTo(300)
-                }
-            } else {
-                self?.colorPickerView.shadowView.snp.remakeConstraints { make in
-                    make.centerX.equalToSuperview()
-                    make.height.equalTo(80)
-                    make.width.equalTo(298)
-                }
-            }
-            self?.layoutIfNeeded()
-            self?.isExpanded.toggle()
-        }
     }
     
     func setBackground(view: UIButton, onOffStatus: Bool) {

@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 final class SpeedView: UIView {
@@ -27,13 +26,10 @@ final class SpeedView: UIView {
         )
     }()
     
-    
     lazy var gameSpeedSlider: UISlider = {
         let slider = UISlider()
-//        slider.addTarget(self, action: #selector(sliderValueChanged), for: UIControl.Event.valueChanged)
         slider.minimumValue = 1.0
         slider.maximumValue = 5.0
-//        slider.setValue(getSpeed(), animated: true)
         slider.minimumTrackTintColor = .customOrange
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider

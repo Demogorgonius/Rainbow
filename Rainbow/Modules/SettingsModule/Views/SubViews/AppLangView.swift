@@ -32,9 +32,7 @@ final class AppLangView: UIView {
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
         sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
         sc.selectedSegmentTintColor = .white
-//        sc.selectedSegmentIndex = isSelectedLangRu() ? 0 : 1
         sc.translatesAutoresizingMaskIntoConstraints = false
-//        sc.addTarget(self, action: #selector(changeLangSelected), for: .valueChanged)
         return sc
     }()
     

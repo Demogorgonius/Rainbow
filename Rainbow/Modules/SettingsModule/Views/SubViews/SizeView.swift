@@ -14,13 +14,10 @@ final class SizeView: UIView {
     
     lazy var gameSizeStepper: UIStepper = {
         let stepper = UIStepper()
-        //        stepper.addTarget(self, action: #selector(stepperValueChanged), for: .valueChanged)
         stepper.minimumValue = 10.0
         stepper.maximumValue = 30.0
         stepper.stepValue = 1.0
-        //        stepper.value = getFontSize()
         return stepper
-        
     }()
     
     lazy var gameSizeStepperLabel: UILabel = {

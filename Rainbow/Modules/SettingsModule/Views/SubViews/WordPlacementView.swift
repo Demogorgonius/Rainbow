@@ -38,7 +38,6 @@ final class WordPlacementView: UIView {
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
         sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
         sc.selectedSegmentTintColor = .white
-//        sc.selectedSegmentIndex = isRandomLocation() ? 0 : 1
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
     }()

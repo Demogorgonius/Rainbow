@@ -28,10 +28,8 @@ final class TimeView: UIView {
     
     lazy var gameTimeSlider: UISlider = {
         let slider = UISlider()
-//        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         slider.minimumValue = 1.0
         slider.maximumValue = 20.0
-//        slider.setValue(getDuration(), animated: true)
         slider.minimumTrackTintColor = .customOrange
         return slider
     }()

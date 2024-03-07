@@ -28,9 +28,7 @@ final class BackgroundForWordView: UIView {
     
     lazy var switchedViewForLabel: UISwitch = {
         let switcher = UISwitch()
-//        switcher.isOn = presenter.settings?.isViewForText ?? false
         switcher.onTintColor = .customOrange
-     //   switcher.addTarget(self, action: #selector(toggledSwitchValue), for: .valueChanged)
         switcher.translatesAutoresizingMaskIntoConstraints = false
         return switcher
     }()

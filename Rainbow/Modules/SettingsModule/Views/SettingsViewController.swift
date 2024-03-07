@@ -11,9 +11,10 @@ final class SettingsViewController: UIViewController {
     lazy var colorButtonsArray =  getButtonColors()
     var standartColors = ColorButtons().colorButtons
     var isOn = false
-    
+    var isExpanded = false
     private lazy var colorPickerView = ColorPickerView()
     private lazy var gameSizeView = SizeView()
+    
     private lazy var gameTimeView = TimeView()
     private lazy var gameSpeedView = SpeedView()
     private lazy var backgroundForWordView = BackgroundForWordView()
@@ -54,6 +55,7 @@ final class SettingsViewController: UIViewController {
         setupViews()
         setupLayout()
         configureNavigationBar()
+        addTargetFromViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,9 +87,33 @@ final class SettingsViewController: UIViewController {
         return alert
     }
     
-    // MARK: - Methods UI
+    // MARK: - addTarget
+    private func addTargetFromViews() {
+        gameSizeView.gameSizeStepper.addTarget(self, action: #selector(stepperValueChanged), for: .valueChanged)
+        gameSizeView.gameSizeStepper.value = getFontSize()
+        
+        colorPickerView.colorPickerButton.addAction(UIAction { [weak self] _ in
+            self?.colorPickerButtonTap()
+        }, for: .touchUpInside)
+        
+        gameTimeView.gameTimeSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
+        gameTimeView.gameTimeSlider.setValue(getDuration(), animated: true)
+        
+        gameSpeedView.gameSpeedSlider.addTarget(self, action: #selector(sliderValueChanged), for: UIControl.Event.valueChanged)
+        gameSpeedView.gameSpeedSlider.setValue(getSpeed(), animated: true)
+        
+        backgroundForWordView.switchedViewForLabel.isOn = presenter.settings?.isViewForText ?? false
+        backgroundForWordView.switchedViewForLabel.addTarget(self, action: #selector(toggledSwitchValue), for: .valueChanged)
+        
+        backgroundForGameView.backgroundForGameSC.addTarget(self, action: #selector(appThemeSelected), for: .valueChanged)
+        
+        wordPlacementView.wordPlacementSC.selectedSegmentIndex = isRandomLocation() ? 0 : 1
+        
+        appLangView.appLangSC.selectedSegmentIndex = isSelectedLangRu() ? 0 : 1
+        appLangView.appLangSC.addTarget(self, action: #selector(changeLangSelected), for: .valueChanged)
+    }
     
-
+    // MARK: - Methods UI
     
     @objc func stepperValueChanged(sender: UIStepper) {
         gameSizeView.gameSizeStepperLabel.font = UIFont.systemFont(ofSize: sender.value)
@@ -157,6 +183,26 @@ final class SettingsViewController: UIViewController {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }
+    
+    private func colorPickerButtonTap() {
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            if self?.isExpanded == false {
+                self?.colorPickerView.shadowView.snp.remakeConstraints { make in
+                    make.centerX.equalToSuperview()
+                    make.centerY.equalToSuperview()
+                    make.width.equalTo(300)
+                    make.height.equalTo(300)
+                }
+            } else {
+                self?.colorPickerView.shadowView.snp.remakeConstraints { make in
+                    make.centerX.equalToSuperview()
+                    make.leading.trailing.equalToSuperview().inset(20)
+                }
+            }
+            self?.view.layoutIfNeeded()
+            self?.isExpanded.toggle()
+        }
     }
     
     // MARK: - Setup Views
