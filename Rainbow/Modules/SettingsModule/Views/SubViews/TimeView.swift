@@ -31,9 +31,10 @@ final class TimeView: UIView {
         slider.minimumValue = 1.0
         slider.maximumValue = 20.0
         slider.minimumTrackTintColor = .customOrange
+        slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
-    
+
     lazy var gameTimeSliderLabel: UILabel = {
         let label = UILabel()
         label.text = String(Int(gameTimeSlider.value))
@@ -67,10 +68,7 @@ final class TimeView: UIView {
         }
         
         gameTimeStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
+            make.edges.equalToSuperview().inset(8)
         }
     }
 }

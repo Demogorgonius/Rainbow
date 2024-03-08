@@ -63,16 +63,12 @@ final class SpeedView: UIView {
     }
     
     private func setupConstraints() {
-        
         gameSpeedView.shadowView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
         gameSpeedStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
+            make.edges.equalToSuperview().inset(8)
         }
     }
 }

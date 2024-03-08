@@ -7,9 +7,13 @@ final class ColorPickerView: UIView {
     
     lazy var colorPickerButton: UIButton = {
         let colorButton = UIButton()
-        colorButton.setImage(UIImage(named:"checkboxBlack"), for: .normal)
+        colorButton.backgroundColor = UIColor.red
         colorButton.layer.cornerRadius = 15
         colorButton.clipsToBounds = true
+        colorButton.snp.makeConstraints { make in
+            make.height.equalTo(30)
+            make.width.equalTo(30)
+        }
         colorButton.translatesAutoresizingMaskIntoConstraints = false
         return colorButton
     }()
@@ -41,7 +45,7 @@ final class ColorPickerView: UIView {
         stack.distribution = .fillEqually
         stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
-        [titlePickerStack, colorPickerButtonStack1, colorPickerButtonStack2].forEach {
+        [colorPickerButtonStack1, colorPickerButtonStack2].forEach {
             stack.addArrangedSubview($0)
         }
         return stack
@@ -79,22 +83,26 @@ final class ColorPickerView: UIView {
     //MARK: - SetupViews()
     private func setViews() {
         addSubview(colorPickerView.shadowView)
+        colorPickerView.shadowView.addSubview(titlePickerStack)
         colorPickerView.shadowView.addSubview(mainPickerStack)
         
-        mainPickerStack.addArrangedSubview(titlePickerStack)
         mainPickerStack.addArrangedSubview(colorPickerButtonStack1)
         mainPickerStack.addArrangedSubview(colorPickerButtonStack2)
     }
     
     private func setupConstraints() {
-        colorPickerLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         colorPickerView.shadowView.snp.makeConstraints { make in
              make.edges.equalToSuperview()
          }
         
+        titlePickerStack.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview().inset(8)
+            make.bottom.equalTo(mainPickerStack.snp.top).inset(16)
+        }
+        
         mainPickerStack.snp.makeConstraints{ make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(titlePickerStack.snp.bottom).inset(16)
+            make.bottom.leading.trailing.equalToSuperview().inset(8)
         }
     }
 }

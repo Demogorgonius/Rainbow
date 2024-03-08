@@ -12,7 +12,7 @@ final class SettingsViewController: UIViewController {
     var standartColors = ColorButtons().colorButtons
     var isOn = false
     var isExpanded = false
-
+    
     private lazy var colorPickerView = ColorPickerView()
     private lazy var sizeView = SizeView()
     private lazy var timeView = TimeView()
@@ -23,13 +23,13 @@ final class SettingsViewController: UIViewController {
     private lazy var appLangView = AppLangView()
     
     private lazy var allViews =  [timeView,
-                          speedView,
-                          colorPickerView,
-                          sizeView,
-                          backgroundForWordView,
-                          themePickerView,
-                          wordPlacementView,
-                          appLangView
+                                  speedView,
+                                  colorPickerView,
+                                  sizeView,
+                                  backgroundForWordView,
+                                  themePickerView,
+                                  wordPlacementView,
+                                  appLangView
     ]
     
     //MARK: - ScrollView
@@ -38,7 +38,7 @@ final class SettingsViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-
+    
     private lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
@@ -50,7 +50,7 @@ final class SettingsViewController: UIViewController {
     lazy var mainStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 20
+        stack.spacing = 16
         stack.distribution = .equalSpacing
         stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -63,13 +63,13 @@ final class SettingsViewController: UIViewController {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
         presenter.getSettings()
         view.addVerticalGradientLayer()
         
         setupViews()
         setupLayout()
         setupButtons()
-        configureNavigationBar()
         addTargetFromViews()
     }
     
@@ -104,33 +104,61 @@ final class SettingsViewController: UIViewController {
     
     // MARK: - addTarget
     private func addTargetFromViews() {
+        setupSizeView()
+        setupColorPickerView()
+        setupTimeView()
+        setupSpeedView()
+        setupBackgroundForWordView()
+        setupThemePickerView()
+        setupWordPlacementView()
+        setupAppLangView()
+    }
+
+    private func setupSizeView() {
         sizeView.gameSizeStepper.addTarget(self, action: #selector(stepperValueChanged), for: .valueChanged)
         sizeView.gameSizeStepper.value = getFontSize()
-        
+    }
+
+    private func setupColorPickerView() {
+        colorPickerView.mainPickerStack.isHidden = true
         colorPickerView.colorPickerButton.addAction(UIAction { [weak self] _ in
             self?.colorPickerButtonTap()
         }, for: .touchUpInside)
-        
+    }
+
+    private func setupTimeView() {
         timeView.gameTimeSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         timeView.gameTimeSlider.setValue(getDuration(), animated: true)
-        
-        speedView.gameSpeedSlider.addTarget(self, action: #selector(sliderValueChanged), for: UIControl.Event.valueChanged)
+        timeView.gameTimeSlider.minimumValue = 1.0
+        timeView.gameTimeSlider.maximumValue = 20.0
+    }
+
+    private func setupSpeedView() {
+        speedView.gameSpeedSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         speedView.gameSpeedSlider.setValue(getSpeed(), animated: true)
-        
+    }
+
+    private func setupBackgroundForWordView() {
         backgroundForWordView.switchedViewForLabel.isOn = presenter.settings?.isViewForText ?? false
         backgroundForWordView.switchedViewForLabel.addTarget(self, action: #selector(toggledSwitchValue), for: .valueChanged)
-        
+    }
+
+    private func setupThemePickerView() {
         themePickerView.themePickerSegmentedControl.addTarget(self, action: #selector(appThemeSelected), for: .valueChanged)
-        
+    }
+
+    private func setupWordPlacementView() {
         wordPlacementView.wordPlacementSC.selectedSegmentIndex = isRandomLocation() ? 0 : 1
-        
+    }
+
+    private func setupAppLangView() {
         appLangView.appLangSegmentedControl.selectedSegmentIndex = isSelectedLangRu() ? 0 : 1
         appLangView.appLangSegmentedControl.addTarget(self, action: #selector(changeLangSelected), for: .valueChanged)
     }
     
     // MARK: - Methods UI
-//    ColorPickerView
-    func setupButtons() {
+
+   private func setupButtons() {
         var button = UIButton()
         colorButtonsArray = getButtonColors()
         
@@ -145,7 +173,7 @@ final class SettingsViewController: UIViewController {
         }
     }
     
-    func setBackground(view: UIButton, onOffStatus: Bool) {
+    private func setBackground(view: UIButton, onOffStatus: Bool) {
         let whiteCheck = UIImage(named: "checkboxWhire")!
         let blackCheck = UIImage(named: "checkboxBlack")!
         switch onOffStatus {
@@ -156,30 +184,28 @@ final class SettingsViewController: UIViewController {
         }
     }
     
-    func createButton(color: String) -> UIButton {
+    private func createButton(color: String) -> UIButton {
         let button = UIButton()
         button.backgroundColor = UIColor(named: color)
         button.layer.cornerRadius = 15
         button.translatesAutoresizingMaskIntoConstraints = false
         button.snp.makeConstraints { make in
-            make.height.equalTo(30)
-            make.width.equalTo(30)
+            make.height.equalTo(40)
+            make.width.equalTo(40)
         }
         return button
     }
     
-    @objc func checkboxTaped(sender: UIButton) {
+    @objc private func checkboxTaped(sender: UIButton) {
         colorButtonsArray[sender.tag].isOn.toggle()
         setBackground(view: sender, onOffStatus: colorButtonsArray[sender.tag].isOn)
     }
     
-    //    Another
-    
-    @objc func stepperValueChanged(sender: UIStepper) {
+    @objc private func stepperValueChanged(sender: UIStepper) {
         sizeView.gameSizeStepperLabel.font = UIFont.systemFont(ofSize: sender.value)
     }
     
-    @objc func sliderValueChanged(sender: UISlider) {
+    @objc private func sliderValueChanged(sender: UISlider) {
         let currentValue = Int(sender.value)
         if (sender == timeView.gameTimeSlider) {
             (timeView.gameTimeSliderLabel.text = "\(currentValue)")
@@ -188,7 +214,7 @@ final class SettingsViewController: UIViewController {
         }
     }
     
-    @objc func appThemeSelected(_ sender: UISegmentedControl) {
+    @objc private func appThemeSelected(_ sender: UISegmentedControl) {
         if (sender.selectedSegmentIndex == 1 ){
             print("UISwitch state is now ON")
             UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
@@ -199,7 +225,7 @@ final class SettingsViewController: UIViewController {
         }
     }
     
-    @objc func changeLangSelected(_ sender: UISegmentedControl) {
+    @objc private func changeLangSelected(_ sender: UISegmentedControl) {
         if (sender.selectedSegmentIndex == 1 ) {
             changeLang(lang: "en-US")
         }
@@ -208,7 +234,7 @@ final class SettingsViewController: UIViewController {
         }
     }
     
-    @objc func toggledSwitchValue(_ sender: UISwitch) {}
+    @objc private func toggledSwitchValue(_ sender: UISwitch) {}
     
     private func setAppThemeSwitch() {
         let theme = UserDefaults.standard.object(forKey: "theme") as? String
@@ -236,22 +262,23 @@ final class SettingsViewController: UIViewController {
     }
     
     private func colorPickerButtonTap() {
-        
         UIView.animate(withDuration: 0.3) { [weak self] in
-            if self?.isExpanded == false {
-                self?.colorPickerView.snp.remakeConstraints { make in
-                    make.centerX.equalToSuperview()
-                    make.centerY.equalToSuperview()
-
+            guard let self = self else { return }
+            if self.isExpanded == false {
+                colorPickerView.mainPickerStack.isHidden = false
+                self.colorPickerView.snp.remakeConstraints { make in
+                    make.height.equalTo(250)
+                    make.leading.trailing.equalToSuperview().inset(20)
                 }
             } else {
-                self?.colorPickerView.snp.remakeConstraints { make in
-                    make.height.equalTo(66)
+                colorPickerView.mainPickerStack.isHidden = true
+                self.colorPickerView.snp.remakeConstraints { make in
+                    make.height.equalTo(50)
                     make.leading.trailing.equalToSuperview().inset(20)
                 }
             }
-            self?.view.layoutIfNeeded()
-            self?.isExpanded.toggle()
+            self.view.layoutIfNeeded()
+            self.isExpanded.toggle()
         }
     }
     
@@ -268,19 +295,18 @@ final class SettingsViewController: UIViewController {
     
     // MARK: - Layout
     private func setupLayout() {
-        scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
-        contentView.snp.makeConstraints {
-            $0.edges.width.equalToSuperview()
-            $0.height.equalTo(mainStack)
+        contentView.snp.makeConstraints { make in
+            make.edges.width.equalToSuperview()
+            make.height.equalTo(mainStack)
         }
         
         mainStack.snp.makeConstraints { make in
-            make.top.equalTo(contentView.snp.top).offset(30)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.lessThanOrEqualToSuperview() 
+            make.top.equalToSuperview().inset(16)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         
         timeView.snp.makeConstraints { make in
@@ -294,7 +320,7 @@ final class SettingsViewController: UIViewController {
         }
         
         colorPickerView.snp.makeConstraints { make in
-            make.height.equalTo(66)
+            make.height.equalTo(50)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         
