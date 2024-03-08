@@ -75,9 +75,10 @@
 		E1F2F1472B9A5B1C00DBE9AF /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F2F1462B9A5B1C00DBE9AF /* TimeView.swift */; };
 		E1F2F1492B9A5CEA00DBE9AF /* SpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F2F1482B9A5CEA00DBE9AF /* SpeedView.swift */; };
 		E1F2F14B2B9A5ECE00DBE9AF /* BackgroundForWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F2F14A2B9A5ECE00DBE9AF /* BackgroundForWordView.swift */; };
-		E1F2F14D2B9A607200DBE9AF /* BackgroundForGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F2F14C2B9A607200DBE9AF /* BackgroundForGameView.swift */; };
+		E1F2F14D2B9A607200DBE9AF /* ThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F2F14C2B9A607200DBE9AF /* ThemePickerView.swift */; };
 		E1F2F14F2B9A619000DBE9AF /* WordPlacementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F2F14E2B9A619000DBE9AF /* WordPlacementView.swift */; };
 		E1F2F1512B9A62D400DBE9AF /* AppLangView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F2F1502B9A62D400DBE9AF /* AppLangView.swift */; };
+		E1F2F1532B9B829A00DBE9AF /* SettingsViewController + SettingsViewProtocol .swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F2F1522B9B829A00DBE9AF /* SettingsViewController + SettingsViewProtocol .swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -151,9 +152,10 @@
 		E1F2F1462B9A5B1C00DBE9AF /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
 		E1F2F1482B9A5CEA00DBE9AF /* SpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedView.swift; sourceTree = "<group>"; };
 		E1F2F14A2B9A5ECE00DBE9AF /* BackgroundForWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundForWordView.swift; sourceTree = "<group>"; };
-		E1F2F14C2B9A607200DBE9AF /* BackgroundForGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundForGameView.swift; sourceTree = "<group>"; };
+		E1F2F14C2B9A607200DBE9AF /* ThemePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePickerView.swift; sourceTree = "<group>"; };
 		E1F2F14E2B9A619000DBE9AF /* WordPlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPlacementView.swift; sourceTree = "<group>"; };
 		E1F2F1502B9A62D400DBE9AF /* AppLangView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLangView.swift; sourceTree = "<group>"; };
+		E1F2F1522B9B829A00DBE9AF /* SettingsViewController + SettingsViewProtocol .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController + SettingsViewProtocol .swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				15F3BE7D2B02E70500E74E7A /* SettingsViewController.swift */,
+				E1F2F1522B9B829A00DBE9AF /* SettingsViewController + SettingsViewProtocol .swift */,
 				E1F2F1432B999F3000DBE9AF /* SubViews */,
 			);
 			path = Views;
@@ -519,7 +522,7 @@
 				E1F2F1462B9A5B1C00DBE9AF /* TimeView.swift */,
 				E1F2F1482B9A5CEA00DBE9AF /* SpeedView.swift */,
 				E1F2F14A2B9A5ECE00DBE9AF /* BackgroundForWordView.swift */,
-				E1F2F14C2B9A607200DBE9AF /* BackgroundForGameView.swift */,
+				E1F2F14C2B9A607200DBE9AF /* ThemePickerView.swift */,
 				E1F2F14E2B9A619000DBE9AF /* WordPlacementView.swift */,
 				E1F2F1502B9A62D400DBE9AF /* AppLangView.swift */,
 			);
@@ -630,7 +633,7 @@
 				A5CBDB7E2B987B6F00C81385 /* ColorViewFactory.swift in Sources */,
 				E183FEC82B0CC2AA00E3ED41 /* RainbowView.swift in Sources */,
 				4AD131742B0566E4007DA3B7 /* ResultsTableViewController.swift in Sources */,
-				E1F2F14D2B9A607200DBE9AF /* BackgroundForGameView.swift in Sources */,
+				E1F2F14D2B9A607200DBE9AF /* ThemePickerView.swift in Sources */,
 				A5CBDB822B987C4300C81385 /* StateManager.swift in Sources */,
 				E183FEBE2B0B465100E3ED41 /* ShadowButtonFactory.swift in Sources */,
 				4AD131412B02A664007DA3B7 /* Extension + UIStackView.swift in Sources */,
@@ -654,6 +657,7 @@
 				A5B797502B02402300B20742 /* AppDelegate.swift in Sources */,
 				A5DAD8772B3F2DF100FDED74 /* Theme.swift in Sources */,
 				4AD131722B0566E4007DA3B7 /* ResultTableViewCell.swift in Sources */,
+				E1F2F1532B9B829A00DBE9AF /* SettingsViewController + SettingsViewProtocol .swift in Sources */,
 				A5CBDB7C2B987B3D00C81385 /* ObservableUIViewPropertyAnimator.swift in Sources */,
 				E1F2F1472B9A5B1C00DBE9AF /* TimeView.swift in Sources */,
 				E1F2F1492B9A5CEA00DBE9AF /* SpeedView.swift in Sources */,

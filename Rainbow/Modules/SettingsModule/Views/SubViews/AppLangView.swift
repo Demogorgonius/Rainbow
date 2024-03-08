@@ -12,7 +12,7 @@ final class AppLangView: UIView {
         stack.distribution = .fillEqually
         stack.alignment = .leading
         stack.translatesAutoresizingMaskIntoConstraints = false
-        [appLangLabel, appLangSC].forEach {
+        [appLangLabel, appLangSegmentedControl].forEach {
             stack.addArrangedSubview($0)
         }
         return stack
@@ -26,7 +26,7 @@ final class AppLangView: UIView {
         )
     }()
     
-    lazy var appLangSC: UISegmentedControl = {
+    lazy var appLangSegmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: [NSLocalizedString("appLangSCRus", comment: ""), NSLocalizedString("appLangSCEn", comment: "")])
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
@@ -59,16 +59,11 @@ final class AppLangView: UIView {
         }
         
         appLangStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
+            make.leading.trailing.equalToSuperview().inset(10)
         }
         
-        appLangSC.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.height.equalTo(20)
-            make.width.equalTo(298)
+        appLangSegmentedControl.snp.makeConstraints { make in
+            make.width.equalToSuperview()
         }
     }
 }

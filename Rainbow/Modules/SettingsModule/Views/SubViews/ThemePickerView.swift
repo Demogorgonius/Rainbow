@@ -1,23 +1,23 @@
 
 import UIKit
 
-final class BackgroundForGameView: UIView {
-    lazy var backgroundForGameView = ViewFactory.createShadowView()
+final class ThemePickerView: UIView {
+    lazy var themePickerView = ViewFactory.createShadowView()
     
-    lazy var backgroundForGameStack: UIStackView = {
+    lazy var themePickerStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 10
         stack.distribution = .fillEqually
         stack.alignment = .leading
         stack.translatesAutoresizingMaskIntoConstraints = false
-        [backgroundForGameLabel, backgroundForGameSC].forEach {
+        [themePickerLabel, themePickerSegmentedControl].forEach {
             stack.addArrangedSubview($0)
         }
         return stack
     } ()
     
-    lazy var backgroundForGameLabel: UILabel = {
+    lazy var themePickerLabel: UILabel = {
         return LabelFactory.createLabel(
             type: .gameBlack,
             text:  NSLocalizedString("backgroundForGameLabel",
@@ -25,7 +25,7 @@ final class BackgroundForGameView: UIView {
         )
     }()
     
-    lazy var backgroundForGameSC: UISegmentedControl = {
+    lazy var themePickerSegmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: [NSLocalizedString("backgroundForGameSCLight", comment: ""), NSLocalizedString("backgroundForGameSCDark", comment: "")])
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "customBlack")!]
         sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
@@ -49,26 +49,21 @@ final class BackgroundForGameView: UIView {
     
     //MARK: - SetupViews()
     private func setupViews() {
-        addSubview(backgroundForGameView.shadowView)
-        backgroundForGameView.shadowView.addSubview(backgroundForGameStack)
+        addSubview(themePickerView.shadowView)
+        themePickerView.shadowView.addSubview(themePickerStack)
     }
     
     private func setupConstraints() {
-        backgroundForGameView.shadowView.snp.makeConstraints { make in
+        themePickerView.shadowView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        backgroundForGameStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
+        themePickerStack.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(10)
         }
         
-        backgroundForGameSC.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.height.equalTo(20)
-            make.width.equalTo(298)
+        themePickerSegmentedControl.snp.makeConstraints { make in
+            make.width.equalToSuperview()
         }
     }
 }

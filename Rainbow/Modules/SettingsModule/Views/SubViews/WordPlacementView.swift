@@ -66,16 +66,11 @@ final class WordPlacementView: UIView {
         }
         
         wordPlacementStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
+            make.leading.trailing.equalToSuperview().inset(10)
         }
         
         wordPlacementSC.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.height.equalTo(20)
-            make.width.equalTo(298)
+            make.width.equalToSuperview()
         }
         
     }
