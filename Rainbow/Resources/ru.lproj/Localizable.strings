@@ -8,8 +8,7 @@
 
 //MARK: - Main Module
 
-"gameLabel" = "HЛП игра";
-"nameGameLabel" = "Радуга";
+"gameLabel" = "color IQ";
 "startNewGameButton" = "Новая игра";
 "continueGameButton" = "Продолжить";
 "statisticGameButton" = "Cтатистика";

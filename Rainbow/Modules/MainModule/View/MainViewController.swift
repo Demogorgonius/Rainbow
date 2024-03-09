@@ -10,15 +10,14 @@ final class MainViewController: UIViewController {
     // MARK: - UI
     private lazy var rainbowImage: UIImageView = {
         let element = UIImageView()
-        element.image = UIImage(named: "Image")
+        element.image = UIImage(named: "icon")
         element.contentMode = .scaleToFill
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
     }()
     
     private lazy var gameLabel = UILabel(text: NSLocalizedString("gameLabel", comment: ""), font: UIFont.systemFont(ofSize: 36))
-    
-    private lazy var nameGameLabel = UILabel(text: NSLocalizedString("nameGameLabel", comment: ""), font: UIFont.CormorantFont.RegularItalic.size(of: 64))
+
     
     private lazy var startNewGameButton: UIButton = {
         let button = ShadowButtonFactory.makeShadowButton(
@@ -72,7 +71,7 @@ final class MainViewController: UIViewController {
     private lazy var customButtonsStackView = UIStackView(
         axis: .horizontal,
         distribution: .fillEqually,
-        spacing: 150,
+        spacing: 140,
         subview: [settingsGameButton, infoGameButton]
     )
     
@@ -95,40 +94,37 @@ final class MainViewController: UIViewController {
     
     // MARK: - Setup UI
     private func setViews() {
-        view.addVerticalGradientLayer()
+        view.addAnimatedGradientLayer()
         
         view.addSubview(rainbowImage)
         view.addSubview(gameLabel)
-        view.addSubview(nameGameLabel)
         view.addSubviews(buttonsStackView)
         buttonsStackView.addArrangedSubview(customButtonsStackView)
     }
     
     private func layoutViews() {
         rainbowImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(77)
-            make.leading.equalToSuperview().offset(35)
-            make.trailing.equalToSuperview().offset(-38)
+            make.top.equalToSuperview().offset(60)
+            make.centerX.equalToSuperview()
+            make.leading.trailing.lessThanOrEqualToSuperview().inset(50)
+            make.height.equalTo(rainbowImage.snp.width)
+            make.bottom.lessThanOrEqualTo(gameLabel.snp.top).offset(-16)
         }
         
         gameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
+            make.height.equalTo(30)
             make.top.equalTo(rainbowImage.snp.bottom).offset(16)
-            make.height.greaterThanOrEqualTo(40)
         }
         
-        nameGameLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(gameLabel.snp.bottom).offset(30)
-            make.height.greaterThanOrEqualTo(80)
+        settingsGameButton.snp.makeConstraints { make in
+            make.width.equalTo(settingsGameButton.snp.height)
         }
         
         buttonsStackView.snp.makeConstraints { make in
-            make.top.equalTo(nameGameLabel.snp.bottom).offset(50)
-            make.leading.equalToSuperview().offset(50)
-            make.trailing.equalToSuperview().offset(-50)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-8)
-            make.height.equalTo(335)
+            make.top.equalTo(gameLabel.snp.bottom).offset(30)
+            make.leading.trailing.equalToSuperview().inset(50)
+            make.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide).offset(-8)
         }
     }
 }

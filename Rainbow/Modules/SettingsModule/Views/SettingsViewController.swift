@@ -65,7 +65,7 @@ final class SettingsViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         presenter.getSettings()
-        view.addVerticalGradientLayer()
+        view.addAnimatedGradientLayer()
         
         setupViews()
         setupLayout()
@@ -129,13 +129,12 @@ final class SettingsViewController: UIViewController {
     private func setupTimeView() {
         timeView.gameTimeSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         timeView.gameTimeSlider.setValue(getDuration(), animated: true)
-        timeView.gameTimeSlider.minimumValue = 1.0
-        timeView.gameTimeSlider.maximumValue = 20.0
     }
 
     private func setupSpeedView() {
-        speedView.gameSpeedSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
+        speedView.gameSpeedSlider.addTarget(self, action: #selector(sliderValueChanged), for: UIControl.Event.valueChanged)
         speedView.gameSpeedSlider.setValue(getSpeed(), animated: true)
+        speedView.gameSpeedSliderLabel.text = String(Int(speedView.gameSpeedSlider.value))
     }
 
     private func setupBackgroundForWordView() {
@@ -187,7 +186,7 @@ final class SettingsViewController: UIViewController {
     private func createButton(color: String) -> UIButton {
         let button = UIButton()
         button.backgroundColor = UIColor(named: color)
-        button.layer.cornerRadius = 15
+        button.layer.cornerRadius = 20
         button.translatesAutoresizingMaskIntoConstraints = false
         button.snp.makeConstraints { make in
             make.height.equalTo(40)
@@ -267,7 +266,7 @@ final class SettingsViewController: UIViewController {
             if self.isExpanded == false {
                 colorPickerView.mainPickerStack.isHidden = false
                 self.colorPickerView.snp.remakeConstraints { make in
-                    make.height.equalTo(250)
+                    make.height.equalTo(180)
                     make.leading.trailing.equalToSuperview().inset(20)
                 }
             } else {

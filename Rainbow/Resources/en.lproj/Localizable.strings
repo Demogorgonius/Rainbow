@@ -7,8 +7,7 @@
 */
 //MARK: - Main Module
 
-"gameLabel" = "NLP game";
-"nameGameLabel" = "Rainbow";
+"gameLabel" = "color IQ";
 "startNewGameButton" = "New game";
 "continueGameButton" = "Continue";
 "statisticGameButton" = "Statistic";

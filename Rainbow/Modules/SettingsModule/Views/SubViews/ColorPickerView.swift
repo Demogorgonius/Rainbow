@@ -2,12 +2,12 @@
 import UIKit
 
 final class ColorPickerView: UIView {
-
+    
     lazy var colorPickerView = ViewFactory.createShadowView()
     
     lazy var colorPickerButton: UIButton = {
         let colorButton = UIButton()
-        colorButton.backgroundColor = UIColor.red
+        colorButton.setImage(UIImage(named: "icon"), for: .normal)
         colorButton.layer.cornerRadius = 15
         colorButton.clipsToBounds = true
         colorButton.snp.makeConstraints { make in
@@ -92,17 +92,19 @@ final class ColorPickerView: UIView {
     
     private func setupConstraints() {
         colorPickerView.shadowView.snp.makeConstraints { make in
-             make.edges.equalToSuperview()
-         }
-        
+            make.edges.equalToSuperview()
+        }
+  
         titlePickerStack.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview().inset(8)
-            make.bottom.equalTo(mainPickerStack.snp.top).inset(16)
+            make.top.equalToSuperview().inset(8)
+            make.leading.trailing.equalToSuperview().inset(8)
+            make.height.equalTo(40)
         }
         
-        mainPickerStack.snp.makeConstraints{ make in
-            make.top.equalTo(titlePickerStack.snp.bottom).inset(16)
-            make.bottom.leading.trailing.equalToSuperview().inset(8)
+        mainPickerStack.snp.makeConstraints { make in
+            make.top.greaterThanOrEqualTo(titlePickerStack.snp.bottom).inset(16)
+            make.leading.trailing.equalToSuperview().inset(8)
+            make.bottom.lessThanOrEqualToSuperview().inset(10)
         }
     }
 }
