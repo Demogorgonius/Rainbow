@@ -11,6 +11,10 @@ final class ColorPickerView: UIView {
         colorButton.layer.cornerRadius = 15
         colorButton.clipsToBounds = true
         colorButton.tintColor = .red
+        colorButton.snp.makeConstraints { make in
+            make.height.equalTo(40)
+            make.width.equalTo(40)
+        }
         colorButton.translatesAutoresizingMaskIntoConstraints = false
         return colorButton
     }()

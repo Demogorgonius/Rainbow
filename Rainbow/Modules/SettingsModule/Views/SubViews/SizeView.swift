@@ -14,9 +14,9 @@ final class SizeView: UIView {
     
     lazy var gameSizeStepper: UIStepper = {
         let stepper = UIStepper()
-        stepper.minimumValue = 10.0
+        stepper.minimumValue = 13.0
         stepper.maximumValue = 30.0
-        stepper.stepValue = 1.0
+        stepper.stepValue = 2.0
         return stepper
     }()
     
