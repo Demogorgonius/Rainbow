@@ -66,10 +66,7 @@ final class SizeView: UIView {
          }
         
         gameSizeStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
+            make.edges.equalToSuperview().inset(8)
         }
     }
     

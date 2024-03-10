@@ -46,19 +46,6 @@ final class SettingsViewController: UIViewController {
         return view
     }()
     
-    // MARK: - Main Stack
-    lazy var mainStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 16
-        stack.distribution = .equalSpacing
-        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        allViews.forEach {
-            stack.addArrangedSubview($0)
-        }
-        return stack
-    }()
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -113,51 +100,51 @@ final class SettingsViewController: UIViewController {
         setupWordPlacementView()
         setupAppLangView()
     }
-
+    
     private func setupSizeView() {
         sizeView.gameSizeStepper.addTarget(self, action: #selector(stepperValueChanged), for: .valueChanged)
         sizeView.gameSizeStepper.value = getFontSize()
     }
-
+    
     private func setupColorPickerView() {
         colorPickerView.mainPickerStack.isHidden = true
         colorPickerView.colorPickerButton.addAction(UIAction { [weak self] _ in
             self?.colorPickerButtonTap()
         }, for: .touchUpInside)
     }
-
+    
     private func setupTimeView() {
         timeView.gameTimeSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         timeView.gameTimeSlider.setValue(getDuration(), animated: true)
     }
-
+    
     private func setupSpeedView() {
         speedView.gameSpeedSlider.addTarget(self, action: #selector(sliderValueChanged), for: UIControl.Event.valueChanged)
         speedView.gameSpeedSlider.setValue(getSpeed(), animated: true)
         speedView.gameSpeedSliderLabel.text = String(Int(speedView.gameSpeedSlider.value))
     }
-
+    
     private func setupBackgroundForWordView() {
         backgroundForWordView.switchedViewForLabel.isOn = presenter.settings?.isViewForText ?? false
         backgroundForWordView.switchedViewForLabel.addTarget(self, action: #selector(toggledSwitchValue), for: .valueChanged)
     }
-
+    
     private func setupThemePickerView() {
         themePickerView.themePickerSegmentedControl.addTarget(self, action: #selector(appThemeSelected), for: .valueChanged)
     }
-
+    
     private func setupWordPlacementView() {
         wordPlacementView.wordPlacementSC.selectedSegmentIndex = isRandomLocation() ? 0 : 1
     }
-
+    
     private func setupAppLangView() {
         appLangView.appLangSegmentedControl.selectedSegmentIndex = isSelectedLangRu() ? 0 : 1
         appLangView.appLangSegmentedControl.addTarget(self, action: #selector(changeLangSelected), for: .valueChanged)
     }
     
     // MARK: - Methods UI
-
-   private func setupButtons() {
+    
+    private func setupButtons() {
         var button = UIButton()
         colorButtonsArray = getButtonColors()
         
@@ -261,19 +248,28 @@ final class SettingsViewController: UIViewController {
     }
     
     private func colorPickerButtonTap() {
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            guard let self = self else { return }
-            if self.isExpanded == false {
-                colorPickerView.mainPickerStack.isHidden = false
+        UIView.animate(withDuration: 0.3) { [unowned self] in
+            if !self.isExpanded {
+                self.colorPickerView.colorPickerButton.setImage(
+                    UIImage(systemName: "arrowshape.down.circle"),
+                    for: .normal
+                )
+                self.colorPickerView.mainPickerStack.isHidden = false
                 self.colorPickerView.snp.remakeConstraints { make in
+                    make.top.equalTo(self.speedView.snp.bottom).offset(16)
                     make.height.equalTo(180)
-                    make.leading.trailing.equalToSuperview().inset(20)
+                    make.leading.trailing.equalToSuperview().inset(32)
                 }
             } else {
-                colorPickerView.mainPickerStack.isHidden = true
+                self.colorPickerView.colorPickerButton.setImage(
+                    UIImage(systemName: "arrowshape.right.circle.fill"),
+                    for: .normal
+                )
+                self.colorPickerView.mainPickerStack.isHidden = true
                 self.colorPickerView.snp.remakeConstraints { make in
-                    make.height.equalTo(50)
-                    make.leading.trailing.equalToSuperview().inset(20)
+                    make.top.equalTo(self.speedView.snp.bottom).offset(16)
+                    make.height.equalTo(80)
+                    make.leading.trailing.equalToSuperview().inset(32)
                 }
             }
             self.view.layoutIfNeeded()
@@ -285,14 +281,8 @@ final class SettingsViewController: UIViewController {
     private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(mainStack)
-        
-        allViews.forEach {
-            mainStack.addArrangedSubview($0)
-        }
     }
     
-    // MARK: - Layout
     private func setupLayout() {
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -300,55 +290,30 @@ final class SettingsViewController: UIViewController {
         
         contentView.snp.makeConstraints { make in
             make.edges.width.equalToSuperview()
-            make.height.equalTo(mainStack)
         }
         
-        mainStack.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(16)
-            make.leading.trailing.bottom.equalToSuperview()
+        var previousView: UIView?
+        let spacing: CGFloat = 16
+        
+        for view in allViews {
+            contentView.addSubview(view)
+            
+            view.snp.makeConstraints { make in
+                make.leading.trailing.equalToSuperview().inset(32)
+                make.height.equalTo(80)
+                if let previousView = previousView {
+                    make.top.equalTo(previousView.snp.bottom).offset(spacing)
+                } else {
+                    make.top.equalToSuperview().offset(spacing)
+                }
+            }
+            previousView = view
         }
         
-        timeView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(66)
-        }
-        
-        speedView.snp.makeConstraints { make in
-            make.height.equalTo(66)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-        
-        colorPickerView.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-        
-        sizeView.snp.makeConstraints { make in
-            make.height.equalTo(66)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-        
-        backgroundForWordView.snp.makeConstraints { make in
-            make.height.equalTo(66)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-        
-        themePickerView.snp.makeConstraints { make in
-            make.height.equalTo(80)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-        
-        wordPlacementView.snp.makeConstraints { make in
-            make.height.equalTo(80)
-            make.leading.trailing.equalToSuperview().inset(20)
-        }
-        
-        appLangView.snp.makeConstraints { make in
-            make.height.equalTo(80)
-            make.leading.trailing.equalToSuperview().inset(20)
+        if let lastView = allViews.last {
+            lastView.snp.makeConstraints { make in
+                make.bottom.equalToSuperview().inset(spacing)
+            }
         }
     }
 }
-
-
-

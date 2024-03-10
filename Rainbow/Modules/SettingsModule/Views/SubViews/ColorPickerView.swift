@@ -7,13 +7,10 @@ final class ColorPickerView: UIView {
     
     lazy var colorPickerButton: UIButton = {
         let colorButton = UIButton()
-        colorButton.setImage(UIImage(named: "icon"), for: .normal)
+        colorButton.setImage(UIImage(systemName: "arrowshape.right.circle.fill"), for: .normal)
         colorButton.layer.cornerRadius = 15
         colorButton.clipsToBounds = true
-        colorButton.snp.makeConstraints { make in
-            make.height.equalTo(30)
-            make.width.equalTo(30)
-        }
+        colorButton.tintColor = .red
         colorButton.translatesAutoresizingMaskIntoConstraints = false
         return colorButton
     }()
@@ -29,7 +26,7 @@ final class ColorPickerView: UIView {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 20
-        stack.distribution = .equalSpacing
+        stack.distribution = .fill
         stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
         [colorPickerLabel, colorPickerButton].forEach {
@@ -96,15 +93,15 @@ final class ColorPickerView: UIView {
         }
   
         titlePickerStack.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(8)
+            make.top.equalToSuperview().offset(10)
+            make.height.equalTo(60)
             make.leading.trailing.equalToSuperview().inset(8)
-            make.height.equalTo(40)
         }
         
         mainPickerStack.snp.makeConstraints { make in
             make.top.greaterThanOrEqualTo(titlePickerStack.snp.bottom).inset(16)
             make.leading.trailing.equalToSuperview().inset(8)
-            make.bottom.lessThanOrEqualToSuperview().inset(10)
+
         }
     }
 }

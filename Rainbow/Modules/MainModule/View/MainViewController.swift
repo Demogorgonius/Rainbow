@@ -106,7 +106,6 @@ final class MainViewController: UIViewController {
         rainbowImage.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(60)
             make.centerX.equalToSuperview()
-            make.leading.trailing.lessThanOrEqualToSuperview().inset(50)
             make.height.equalTo(rainbowImage.snp.width)
             make.bottom.lessThanOrEqualTo(gameLabel.snp.top).offset(-16)
         }
@@ -115,10 +114,6 @@ final class MainViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.height.equalTo(30)
             make.top.equalTo(rainbowImage.snp.bottom).offset(16)
-        }
-        
-        settingsGameButton.snp.makeConstraints { make in
-            make.width.equalTo(settingsGameButton.snp.height)
         }
         
         buttonsStackView.snp.makeConstraints { make in

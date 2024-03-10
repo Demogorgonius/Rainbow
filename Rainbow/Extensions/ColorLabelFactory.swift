@@ -34,6 +34,7 @@ class ColorLabelFactory {
         label.layer.shadowRadius = 3
         label.layer.shadowColor = UIColor.black.cgColor
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }
     

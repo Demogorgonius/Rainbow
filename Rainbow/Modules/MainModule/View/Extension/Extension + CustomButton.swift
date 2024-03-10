@@ -14,5 +14,9 @@ extension UIButton {
         layer.shadowOpacity = 0.9
         layer.shadowRadius = 3
         translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            widthAnchor.constraint(equalTo: heightAnchor)
+        ])
     }
 }

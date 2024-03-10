@@ -8,9 +8,9 @@ final class TimeView: UIView {
     lazy var gameTimeStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.spacing = 20
-        stack.distribution = .equalSpacing
-        stack.alignment = .center
+        stack.spacing = 10
+        stack.distribution = .fillEqually
+        stack.alignment = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
         [gameTimeLabel, gameTimeSlider, gameTimeSliderLabel].forEach {
             stack.addArrangedSubview($0)

@@ -16,7 +16,7 @@ class LabelFactory {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
-        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true 
 
         if let config = labelConfiguration(for: type) {
             label.textColor = config.textColor

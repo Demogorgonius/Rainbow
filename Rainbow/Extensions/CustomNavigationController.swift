@@ -23,7 +23,7 @@ extension UINavigationController {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .customPurple
         appearance.titleTextAttributes = [
-            .font: UIFont.boldSystemFont(ofSize: 30),
+            .font: UIFont.boldSystemFont(ofSize: 20),
             .foregroundColor: UIColor.customPeach]
         navigationBar.standardAppearance = appearance
         navigationBar.compactAppearance = appearance

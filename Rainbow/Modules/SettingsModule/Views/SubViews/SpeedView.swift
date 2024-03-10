@@ -9,7 +9,7 @@ final class SpeedView: UIView {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 20
-        stack.distribution = .equalSpacing
+        stack.distribution = .fillEqually
         stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
         [gameSpeedLabel, gameSpeedSlider, gameSpeedSliderLabel].forEach {
