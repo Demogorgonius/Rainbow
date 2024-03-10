@@ -251,9 +251,10 @@ final class SettingsViewController: UIViewController {
         UIView.animate(withDuration: 0.3) { [unowned self] in
             if !self.isExpanded {
                 self.colorPickerView.colorPickerButton.setImage(
-                    UIImage(systemName: "arrowshape.down.circle"),
+                    UIImage(named: "arrowUp"),
                     for: .normal
                 )
+                
                 self.colorPickerView.mainPickerStack.isHidden = false
                 self.colorPickerView.snp.remakeConstraints { make in
                     make.top.equalTo(self.speedView.snp.bottom).offset(16)
@@ -262,7 +263,7 @@ final class SettingsViewController: UIViewController {
                 }
             } else {
                 self.colorPickerView.colorPickerButton.setImage(
-                    UIImage(systemName: "arrowshape.right.circle.fill"),
+                    UIImage(named: "arrow"),
                     for: .normal
                 )
                 self.colorPickerView.mainPickerStack.isHidden = true
