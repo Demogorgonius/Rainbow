@@ -3,22 +3,35 @@ import UIKit
 
 final class SpeedView: UIView {
     
-    lazy var gameSpeedView = ViewFactory.createShadowView()
+    lazy var speedView = ViewFactory.createShadowView()
     
-    lazy var gameSpeedStack: UIStackView = {
+    lazy var sliderStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.spacing = 20
-        stack.distribution = .fillEqually
-        stack.alignment = .center
+        stack.spacing = 10
+        stack.distribution = .fill
+        stack.alignment = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
-        [gameSpeedLabel, gameSpeedSlider, gameSpeedSliderLabel].forEach {
+        [speedSlider, speedValueLabel].forEach {
+            stack.addArrangedSubview($0)
+        }
+        return stack
+    }()
+    
+    lazy var mainStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 10
+        stack.distribution = .fill
+        stack.alignment = .fill
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        [speedLabel, sliderStack].forEach {
             stack.addArrangedSubview($0)
         }
         return stack
     } ()
     
-    lazy var gameSpeedLabel: UILabel = {
+    lazy var speedLabel: UILabel = {
         return LabelFactory.createLabel(
             type: .gameBlack,
             text:  NSLocalizedString("gameSpeedLabel",
@@ -26,7 +39,7 @@ final class SpeedView: UIView {
         )
     }()
     
-    lazy var gameSpeedSlider: UISlider = {
+    lazy var speedSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 1.0
         slider.maximumValue = 5.0
@@ -35,14 +48,11 @@ final class SpeedView: UIView {
         return slider
     }()
     
-    lazy var gameSpeedSliderLabel: UILabel = {
-        let label = UILabel()
-        label.text = String(Int(gameSpeedSlider.value))
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = .black
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    lazy var speedValueLabel: UILabel = {
+        return LabelFactory.createLabel(
+            type: .gameBlack,
+            text:  String(Int(speedSlider.value))
+        )
     }()
     
     //MARK: - Init()
@@ -58,17 +68,27 @@ final class SpeedView: UIView {
     
     //MARK: - SetupViews()
     private func setupViews() {
-        addSubview(gameSpeedView.shadowView)
-        gameSpeedView.shadowView.addSubview(gameSpeedStack)
+        addSubview(speedView.shadowView)
+        speedView.shadowView.addSubview(mainStack)
+        mainStack.addArrangedSubview(sliderStack)
     }
     
     private func setupConstraints() {
-        gameSpeedView.shadowView.snp.makeConstraints { make in
+        speedView.shadowView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        gameSpeedStack.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(8)
+        mainStack.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(8)
+            make.centerY.equalToSuperview()
+        }
+        
+        sliderStack.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        speedValueLabel.snp.makeConstraints { make in
+            make.width.equalTo(20)
         }
     }
 }

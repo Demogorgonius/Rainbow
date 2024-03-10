@@ -67,8 +67,8 @@ final class SettingsViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         presenter?.saveGameSettings(
-            durationGame: Int(timeView.gameTimeSlider.value),
-            speedGame: Int(speedView.gameSpeedSlider.value),
+            durationGame: Int(timeView.timeSlider.value),
+            speedGame: Int(speedView.speedSlider.value),
             gameColors: colorButtonsArray,
             sizeFont: sizeView.gameSizeStepper.value,
             isViewForText: backgroundForWordView.switchedViewForLabel.isOn,
@@ -114,14 +114,15 @@ final class SettingsViewController: UIViewController {
     }
     
     private func setupTimeView() {
-        timeView.gameTimeSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
-        timeView.gameTimeSlider.setValue(getDuration(), animated: true)
+        timeView.timeSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
+        timeView.timeSlider.setValue(getDuration(), animated: true)
+        timeView.timerValueLabel.text = String(Int(timeView.timeSlider.value))
     }
     
     private func setupSpeedView() {
-        speedView.gameSpeedSlider.addTarget(self, action: #selector(sliderValueChanged), for: UIControl.Event.valueChanged)
-        speedView.gameSpeedSlider.setValue(getSpeed(), animated: true)
-        speedView.gameSpeedSliderLabel.text = String(Int(speedView.gameSpeedSlider.value))
+        speedView.speedSlider.addTarget(self, action: #selector(sliderValueChanged), for: UIControl.Event.valueChanged)
+        speedView.speedSlider.setValue(getSpeed(), animated: true)
+        speedView.speedValueLabel.text = String(Int(speedView.speedSlider.value))
     }
     
     private func setupBackgroundForWordView() {
@@ -193,10 +194,10 @@ final class SettingsViewController: UIViewController {
     
     @objc private func sliderValueChanged(sender: UISlider) {
         let currentValue = Int(sender.value)
-        if (sender == timeView.gameTimeSlider) {
-            (timeView.gameTimeSliderLabel.text = "\(currentValue)")
+        if (sender == timeView.timeSlider) {
+            (timeView.timerValueLabel.text = "\(currentValue)")
         } else {
-            (speedView.gameSpeedSliderLabel.text = "\(currentValue)")
+            (speedView.speedValueLabel.text = "\(currentValue)")
         }
     }
     
