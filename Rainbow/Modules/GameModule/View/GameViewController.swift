@@ -38,7 +38,7 @@ final class GameViewController: UIViewController {
     
     // MARK: Private Methods
     private func addSubviews() {
-        view.addVerticalGradientLayer()
+        view.addAnimatedGradientLayer()
         view.addSubview(gameView)
         
         gameView.snp.makeConstraints { make in

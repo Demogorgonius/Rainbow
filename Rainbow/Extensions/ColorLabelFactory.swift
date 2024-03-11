@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ColorLabel: AnyObject {
-    
+
     var shadowColorLabel: UILabel {get}
     
 }
@@ -23,7 +23,7 @@ extension UILabel: ColorLabel {
 
 class ColorLabelFactory {
 
-    let colours: [String] = ["красный", "серый", "чёрный", "синий", "коричневый", "фиолетовый", "зелёный"]
+    let colors: [String] = ["красный", "серый", "чёрный", "синий", "коричневый", "фиолетовый", "зелёный"]
     
     static func createShadowLabel() -> ColorLabel {
         let label = UILabel()
@@ -34,24 +34,25 @@ class ColorLabelFactory {
         label.layer.shadowRadius = 3
         label.layer.shadowColor = UIColor.black.cgColor
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }
     
     func getRandomColor() -> String {
         
-        return colours[Int.random(in: 0 ... colours.count-1)]
+        return colors[Int.random(in: 0 ... colors.count-1)]
         
     }
     
     func getColor(_ index: Int) -> String {
         
-        return colours[index]
+        return colors[index]
         
     }
     
     func getCurentIndex(_ color: String) -> Int {
         
-        let index: Int = colours.firstIndex(of: color) ?? 0
+        let index: Int = colors.firstIndex(of: color) ?? 0
         
         return index
         

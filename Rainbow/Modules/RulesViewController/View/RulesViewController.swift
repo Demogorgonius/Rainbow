@@ -25,7 +25,7 @@ final class RulesViewController: UIViewController {
     
     //MARK: - Set Views
     private func setViews() {
-        view.addVerticalGradientLayer()
+        view.addAnimatedGradientLayer()
         view.addSubviews(rulesOfTheGame)
     }
     

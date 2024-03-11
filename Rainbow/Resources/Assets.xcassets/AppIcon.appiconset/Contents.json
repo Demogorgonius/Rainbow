@@ -1,17 +1,10 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
       "filename" : "transparent_2024-03-09T20-25-07.png",
       "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "platform" : "ios",
+      "size" : "1024x1024"
     }
   ],
   "info" : {

@@ -6,363 +6,74 @@ import SnapKit
 final class SettingsViewController: UIViewController {
     
     var presenter: SettingsPresenterProtocol!
+    
     var buttonsArray: [UIButton] = []
     lazy var colorButtonsArray =  getButtonColors()
     var standartColors = ColorButtons().colorButtons
+    var isOn = false
+    var isExpanded = false
     
-   
+    private lazy var colorPickerView = ColorPickerView()
+    private lazy var sizeView = SizeView()
+    private lazy var timeView = TimeView()
+    private lazy var speedView = SpeedView()
+    private lazy var backgroundForWordView = BackgroundForWordView()
+    private lazy var themePickerView = ThemePickerView()
+    private lazy var wordPlacementView = WordPlacementView()
+    private lazy var appLangView = AppLangView()
+    
+    private lazy var allViews =  [timeView,
+                                  speedView,
+                                  colorPickerView,
+                                  sizeView,
+                                  backgroundForWordView,
+                                  themePickerView,
+                                  wordPlacementView,
+                                  appLangView
+    ]
     
     //MARK: - ScrollView
-    
-    private lazy var scrollView = UIScrollView()
-    
-    
-    // MARK: - Main Stack
-    lazy var mainStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 20
-        stack.distribution = .equalSpacing
-        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        [gameTimeShadowView.shadowView,
-         gameSpeedShadowView.shadowView,
-         colorPickerShadowView.shadowView,
-         gameSizeShadowView.shadowView,
-         backgroundForWordShadowView.shadowView,
-         backgroundForGameShadowView.shadowView,
-         wordPlacementShadowView.shadowView,
-         appLangShadowView.shadowView].forEach {
-            stack.addArrangedSubview($0)
-        }
-        return stack
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
     }()
     
-    // MARK: - GameTime UI
-    lazy var gameTimeShadowView = ViewFactory.createShadowView()
-    lazy var gameTimeStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = 20
-        stack.distribution = .equalSpacing
-        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        [gameTimeLabel, gameTimeSlider, gameTimeSliderLabel].forEach {
-            stack.addArrangedSubview($0)
-        }
-        return stack
-    } ()
-    
-    lazy var gameTimeLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("gameTimeLabel", comment: ""))
-    
-    lazy var gameTimeSlider: UISlider = {
-        let slider = UISlider()
-        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
-        slider.minimumValue = 1.0
-        slider.maximumValue = 20.0
-        slider.setValue(getDuration(), animated: true)
-        slider.minimumTrackTintColor = .customOrange
-        return slider
-    }()
-    
-    lazy var gameTimeSliderLabel: UILabel = {
-        let label = UILabel()
-        label.text = String(Int(gameTimeSlider.value))
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = .black
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    // MARK: - GameSpeed UI
-    lazy var gameSpeedShadowView = ViewFactory.createShadowView()
-    
-    lazy var gameSpeedStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = 20
-        stack.distribution = .equalSpacing
-        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        [gameSpeedLabel, gameSpeedSlider, gameSpeedSliderLabel].forEach {
-            stack.addArrangedSubview($0)
-        }
-        return stack
-    } ()
-    
-    lazy var gameSpeedLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("gameSpeedLabel", comment: ""))
-    
-    lazy var gameSpeedSlider: UISlider = {
-        let slider = UISlider()
-        slider.addTarget(self, action: #selector(sliderValueChanged), for: UIControl.Event.valueChanged)
-        slider.minimumValue = 1.0
-        slider.maximumValue = 5.0
-        slider.setValue(getSpeed(), animated: true)
-        slider.minimumTrackTintColor = .customOrange
-        slider.translatesAutoresizingMaskIntoConstraints = false
-        return slider
-    }()
-    
-    lazy var gameSpeedSliderLabel: UILabel = {
-        let label = UILabel()
-        label.text = String(Int(gameSpeedSlider.value))
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = .black
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     
-    // MARK: - ColorPicker UI
-    
-    lazy var colorPickerShadowView = ViewFactory.createShadowView()
-    
-    lazy var colorPickerStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = 20
-        stack.distribution = .equalSpacing
-        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        [colorPickerLabel, colorPickerButtonStack].forEach {
-            stack.addArrangedSubview($0)
-        }
-        return stack
-    } ()
-    
-    //    colorPickerButtonStack1, colorPickerButtonStack2
-    lazy var colorPickerButtonStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 4
-        stack.distribution = .fillEqually
-        stack.alignment = .leading
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        [colorPickerButtonStack1, colorPickerButtonStack2].forEach {
-            stack.addArrangedSubview($0)
-        }
-        return stack
-    }()
-    
-    lazy var colorPickerButtonStack1: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = 4
-        stack.distribution = .equalSpacing
-        //        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
-    lazy var colorPickerButtonStack2: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = 4
-        stack.distribution = .equalSpacing
-        //        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
-    
-    lazy var colorPickerLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("colorPickerLabel", comment: ""))
-    
-    // MARK: - gameSize UI
-    
-    lazy var gameSizeLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("gameSizeLabel", comment: ""))
-    
-    
-    lazy var gameSizeShadowView = ViewFactory.createShadowView()
-    
-    lazy var gameSizeStepper: UIStepper = {
-        let stepper = UIStepper()
-        stepper.addTarget(self, action: #selector(stepperValueChanged), for: .valueChanged)
-        stepper.minimumValue = 10.0
-        stepper.maximumValue = 30.0
-        stepper.stepValue = 1.0
-        stepper.value = getFontSize()
-        return stepper
-        
-    }()
-    
-    lazy var gameSizeStepperLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Aa"
-        label.font = UIFont.systemFont(ofSize: gameSizeStepper.value)
-        label.textColor = .black
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    lazy var gameSizeStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = 20
-        stack.distribution = .equalSpacing
-        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        [gameSizeLabel, gameSizeStepper, gameSizeStepperLabel].forEach {
-            stack.addArrangedSubview($0)
-        }
-        return stack
-    } ()
-    
-    // MARK: - BackgroundForWord UI
-    
-    lazy var backgroundForWordShadowView = ViewFactory.createShadowView()
-    
-    lazy var backgroundForWordStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = 20
-        stack.distribution = .equalSpacing
-        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        [backgroundForWordLabel, switchedViewForLabel].forEach {
-            stack.addArrangedSubview($0)
-        }
-        return stack
-    } ()
-    
-    lazy var backgroundForWordLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("backgroundForWordLabel", comment: ""))
-    
-    lazy var switchedViewForLabel: UISwitch = {
-        let switcher = UISwitch()
-        switcher.isOn = presenter.settings?.isViewForText ?? false
-        switcher.onTintColor = .customOrange
-        switcher.addTarget(self, action: #selector(toggledSwitchValue), for: .valueChanged)
-        switcher.translatesAutoresizingMaskIntoConstraints = false
-        return switcher
-    }()
-    
-    // MARK: - BackgroundForGame UI
-    
-    lazy var backgroundForGameShadowView = ViewFactory.createShadowView()
-    
-    lazy var backgroundForGameStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 10
-        stack.distribution = .fillEqually
-        stack.alignment = .leading
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        [backgroundForGameLabel, backgroundForGameSC].forEach {
-            stack.addArrangedSubview($0)
-        }
-        return stack
-    } ()
-    
-    lazy var backgroundForGameLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("backgroundForGameLabel", comment: ""))
-    
-    lazy var backgroundForGameSC: UISegmentedControl = {
-        let sc = UISegmentedControl(items: [NSLocalizedString("backgroundForGameSCLight", comment: ""), NSLocalizedString("backgroundForGameSCDark", comment: "")])
-        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "customBlack")!]
-        sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
-        sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
-        sc.selectedSegmentTintColor = .white
-        sc.selectedSegmentIndex = 0
-        sc.translatesAutoresizingMaskIntoConstraints = false
-        sc.addTarget(self, action: #selector(appThemeSelected), for: .valueChanged)
-        return sc
-    }()
-    
-    // MARK: - wordPlacement UI
-    
-    lazy var wordPlacementShadowView = ViewFactory.createShadowView()
-    
-    lazy var wordPlacementStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 10
-        stack.distribution = .fillEqually
-        stack.alignment = .leading
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        [wordPlacementLabel, wordPlacementSC].forEach {
-            stack.addArrangedSubview($0)
-        }
-        return stack
-    } ()
-    
-    lazy var wordPlacementLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("wordPlacementLabel", comment: ""))
-    
-    lazy var wordPlacementSC: UISegmentedControl = {
-        let sc = UISegmentedControl(items: [NSLocalizedString("wordPlacementSCRandom", comment: ""), NSLocalizedString("wordPlacementSCCentre", comment: "")])
-        //        sc.setEnabled(true, forSegmentAt: 1)
-        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
-        sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
-        sc.selectedSegmentTintColor = .white
-        sc.selectedSegmentIndex = isRandomLocation() ? 0 : 1
-        sc.translatesAutoresizingMaskIntoConstraints = false
-        return sc
-    }()
-    
-    // MARK: - App language UI
-    
-    lazy var appLangShadowView = ViewFactory.createShadowView()
-    
-    lazy var appLangStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 10
-        stack.distribution = .fillEqually
-        stack.alignment = .leading
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        [appLangLabel, appLangSC].forEach {
-            stack.addArrangedSubview($0)
-        }
-        return stack
-    } ()
-    
-    lazy var appLangLabel = SettingsViewService.shared.createSettingTitle(title: NSLocalizedString("appLangLabel", comment: ""))
-    
-    lazy var appLangSC: UISegmentedControl = {
-        let sc = UISegmentedControl(items: [NSLocalizedString("appLangSCRus", comment: ""), NSLocalizedString("appLangSCEn", comment: "")])
-        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        sc.setTitleTextAttributes(titleTextAttributes, for: .normal)
-        sc.setTitleTextAttributes(titleTextAttributes, for: .selected)
-        sc.selectedSegmentTintColor = .white
-        sc.selectedSegmentIndex = isSelectedLangRu() ? 0 : 1
-        sc.translatesAutoresizingMaskIntoConstraints = false
-        sc.addTarget(self, action: #selector(changeLangSelected), for: .valueChanged)
-        return sc
-    }()
-    
-    
-    //MARK: - ViewDidLoad
-    
+    //MARK: - Life Cycle
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        configureNavigationBar()
         presenter.getSettings()
-        view.addVerticalGradientLayer()
-        setupButtons()
+        view.addAnimatedGradientLayer()
+        
         setupViews()
         setupLayout()
-        configureNavigationBar()
-        
+        setupButtons()
+        addTargetFromViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setAppThemeSwitch()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         presenter?.saveGameSettings(
-            durationGame: Int(gameTimeSlider.value),
-            speedGame: Int(gameSpeedSlider.value),
+            durationGame: Int(timeView.timeSlider.value),
+            speedGame: Int(speedView.speedSlider.value),
             gameColors: colorButtonsArray,
-            sizeFont: gameSizeStepper.value,
-            isViewForText: switchedViewForLabel.isOn,
+            sizeFont: sizeView.gameSizeStepper.value,
+            isViewForText: backgroundForWordView.switchedViewForLabel.isOn,
             themeForApp: "customBackground",
-            isCenterOnScreen: wordPlacementSC.selectedSegmentIndex == 0)
-        
+            isCenterOnScreen: wordPlacementView.wordPlacementSC.selectedSegmentIndex == 0)
     }
     
     private func configureNavigationBar() {
@@ -371,68 +82,86 @@ final class SettingsViewController: UIViewController {
     }
     
     //MARK: - Alert controller
-    
     func showAlert(title: String, message: String) -> UIAlertController {
-        
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(defaultAction)
         return alert
-        
     }
+    
+    // MARK: - addTarget
+    private func addTargetFromViews() {
+        setupSizeView()
+        setupColorPickerView()
+        setupTimeView()
+        setupSpeedView()
+        setupBackgroundForWordView()
+        setupThemePickerView()
+        setupWordPlacementView()
+        setupAppLangView()
+    }
+    
+    private func setupSizeView() {
+        sizeView.gameSizeStepper.addTarget(self, action: #selector(stepperValueChanged), for: .valueChanged)
+        sizeView.gameSizeStepper.value = getFontSize()
+        sizeView.gameSizeStepperLabel.font =  UIFont.systemFont(ofSize: sizeView.gameSizeStepper.value)
+    }
+   
+    private func setupColorPickerView() {
+        colorPickerView.mainPickerStack.isHidden = true
+        colorPickerView.colorPickerButton.addAction(UIAction { [weak self] _ in
+            self?.colorPickerButtonTap()
+        }, for: .touchUpInside)
+    }
+    
+    private func setupTimeView() {
+        timeView.timeSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
+        timeView.timeSlider.setValue(getDuration(), animated: true)
+        timeView.timerValueLabel.text = String(Int(timeView.timeSlider.value))
+    }
+    
+    private func setupSpeedView() {
+        speedView.speedSlider.addTarget(self, action: #selector(sliderValueChanged), for: UIControl.Event.valueChanged)
+        speedView.speedSlider.setValue(getSpeed(), animated: true)
+        speedView.speedValueLabel.text = String(Int(speedView.speedSlider.value))
+    }
+    
+    private func setupBackgroundForWordView() {
+        backgroundForWordView.switchedViewForLabel.isOn = presenter.settings?.isViewForText ?? false
+        backgroundForWordView.switchedViewForLabel.addTarget(self, action: #selector(toggledSwitchValue), for: .valueChanged)
+    }
+    
+    private func setupThemePickerView() {
+        themePickerView.themePickerSegmentedControl.addTarget(self, action: #selector(appThemeSelected), for: .valueChanged)
+    }
+    
+    private func setupWordPlacementView() {
+        wordPlacementView.wordPlacementSC.selectedSegmentIndex = isRandomLocation() ? 0 : 1
+    }
+    
+    private func setupAppLangView() {
+        appLangView.appLangSegmentedControl.selectedSegmentIndex = isSelectedLangRu() ? 0 : 1
+        appLangView.appLangSegmentedControl.addTarget(self, action: #selector(changeLangSelected), for: .valueChanged)
+    }
+    
     // MARK: - Methods UI
     
-    var isOn = false
-    
-    @objc func stepperValueChanged(sender: UIStepper) {
-        gameSizeStepperLabel.font = UIFont.systemFont(ofSize: sender.value)
-    }
-    
-    @objc func sliderValueChanged(sender: UISlider) {
-        let currentValue = Int(sender.value)
-        if (sender == gameTimeSlider) {
-            (gameTimeSliderLabel.text = "\(currentValue)")
-        } else {
-            (gameSpeedSliderLabel.text = "\(currentValue)")
+    private func setupButtons() {
+        var button = UIButton()
+        colorButtonsArray = getButtonColors()
+        
+        for i in 0...11 {
+            button = createButton(color: colorButtonsArray[i].color)
+            
+            setBackground(view: button, onOffStatus: colorButtonsArray[i].isOn)
+            button.addTarget(self, action: #selector(checkboxTaped), for: .touchUpInside)
+            button.tag = i
+            buttonsArray.append(button)
+            i < 6 ? colorPickerView.colorPickerButtonStack1.addArrangedSubview(button) : colorPickerView.colorPickerButtonStack2.addArrangedSubview(button)
         }
     }
     
-    @objc func checkboxTaped(sender: UIButton) {
-        colorButtonsArray[sender.tag].isOn.toggle()
-        setBackground(view: sender, onOffStatus: colorButtonsArray[sender.tag].isOn)
-    }
-    
-    @objc func appThemeSelected(_ sender: UISegmentedControl) {
-        
-        if (sender.selectedSegmentIndex == 1 ){
-                   print("UISwitch state is now ON")
-                   UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
-               }
-               else{
-                   print("UISwitch state is now Off")
-                   UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
-               }
-        
-    }
-    
-    @objc func changeLangSelected(_ sender: UISegmentedControl) {
-        
-        if (sender.selectedSegmentIndex == 1 ) {
-            changeLang(lang: "en-US")
-        }
-        else{
-            changeLang(lang: "ru-RU")
-        }
-        
-    }
-    
-    @objc func toggledSwitchValue(_ sender: UISwitch) {
-        
-        
-    }
-    
-    
-    func setBackground(view: UIButton, onOffStatus: Bool) {
+    private func setBackground(view: UIButton, onOffStatus: Bool) {
         let whiteCheck = UIImage(named: "checkboxWhire")!
         let blackCheck = UIImage(named: "checkboxBlack")!
         switch onOffStatus {
@@ -443,291 +172,151 @@ final class SettingsViewController: UIViewController {
         }
     }
     
-    func setupButtons() {
-        var button = UIButton()
-         colorButtonsArray = getButtonColors()
-        
-        for i in 0...11 {
-            button = SettingsViewService.shared.createButton(color: colorButtonsArray[i].color)
-            
-            setBackground(view: button, onOffStatus: colorButtonsArray[i].isOn)
-            button.addTarget(self, action: #selector(checkboxTaped), for: .touchUpInside)
-            button.tag = i
-            buttonsArray.append(button)
-            i < 6 ? colorPickerButtonStack1.addArrangedSubview(button) : colorPickerButtonStack2.addArrangedSubview(button)
+    private func createButton(color: String) -> UIButton {
+        let button = UIButton()
+        button.backgroundColor = UIColor(named: color)
+        button.layer.cornerRadius = 20
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.snp.makeConstraints { make in
+            make.height.equalTo(40)
+            make.width.equalTo(40)
+        }
+        return button
+    }
+    
+    @objc private func checkboxTaped(sender: UIButton) {
+        colorButtonsArray[sender.tag].isOn.toggle()
+        setBackground(view: sender, onOffStatus: colorButtonsArray[sender.tag].isOn)
+    }
+    
+    @objc private func stepperValueChanged(sender: UIStepper) {
+        sizeView.gameSizeStepperLabel.font = UIFont.systemFont(ofSize: sender.value)
+    }
+    
+    @objc private func sliderValueChanged(sender: UISlider) {
+        let currentValue = Int(sender.value)
+        if (sender == timeView.timeSlider) {
+            (timeView.timerValueLabel.text = "\(currentValue)")
+        } else {
+            (speedView.speedValueLabel.text = "\(currentValue)")
         }
     }
     
-    func setupViews() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(mainStack)
-        gameTimeShadowView.shadowView.addSubview(gameTimeStack)
-        gameSpeedShadowView.shadowView.addSubview(gameSpeedStack)
-        colorPickerShadowView.shadowView.addSubview(colorPickerStack)
-        gameSizeShadowView.shadowView.addSubview(gameSizeStack)
-        backgroundForWordShadowView.shadowView.addSubview(backgroundForWordStack)
-        backgroundForGameShadowView.shadowView.addSubview(backgroundForGameStack)
-        wordPlacementShadowView.shadowView.addSubview(wordPlacementStack)
-        appLangShadowView.shadowView.addSubview(appLangStack)
-        
+    @objc private func appThemeSelected(_ sender: UISegmentedControl) {
+        if (sender.selectedSegmentIndex == 1 ){
+            print("UISwitch state is now ON")
+            UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
+        }
+        else{
+            print("UISwitch state is now Off")
+            UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
+        }
     }
     
-    func setAppThemeSwitch() {
-        
+    @objc private func changeLangSelected(_ sender: UISegmentedControl) {
+        if (sender.selectedSegmentIndex == 1 ) {
+            changeLang(lang: "en-US")
+        }
+        else {
+            changeLang(lang: "ru-RU")
+        }
+    }
+    
+    @objc private func toggledSwitchValue(_ sender: UISwitch) {}
+    
+    private func setAppThemeSwitch() {
         let theme = UserDefaults.standard.object(forKey: "theme") as? String
         if theme == "dark" {
-            backgroundForGameSC.selectedSegmentIndex = 1
+            themePickerView.themePickerSegmentedControl.selectedSegmentIndex = 1
         } else {
-            backgroundForGameSC.selectedSegmentIndex = 0
-        }
-        
-        
-    }
-    
-    func saveButtons(buttons: [UIButton]) {
-        var result = ColorButtons().colorButtons
-        for button in buttons {
-            if button.currentImage == nil {
-                result[button.tag].isOn.toggle()
-            }
-            presenter?.saveGameSettings(
-                durationGame: nil,
-                speedGame: nil,
-                gameColors: result,
-                sizeFont: nil,
-                isViewForText: nil,
-                themeForApp: nil,
-                isCenterOnScreen: nil
-            )
+            themePickerView.themePickerSegmentedControl.selectedSegmentIndex = 0
         }
     }
     
     private func changeLang(lang: String) {
-        
         let defaults = UserDefaults.standard
         defaults.set([lang], forKey: "AppleLanguages")
         defaults.synchronize()
         present(showAlert(title: NSLocalizedString("alertTitle", comment: ""), message: NSLocalizedString("langChangeMessage", comment: "")), animated: true)
-//        navigationController?.popToRootViewController(animated: true)
-        
     }
+    
     private func isSelectedLangRu() -> Bool {
-        
         
         if Locale.preferredLanguages[0] == "ru-RU" {
             return true
-        } else  {
+        } else {
             return false
         }
-        
     }
     
-    // MARK: - Layout
+    private func colorPickerButtonTap() {
+        UIView.animate(withDuration: 0.3) { [unowned self] in
+            if !self.isExpanded {
+                self.colorPickerView.colorPickerButton.setImage(
+                    UIImage(named: "arrowUp"),
+                    for: .normal
+                )
+                
+                self.colorPickerView.mainPickerStack.isHidden = false
+                self.colorPickerView.snp.remakeConstraints { make in
+                    make.top.equalTo(self.speedView.snp.bottom).offset(16)
+                    make.height.equalTo(180)
+                    make.leading.trailing.equalToSuperview().inset(32)
+                }
+            } else {
+                self.colorPickerView.colorPickerButton.setImage(
+                    UIImage(named: "arrow"),
+                    for: .normal
+                )
+                self.colorPickerView.mainPickerStack.isHidden = true
+                self.colorPickerView.snp.remakeConstraints { make in
+                    make.top.equalTo(self.speedView.snp.bottom).offset(16)
+                    make.height.equalTo(80)
+                    make.leading.trailing.equalToSuperview().inset(32)
+                }
+            }
+            self.view.layoutIfNeeded()
+            self.isExpanded.toggle()
+        }
+    }
     
-    func setupLayout() {
-        
-        scrollView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(5)
-            $0.top.equalToSuperview()
-            $0.bottom.equalToSuperview()
+    // MARK: - Setup Views
+    private func setupViews() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+    }
+    
+    private func setupLayout() {
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
-        gameTimeStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
+        contentView.snp.makeConstraints { make in
+            make.edges.width.equalToSuperview()
         }
         
-        gameTimeShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(66)
-            make.width.equalTo(298)
-        }
-        gameSpeedStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
+        var previousView: UIView?
+        let spacing: CGFloat = 16
+        
+        for view in allViews {
+            contentView.addSubview(view)
+            
+            view.snp.makeConstraints { make in
+                make.leading.trailing.equalToSuperview().inset(32)
+                make.height.equalTo(80)
+                if let previousView = previousView {
+                    make.top.equalTo(previousView.snp.bottom).offset(spacing)
+                } else {
+                    make.top.equalToSuperview().offset(spacing)
+                }
+            }
+            previousView = view
         }
         
-        gameSpeedShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(66)
-            make.width.equalTo(298)
-        }
-        
-        
-        colorPickerStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        
-        colorPickerButtonStack1.snp.makeConstraints{ make in
-            make.top.equalTo(colorPickerButtonStack)
-            make.centerY.equalToSuperview()
-            make.height.equalTo(25)
-            make.width.equalToSuperview()
-        }
-        
-        colorPickerButtonStack2.snp.makeConstraints{ make in
-            make.top.equalTo(colorPickerButtonStack1).offset(29)
-            //            make.centerY.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.height.equalTo(25)
-            make.width.equalToSuperview()
-        }
-        
-        colorPickerButtonStack.snp.makeConstraints{ make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.height.equalTo(54)
-        }
-        
-        
-        colorPickerShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(80)
-            make.width.equalTo(298)
-        }
-        
-        gameSizeStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        
-        gameSizeShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(66)
-            make.width.equalTo(298)
-        }
-        
-        backgroundForWordStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        backgroundForWordShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(66)
-            make.width.equalTo(298)
-        }
-        backgroundForGameStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        backgroundForGameShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(80)
-            make.width.equalTo(298)
-        }
-        
-        backgroundForGameSC.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(20)
-            make.width.equalTo(298)
-        }
-        wordPlacementStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        
-        wordPlacementShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(80)
-            make.width.equalTo(298)
-        }
-        
-        wordPlacementSC.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(20)
-            make.width.equalTo(298)
-        }
-        
-        appLangStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().offset(-20)
-        }
-        
-        appLangShadowView.shadowView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(80)
-            make.width.equalTo(298)
-        }
-        
-        appLangSC.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            //            make.top.equalToSuperview().offset(121)
-            make.height.equalTo(20)
-            make.width.equalTo(298)
-        }
-        
-        mainStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(10)
-            make.bottom.equalTo(scrollView.snp.bottom)
+        if let lastView = allViews.last {
+            lastView.snp.makeConstraints { make in
+                make.bottom.equalToSuperview().inset(spacing)
+            }
         }
     }
 }
-
-// MARK: - Extension for SettingsViewProtocol - Methods to update View From Settings
-extension SettingsViewController: SettingsViewProtocol {
-
-    func getDuration() -> Float {
-        guard let settings = presenter.settings else { return 0.3 }
-        return Float(settings.durationGame)
-    }
-    func getSpeed() -> Float {
-        guard let settings = presenter.settings else { return 0.3 }
-        return Float(settings.speedGame)
-    }
-    
-    func getButtonColors() -> [ColorChecker] {
-        guard let settings = presenter.settings else { return [] }
-        return settings.gameColors
-    }
-    
-    func isViewForText() -> Bool {
-        guard let settings = presenter.settings else { return true }
-        return settings.isViewForText
-    }
-    
-    func getFontSize() -> Double {
-        guard let settings = presenter.settings else { return 15.0 }
-        return settings.sizeFont
-    }
-
-    
-    func getGameBackground() -> String {
-        guard let settings = presenter.settings else { return "" }
-        return settings.themeForApp
-    }
-    
-    func isRandomLocation() -> Bool {
-        guard let settings = presenter.settings else { return true }
-        return settings.isCenterOnScreen
-    }
-    
-}
-
