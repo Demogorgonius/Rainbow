@@ -104,8 +104,9 @@ final class SettingsViewController: UIViewController {
     private func setupSizeView() {
         sizeView.gameSizeStepper.addTarget(self, action: #selector(stepperValueChanged), for: .valueChanged)
         sizeView.gameSizeStepper.value = getFontSize()
+        sizeView.gameSizeStepperLabel.font =  UIFont.systemFont(ofSize: sizeView.gameSizeStepper.value)
     }
-    
+   
     private func setupColorPickerView() {
         colorPickerView.mainPickerStack.isHidden = true
         colorPickerView.colorPickerButton.addAction(UIAction { [weak self] _ in
