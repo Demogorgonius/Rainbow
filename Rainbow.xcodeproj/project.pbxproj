@@ -56,6 +56,7 @@
 		A5CBDB842B987C9600C81385 /* AnimateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB832B987C9600C81385 /* AnimateViewModel.swift */; };
 		A5CBDB862B987CD800C81385 /* ErrorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB852B987CD800C81385 /* ErrorList.swift */; };
 		A5CBDB882B987D3F00C81385 /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB872B987D3F00C81385 /* CustomTimer.swift */; };
+		A5CBDB8C2BA0E8E400C81385 /* ColorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBDB8B2BA0E8E400C81385 /* ColorService.swift */; };
 		A5DAD8772B3F2DF100FDED74 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DAD8762B3F2DF100FDED74 /* Theme.swift */; };
 		A5E867D92B7FD65A00DD6DBF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5E867DB2B7FD65A00DD6DBF /* Localizable.strings */; };
 		E112CBE62B0674F100F08206 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112CBE52B0674F100F08206 /* CustomNavigationController.swift */; };
@@ -132,6 +133,7 @@
 		A5CBDB832B987C9600C81385 /* AnimateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateViewModel.swift; sourceTree = "<group>"; };
 		A5CBDB852B987CD800C81385 /* ErrorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorList.swift; sourceTree = "<group>"; };
 		A5CBDB872B987D3F00C81385 /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
+		A5CBDB8B2BA0E8E400C81385 /* ColorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorService.swift; sourceTree = "<group>"; };
 		A5DAD8762B3F2DF100FDED74 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A5E867DA2B7FD65A00DD6DBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5E867DC2B7FD67200DD6DBF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 				A5CBDB852B987CD800C81385 /* ErrorList.swift */,
 				A5CBDB872B987D3F00C81385 /* CustomTimer.swift */,
 				E1F2F13F2B999D7F00DBE9AF /* Constants.swift */,
+				A5CBDB8B2BA0E8E400C81385 /* ColorService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				15F3BE7E2B02E70500E74E7A /* SettingsViewController.swift in Sources */,
 				4AD131702B0566E4007DA3B7 /* ResultsPresenter.swift in Sources */,
 				E112CBE62B0674F100F08206 /* CustomNavigationController.swift in Sources */,
+				A5CBDB8C2BA0E8E400C81385 /* ColorService.swift in Sources */,
 				4AD1313F2B02A3A0007DA3B7 /* Extension + UILabel.swift in Sources */,
 				A5CBDB882B987D3F00C81385 /* CustomTimer.swift in Sources */,
 				A5CBDB802B987BE100C81385 /* ColorLabelFactory.swift in Sources */,
