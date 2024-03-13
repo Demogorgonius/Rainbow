@@ -3,35 +3,33 @@
 import Foundation
 
 protocol MainViewProtocol: AnyObject {
-    
-    func startNewGameButtonTapped()
-    func continueGameButtonTapped()
-    func statisticGameTapped()
-    func settingsGameButtonTapped()
-    func infoGameButtonTapped()
+    func changeButtonState(resumeGame: Bool)
 }
 
 protocol MainPresenterProtocol {
     
+    init(router: MainRouterProtocol, stateManager: StateManagerProtocol)
     func startNewGameButtonTapped()
     func continueGameButtonTapped()
     func statisticGameTapped()
     func settingsGameButtonTapped()
     func infoGameButtonTapped()
+    func checkForResume()
 }
 
 final class MainPresenter: MainPresenterProtocol {
     
     weak var view: MainViewProtocol?
-   
     var router: MainRouterProtocol
+    var stateManager: StateManagerProtocol?
     
-    init(router: MainRouterProtocol) {
+    required init(router: MainRouterProtocol, stateManager: StateManagerProtocol) {
         self.router = router
+        self.stateManager = stateManager
     }
     
     func startNewGameButtonTapped() {
-        router.goToNewGame()
+        router.goToNewGame(resumeGame: false)
     }
     
     func continueGameButtonTapped() {
@@ -49,4 +47,16 @@ final class MainPresenter: MainPresenterProtocol {
     func infoGameButtonTapped() {
         router.goToInfo()
     }
+    
+    func checkForResume() {
+        
+        guard let stateManager else { return }
+        if stateManager.checkState() {
+            view?.changeButtonState(resumeGame: true)
+        } else {
+            view?.changeButtonState(resumeGame: false)
+        }
+        
+    }
+    
 }

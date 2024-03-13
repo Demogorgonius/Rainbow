@@ -2,37 +2,33 @@
 import UIKit
 
 protocol GameViewProtocol: AnyObject {
+    
     func getSettings()
     func getRainbowView()
-
+    
 }
 
 protocol GamePresenterProtocol {
-    
-    var gameManager: GameManagerProtocol { get set }
-    var colorViews: [RainbowView] { get set }
-    var rainbowViewManager: RainbowViewManagerProtocol { get set }
-    var startTime: Date? { get set }
-    var numberGame: Int { get set }
-    var elapsedTime: TimeInterval? { get set }
-    
-    var countRainbowView: Int { get set }
-    var defaultSpeed: Int { get set }
-    var speed: Int { get set }
-    var settings: GameSettings? { get set }
+
     func getSettings()
-    
-    func getRainbowView(count: Int)
     func routeToResultScreen()
+    
+    init (router: GameRouterProtocol,
+          gameManager: GameManagerProtocol,
+          rainbowViewManager: RainbowViewManagerProtocol,
+          stateManager: StateManagerProtocol,
+          resumeGame: Bool)
+    
 }
 
 class GamePresenter: GamePresenterProtocol {
     weak var view: GameViewProtocol?
     
-    private let router: GameRouterProtocol
-    
-    var gameManager: GameManagerProtocol
-    var rainbowViewManager: RainbowViewManagerProtocol
+    var router: GameRouterProtocol?
+    var gameManager: GameManagerProtocol?
+    var rainbowViewManager: RainbowViewManagerProtocol?
+    var stateManager: StateManagerProtocol?
+    var resumeGame: Bool?
     
     var startTime: Date?
     var elapsedTime: TimeInterval?
@@ -46,18 +42,20 @@ class GamePresenter: GamePresenterProtocol {
     
     var settings: GameSettings?
     
-    init(
-        router: GameRouterProtocol,
-        gameManager: GameManagerProtocol,
-        rainbowViewManager: RainbowViewManagerProtocol
-    )
-    {
+    required init(router: GameRouterProtocol, 
+                  gameManager: GameManagerProtocol, 
+                  rainbowViewManager: RainbowViewManagerProtocol,
+                  stateManager: StateManagerProtocol,
+                  resumeGame: Bool) {
         self.router = router
         self.gameManager = gameManager
         self.rainbowViewManager = rainbowViewManager
+        self.stateManager = stateManager
+        self.resumeGame = resumeGame
     }
     
     func getSettings() {
+        guard let gameManager else { return }
         gameManager.getSettings(completion: { result in
             switch result {
             case .success(let settings):
@@ -68,15 +66,9 @@ class GamePresenter: GamePresenterProtocol {
         })
     }
     
-    func getRainbowView(count: Int) {
-        for _ in 0..<count {
-            let rainbowView = rainbowViewManager.getRandomRainbowView()
-            colorViews.append(rainbowView)
-        }
-    }
     
     func routeToResultScreen() {
-        router.goToStatistics()
+        router?.goToStatistics()
     }
     
     

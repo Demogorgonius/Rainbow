@@ -3,7 +3,7 @@ import UIKit
 
 protocol MainRouterProtocol: AnyObject {
   
-    func goToNewGame()
+    func goToNewGame(resumeGame: Bool)
     func goToContinueGame()
     func goToResults()
     func goToSettings()
@@ -17,9 +17,9 @@ class MainRouter: MainRouterProtocol {
         self.navigationController = navigationController
     }
 
-    func goToNewGame() {
+    func goToNewGame(resumeGame: Bool) {
         guard let navigationController else { return }
-        let gameScreen = GameBuilder(navigationController: navigationController).build()
+        let gameScreen = GameBuilder(navigationController: navigationController).build(resumeGame: resumeGame)
        navigationController.pushViewController(gameScreen, animated: true)
     }
     

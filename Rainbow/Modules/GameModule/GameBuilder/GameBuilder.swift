@@ -2,7 +2,7 @@
 import UIKit
 
 protocol GameBuilderProtocol: AnyObject {
-    func build() -> UIViewController
+    func build(resumeGame: Bool) -> UIViewController
     init(navigationController: UINavigationController)
 }
 
@@ -14,7 +14,7 @@ class GameBuilder: GameBuilderProtocol {
         self.navigationController = navigationController
     }
     
-    func build() -> UIViewController {
+    func build(resumeGame: Bool) -> UIViewController {
         guard let navigationController else {
             fatalError("GameBuilder requires a valid navigationController")
         }
@@ -22,11 +22,15 @@ class GameBuilder: GameBuilderProtocol {
         let router = GameRouter(navigationController: navigationController)
         let gameManager = SettingsManager()
         let gameSettings = GameSettings()
+        let gameService = GameService()
+        let stateManager = StateManager()
         let rainbowViewManager = RainbowViewManager(settings: gameSettings)
         let presenter = GamePresenter(
             router: router,
             gameManager: gameManager,
-            rainbowViewManager: rainbowViewManager)
+            rainbowViewManager: rainbowViewManager,
+            stateManager: stateManager,
+            resumeGame: resumeGame)
         let viewController = GameViewController()
 
         viewController.presenter = presenter
