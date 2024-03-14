@@ -85,6 +85,7 @@ final class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+        presenter.checkForResume()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -122,11 +123,6 @@ final class MainViewController: UIViewController {
             make.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide).offset(-8)
         }
     }
-}
-
-extension MainViewController: MainViewProtocol {
-    
-    // MARK: - Actions
     @objc func startNewGameButtonTapped() {
         presenter.startNewGameButtonTapped()
     }
@@ -146,4 +142,14 @@ extension MainViewController: MainViewProtocol {
     @objc func infoGameButtonTapped() {
         presenter.infoGameButtonTapped()
     }
+}
+
+extension MainViewController: MainViewProtocol {
+    
+    func changeButtonState(resumeGame: Bool) {
+        
+            continueGameButton.isEnabled = resumeGame
+       
+    }
+   
 }

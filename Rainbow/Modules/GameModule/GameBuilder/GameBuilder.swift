@@ -34,6 +34,7 @@ class GameBuilder: GameBuilderProtocol {
         let viewController = GameViewController()
 
         viewController.presenter = presenter
+        viewController.gameService = gameService
         
         return viewController
     }

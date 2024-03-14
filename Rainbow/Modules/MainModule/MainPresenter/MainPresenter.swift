@@ -51,11 +51,8 @@ final class MainPresenter: MainPresenterProtocol {
     func checkForResume() {
         
         guard let stateManager else { return }
-        if stateManager.checkState() {
-            view?.changeButtonState(resumeGame: true)
-        } else {
-            view?.changeButtonState(resumeGame: false)
-        }
+        
+            view?.changeButtonState(resumeGame: stateManager.checkState())
         
     }
     
