@@ -1,38 +1,47 @@
 
 import UIKit
 
-protocol GameViewProtocol: AnyObject {
-    func getSettings()
-    func getRainbowView()
+enum SuccessType {
+    case saveOk
+    case deleteOk
+    case defaultLoad
+    case settingView
+}
 
+protocol GameViewProtocol: AnyObject {
+    
+    func setSettings(totalTime: Int)
+    func success(successType: SuccessType)
+    func failure(error: Error)
+    
 }
 
 protocol GamePresenterProtocol {
-    
-    var gameManager: GameManagerProtocol { get set }
-    var colorViews: [RainbowView] { get set }
-    var rainbowViewManager: RainbowViewManagerProtocol { get set }
-    var startTime: Date? { get set }
-    var numberGame: Int { get set }
-    var elapsedTime: TimeInterval? { get set }
-    
-    var countRainbowView: Int { get set }
-    var defaultSpeed: Int { get set }
-    var speed: Int { get set }
-    var settings: GameSettings? { get set }
+    var settings: GameSettings? {get set}
+    var viewModel: ViewModel? {get set}
+    var resumeGame: Bool? {get set}
     func getSettings()
-    
-    func getRainbowView(count: Int)
     func routeToResultScreen()
+    func setView()
+    func deleteState()
+    
+    init (router: GameRouterProtocol,
+          gameManager: GameManagerProtocol,
+          rainbowViewManager: RainbowViewManagerProtocol,
+          stateManager: StateManagerProtocol,
+          resumeGame: Bool)
+    
 }
 
 class GamePresenter: GamePresenterProtocol {
     weak var view: GameViewProtocol?
     
-    private let router: GameRouterProtocol
-    
-    var gameManager: GameManagerProtocol
-    var rainbowViewManager: RainbowViewManagerProtocol
+    var router: GameRouterProtocol?
+    var gameManager: GameManagerProtocol?
+    var rainbowViewManager: RainbowViewManagerProtocol?
+    var stateManager: StateManagerProtocol!
+    var viewModel: ViewModel?
+    var resumeGame: Bool?
     
     var startTime: Date?
     var elapsedTime: TimeInterval?
@@ -46,37 +55,106 @@ class GamePresenter: GamePresenterProtocol {
     
     var settings: GameSettings?
     
-    init(
-        router: GameRouterProtocol,
-        gameManager: GameManagerProtocol,
-        rainbowViewManager: RainbowViewManagerProtocol
-    )
-    {
+    required init(router: GameRouterProtocol, 
+                  gameManager: GameManagerProtocol, 
+                  rainbowViewManager: RainbowViewManagerProtocol,
+                  stateManager: StateManagerProtocol,
+                  resumeGame: Bool) {
         self.router = router
         self.gameManager = gameManager
         self.rainbowViewManager = rainbowViewManager
+        self.stateManager = stateManager
+        self.resumeGame = resumeGame
+        getSettings()
     }
     
     func getSettings() {
+        guard let gameManager else { return }
         gameManager.getSettings(completion: { result in
             switch result {
             case .success(let settings):
                 self.settings = settings
+                self.view?.setSettings(totalTime: settings.durationGame)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         })
     }
     
-    func getRainbowView(count: Int) {
-        for _ in 0..<count {
-            let rainbowView = rainbowViewManager.getRandomRainbowView()
-            colorViews.append(rainbowView)
+    
+    func routeToResultScreen() {
+        router?.goToStatistics()
+    }
+    
+    func saveState(vPosition: CGRect,
+                   tPosition: CGRect,
+                   bColor: String,
+                   fColor: String,
+                   restTime: Int,
+                   duration: TimeInterval,
+                   remainingDuration: TimeInterval,
+                   alpha: CGFloat) {
+        
+        stateManager.saveState(vPosition: vPosition,
+                               tPosition: tPosition,
+                               bColor: bColor,
+                               fColor: fColor,
+                               restTime: restTime,
+                               duration: duration,
+                               remainingDuration: remainingDuration,
+                               alpha: alpha) { [weak self] result in
+                               
+            guard let self = self else { return }
+            switch result {
+            case .success(let viewModel):
+                self.viewModel = viewModel
+                self.view?.success(successType: .saveOk)
+            case .failure(let error):
+                self.view?.failure(error: error)
+            }
+        }
+        
+    }
+    
+    func deleteState() {
+        if stateManager.checkState() {
+            stateManager.deleteState { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let result):
+                    if result {
+                        self.view?.success(successType: .deleteOk)
+                    }
+                case .failure(let error):
+                    self.view?.failure(error: error)
+                }
+            }
         }
     }
     
-    func routeToResultScreen() {
-        router.goToStatistics()
+    func loadView() {
+        stateManager.resumeState { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let viewModel):
+                self.viewModel = viewModel
+            case .failure(let error):
+                self.view?.failure(error: error)
+            }
+        }
+    }
+    
+    func setView() {
+        
+        if stateManager.checkState() {
+            loadView()
+            if viewModel != nil {
+                view?.success(successType: .settingView)
+            }
+        } else {
+            view?.success(successType: .defaultLoad)
+        }
+        
     }
     
     

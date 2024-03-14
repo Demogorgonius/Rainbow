@@ -18,8 +18,9 @@ class MainBuilder: MainBuilderProtocol {
             fatalError("MainBuilder requires a valid navigationController")
         }
         let viewController = MainViewController()
+        let stateManager = StateManager()
         let router = MainRouter(navigationController: navigationController)
-        let presenter = MainPresenter(router: router)
+        let presenter = MainPresenter(router: router, stateManager: stateManager)
         
         viewController.presenter = presenter
         
