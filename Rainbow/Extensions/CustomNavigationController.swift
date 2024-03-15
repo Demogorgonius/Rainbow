@@ -15,13 +15,14 @@ extension UINavigationController {
         navigationBar.backIndicatorImage = backButtonImage?.withAlignmentRectInsets(alignInsets)
         navigationBar.backIndicatorTransitionMaskImage = backButtonImage
         navigationBar.tintColor = .customPeach
+        
     }
 
 
     private func configureNavigationBarAppearance() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .customPurple
+        appearance.backgroundColor = .customPurple.withAlphaComponent(0.5)
         appearance.titleTextAttributes = [
             .font: UIFont.boldSystemFont(ofSize: 20),
             .foregroundColor: UIColor.customPeach]

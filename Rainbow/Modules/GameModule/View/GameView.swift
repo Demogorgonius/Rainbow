@@ -3,19 +3,11 @@ import UIKit
 import SnapKit
 
 class GameView: UIView {
+    
     // MARK: Properties
+    
     lazy var pauseLabel: UILabel = {
         return LabelFactory.createLabel(type: .gameLightGreen, text: NSLocalizedString("pauseLabel", comment: ""))
-    }()
-    
-    lazy var speedButton: UIButton = {
-        let button = ShadowButtonFactory.makeShadowButton(
-            backgroundColor: .customRed,
-            title: NSLocalizedString("speedButton", comment: ""),
-            target: self,
-            action: nil)
-        button.layer.cornerRadius = 40
-        return button
     }()
     
     lazy var gradientView: UIView = {
@@ -38,15 +30,13 @@ class GameView: UIView {
         makeColorButton(backgroundColor: .customViolet)
     ]
     
-    lazy var secondColorButtons: [UIButton] = [
+    lazy var centerColorButton: UIButton = {
         
-        makeColorButton(backgroundColor: .customDarkBlue),
-        makeColorButton(backgroundColor: .customOrange),
-        makeColorButton(backgroundColor: .customRed),
-        makeColorButton(backgroundColor: .customYellow),
-        makeColorButton(backgroundColor: .customBlack),
-        makeColorButton(backgroundColor: .customGrayishPurple)
-    ]
+        let button = makeColorButton(backgroundColor: .white)
+        return button
+        
+    }()
+    
     
     
     // MARK: - LifeCycle
@@ -64,27 +54,24 @@ class GameView: UIView {
     // MARK: Private Methods
     private func setupSubviews() {
         addSubview(gradientView)
-        addSubview(speedButton)
+        addSubview(centerColorButton)
         addSubviews(pauseLabel)
-        
+        let buttonSize = CGSize(width: 50, height: 50)
         pauseLabel.isHidden = true
         pauseLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
         
-        speedButton.snp.makeConstraints { make in
-            make.width.equalTo(80)
-            make.height.equalTo(80)
+        centerColorButton.snp.makeConstraints { make in
+            make.size.equalTo(buttonSize)
             make.center.equalTo(gradientView)
-            make.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
         }
         
         gradientView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(snp.height).multipliedBy(0.1)
+            make.height.equalTo(snp.height).multipliedBy(0.000001)
         }
-        
-        let buttonSize = CGSize(width: 50, height: 50)
         
         let angleStep = CGFloat.pi / CGFloat(colorButtons.count - 1)
         
@@ -93,28 +80,15 @@ class GameView: UIView {
             
             let angle = CGFloat.pi + CGFloat(index) * angleStep
             
-            let radius: CGFloat = 85.0
+            let radius: CGFloat = 125.0
             
             button.snp.makeConstraints { make in
                 make.size.equalTo(buttonSize)
-                make.centerX.equalTo(speedButton.snp.centerX).offset(cos(angle) * radius )
-                make.centerY.equalTo(speedButton.snp.centerY).offset(sin(angle) * radius + 10)
+                make.centerX.equalTo(centerColorButton.snp.centerX).offset(cos(angle) * radius )
+                make.centerY.equalTo(centerColorButton.snp.centerY).offset(sin(angle) * radius + 10)
             }
         }
         
-        for (index, button) in secondColorButtons.enumerated() {
-            addSubview(button)
-            
-            let angle = CGFloat.pi + CGFloat(index) * angleStep
-            
-            let radius: CGFloat = 155.0
-            
-            button.snp.makeConstraints { make in
-                make.size.equalTo(buttonSize)
-                make.centerX.equalTo(speedButton.snp.centerX).offset(cos(angle) * radius)
-                make.centerY.equalTo(speedButton.snp.centerY).offset(sin(angle) * radius)
-            }
-        }
     }
     
     private func makeColorButton(backgroundColor: UIColor) -> UIButton {

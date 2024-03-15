@@ -89,7 +89,7 @@ class GameViewController: UIViewController {
         view.addAnimatedGradientLayer()
         view.addSubview(gameView)
         view.addSubview(pauseLabel)
-        gameView.addSubview(colorView)
+        gameView.insertSubview(colorView, belowSubview: gameView.centerColorButton)
         colorView.addSubview(colorLabel)
         
     }
@@ -161,7 +161,48 @@ class GameViewController: UIViewController {
 extension GameViewController {
     
     @objc func pauseButtonPressed() {
-        
+        if isPause == false {
+            
+            totalTime -= secondPassed
+            gameService.pauseAnimationTimerEnd = DispatchTime.now()
+            timer?.invalidate()
+            gameService.viewAnimator?.stopAnimation(true)
+            gameService.viewAlphaAnimator?.stopAnimation(true)
+            pauseLabel.isHidden = false
+            isPause = true
+            
+        } else {
+            
+            pauseLabel.isHidden = true
+            if gameService.isRestoreAnimation == true {
+                
+                viewModel = presenter.viewModel
+                guard let viewModel = viewModel else { return }
+                timerStart()
+                isPause = false
+                gameService.startAnimation(colorView: colorView,
+                                           colorLabel: colorLabel,
+                                           repeated: 1000,
+                                           moveViewTime: viewModel.remainingDuration,
+                                           durationType: .pause,
+                                           startAnimationTime: nil,
+                                           viewPosition: [viewModel.viewPosition, viewModel.textPosition])
+
+            } else {
+                
+                timerStart()
+                isPause = false
+                gameService.resumeAnimation(colorView: colorView,
+                                            colorLabel: colorLabel,
+                                            stopAnimationTime: gameService.pauseAnimationTimerEnd,
+                                            startAnimationTime: gameService.animationTimerStart,
+                                            durationType: .pause)
+
+                
+            }
+            
+            
+        }
     }
     
 }
