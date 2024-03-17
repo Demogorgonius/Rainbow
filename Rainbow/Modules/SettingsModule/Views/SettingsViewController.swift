@@ -163,10 +163,9 @@ final class SettingsViewController: UIViewController {
     
     private func setBackground(view: UIButton, onOffStatus: Bool) {
         let whiteCheck = UIImage(named: "checkboxWhire")!
-        let blackCheck = UIImage(named: "checkboxBlack")!
         switch onOffStatus {
         case true:
-            view.backgroundColor == .customBlack ? view.setImage(whiteCheck, for: .normal) : view.setImage(blackCheck, for: .normal)
+            view.setImage(whiteCheck, for: .normal)
         default:
             view.setImage(nil, for: .normal)
         }
